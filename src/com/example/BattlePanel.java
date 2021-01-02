@@ -1,11 +1,13 @@
 package com.example;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,7 +26,11 @@ public class BattlePanel extends JPanel {
 	Monster fighted = CessPool.monsterz.get(0);
 	static int num = 0;
 	public BattlePanel(JFrame frame) {
-		frame.setPreferredSize(new Dimension(1280, 900));
+		
+		fighted.healHP();
+		CardLayout cardlay = new CardLayout();
+		JPanel middle = new JPanel(cardlay);
+		//what if inside the cardlayout, we always call a new itemPane
         
         JTextPane ta = new JTextPane();
         ta.setEditable(false);
@@ -32,6 +38,8 @@ public class BattlePanel extends JPanel {
         ta.setText("<html><h2 style=\"color:white;\">");
         
         ta.setBackground(Color.black);
+        
+        middle.add(ta, "text");
         
         JTextPane tb = new JTextPane();
         tb.setEditable(false);
@@ -93,10 +101,19 @@ public class BattlePanel extends JPanel {
     				@Override
     				public void actionPerformed(ActionEvent event) {
     					youAttack(fighter, fighted, ta, tb);
-    					enemyTurn(fighted, ta, tb);
     				}
     			}
     		);
+        
+        item.addActionListener(
+        	       new ActionListener() {
+        	        @Override
+        	        public void actionPerformed(ActionEvent event) {
+        	         middle.add("item", new ItemsPanel());
+        	         cardlay.show(middle, "item");
+        	        }
+        	       }
+        	     );
         
         setLayout(new BorderLayout());     
         
@@ -147,6 +164,10 @@ public class BattlePanel extends JPanel {
 		if (attacked.isDead()) {
 			someoneDead(attacker, attacked);
 		}
+		
+		else {
+			enemyTurn(fighted, ta, tb);
+		}
 	}
 	
 	public void someoneDead(Creature living, Creature dead) {
@@ -163,7 +184,8 @@ public class BattlePanel extends JPanel {
 			JLabel label = new JLabel("<html><center><p style style=\"background-color:powderblue; color: blue;\">YOU WON!!!</p>");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			JOptionPane.showMessageDialog(frame, label, "CONGRATS!!", JOptionPane.PLAIN_MESSAGE);
-			Main.frame.dispose();
+			Main.frame.setContentPane(new Map(frame));
+			Main.frame.pack();
 		}
 	}
 	

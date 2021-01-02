@@ -6,6 +6,7 @@ import java.util.Random;
 public abstract class Creature {
 	String name;
 	float currHP;
+	float currMana;
 	float healthPoint;
 	float mana;
 	float intelligence;
@@ -15,12 +16,15 @@ public abstract class Creature {
 	float defence;
 	float weight;
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
+	public ArrayList<Buff> buffs = new ArrayList<Buff>();
+	
 	
 	public Creature(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy, float speed, float defence, float weight) {
 		this.name = name;
 		this.healthPoint = healthPoint;
 		this.currHP = healthPoint;
 		this.mana = mana;
+		this.currMana = mana;
 		this.intelligence = intelligence;
 		this.strength = strength;
 		this.accuracy = accuracy;

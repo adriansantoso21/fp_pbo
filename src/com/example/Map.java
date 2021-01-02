@@ -24,7 +24,7 @@ public class Map extends JPanel{
 // private String text;
 // private String text2;
  
- public Map (String imgg, JFrame frame, CardLayout cardLayout, JPanel mainPanel) {
+ public Map (JFrame frame) {
   
 //  this.areaWidth = 1280;
 //  this.areaHeight = 750;
@@ -49,7 +49,8 @@ public class Map extends JPanel{
        new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-         cardLayout.show(mainPanel, "battlepane");
+        	Main.frame.setContentPane(new BattlePanel(frame));
+        	Main.frame.pack();
         }
        }
       );
@@ -58,6 +59,16 @@ public class Map extends JPanel{
      a_1b.setBounds(681, 565, 25, 25);
      a_1b.setBackground(Color.RED);
      this.add(a_1b);
+     
+     a_1b.addActionListener(
+    	       new ActionListener() {
+    	        @Override
+    	        public void actionPerformed(ActionEvent event) {
+    	        	Main.frame.setContentPane(new BattlePanel(frame));
+    	        	Main.frame.pack();
+    	        }
+    	       }
+    	      );
      
      JButton a_2 = new JButton();
      a_2.setBounds(553, 569, 25, 25);
@@ -93,7 +104,8 @@ public class Map extends JPanel{
        new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-         cardLayout.show(mainPanel, "shoppane");
+         Main.frame.setContentPane(new ShopPanel(frame));
+         Main.frame.pack();
         }
        }
       );
@@ -162,6 +174,12 @@ public class Map extends JPanel{
      boss_besar.setBounds(600, 120, 75, 75);
      boss_besar.setBackground(Color.RED);
      this.add(boss_besar);
+     
+     JButton cuhp = new JButton();
+     cuhp.setBounds(300, 120, 200, 75);
+     cuhp.setText("HP is currently " + CessPool.selected.currHP);
+     cuhp.setBackground(Color.RED);
+     this.add(cuhp);
      
  }
  

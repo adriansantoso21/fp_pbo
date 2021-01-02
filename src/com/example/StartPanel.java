@@ -51,7 +51,8 @@ public class StartPanel extends JPanel{
 		Button1.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	        	cardLayout.show(mainPanel, "characterSelect");
+	        	Main.frame.setContentPane(new CharacterSelectPanel(imgg, frame, cardLayout, mainPanel));
+	        	frame.pack();
 	         }
 		});
 		
