@@ -2,8 +2,8 @@ package com.example;
 
 public class Buff {
 	String type;
-	float healthPoint;
-	float mana;
+	float currHP;
+	float currMana;
 	float intelligence;
 	float strength;
 	float accuracy;
@@ -13,8 +13,8 @@ public class Buff {
 	
 	public Buff(String type, float healthPoint, float mana, float intelligence, float strength, float accuracy, float speed, float defence, int duration) {
 		this.type = type;
-		this.healthPoint = healthPoint;
-		this.mana = mana;
+		this.currHP = healthPoint;
+		this.currMana = mana;
 		this.intelligence = intelligence;
 		this.strength = strength;
 		this.accuracy = accuracy;

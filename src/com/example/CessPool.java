@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class CessPool {
-	public static Character selected = new Character("Heroman", 200, 20, 20, 40, 40, 30, 30, 30);
+	public static Character selected = new Character("Heroman", 300, 60, 20, 40, 40, 30, 30, 30);
 	public static ArrayList<Monster> monsterz = new ArrayList<Monster>();
 	public static ArrayList<Weapon> weaponz = new ArrayList<Weapon>();
 	public static ArrayList<Armor> armorz = new ArrayList<Armor>();
@@ -14,7 +14,7 @@ public class CessPool {
 
 	
 	public CessPool() {
-		monsterz.add(new Monster("Villain", 100, 28, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Villain", 300, 28, 20, 40, 40, 30, 30, 30));
 		monsterz.add(new Monster("2nd Villain", 150, 34, 20, 40, 40, 30, 30, 30));
 		armorz.add(new Armor("Sunlight Armor", 30, 60, 45, 15, 20));
 		armorz.add(new Armor("Ancient Armor", 10, 40, 25, 25, 30));
@@ -32,7 +32,11 @@ public class CessPool {
 		skillbookz.add(new SkillBook("Sword Saint", 10));
 		skillbookz.add(new SkillBook("Faint Destroyer", 10));
 		skillbookz.add(new SkillBook("Yo", 10));
+		selected.skills.add(new BuffSkill("Shining Star", 20, new Buff("Non", 0, 0, 0, 50, 50, 50, 0, 3)));
+		selected.skills.add(new DebuffSkill("Blinding Starlight", 30, new Buff("Non", 0, 0, 0, -30, -30, 0, 0, 3)));
 		selected.inventory.add(new Potion("Attack Potion", 0, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
 		selected.inventory.add(new Potion("Modifier Speed Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3)));
+		selected.inventory.add(new Potion("Defense Potion", 0, new Buff("Non", 0, 0, 0, 0, 0, 0, 10, 3)));
+		selected.inventory.add(new Potion("Attack Potion", 0, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
 	}
 }
