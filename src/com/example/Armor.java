@@ -1,6 +1,6 @@
 package com.example;
 
-public class Armor extends Inventory {
+public class Armor extends Equippable {
 	float healthPoint;
 	float defence;
 	float accuracy;

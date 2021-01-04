@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Character extends Creature {
 	
 	public ArrayList<Inventory> inventory = new ArrayList<Inventory>();
+	public ArrayList<Skill> skills = new ArrayList<Skill>();
 	public Armor equippedArmor;
 	public Weapon equippedWeapon;
 	
@@ -47,6 +48,17 @@ public class Character extends Creature {
 		this.intelligence -= equippedWeapon.intelligence;
 		this.speed -= equippedWeapon.speed;
 		this.weight -= equippedWeapon.weight;
+	}
+	
+	public void usePotion(Potion potion) {
+		if(potion.buff.currHP > 0 || potion.buff.currMana > 0) {
+			this.currHP += potion.buff.currHP;
+			this.currMana += potion.buff.currMana;
+		}
+		else {
+			this.buffs.add(potion.buff);
+		}
+		this.inventory.remove(potion);
 	}
 	
 }

@@ -2,14 +2,20 @@ package com.example;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+<<<<<<< HEAD
 import java.awt.Dimension;
+=======
+>>>>>>> ddb312c0513f2ae37f26da060e681f734d4f774e
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+=======
+>>>>>>> ddb312c0513f2ae37f26da060e681f734d4f774e
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,27 +26,27 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
-public class Map extends JPanel implements MouseListener, MouseMotionListener {
+public class Map extends JPanel{
  
  private Image imgg;
- private int areaWidth;
- private int areaHeight;
- private String text;
- private String text2;
+// private int areaWidth;
+// private int areaHeight;
+// private String text;
+// private String text2;
  
- public Map (String imgg, JFrame frame, CardLayout cardLayout, JPanel mainPanel) {
+ public Map (JFrame frame) {
   
-  this.areaWidth = 1280;
-  this.areaHeight = 750;
-  this.setPreferredSize(new Dimension(areaWidth, areaHeight));
-  this.text = "Lakukan sesuatu menggunakan mouse...";
-  this.text2 = "Mouse Position...";
-//  
-  this.addMouseMotionListener(this);
-  this.addMouseListener(this);
-  this.setFocusable(true);
+//  this.areaWidth = 1280;
+//  this.areaHeight = 750;
+//  this.setPreferredSize(new Dimension(areaWidth, areaHeight));
+//  this.text = "Lakukan sesuatu menggunakan mouse...";
+//  this.text2 = "Mouse Position...";
   
-  frame.setPreferredSize(new Dimension(1000, 1016));
+//  this.addMouseMotionListener(this);
+//  this.addMouseListener(this);
+//  this.setFocusable(true);
+  
+//  frame.setPreferredSize(new Dimension(1000, 1016));
   this.imgg = new ImageIcon("images/map.jpg").getImage();
   this.setLayout(null);
   
@@ -53,7 +59,8 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener {
        new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-         cardLayout.show(mainPanel, "battlepane");
+        	Main.frame.setContentPane(new BattlePanel(frame));
+        	Main.frame.pack();
         }
        }
       );
@@ -63,6 +70,16 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener {
      a_1b.setBackground(Color.RED);
      this.add(a_1b);
      
+     a_1b.addActionListener(
+    	       new ActionListener() {
+    	        @Override
+    	        public void actionPerformed(ActionEvent event) {
+    	        	Main.frame.setContentPane(new BattlePanel(frame));
+    	        	Main.frame.pack();
+    	        }
+    	       }
+    	      );
+
      JButton a_2 = new JButton();
      a_2.setBounds(553, 569, 25, 25);
      a_2.setBackground(Color.RED);
@@ -97,7 +114,8 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener {
        new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-         cardLayout.show(mainPanel, "shoppane");
+         Main.frame.setContentPane(new ShopPanel(frame));
+         Main.frame.pack();
         }
        }
       );
@@ -167,6 +185,12 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener {
      boss_besar.setBackground(Color.RED);
      this.add(boss_besar);
      
+     JButton cuhp = new JButton();
+     cuhp.setBounds(300, 120, 200, 75);
+     cuhp.setText("HP is currently " + CessPool.selected.currHP);
+     cuhp.setBackground(Color.RED);
+     this.add(cuhp);
+     
  }
  
  public void paintComponent(Graphics g) {
@@ -176,34 +200,34 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener {
 //  g.drawString(this.text2, 0, this.areaHeight / 30);
  }
  
- public void mouseClicked(MouseEvent e) {
-  this.text = "Tombol mouse diklik pada posisi X: " + e.getX() +" Y: " + e.getY();
-  repaint();
- }
- public void mousePressed(MouseEvent e) {
-  this.text = "Tombol mouse ditekan pada posisi X: " + e.getX() +" Y: " + e.getY();
-  repaint();
- }
- public void mouseReleased(MouseEvent e) {
-  this.text = "Tombol mouse dilepas pada posisi X: " + e.getX() +" Y: " + e.getY();
-  repaint();
- }
- public void mouseEntered(MouseEvent e) {
-  this.text = "Mouse memasuki area MousePanel";
-  repaint();
- }
- public void mouseExited(MouseEvent e) {
-  this.text = "Mouse meninggalkan area MousePanel";
-  repaint();
- }
- @Override
- public void mouseDragged(MouseEvent e) {
-  this.text2 = "Position X: " + e.getX() + " Y: " + e.getY() + " Dragged";
-  repaint();
- }
- @Override
- public void mouseMoved(MouseEvent e) {
-  this.text2 = "Position X: " + e.getX() + " Y: " + e.getY();
-  repaint();
- }
+// public void mouseClicked(MouseEvent e) {
+//  this.text = "Tombol mouse diklik pada posisi X: " + e.getX() +" Y: " + e.getY();
+//  repaint();
+// }
+// public void mousePressed(MouseEvent e) {
+//  this.text = "Tombol mouse ditekan pada posisi X: " + e.getX() +" Y: " + e.getY();
+//  repaint();
+// }
+// public void mouseReleased(MouseEvent e) {
+//  this.text = "Tombol mouse dilepas pada posisi X: " + e.getX() +" Y: " + e.getY();
+//  repaint();
+// }
+// public void mouseEntered(MouseEvent e) {
+//  this.text = "Mouse memasuki area MousePanel";
+//  repaint();
+// }
+// public void mouseExited(MouseEvent e) {
+//  this.text = "Mouse meninggalkan area MousePanel";
+//  repaint();
+// }
+// @Override
+// public void mouseDragged(MouseEvent e) {
+//  this.text2 = "Position X: " + e.getX() + " Y: " + e.getY() + " Dragged";
+//  repaint();
+// }
+// @Override
+// public void mouseMoved(MouseEvent e) {
+//  this.text2 = "Position X: " + e.getX() + " Y: " + e.getY();
+//  repaint();
+// }
 }

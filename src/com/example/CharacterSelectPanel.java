@@ -73,7 +73,8 @@ public class CharacterSelectPanel extends JPanel {
 	            if (choice == JOptionPane.YES_OPTION) {
 	                System.out.println("Wizard is chosen.");
 	                CessPool.selected = new Character("Wizard", 200, 200, 50, 10, 50, 25, 25, 30);
-	                cardLayout.show(mainPanel, "map");
+	                Main.frame.setContentPane(new Map(frame));
+	                frame.pack();
 	            }
 	         }
 		});
@@ -117,7 +118,8 @@ public class CharacterSelectPanel extends JPanel {
 	            if (choice == JOptionPane.YES_OPTION) {
 	            	System.out.println("Warrior is chosen.");
 	                CessPool.selected = new Character("Warrior", 400, 50, 10, 50, 50, 30, 50, 50);
-	                cardLayout.show(mainPanel, "map");
+	                Main.frame.setContentPane(new Map(frame));
+	                frame.pack();
 	            }
 	         }
 		});
@@ -161,7 +163,8 @@ public class CharacterSelectPanel extends JPanel {
 	            if (choice == JOptionPane.YES_OPTION) {
 	            	System.out.println("Rogue is chosen.");
 	                CessPool.selected = new Character("Rogue", 300, 100, 30, 20, 50, 50, 20, 20);
-	                cardLayout.show(mainPanel, "map");
+	                Main.frame.setContentPane(new Map(frame));
+	                frame.pack();
 	            }
 	         }
 		});
