@@ -238,7 +238,6 @@ public class BattlePanel extends JPanel {
 	            button.addActionListener(new ActionListener() {
 	                @Override
 	                public void actionPerformed(ActionEvent e) {
-	                	CessPool.selected.inventory.remove((Potion) potion);
 	                	CessPool.selected.usePotion((Potion)potion);
 	                    button.setEnabled(false);
 	                    cardlayt.show(potionPanel, "text");

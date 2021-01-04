@@ -71,7 +71,7 @@ public abstract class Creature {
 		float full = this.speed;
 		float part = 0;
 		for (Buff curr : buffs) {
-			if(curr.speed>0) {
+			if(curr.speed!=0) {
 				if(curr.type.equals("Modifier")) {
 					part = this.speed * curr.speed / 100;
 				}
@@ -88,7 +88,7 @@ public abstract class Creature {
 		float full = this.defence;
 		float part = 0;
 		for (Buff curr : buffs) {
-			if(curr.defence>0) {
+			if(curr.defence!=0) {
 				if(curr.type.equals("Modifier")) {
 					part = this.defence * curr.defence / 100;
 				}
@@ -105,7 +105,7 @@ public abstract class Creature {
 		float full = this.intelligence;
 		float part = 0;
 		for (Buff curr : buffs) {
-			if(curr.intelligence>0) {
+			if(curr.intelligence!=0) {
 				if(curr.type.equals("Modifier")) {
 					part = this.intelligence * curr.intelligence / 100;
 				}
@@ -122,7 +122,7 @@ public abstract class Creature {
 		float full = this.strength;
 		float part = 0;
 		for (Buff curr : buffs) {
-			if(curr.strength>0) {
+			if(curr.strength!=0) {
 				if(curr.type.equals("Modifier")) {
 					part = -(this.strength * -curr.strength) / 100;
 				}
@@ -132,14 +132,14 @@ public abstract class Creature {
 				full += part;
 			}
 		}
-		return part;
+		return full;
 	}
 	
 	float showAccuracy() {
 		float full = this.accuracy;
 		float part = 0;
 		for (Buff curr : buffs) {
-			if(curr.accuracy>0) {
+			if(curr.accuracy!=0) {
 				if(curr.type.equals("Modifier")) {
 					part = this.accuracy * curr.accuracy / 100;
 				}

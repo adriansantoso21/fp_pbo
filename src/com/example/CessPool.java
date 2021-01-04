@@ -34,7 +34,7 @@ public class CessPool {
 		skillbookz.add(new SkillBook("Yo", 10));
 		selected.skills.add(new BuffSkill("Shining Star", 20, new Buff("Non", 0, 0, 0, 50, 50, 50, 0, 3)));
 		selected.skills.add(new DebuffSkill("Blinding Starlight", 30, new Buff("Non", 0, 0, 0, -30, -30, 0, 0, 3)));
-		selected.inventory.add(new Potion("Attack Potion", 0, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
+		selected.inventory.add(new Potion("Attack Potion", 0, new Buff("Non", 0, 0, 0, 50, 0, 0, 0, 3)));
 		selected.inventory.add(new Potion("Modifier Speed Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3)));
 		selected.inventory.add(new Potion("Defense Potion", 0, new Buff("Non", 0, 0, 0, 0, 0, 0, 10, 3)));
 		selected.inventory.add(new Potion("Attack Potion", 0, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
