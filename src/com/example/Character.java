@@ -41,7 +41,7 @@ public class Character extends Creature {
 		this.weight -= equippedArmor.weight;
 	}
 	
-	public void unequipArmor(Weapon equippedWeapon) {
+	public void unequipWeapon(Weapon equippedWeapon) {
 		this.equippedWeapon = null;
 		this.strength -= equippedWeapon.strength;
 		this.accuracy -= equippedWeapon.accuracy;

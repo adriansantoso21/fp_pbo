@@ -9,7 +9,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.TimeUnit;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,6 +31,7 @@ public class BattlePanel extends JPanel {
 	private CardLayout cardlayt = new CardLayout();
 	private JPanel potionPanel = new JPanel(cardlayt);
 	private JTextPane ta, tb;
+	private JPanel skillButtonPanel;
 	
 	public BattlePanel(JFrame frame) {
 		
@@ -45,7 +45,6 @@ public class BattlePanel extends JPanel {
         ta.setText("<html><h2 style=\"color:white;\">");
         
         ta.setBackground(Color.black);
-        
         potionPanel.add(ta, "text");
         potionPanel.add(createPotionPanel(), "potion");
         potionPanel.add(addSkillPanel(), "skill");
@@ -110,7 +109,7 @@ public class BattlePanel extends JPanel {
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					youAttack(fighter, fighted, ta, tb);
+    					youAttack(fighter, fighted);
     				}
     			}
     		);
@@ -144,8 +143,8 @@ public class BattlePanel extends JPanel {
 	
 	//----------------------BATTLE RELATED----------------------//
 	
-	public void monsterAttack(Monster attacker, Character attacked, JTextPane ta, JTextPane tb) {
-		float damage = attacker.attack();
+	public void monsterAttack(Monster attacker, Character attacked) {
+		float damage = attacker.attack(attacked);
 		attacked.damaged(damage);
 		if (num>5) {
 			ta.setText("");
@@ -153,7 +152,7 @@ public class BattlePanel extends JPanel {
 		}
 		StyledDocument doc = ta.getStyledDocument();
 		try {
-			doc.insertString(doc.getLength(), "· You received " + damage + " damage.\n", null);
+			doc.insertString(doc.getLength(), "· You received " + damage + " damage from "+attacker.name+".\n", null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -165,9 +164,9 @@ public class BattlePanel extends JPanel {
 		}
 	}
 	
-	public void youAttack(Character attacker, Monster attacked, JTextPane ta, JTextPane tb) {
+	public void youAttack(Character attacker, Monster attacked) {
 		cardlayt.show(potionPanel, "text");
-		float damage = attacker.attack();
+		float damage = attacker.attack(attacked);
 		attacked.damaged(damage);
 		if (num>5) {
 			ta.setText("");
@@ -175,7 +174,7 @@ public class BattlePanel extends JPanel {
 		}
 		StyledDocument doc = ta.getStyledDocument();
 		try {
-			doc.insertString(doc.getLength(), "· You dealt " + damage + " damage.\n", null);
+			doc.insertString(doc.getLength(), "· You dealt " + damage + " damage to "+attacked.name+".\n", null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -187,7 +186,7 @@ public class BattlePanel extends JPanel {
 		}
 		
 		else {
-			enemyTurn(fighted, ta, tb);
+			enemyTurn(fighted);
 		}
 	}
 	
@@ -210,8 +209,8 @@ public class BattlePanel extends JPanel {
 		}
 	}
 	
-	public void enemyTurn(Monster turn, JTextPane ta, JTextPane tb) {
-		monsterAttack(fighted, fighter, ta, tb);
+	public void enemyTurn(Monster turn) {
+		monsterAttack(fighted, fighter);
 	}
 	
 	//----------------------POTION AND SKILLS PANEL METHODS----------------------//
@@ -226,6 +225,8 @@ public class BattlePanel extends JPanel {
         addPotionButtons(buttonPanel);
 
         panel.add(buttonPanel, BorderLayout.CENTER);
+        
+        panel.setBackground(Color.LIGHT_GRAY);
 
         return panel;
     }
@@ -254,7 +255,8 @@ public class BattlePanel extends JPanel {
 	            			a.printStackTrace();
 	            		}
 	            		num++;
-	            		enemyTurn(fighted, ta, tb);
+	            		
+	            		enemyTurn(fighted);
 	                }
 	            });
 	            panel.add(button);
@@ -263,16 +265,17 @@ public class BattlePanel extends JPanel {
     }
     
     private JPanel addSkillPanel() {
-    	
     	JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        JPanel buttonPanel = new JPanel(new GridLayout(3, 3, 10, 10));
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        skillButtonPanel = new JPanel(new GridLayout(3, 3, 10, 10));
+        skillButtonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
-        addSkillButtons(buttonPanel);
+        addSkillButtons(skillButtonPanel);
         
-        panel.add(buttonPanel, BorderLayout.CENTER);
+        panel.add(skillButtonPanel, BorderLayout.CENTER);
+        
+        panel.setBackground(Color.LIGHT_GRAY);
 
         return panel;
         
@@ -298,7 +301,7 @@ public class BattlePanel extends JPanel {
                 		((DebuffSkill) skill).unleash(fighted, fighter);
                 		text = "· You used the debuff skill "+skill.name+"\n";
                 	}
-                    cardlayt.show(potionPanel, "text");
+
                     if (num>5) {
             			ta.setText("");
             			num=0;
@@ -311,24 +314,12 @@ public class BattlePanel extends JPanel {
             			a.printStackTrace();
             		}
             		num++;
-            		enemyTurn(fighted, ta, tb);
+            		enemyTurn(fighted);
             		addSkillButtons(panel);
                 }
             });
             panel.add(button);
     }
     }
-    
-    public class PotionListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent event) {
-            JButton button = (JButton) event.getSource();
-            int index = Integer.valueOf(button.getActionCommand());
-            CessPool.selected.inventory.remove(index);
-            button.setEnabled(false);
-            cardlayt.show(potionPanel, "text");
-        }
-
-    }
+   
 }

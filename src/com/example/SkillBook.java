@@ -6,5 +6,4 @@ public class SkillBook extends Consumables {
 		super(name, weight);
 		// TODO Auto-generated constructor stub
 	}
-
 }

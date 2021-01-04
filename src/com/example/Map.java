@@ -1,11 +1,15 @@
 package com.example;
 
-import java.awt.CardLayout;
+import java.awt.CardLayout; 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -69,7 +73,7 @@ public class Map extends JPanel{
     	        }
     	       }
     	      );
-     
+
      JButton a_2 = new JButton();
      a_2.setBounds(553, 569, 25, 25);
      a_2.setBackground(Color.RED);
@@ -104,7 +108,7 @@ public class Map extends JPanel{
        new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-         Main.frame.setContentPane(new ShopPanel(frame));
+         Main.frame.setContentPane(new ShopPanel(frame, null, null));
          Main.frame.pack();
         }
        }

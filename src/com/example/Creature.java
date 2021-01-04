@@ -18,7 +18,6 @@ public abstract class Creature {
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
 	public ArrayList<Buff> buffs = new ArrayList<Buff>();
 	
-	
 	public Creature(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy, float speed, float defence, float weight) {
 		this.name = name;
 		this.healthPoint = healthPoint;
@@ -33,19 +32,16 @@ public abstract class Creature {
 		this.weight = weight;
 	}
 	
-	public float attack() {
-		Random ran = new Random();
-		int x = ran.nextInt(10);
-		float damage = (float) (this.showStrength() + x);
-		return (damage);
+	public float attack(Creature attacked) {
+		return 2 * this.showStrength() * this.showStrength() / (this.showStrength() + attacked.showDefence());
 	}
 	
 	public void healHP() {
 		this.currHP = this.healthPoint;
 	}
 	
-	public void damaged(float damage) {
-		this.currHP = this.currHP - damage;
+	public void damaged(float att) {
+		this.currHP = this.currHP - att;
 		if (this.currHP < 0) {
 			this.currHP=0;
 		}

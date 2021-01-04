@@ -1,7 +1,7 @@
 package com.example;
 
 public abstract class Inventory {
-	String name;
+	public String name;
 	float weight;
 	
 	public Inventory(String name, float weight) {
