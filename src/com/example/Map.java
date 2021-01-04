@@ -2,10 +2,20 @@ package com.example;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+<<<<<<< HEAD
+import java.awt.Dimension;
+=======
+>>>>>>> ddb312c0513f2ae37f26da060e681f734d4f774e
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+=======
+>>>>>>> ddb312c0513f2ae37f26da060e681f734d4f774e
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -69,7 +79,7 @@ public class Map extends JPanel{
     	        }
     	       }
     	      );
-     
+
      JButton a_2 = new JButton();
      a_2.setBounds(553, 569, 25, 25);
      a_2.setBackground(Color.RED);

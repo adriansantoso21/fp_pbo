@@ -6,5 +6,4 @@ public class Equippable extends Inventory {
 		super(name, weight);
 		// TODO Auto-generated constructor stub
 	}
-
 }

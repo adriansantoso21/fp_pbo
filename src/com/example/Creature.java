@@ -18,7 +18,6 @@ public abstract class Creature {
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
 	public ArrayList<Buff> buffs = new ArrayList<Buff>();
 	
-	
 	public Creature(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy, float speed, float defence, float weight) {
 		this.name = name;
 		this.healthPoint = healthPoint;

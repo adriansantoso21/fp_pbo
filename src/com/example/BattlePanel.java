@@ -1,6 +1,14 @@
 package com.example;
 
 import java.awt.BorderLayout;
+<<<<<<< HEAD
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+=======
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.BorderFactory;
+>>>>>>> ddb312c0513f2ae37f26da060e681f734d4f774e
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -45,7 +54,6 @@ public class BattlePanel extends JPanel {
         ta.setText("<html><h2 style=\"color:white;\">");
         
         ta.setBackground(Color.black);
-        
         potionPanel.add(ta, "text");
         potionPanel.add(createPotionPanel(), "potion");
         potionPanel.add(addSkillPanel(), "skill");
