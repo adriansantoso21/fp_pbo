@@ -142,6 +142,8 @@ public class BattlePanel extends JPanel {
 		tb.setPreferredSize(new Dimension(300, 60));
 	}
 	
+	//----------------------BATTLE RELATED----------------------//
+	
 	public void monsterAttack(Monster attacker, Character attacked, JTextPane ta, JTextPane tb) {
 		float damage = attacker.attack();
 		attacked.damaged(damage);
@@ -210,10 +212,9 @@ public class BattlePanel extends JPanel {
 	
 	public void enemyTurn(Monster turn, JTextPane ta, JTextPane tb) {
 		monsterAttack(fighted, fighter, ta, tb);
-		System.out.println("Strength: "+fighted.showStrength()+"\n buff: "+fighted.buffs.get(0).strength);
 	}
 	
-	//           POTION AND SKILLS PANEL METHODS                   //
+	//----------------------POTION AND SKILLS PANEL METHODS----------------------//
 	
 	private JPanel createPotionPanel() {
         JPanel panel = new JPanel(new BorderLayout());
@@ -241,6 +242,19 @@ public class BattlePanel extends JPanel {
 	                	CessPool.selected.usePotion((Potion)potion);
 	                    button.setEnabled(false);
 	                    cardlayt.show(potionPanel, "text");
+	                    if (num>5) {
+	            			ta.setText("");
+	            			num=0;
+	            		}
+	            		StyledDocument doc = ta.getStyledDocument();
+	            		try {
+	            			doc.insertString(doc.getLength(), "· You used the "+potion.name+"\n", null);
+	            		} catch (BadLocationException a) {
+	            			// TODO Auto-generated catch block
+	            			a.printStackTrace();
+	            		}
+	            		num++;
+	            		enemyTurn(fighted, ta, tb);
 	                }
 	            });
 	            panel.add(button);

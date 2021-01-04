@@ -56,7 +56,7 @@ public abstract class Creature {
 	}
 	
 	
-	//-------------------BUFF RELATED-------------------//
+	//----------------------BUFF RELATED----------------------//
 	
 	public void decreaseDuration() {
 		for (Buff curr : buffs) {
@@ -81,6 +81,9 @@ public abstract class Creature {
 				full += part;
 			}
 		}
+		if(full<0) {
+			return 0;
+		}
 		return full;
 	}
 	
@@ -97,6 +100,9 @@ public abstract class Creature {
 				}
 				full += part;
 			}
+		}
+		if(full<0) {
+			return 0;
 		}
 		return full;
 	}
@@ -115,6 +121,9 @@ public abstract class Creature {
 				full += part;
 			}
 		}
+		if(full<0) {
+			return 0;
+		}
 		return full;
 	}
 	
@@ -132,6 +141,9 @@ public abstract class Creature {
 				full += part;
 			}
 		}
+		if(full<0) {
+			return 0;
+		}
 		return full;
 	}
 	
@@ -148,6 +160,9 @@ public abstract class Creature {
 				}
 				full += part;
 			}
+		}
+		if(full<0) {
+			return 0;
 		}
 		return full;
 	}
