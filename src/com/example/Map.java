@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -44,6 +45,8 @@ public class Map extends JPanel{
   this.imgg = new ImageIcon("images/map.jpg").getImage();
   this.setLayout(null);
   
+  
+  
   JButton a_1a = new JButton();
      a_1a.setBounds(615, 628, 25, 25);
      a_1a.setBackground(Color.RED);
@@ -72,7 +75,7 @@ public class Map extends JPanel{
     	        	Main.frame.pack();
     	        }
     	       }
-    	      );
+    );
 
      JButton a_2 = new JButton();
      a_2.setBounds(553, 569, 25, 25);
@@ -108,7 +111,7 @@ public class Map extends JPanel{
        new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-         Main.frame.setContentPane(new ShopPanel(frame, null, null));
+         Main.frame.setContentPane(new ShopPanel(frame));
          Main.frame.pack();
         }
        }
@@ -117,6 +120,7 @@ public class Map extends JPanel{
      JButton ab_1a = new JButton();
      ab_1a.setBounds(666, 447, 30, 30);
      ab_1a.setBackground(Color.RED);
+     ab_1a.setOpaque(false);
      this.add(ab_1a);
      
      JButton ab_2a = new JButton();
@@ -184,6 +188,23 @@ public class Map extends JPanel{
      cuhp.setText("HP is currently " + CessPool.selected.currHP);
      cuhp.setBackground(Color.RED);
      this.add(cuhp);
+     
+     JButton Bag = new JButton();
+     Bag.setForeground(Color.white);
+     Bag.setBackground(new Color(51, 0, 16));
+     Bag.setBounds(140, 665, 150, 50);
+     Bag.setText("Your Bag");
+     this.add(Bag);
+     
+     Bag.addActionListener(
+       new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+         Main.frame.setContentPane(new BagPanel(frame));
+         Main.frame.pack();
+        }
+       }
+      );
      
  }
  

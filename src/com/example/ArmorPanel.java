@@ -1,12 +1,17 @@
 package com.example;
 
 import java.awt.BorderLayout;
+import java.util.Objects;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,160 +28,123 @@ public class ArmorPanel extends JPanel{
 		this.setLayout(item_sold);
 		this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		
-		GridLayout sold = new GridLayout(1,3);
-		JPanel a1 = new JPanel();
-		JPanel a2 = new JPanel();
-		JPanel a3 = new JPanel();
-		JPanel a4 = new JPanel();
-		
-		a1.setLayout(sold);
-		a2.setLayout(sold);
-		a3.setLayout(sold);
-		a4.setLayout(sold);
-		
-		ImageIcon Img = new ImageIcon("images/shopPane.jpg");
-		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setIcon(Img);
-		lblNewLabel.setPreferredSize(new Dimension(213,160));
-			
-		JTextPane armor1 = new JTextPane();
-		armor1.setEditable(false);
-		armor1.setContentType("text/html");
-		armor1.setText("<html><h3 style=\"color:white;\">· Name :"+ CessPool.armorz.get(0).name +"<br>"
-        		+"· Health Point : "+ CessPool.armorz.get(0).healthPoint+ "<br>"
-        		+"· Defence : "+ CessPool.armorz.get(0).defence + "<br>"
-        		+ "· Accuracy : "+ CessPool.armorz.get(0).accuracy + "<br>"
-        		+ "· Speed : "+CessPool.armorz.get(0).speed +"</h3> </html>");	
-		armor1.setBackground(Color.black);
-		
-        JButton Button1 = new JButton();
-		Button1.setText("Buy");
-		Button1.setFocusable(false);
-		Button1.setFocusPainted(false);
-		Button1.setBackground(new Color(255, 238, 88));
-		Button1.setForeground(Color.WHITE);
-		
-		Button1.addActionListener(
-    			new ActionListener() {
-    				@Override
-    				public void actionPerformed(ActionEvent event) {
-    					CessPool.selected.inventory.add(CessPool.armorz.get(0));
-    				}
-    			}
-    	);
-		
-		a1.add(lblNewLabel);
-		a1.add(armor1);
-		a1.add(Button1);
-	    this.add(a1);
-		
-		ImageIcon Img2 = new ImageIcon("images/shopPane.jpg");
-		JLabel lblNewLabel2 = new JLabel();
-		lblNewLabel2.setIcon(Img2);
-		lblNewLabel2.setPreferredSize(new Dimension(213,160));
-			
-		JTextPane armor2 = new JTextPane();
-		armor2.setEditable(false);
-		armor2.setContentType("text/html");
-		armor2.setText("<html><h3 style=\"color:white;\">· Name :"+ CessPool.armorz.get(1).name +"<br>"
-        		+"· Health Point : "+ CessPool.armorz.get(1).healthPoint+ "<br>"
-        		+"· Defence : "+ CessPool.armorz.get(1).defence + "<br>"
-        		+ "· Accuracy : "+ CessPool.armorz.get(1).accuracy + "<br>"
-        		+ "· Speed : "+CessPool.armorz.get(1).speed +"</h3> </html>");
-		
-		armor2.setBackground(Color.black);
-		
-        JButton Button2 = new JButton();
-		Button2.setText("Buy");
-		Button2.setFocusable(false);
-		Button2.setFocusPainted(false);
-		Button2.setBackground(new Color(255, 238, 88));
-		Button2.setForeground(Color.WHITE);
-		
-		Button2.addActionListener(
-    			new ActionListener() {
-    				@Override
-    				public void actionPerformed(ActionEvent event) {
-    					CessPool.selected.inventory.add(CessPool.armorz.get(1));
-    				}
-    			}
-    	);
-       
-		a2.add(lblNewLabel2);
-		a2.add(armor2);
-		a2.add(Button2);
-		this.add(a2);
-        
-		ImageIcon Img3 = new ImageIcon("images/shopPane.jpg");
-		JLabel lblNewLabel3 = new JLabel();
-		lblNewLabel3.setIcon(Img3);
-		lblNewLabel3.setPreferredSize(new Dimension(213,160));
-		
-        JTextPane armor3 = new JTextPane();
-		armor3.setEditable(false);
-		armor3.setContentType("text/html");
-		armor3.setText("<html><h3 style=\"color:white;\">· Name :"+ CessPool.armorz.get(2).name +"<br>"
-        		+"· Health Point : "+ CessPool.armorz.get(2).healthPoint+ "<br>"
-        		+"· Defence : "+ CessPool.armorz.get(2).defence + "<br>"
-        		+ "· Accuracy : "+ CessPool.armorz.get(2).accuracy + "<br>"
-        		+ "· Speed : "+CessPool.armorz.get(2).speed +"</h3> </html>");
-		armor3.setBackground(Color.black);
-		
-		JButton Button3 = new JButton();
-		Button3.setText("Buy");
-		Button3.setFocusable(false);
-		Button3.setFocusPainted(false);
-		Button3.setBackground(new Color(255, 238, 88));
-		Button3.setForeground(Color.WHITE);
-		
-		Button3.addActionListener(
-    			new ActionListener() {
-    				@Override
-    				public void actionPerformed(ActionEvent event) {
-    					CessPool.selected.inventory.add(CessPool.armorz.get(2));
-    				}
-    			}
-    	);
-		
-		a3.add(lblNewLabel3);
-		a3.add(armor3);
-		a3.add(Button3);
-		this.add(a3);
-        
-		ImageIcon Img4 = new ImageIcon("images/shopPane.jpg");
-		JLabel lblNewLabel4 = new JLabel();
-		lblNewLabel4.setIcon(Img4);
-		lblNewLabel4.setPreferredSize(new Dimension(213,160));
-		
-        JTextPane armor4 = new JTextPane();
-		armor4.setEditable(false);
-		armor4.setContentType("text/html");
-		armor4.setText("<html><h3 style=\"color:white;\">· Name :"+ CessPool.armorz.get(3).name +"<br>"
-        		+"· Health Point : "+ CessPool.armorz.get(3).healthPoint+ "<br>"
-        		+"· Defence : "+ CessPool.armorz.get(3).defence + "<br>"
-        		+ "· Accuracy : "+ CessPool.armorz.get(3).accuracy + "<br>"
-        		+ "· Speed : "+CessPool.armorz.get(3).speed +"</h3> </html>");
-		armor4.setBackground(Color.black);
-
-		JButton Button4 = new JButton();
-		Button4.setText("Buy");
-		Button4.setFocusable(false);
-		Button4.setFocusPainted(false);
-		Button4.setBackground(new Color(255, 238, 88));
-		Button4.setForeground(Color.WHITE);
-		
-		Button4.addActionListener(
-    			new ActionListener() {
-    				@Override
-    				public void actionPerformed(ActionEvent event) {
-    					CessPool.selected.inventory.add(CessPool.armorz.get(3));
-    				}
-    			}
-    	);
-        
-		a4.add(lblNewLabel4);
-		a4.add(armor4);
-		a4.add(Button4);
-		this.add(a4);
+		for(Armor b : CessPool.armorz) {
+				JPanel a1 = new JPanel();
+				a1.setLayout(new BorderLayout());
+				
+				ImageIcon Img = new ImageIcon(b.image);
+				JLabel lblNewLabel = new JLabel();
+				lblNewLabel.setIcon(Img);
+				lblNewLabel.setPreferredSize(new Dimension(213,160));
+				
+				JTextPane armor = new JTextPane();
+				armor.setEditable(false);
+				armor.setContentType("text/html");
+				armor.setText("<html><h3 style=\"color:white;\">· Name :"+ b.name +"<br>"
+						+"· Defence : "+ b.defence+ "<br>"
+		        		+"· Intelligence : "+ b.accuracy + "<br>"
+		        		+ "· Accuracy : "+ b.healthPoint + "<br>"
+		        		+ "· Speed : "+ b.speed + "<br>"
+		        		+ "· Weight : "+b.weight +"</h3> </html>");	
+				armor.setBackground(new Color(51, 0, 16));
+				armor.setPreferredSize(new Dimension(313,20));
+				
+				JButton Button = new JButton();
+				Button.setText("Use");
+				Button.setFocusable(false);
+				Button.setFocusPainted(false);
+				Button.setBackground(new Color(61, 61, 92));
+				Button.setForeground(Color.WHITE);
+				Button.setPreferredSize(new Dimension(120,20));
+				
+				Button.addActionListener(
+		    			new ActionListener() {
+		    				@Override
+		    				public void actionPerformed(ActionEvent event) {
+		    					Button.setEnabled(false);
+		    					CessPool.selected.inventory.add((Inventory)b);
+		    				}
+		    			}
+		    	);
+				
+				a1.add(lblNewLabel, BorderLayout.WEST);
+				a1.add(armor, BorderLayout.CENTER);
+				a1.add(Button, BorderLayout.EAST);
+				this.add(a1);
+		}
 	}
+	
+	public ArmorPanel(int test) {
+		
+        this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        addSkillButtons(buttonPanel);
+
+        this.add(buttonPanel);
+//        this.add(buttonPanel, BorderLayout.CENTER);
+	}
+	
+	private void addSkillButtons(JPanel panel) {
+        panel.removeAll();
+
+        GridLayout sold = new GridLayout(1,3);
+                
+        for (Inventory armor : CessPool.selected.inventory) {
+        	if(armor instanceof Armor) {
+        		JPanel skill_panel = new JPanel();
+            	skill_panel.setLayout(new BorderLayout());
+            	
+            	ImageIcon Img = new ImageIcon(((Armor) armor).image);
+    			JLabel lblNewLabel = new JLabel();
+    			lblNewLabel.setIcon(Img);
+    			lblNewLabel.setPreferredSize(new Dimension(213,156));
+    			
+    			Armor armor1= (Armor) armor;
+    			
+    			JTextPane desc = new JTextPane();
+				desc.setEditable(false);
+				desc.setContentType("text/html");
+				desc.setText("<html><h3 style=\"color:white;\">· Name :"+ armor1.name +"<br>"
+						+"· Defence : "+ armor1.defence+ "<br>"
+		        		+"· Intelligence : "+ armor1.accuracy + "<br>"
+		        		+ "· Accuracy : "+ armor1.healthPoint + "<br>"
+		        		+ "· Speed : "+ armor1.speed + "<br>"
+		        		+ "· Weight : "+armor1.weight +"</h3> </html>");	
+				desc.setBackground(new Color(51, 0, 16));
+				desc.setOpaque(false);
+				desc.setPreferredSize(new Dimension(313,20));
+            	
+    			JButton Button = new JButton();
+    			Button.setText("Use");
+    			Button.setFocusable(false);
+    			Button.setFocusPainted(false);
+    			Button.setBackground(new Color(61, 61, 92));
+    			Button.setPreferredSize(new Dimension(120,20));
+                
+                Button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    	if(!Objects.isNull(CessPool.selected.equippedArmor) ) {
+							Armor ArmorChar = CessPool.selected.equippedArmor;
+							CessPool.selected.unequipArmor(ArmorChar);
+						}
+
+    					CessPool.selected.equipArmor(armor1);
+                    	addSkillButtons(panel);
+                    }
+                });
+                
+                skill_panel.add(lblNewLabel, BorderLayout.WEST);
+                skill_panel.add(desc, BorderLayout.CENTER);
+                skill_panel.add(Button, BorderLayout.EAST);
+                panel.add(skill_panel);
+        	}
+        	
+        }
+    }
+
+
 }

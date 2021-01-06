@@ -1,5 +1,9 @@
 package com.example;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 public class DebuffSkill extends Skill {
 
 	public Buff debuff;

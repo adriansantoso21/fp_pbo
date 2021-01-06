@@ -222,6 +222,7 @@ public class BattlePanel extends JPanel {
 		}
 	}
 	
+
 	public void enemyTurn(Monster turn) {
 		monsterAttack(fighted, fighter);
 		fighter.decreaseDuration();
