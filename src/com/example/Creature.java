@@ -48,19 +48,16 @@ public abstract class Creature {
 //		}
 	}
 	
-	public float attack() {
-		Random ran = new Random();
-		int x = ran.nextInt(10);
-		float damage = (float) (this.showStrength() + x);
-		return (damage);
+	public float attack(Creature attacked) {
+		return 2 * this.showStrength() * this.showStrength() / (this.showStrength() + attacked.showDefence());
 	}
 	
 	public void healHP() {
 		this.currHP = this.healthPoint;
 	}
 	
-	public void damaged(float damage) {
-		this.currHP = this.currHP - damage;
+	public void damaged(float att) {
+		this.currHP = this.currHP - att;
 		if (this.currHP < 0) {
 			this.currHP=0;
 		}
@@ -71,7 +68,7 @@ public abstract class Creature {
 	}
 	
 	
-	//-------------------BUFF RELATED-------------------//
+	//----------------------BUFF RELATED----------------------//
 	
 	public void decreaseDuration() {
 		for (Buff curr : buffs) {
@@ -96,6 +93,9 @@ public abstract class Creature {
 				full += part;
 			}
 		}
+		if(full<0) {
+			return 0;
+		}
 		return full;
 	}
 	
@@ -112,6 +112,9 @@ public abstract class Creature {
 				}
 				full += part;
 			}
+		}
+		if(full<0) {
+			return 0;
 		}
 		return full;
 	}
@@ -130,6 +133,9 @@ public abstract class Creature {
 				full += part;
 			}
 		}
+		if(full<0) {
+			return 0;
+		}
 		return full;
 	}
 	
@@ -147,6 +153,9 @@ public abstract class Creature {
 				full += part;
 			}
 		}
+		if(full<0) {
+			return 0;
+		}
 		return full;
 	}
 	
@@ -163,6 +172,9 @@ public abstract class Creature {
 				}
 				full += part;
 			}
+		}
+		if(full<0) {
+			return 0;
 		}
 		return full;
 	}

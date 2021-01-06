@@ -28,7 +28,7 @@ public class PotionPanel extends JPanel{
 		for(Potion b : CessPool.potionz) {
 			JPanel a1 = new JPanel();
 			a1.setLayout(new BorderLayout());
-			
+
 			ImageIcon Img = new ImageIcon(b.image);
 			JLabel lblNewLabel = new JLabel();
 			lblNewLabel.setIcon(Img);
@@ -76,6 +76,7 @@ public class PotionPanel extends JPanel{
         this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         JPanel buttonPanel = new JPanel(new GridLayout(7, 1));
 //        buttonPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
 
         addSkillButtons(buttonPanel);
         this.add(buttonPanel);

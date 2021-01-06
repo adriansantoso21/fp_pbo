@@ -32,6 +32,7 @@ public class CessPool {
 		potionz.add(new Potion("Attack Potion", 0, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
 		potionz.add(new Potion("Accuracy Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3)));
 		potionz.add(new Potion("Speed Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3)));
+<<<<<<< HEAD
 		potionz.add(new Potion("Mana Potion", 0, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
 		potionz.add(new Potion("Strength Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3)));
 		potionz.add(new Potion("Intelligence Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3)));
@@ -51,7 +52,7 @@ public class CessPool {
 		selected.skills.add(new BuffSkill("Shattering Star", 0, new Buff("Non", 0, 0, 0, 0, 0, 0, 10, 3)));
 		selected.skills.add(new BuffSkill("Shattering Star", 0, new Buff("Non", 0, 0, 0, 0, 0, 0, 10, 3)));
 		selected.skills.add(new BuffSkill("Shattering Star", 0, new Buff("Non", 0, 0, 0, 0, 0, 0, 10, 3)));
-		
+
 		selected.inventory.add(new Potion("Attack Potion", 0, new Buff("Non", 0, 0, 0, 50, 0, 0, 0, 3)));
 		selected.inventory.add(new Potion("Modifier Speed Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3)));
 		selected.inventory.add(new Potion("Defense Potion", 0, new Buff("Non", 0, 0, 0, 0, 0, 0, 10, 3)));
@@ -66,6 +67,6 @@ public class CessPool {
 		selected.inventory.add(new Weapon("Killer", 100, 100, 100, 100, 100));
 		selected.inventory.add(new Weapon("Killer", 100, 100, 100, 100, 100));
 		selected.inventory.add(new Weapon("Killer", 100, 100, 100, 100, 100));
-		
+
 	}
 }
