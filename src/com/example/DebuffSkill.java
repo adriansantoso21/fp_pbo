@@ -10,7 +10,8 @@ public class DebuffSkill extends Skill {
 	}
 
 	void unleash(Creature debuffed, Creature debuffer) {
-		debuffed.buffs.add(this.debuff);
+		Buff cloning = new Buff(debuff);
+		debuffed.buffs.add(cloning);
 		debuffer.currMana -= this.manaCost;
 	}
 

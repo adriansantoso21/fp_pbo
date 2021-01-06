@@ -22,4 +22,16 @@ public class Buff {
 		this.defence = defence;
 		this.duration = duration;
 	}
+	
+	public Buff(Buff buff) {
+		this.type = buff.type;
+		this.currHP = buff.currHP;
+		this.currMana = buff.currMana;
+		this.intelligence = buff.intelligence;
+		this.strength = buff.strength;
+		this.accuracy = buff.accuracy;
+		this.speed = buff.speed;
+		this.defence = buff.defence;
+		this.duration = buff.duration;
+	}
 }

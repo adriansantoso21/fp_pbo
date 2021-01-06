@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -16,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
@@ -31,7 +33,7 @@ public class BattlePanel extends JPanel {
 	private CardLayout cardlayt = new CardLayout();
 	private JPanel potionPanel = new JPanel(cardlayt);
 	private JTextPane ta, tb;
-	private JPanel skillButtonPanel;
+	private JPanel skillButtonPanel, charaPanel;
 	
 	public BattlePanel(JFrame frame) {
 		
@@ -48,6 +50,7 @@ public class BattlePanel extends JPanel {
         potionPanel.add(ta, "text");
         potionPanel.add(createPotionPanel(), "potion");
         potionPanel.add(addSkillPanel(), "skill");
+        potionPanel.add(addCharaPanel(), "chara");
         cardlayt.show(potionPanel, "text");
         
         tb = new JTextPane();
@@ -132,6 +135,15 @@ public class BattlePanel extends JPanel {
     			}
     		);
         
+        chara.addActionListener(
+    			new ActionListener() {
+    				@Override
+    				public void actionPerformed(ActionEvent event) {
+    					cardlayt.show(potionPanel, "chara");
+    				}
+    			}
+    		);
+        
         setLayout(new BorderLayout());     
         
 		this.add(BorderLayout.SOUTH, panel);
@@ -188,6 +200,7 @@ public class BattlePanel extends JPanel {
 		else {
 			enemyTurn(fighted);
 		}
+		addCharaLabel(charaPanel);
 	}
 	
 	public void someoneDead(Creature living, Creature dead) {
@@ -211,6 +224,8 @@ public class BattlePanel extends JPanel {
 	
 	public void enemyTurn(Monster turn) {
 		monsterAttack(fighted, fighter);
+		fighter.decreaseDuration();
+		fighted.decreaseDuration();
 	}
 	
 	//----------------------POTION AND SKILLS PANEL METHODS----------------------//
@@ -257,6 +272,7 @@ public class BattlePanel extends JPanel {
 	            		num++;
 	            		
 	            		enemyTurn(fighted);
+	            		addCharaLabel(charaPanel);
 	                }
 	            });
 	            panel.add(button);
@@ -301,12 +317,18 @@ public class BattlePanel extends JPanel {
                 		((DebuffSkill) skill).unleash(fighted, fighter);
                 		text = "· You used the debuff skill "+skill.name+"\n";
                 	}
-
+                	else if(skill instanceof AttackSkill) {
+                		float damage = ((AttackSkill) skill).unleash(fighter, fighted);
+                		text = "· You used the attack skill "+skill.name+" dealing " + damage +" damage\n";
+                	}
+                    cardlayt.show(potionPanel, "text");
                     if (num>5) {
             			ta.setText("");
             			num=0;
             		}
+                    
             		StyledDocument doc = ta.getStyledDocument();
+            		
             		try {
             			doc.insertString(doc.getLength(), text, null);
             		} catch (BadLocationException a) {
@@ -316,10 +338,165 @@ public class BattlePanel extends JPanel {
             		num++;
             		enemyTurn(fighted);
             		addSkillButtons(panel);
+            		addCharaLabel(charaPanel);
                 }
             });
             panel.add(button);
+        }
     }
+    
+    private JPanel addCharaPanel() {
+    	JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        charaPanel = new JPanel(new GridLayout(5, 4, 5, 5));
+        charaPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        addCharaLabel(charaPanel);
+        
+        panel.add(charaPanel, BorderLayout.CENTER);
+        
+        panel.setBackground(Color.LIGHT_GRAY);
+
+        return panel;
+        
+    }
+    
+    private void addCharaLabel(JPanel panel) {
+    	panel.removeAll();
+    	
+    	JLabel name = new JLabel();
+    	name.setText("Name : " + fighter.name);
+		name.setFocusable(false);
+		name.setBackground(new Color(255, 238, 88));
+		name.setForeground(Color.BLACK);
+		panel.add(name);
+		
+		JLabel empt = new JLabel();
+		empt.setFocusable(false);
+		panel.add(empt);
+		
+		JLabel empt2 = new JLabel();
+		empt2.setFocusable(false);
+		panel.add(empt2);
+		
+		JLabel hp = new JLabel();
+    	hp.setText("Max HP : " + fighter.healthPoint);
+		hp.setFocusable(false);
+		hp.setBackground(new Color(255, 238, 88));
+		hp.setForeground(Color.BLACK);
+		panel.add(hp);
+		
+		JLabel acc = new JLabel();
+		float intdif = (fighter.showAccuracy() - fighter.accuracy);
+		String indif = ""+intdif;
+		if (intdif>0) {
+			indif = "+"+intdif;
+		}
+    	acc.setText("Accuracy : " + fighter.accuracy + " (" + indif + ")" );
+		acc.setFocusable(false);
+		acc.setBackground(new Color(255, 238, 88));
+		acc.setForeground(Color.BLACK);
+		panel.add(acc);
+		
+		JLabel weapon = new JLabel();
+		if(Objects.isNull(fighter.equippedWeapon)) {
+			weapon.setText("No weapon equipped");
+		}
+		else {
+			weapon.setText("Weapon " + fighter.equippedWeapon.name + " equipped");
+		}
+		weapon.setFocusable(false);
+		weapon.setBackground(new Color(255, 238, 88));
+		weapon.setForeground(Color.BLACK);
+		panel.add(weapon);
+		
+		JLabel mana = new JLabel();
+    	mana.setText("Max Mana : " + fighter.mana);
+		mana.setFocusable(false);
+		mana.setBackground(new Color(255, 238, 88));
+		mana.setForeground(Color.BLACK);
+		panel.add(mana);
+		
+		JLabel spd = new JLabel();
+		intdif = (fighter.showSpeed() - fighter.speed);
+		indif = ""+intdif;
+		if (intdif>0) {
+			indif = "+"+intdif;
+		}
+    	spd.setText("Speed : " + fighter.speed + " (" + indif + ")" );
+		spd.setFocusable(false);
+		spd.setBackground(new Color(255, 238, 88));
+		spd.setForeground(Color.BLACK);
+		panel.add(spd);
+		
+		JLabel armor = new JLabel();
+		if(Objects.isNull(fighter.equippedWeapon)) {
+			armor.setText("No armor equipped");
+		}
+		else {
+			armor.setText("Armor " + fighter.equippedArmor.name + " equipped");
+		}
+		armor.setFocusable(false);
+		armor.setBackground(new Color(255, 238, 88));
+		armor.setForeground(Color.BLACK);
+		panel.add(armor);
+		
+		JLabel inte = new JLabel();
+		intdif = (fighter.showIntelligence() - fighter.intelligence);
+		indif = ""+intdif;
+		if (intdif>0) {
+			indif = "+"+intdif;
+		}
+    	inte.setText("Intelligence : " + fighter.intelligence + " (" + indif + ")" );
+		inte.setFocusable(false);
+		inte.setBackground(new Color(255, 238, 88));
+		inte.setForeground(Color.BLACK);
+		panel.add(inte);
+		
+		JLabel def = new JLabel();
+		intdif = (fighter.showDefence() - fighter.defence);
+		indif = ""+intdif;
+		if (intdif>0) {
+			indif = "+"+intdif;
+		}
+    	def.setText("Defence : " + fighter.defence + " (" + indif + ")" );
+		def.setFocusable(false);
+		def.setBackground(new Color(255, 238, 88));
+		def.setForeground(Color.BLACK);
+		panel.add(def);
+		
+		JLabel empty = new JLabel();
+		def.setFocusable(false);
+		panel.add(empty);
+		
+		JLabel str = new JLabel();
+		intdif = (fighter.showStrength() - fighter.strength);
+		indif = ""+intdif;
+		if (intdif>0) {
+			indif = "+"+intdif;
+		}
+    	str.setText("Strength : " + fighter.strength + " (" + indif + ")" );
+		str.setFocusable(false);
+		str.setBackground(new Color(255, 238, 88));
+		str.setForeground(Color.BLACK);
+		panel.add(str);
+		
+		
+		JLabel wei = new JLabel();
+    	wei.setText("Weight :" + fighter.weight);
+		wei.setFocusable(false);
+		wei.setBackground(new Color(255, 238, 88));
+		wei.setForeground(Color.BLACK);
+		panel.add(wei);
+		
+		JTextArea buff = new JTextArea();
+		buff.setEditable(false);
+		buff.setText("Current buffs/debuffs: ");
+		for(Buff buffs : fighter.buffs) {
+			buff.append("\n"+buffs.type);
+		}
+		panel.add(buff);
     }
    
 }

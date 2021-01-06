@@ -1,7 +1,10 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
+
 
 public abstract class Creature {
 	String name;
@@ -55,12 +58,33 @@ public abstract class Creature {
 	//----------------------BUFF RELATED----------------------//
 	
 	public void decreaseDuration() {
-		for (Buff curr : buffs) {
-			curr.duration -= 1;
-			if(curr.duration == 0) {
-				this.buffs.remove(curr);
-			}
+//		Iterator<Buff> iter = buffs.iterator();
+//	    
+//	    while (iter.hasNext()) {
+//		    Buff str = iter.next();
+//		    str.duration -= 1;
+//		    System.out.println(str.strength + " with duration currently "+ str.duration);
+//
+//		    if (str.duration == 0) {
+//		        iter.remove();
+//		        System.out.println(str.strength + "removed");
+//		    }
+//		}
+		
+		for (Buff sumn : this.buffs) {
+			System.out.println(sumn.strength + " with duration " + sumn.duration + "\n");
 		}
+		List<Buff> toRemove = new ArrayList<Buff>();
+		for (Buff str : this.buffs) {
+			str.duration -= 1;
+			System.out.println(str.strength + " with duration currently "+ str.duration);
+			
+		    if (str.duration == 0) {
+		        toRemove.add(str);
+		        System.out.println(str.strength + "removed");
+		    }
+		}
+		this.buffs.removeAll(toRemove);
 	}
 	
 	float showSpeed() {
