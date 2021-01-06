@@ -16,7 +16,8 @@ public class BuffSkill extends Skill {
 	}
 
 	void unleash(Creature buffed) {
-		buffed.buffs.add(buff);
+		Buff cloning = new Buff(buff);
+		buffed.buffs.add(cloning);
 		buffed.currMana -= this.manaCost;
 	}
 

@@ -32,7 +32,11 @@ public class CessPool {
 		potionz.add(new Potion("Attack Potion", 0, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
 		potionz.add(new Potion("Accuracy Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3)));
 		potionz.add(new Potion("Speed Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3)));
-<<<<<<< HEAD
+		
+		selected.skills.add(new BuffSkill("Shining Star", 20, new Buff("Modifier", 0, 0, 0, 50, 50, 50, 0, 3)));
+		selected.skills.add(new DebuffSkill("Blinding Starlight", 30, new Buff("Modifier", 0, 0, 0, -30, -30, 0, 0, 3)));
+		selected.skills.add(new AttackSkill("Shattering Star", 50, "Modifier", 30));
+
 		potionz.add(new Potion("Mana Potion", 0, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
 		potionz.add(new Potion("Strength Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3)));
 		potionz.add(new Potion("Intelligence Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3)));
@@ -57,6 +61,10 @@ public class CessPool {
 		selected.inventory.add(new Potion("Modifier Speed Potion", 0, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3)));
 		selected.inventory.add(new Potion("Defense Potion", 0, new Buff("Non", 0, 0, 0, 0, 0, 0, 10, 3)));
 		selected.inventory.add(new Potion("Attack Potion", 0, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
+
+		selected.inventory.add(new Potion("Mana Restoring Potion", 0, new Buff("Non", 0, 20, 0, 10, 0, 0, 0, 3)));
+		selected.inventory.add(new Potion("Health Restoring Potion", 0, new Buff("Non", 50, 0, 0, 10, 0, 0, 0, 3)));
+
 		
 		selected.inventory.add(new Armor("Sunlight Armor", 30, 60, 45, 15, 20));
 		selected.inventory.add(new Armor("Sunlight Armor", 30, 60, 45, 15, 20));

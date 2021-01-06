@@ -57,7 +57,6 @@ public class SkillPanel extends JPanel{
 			    			}
 			    	);
 
-
 					a1.add(lblNewLabel, BorderLayout.WEST);
 					a1.add(skill, BorderLayout.CENTER);
 					a1.add(Button, BorderLayout.EAST);

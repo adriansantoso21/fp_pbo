@@ -8,10 +8,12 @@ public class Character extends Creature {
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
 	public Armor equippedArmor;
 	public Weapon equippedWeapon;
+	public int gold;
 	
 	public Character(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy,
 			float speed, float defence, float weight) {
 		super(name, healthPoint, mana, intelligence, strength, accuracy, speed, defence, weight);
+		this.gold = 0;
 	}
 	
 	public void equipArmor(Armor equippedArmor) {
@@ -52,8 +54,14 @@ public class Character extends Creature {
 	
 	public void usePotion(Potion potion) {
 		if(potion.buff.currHP > 0 || potion.buff.currMana > 0) {
-			this.currHP += potion.buff.currHP;
-			this.currMana += potion.buff.currMana;
+			if(potion.buff.type.equals("Non")) {
+				this.currHP += potion.buff.currHP;
+				this.currMana += potion.buff.currMana;
+			}
+			else {
+				this.currHP += (potion.buff.currHP * this.currHP /100);
+				this.currMana += (potion.buff.currMana * this.currMana /100);
+			}
 		}
 		else {
 			this.buffs.add(potion.buff);
