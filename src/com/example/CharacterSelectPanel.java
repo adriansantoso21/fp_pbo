@@ -3,6 +3,7 @@ package com.example;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -25,22 +26,20 @@ public class CharacterSelectPanel extends JPanel {
 	
 	public CharacterSelectPanel(String imgg, JFrame frame, CardLayout cardLayout, JPanel mainPanel) {
 		frame.setPreferredSize(new Dimension(1280, 750));
-		JLabel label1 = new JLabel("Choose Your Own Character");
+		JLabel label1 = new JLabel("Choose Your Own Character !!");
+		label1.setFont(new Font("Verdana", Font.BOLD, 30));
+		label1.setBounds(375, 0, 600, 100);
+		label1.setForeground (Color.WHITE);
 		this.add(label1);
-		
-		Character Wizard = new Character("Wizard", 200, 200, 50, 10, 50, 25, 25, 30);
-		Character Warrior = new Character("Warrior", 400, 50, 10, 50, 50, 30, 50, 50);
-		Character Rogue = new Character("Rogue", 300, 100, 30, 20, 50, 50, 20, 20);
-		
 		this.setLayout(null);
 		this.imgg = new ImageIcon("images/StartPanel.jpg").getImage();
 		
 		//Wizard Character
-		ImageIcon Img = new ImageIcon("images/wizard1.png");
+		ImageIcon Img = new ImageIcon("creature/wizard.png");
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(Img);
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel.setBounds(150, 150, 200, 237);
+		lblNewLabel.setBounds(150, 150, 230, 252);
 		this.add(lblNewLabel);
 		
 		JTextPane ta = new JTextPane();
@@ -80,7 +79,7 @@ public class CharacterSelectPanel extends JPanel {
 		});
 		
 		//Warrior Character
-		ImageIcon Img2 = new ImageIcon("images/warrior1.png");
+		ImageIcon Img2 = new ImageIcon("creature/warrior.png");
 		this.setLayout(null);
 		JLabel lblNewLabel2 = new JLabel();
 		lblNewLabel2.setIcon(Img2);

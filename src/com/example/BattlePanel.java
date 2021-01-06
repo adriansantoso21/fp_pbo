@@ -1,14 +1,6 @@
 package com.example;
 
 import java.awt.BorderLayout;
-<<<<<<< HEAD
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-=======
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,9 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.TimeUnit;
-
 import javax.swing.BorderFactory;
->>>>>>> ddb312c0513f2ae37f26da060e681f734d4f774e
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -218,7 +208,6 @@ public class BattlePanel extends JPanel {
 	
 	public void enemyTurn(Monster turn, JTextPane ta, JTextPane tb) {
 		monsterAttack(fighted, fighter, ta, tb);
-		System.out.println("Strength: "+fighted.showStrength()+"\n buff: "+fighted.buffs.get(0).strength);
 	}
 	
 	//           POTION AND SKILLS PANEL METHODS                   //

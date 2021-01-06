@@ -1,7 +1,14 @@
 package com.example;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public abstract class Creature {
 	String name;
@@ -15,10 +22,11 @@ public abstract class Creature {
 	float speed;
 	float defence;
 	float weight;
+//	Image image;
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
 	public ArrayList<Buff> buffs = new ArrayList<Buff>();
 	
-	public Creature(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy, float speed, float defence, float weight) {
+	public Creature(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy, float speed, float defence, float weight){
 		this.name = name;
 		this.healthPoint = healthPoint;
 		this.currHP = healthPoint;
@@ -30,6 +38,14 @@ public abstract class Creature {
 		this.speed = speed;
 		this.defence = defence;
 		this.weight = weight;
+//		this.image = new ImageIcon("FinalProject/creature/"+name+".png").getImage();
+//				
+//		try {
+//			this.image = ImageIO.read(new File(name + ".png"));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	public float attack() {

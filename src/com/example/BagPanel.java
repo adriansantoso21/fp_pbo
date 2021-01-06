@@ -16,15 +16,16 @@ import javax.swing.JTextPane;
 
 public class BagPanel extends JPanel{
 
-	public BagPanel(JFrame frame, CardLayout cardLayout, JPanel mainPanel){
+	public BagPanel(JFrame frame){
 		GridLayout total = new GridLayout(1,2);
 		GridLayout kiri1 = new GridLayout(2,1);
-		GridLayout grdLayout = new GridLayout(1, 4);
+		GridLayout grdLayout = new GridLayout(1, 5);
+		CardLayout cardlay = new CardLayout();
 		
 		JPanel item = new JPanel();
 		JPanel kiri = new JPanel();
 		JPanel kanan = new JPanel();
-		JPanel kanan_bawah = new JPanel();
+		JPanel kanan_bawah = new JPanel(cardlay);
 
 		ImageIcon Img = new ImageIcon("images/shopPane.jpg");
 		JLabel lblNewLabel = new JLabel();
@@ -50,56 +51,84 @@ public class BagPanel extends JPanel{
 		this.add(kiri);
 		
 		JButton armor = new JButton("Armor");
-		armor.setPreferredSize(new Dimension(160, 60));
+		armor.setPreferredSize(new Dimension(128, 60));
+		armor.setBackground(Color.black);
+		armor.setForeground(Color.white);
 		
 		armor.addActionListener(
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					for (Inventory a : CessPool.selected.inventory) {
-    						if(a instanceof Armor) {
-    						
-    						}
-    					}
+    					JPanel ArmorPanel = new ArmorPanel(1);
+    					kanan_bawah.add(ArmorPanel, "armorpane");
+    					cardlay.show(kanan_bawah, "armorpane");
     				}
     			}
     	);
 		
 		JButton weapon = new JButton("Weapon");
-		weapon.setPreferredSize(new Dimension(160, 60));
+		weapon.setPreferredSize(new Dimension(128, 60));
+		weapon.setBackground(Color.black);
+		weapon.setForeground(Color.white);
 
 		weapon.addActionListener(
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					
+    					JPanel WeaponPanel = new WeaponPanel(1);
+    					kanan_bawah.add(WeaponPanel, "weaponpane");
+    					cardlay.show(kanan_bawah, "weaponpane");
     				}
     			}
     	);
 		
 		JButton potion = new JButton("Potion");
-		potion.setPreferredSize(new Dimension(160, 60));
+		potion.setPreferredSize(new Dimension(128, 60));
+		potion.setBackground(Color.black);
+		potion.setForeground(Color.white);
 		
 		potion.addActionListener(
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					
+    					JPanel PotionPanel = new PotionPanel(1);
+    					kanan_bawah.add(PotionPanel, "potionpane");
+    					cardlay.show(kanan_bawah, "potionpane");
     				}
     			}
     	);
 		
         JButton skill = new JButton("Skill");
-        skill.setPreferredSize(new Dimension(160, 60));
+        skill.setPreferredSize(new Dimension(128, 60));
+        skill.setBackground(Color.black);
+        skill.setForeground(Color.white);
         
         skill.addActionListener(
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					
+    					JPanel SkillPanel = new SkillPanel(1);
+    					kanan_bawah.add(SkillPanel, "skillpane");
+    					cardlay.show(kanan_bawah, "skillpane");
     				}
     			}
     	);
+        
+        JButton Button1 = new JButton();
+        Button1.setPreferredSize(new Dimension(128, 60));
+		Button1.setText("Back");
+		Button1.setFocusable(false);
+		Button1.setFocusPainted(false);
+		Button1.setBackground(Color.red);
+		Button1.setForeground(Color.WHITE);
+		
+		Button1.addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	        	Main.frame.setContentPane(new Map(frame));
+	        	frame.pack();
+	         }
+		});
         
 
         item.setLayout(grdLayout);
@@ -107,6 +136,7 @@ public class BagPanel extends JPanel{
         item.add(weapon);
         item.add(potion);
         item.add(skill);
+        item.add(Button1);
         kanan.add(item);
         kanan.add(kanan_bawah);
         

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13">
-=======
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-14">
->>>>>>> ddb312c0513f2ae37f26da060e681f734d4f774e
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="images"/>
+	<classpathentry kind="src" path="creature"/>
+	<classpathentry kind="src" path="Armor"/>
+	<classpathentry kind="src" path="weapon"/>
+	<classpathentry kind="src" path="potion"/>
+	<classpathentry kind="src" path="Skill"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

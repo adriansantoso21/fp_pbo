@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -24,162 +25,121 @@ public class WeaponPanel extends JPanel{
 		this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		
 		GridLayout sold = new GridLayout(1,3);
-		JPanel a1 = new JPanel();
-		JPanel a2 = new JPanel();
-		JPanel a3 = new JPanel();
-		JPanel a4 = new JPanel();
 		
-		a1.setLayout(sold);
-		a2.setLayout(sold);
-		a3.setLayout(sold);
-		a4.setLayout(sold);
-		
-		ImageIcon Img = new ImageIcon("images/shopPane.jpg");
-		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setIcon(Img);
-		lblNewLabel.setPreferredSize(new Dimension(213,160));
+		for(Weapon b : CessPool.weaponz) {
+			JPanel a1 = new JPanel();
+			a1.setLayout(new BorderLayout());
 			
-		JTextPane weapon1 = new JTextPane();
-		weapon1.setEditable(false);
-		weapon1.setContentType("text/html");
-		weapon1.setText("<html><h3 style=\"color:white;\">· Name :"+ CessPool.weaponz.get(0).name +"<br>"
-        		+"· Weight : "+ CessPool.weaponz.get(0).weight+ "<br>"
-        		+"· Strength : "+ CessPool.weaponz.get(0).strength + "<br>"
-        		+ "· Intelligence : "+ CessPool.weaponz.get(0).intelligence + "<br>"
-        		+ "· Accuracy : "+ CessPool.weaponz.get(0).intelligence + "<br>"
-        		+ "· Speed : "+CessPool.weaponz.get(0).speed +"</h3> </html>");	
-		weapon1.setBackground(Color.black);
-		
-        JButton Button1 = new JButton();
-		Button1.setText("Buy");
-		Button1.setFocusable(false);
-		Button1.setFocusPainted(false);
-		Button1.setBackground(new Color(255, 238, 88));
-		Button1.setForeground(Color.WHITE);
-		
-		Button1.addActionListener(
-    			new ActionListener() {
-    				@Override
-    				public void actionPerformed(ActionEvent event) {
-    					CessPool.selected.inventory.add(CessPool.weaponz.get(0));
-    				}
-    			}
-    	);
-		
-		a1.add(lblNewLabel);
-		a1.add(weapon1);
-		a1.add(Button1);
-	    this.add(a1);
-		
-		ImageIcon Img2 = new ImageIcon("images/shopPane.jpg");
-		JLabel lblNewLabel2 = new JLabel();
-		lblNewLabel2.setIcon(Img2);
-		lblNewLabel2.setPreferredSize(new Dimension(213,160));
+			ImageIcon Img = new ImageIcon(b.image);
+			JLabel lblNewLabel = new JLabel();
+			lblNewLabel.setIcon(Img);
+			lblNewLabel.setPreferredSize(new Dimension(213,160));
 			
-		JTextPane weapon2 = new JTextPane();
-		weapon2.setEditable(false);
-		weapon2.setContentType("text/html");
-		weapon2.setText("<html><h3 style=\"color:white;\">· Name :"+ CessPool.weaponz.get(1).name +"<br>"
-        		+"· Weight : "+ CessPool.weaponz.get(1).weight+ "<br>"
-        		+"· Strength : "+ CessPool.weaponz.get(1).strength + "<br>"
-        		+ "· Intelligence : "+ CessPool.weaponz.get(1).intelligence + "<br>"
-        		+ "· Accuracy : "+ CessPool.weaponz.get(1).intelligence + "<br>"
-        		+ "· Speed : "+CessPool.weaponz.get(1).speed +"</h3> </html>");	
-		weapon2.setBackground(Color.black);
-		
-        JButton Button2 = new JButton();
-		Button2.setText("Buy");
-		Button2.setFocusable(false);
-		Button2.setFocusPainted(false);
-		Button2.setBackground(new Color(255, 238, 88));
-		Button2.setForeground(Color.WHITE);
-		
-		Button2.addActionListener(
-    			new ActionListener() {
-    				@Override
-    				public void actionPerformed(ActionEvent event) {
-    					CessPool.selected.inventory.add(CessPool.weaponz.get(1));
-    				}
-    			}
-    	);
-       
-		a2.add(lblNewLabel2);
-		a2.add(weapon2);
-		a2.add(Button2);
-		this.add(a2);
-        
-		ImageIcon Img3 = new ImageIcon("images/shopPane.jpg");
-		JLabel lblNewLabel3 = new JLabel();
-		lblNewLabel3.setIcon(Img3);
-		lblNewLabel3.setPreferredSize(new Dimension(213,160));
-		
-		JTextPane weapon3 = new JTextPane();
-		weapon3.setEditable(false);
-		weapon3.setContentType("text/html");
-		weapon3.setText("<html><h3 style=\"color:white;\">· Name :"+ CessPool.weaponz.get(2).name +"<br>"
-        		+"· Weight : "+ CessPool.weaponz.get(2).weight+ "<br>"
-        		+"· Strength : "+ CessPool.weaponz.get(2).strength + "<br>"
-        		+ "· Intelligence : "+ CessPool.weaponz.get(2).intelligence + "<br>"
-        		+ "· Accuracy : "+ CessPool.weaponz.get(2).intelligence + "<br>"
-        		+ "· Speed : "+CessPool.weaponz.get(2).speed +"</h3> </html>");	
-		weapon3.setBackground(Color.black);
-		
-		JButton Button3 = new JButton();
-		Button3.setText("Buy");
-		Button3.setFocusable(false);
-		Button3.setFocusPainted(false);
-		Button3.setBackground(new Color(255, 238, 88));
-		Button3.setForeground(Color.WHITE);
-		
-		Button3.addActionListener(
-    			new ActionListener() {
-    				@Override
-    				public void actionPerformed(ActionEvent event) {
-    					CessPool.selected.inventory.add(CessPool.weaponz.get(2));
-    				}
-    			}
-    	);
-		
-		a3.add(lblNewLabel3);
-		a3.add(weapon3);
-		a3.add(Button3);
-		this.add(a3);
-        
-		ImageIcon Img4 = new ImageIcon("images/shopPane.jpg");
-		JLabel lblNewLabel4 = new JLabel();
-		lblNewLabel4.setIcon(Img4);
-		lblNewLabel4.setPreferredSize(new Dimension(213,160));
-		
-		JTextPane weapon4 = new JTextPane();
-		weapon4.setEditable(false);
-		weapon4.setContentType("text/html");
-		weapon4.setText("<html><h3 style=\"color:white;\">· Name :"+ CessPool.weaponz.get(3).name +"<br>"
-        		+"· Weight : "+ CessPool.weaponz.get(3).weight+ "<br>"
-        		+"· Strength : "+ CessPool.weaponz.get(3).strength + "<br>"
-        		+ "· Intelligence : "+ CessPool.weaponz.get(3).intelligence + "<br>"
-        		+ "· Accuracy : "+ CessPool.weaponz.get(3).intelligence + "<br>"
-        		+ "· Speed : "+CessPool.weaponz.get(3).speed +"</h3> </html>");	
-		weapon4.setBackground(Color.black);
-
-		JButton Button4 = new JButton();
-		Button4.setText("Buy");
-		Button4.setFocusable(false);
-		Button4.setFocusPainted(false);
-		Button4.setBackground(new Color(255, 238, 88));
-		Button4.setForeground(Color.WHITE);
-		
-		Button4.addActionListener(
-    			new ActionListener() {
-    				@Override
-    				public void actionPerformed(ActionEvent event) {
-    					CessPool.selected.inventory.add(CessPool.weaponz.get(3));
-    				}
-    			}
-    	);
-        
-		a4.add(lblNewLabel4);
-		a4.add(weapon4);
-		a4.add(Button4);
-		this.add(a4);
+			JTextPane weapon = new JTextPane();
+			weapon.setEditable(false);
+			weapon.setContentType("text/html");
+			weapon.setText("<html><h3 style=\"color:white;\">· Name :"+ b.name +"<br>"
+					+"· Strength : "+ b.strength+ "<br>"
+	        		+"· Intelligence : "+ b.accuracy + "<br>"
+	        		+ "· Accuracy : "+ b.accuracy + "<br>"
+	        		+ "· Speed : "+ b.speed + "<br>"
+	        		+ "· Weight : "+b.weight +"</h3> </html>");	
+			weapon.setBackground(new Color(51, 0, 16));
+			weapon.setPreferredSize(new Dimension(313,20));
+			
+			JButton Button = new JButton();
+			Button.setText("Use");
+			Button.setFocusable(false);
+			Button.setFocusPainted(false);
+			Button.setBackground(new Color(61, 61, 92));
+			Button.setForeground(Color.WHITE);
+			Button.setPreferredSize(new Dimension(120,20));
+			
+			Button.addActionListener(
+	    			new ActionListener() {
+	    				@Override
+	    				public void actionPerformed(ActionEvent event) {
+	    					Button.setEnabled(false);
+	    					CessPool.selected.inventory.add((Inventory)b);
+	    				}
+	    			}
+	    	);
+			
+			a1.add(lblNewLabel, BorderLayout.WEST);
+			a1.add(weapon, BorderLayout.CENTER);
+			a1.add(Button, BorderLayout.EAST);
+			this.add(a1);
+		}
 	}
+	
+	public WeaponPanel(int test) {
+		
+        this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        addSkillButtons(buttonPanel);
+
+        this.add(buttonPanel);
+//        this.add(buttonPanel, BorderLayout.CENTER);
+	}
+	
+	private void addSkillButtons(JPanel panel) {
+        panel.removeAll();
+
+        GridLayout sold = new GridLayout(1,3);
+                
+        for (Inventory weapon : CessPool.selected.inventory) {
+        	if(weapon instanceof Weapon) {
+        		JPanel skill_panel = new JPanel();
+            	skill_panel.setLayout(new BorderLayout());
+            	
+            	ImageIcon Img = new ImageIcon(((Weapon) weapon).image);
+    			JLabel lblNewLabel = new JLabel();
+    			lblNewLabel.setIcon(Img);
+    			lblNewLabel.setPreferredSize(new Dimension(213,156));
+    			
+    			Weapon weapon1= (Weapon) weapon;
+    			
+    			JTextPane desc = new JTextPane();
+				desc.setEditable(false);
+				desc.setContentType("text/html");
+				desc.setText("<html><h3 style=\"color:white;\">· Name :"+ weapon1.name +"<br>"
+						+"· Strength : "+ weapon1.strength+ "<br>"
+		        		+"· Intelligence : "+ weapon1.accuracy + "<br>"
+		        		+ "· Accuracy : "+ weapon1.accuracy + "<br>"
+		        		+ "· Speed : "+ weapon1.speed + "<br>"
+		        		+ "· Weight : "+weapon1.weight +"</h3> </html>");	
+				desc.setBackground(new Color(51, 0, 16));
+				desc.setPreferredSize(new Dimension(313,20));
+            	
+    			JButton Button = new JButton();
+    			Button.setText("Use");
+    			Button.setFocusable(false);
+    			Button.setFocusPainted(false);
+    			Button.setBackground(new Color(61, 61, 92));
+    			Button.setPreferredSize(new Dimension(120,20));
+                
+                Button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    	if(!Objects.isNull(CessPool.selected.equippedWeapon) ) {
+							Weapon WeaponChar = CessPool.selected.equippedWeapon;
+							CessPool.selected.unequipWeapon(WeaponChar);
+						}
+
+    					CessPool.selected.equipWeapon(weapon1);
+                    	addSkillButtons(panel);
+                    }
+                });
+                
+                skill_panel.add(lblNewLabel, BorderLayout.WEST);
+                skill_panel.add(desc, BorderLayout.CENTER);
+                skill_panel.add(Button, BorderLayout.EAST);
+                panel.add(skill_panel);
+        	}
+        	
+        }
+    }
 }
