@@ -11,6 +11,7 @@ import java.util.Objects;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -18,13 +19,11 @@ import javax.swing.JTextPane;
 
 public class WeaponPanel extends JPanel{
 
-	public WeaponPanel() {
+	public WeaponPanel(JFrame frame) {
 		
 		GridLayout item_sold = new GridLayout(4,1);
 		this.setLayout(item_sold);
 		this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		
-		GridLayout sold = new GridLayout(1,3);
 		
 		for(Weapon b : CessPool.weaponz) {
 			JPanel a1 = new JPanel();
@@ -43,12 +42,20 @@ public class WeaponPanel extends JPanel{
 	        		+"· Intelligence : "+ b.accuracy + "<br>"
 	        		+ "· Accuracy : "+ b.accuracy + "<br>"
 	        		+ "· Speed : "+ b.speed + "<br>"
-	        		+ "· Weight : "+b.weight +"</h3> </html>");	
+	        		+ "· Weight : "+b.weight + "<br>" 
+	        		+ "· Price : "+b.price +"</h3> </html>");	
 			weapon.setBackground(new Color(51, 0, 16));
 			weapon.setPreferredSize(new Dimension(313,20));
 			
 			JButton Button = new JButton();
-			Button.setText("Use");
+			if(CessPool.selected.gold >= b.price) {
+				Button.setText("Buy");
+				Button.setEnabled(true);
+			}
+			else {
+				Button.setText("No Money");
+				Button.setEnabled(false);
+			}
 			Button.setFocusable(false);
 			Button.setFocusPainted(false);
 			Button.setBackground(new Color(61, 61, 92));
@@ -61,6 +68,9 @@ public class WeaponPanel extends JPanel{
 	    				public void actionPerformed(ActionEvent event) {
 	    					Button.setEnabled(false);
 	    					CessPool.selected.inventory.add((Inventory)b);
+	    					CessPool.selected.gold -= b.price;
+	    					Main.frame.setContentPane(new ShopPanel(frame));
+	    					Main.frame.pack();
 	    				}
 	    			}
 	    	);
@@ -72,7 +82,7 @@ public class WeaponPanel extends JPanel{
 		}
 	}
 	
-	public WeaponPanel(int test) {
+	public WeaponPanel(int test, JFrame frame) {
 		
         this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
@@ -120,6 +130,7 @@ public class WeaponPanel extends JPanel{
     			Button.setFocusPainted(false);
     			Button.setBackground(new Color(61, 61, 92));
     			Button.setPreferredSize(new Dimension(120,20));
+    			Button.setForeground(Color.white);
                 
                 Button.addActionListener(new ActionListener() {
                     @Override
@@ -128,7 +139,7 @@ public class WeaponPanel extends JPanel{
 							Weapon WeaponChar = CessPool.selected.equippedWeapon;
 							CessPool.selected.unequipWeapon(WeaponChar);
 						}
-
+                    	
     					CessPool.selected.equipWeapon(weapon1);
                     	addSkillButtons(panel);
                     }

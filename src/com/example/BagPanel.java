@@ -18,24 +18,26 @@ public class BagPanel extends JPanel{
 
 	public BagPanel(JFrame frame){
 		GridLayout total = new GridLayout(1,2);
-		GridLayout kiri1 = new GridLayout(2,1);
 		GridLayout grdLayout = new GridLayout(1, 5);
 		CardLayout cardlay = new CardLayout();
 		
 		JPanel item = new JPanel();
-		JPanel kiri = new JPanel();
+		JPanel kiri = new JPanel(new GridLayout(2,1));
 		JPanel kanan = new JPanel();
 		JPanel kanan_bawah = new JPanel(cardlay);
-
-		ImageIcon Img = new ImageIcon("images/shopPane.jpg");
-		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setIcon(Img);
-		lblNewLabel.setPreferredSize(new Dimension(213,160));
+		JPanel kiri_atas = new JPanel();
+		JPanel kiri_bawah = new JPanel(new GridLayout(1,2));
+		JPanel kiri_bawah_kiri = new JPanel(new BorderLayout());
+		JPanel buton = new JPanel(new BorderLayout());
 		
-		JTextPane armor1 = new JTextPane();
-		armor1.setEditable(false);
-		armor1.setContentType("text/html");
-		armor1.setText("<html><h3 style=\"color:white;\">· Name :"+ CessPool.selected.name +"<br>"
+		ImageIcon Img1 = new ImageIcon("images/bg_rando.jpg");
+		JLabel lblNewLabel1 = new JLabel();
+		lblNewLabel1.setIcon(Img1);
+		
+		JTextPane player = new JTextPane();
+		player.setEditable(false);
+		player.setContentType("text/html");
+		player.setText("<html><h3 style=\"color:white;\"><br>· Name :"+ CessPool.selected.name +"<br>"
         		+"· Health Point : "+ CessPool.selected.healthPoint+ "<br>"
         		+"· Defence : "+ CessPool.selected.defence + "<br>"
         		+ "· Accuracy : "+ CessPool.selected.accuracy + "<br>"
@@ -43,11 +45,47 @@ public class BagPanel extends JPanel{
         		+ "· Mana : "+ CessPool.selected.mana + "<br>"
         		+ "· Strength : "+ CessPool.selected.strength + "<br>"
         		+ "· Speed : "+CessPool.selected.speed +"</h3> </html>");	
-		armor1.setBackground(Color.black);
+		player.setBackground(new Color(0, 0, 77));
 		
-		kiri.setLayout(kiri1);
-		kiri.add(lblNewLabel);
-		kiri.add(armor1);
+		JTextPane player2 = new JTextPane();
+		player2.setEditable(false);
+		player2.setContentType("text/html");
+		player2.setText("<html><h3 style=\"color:white;\"><br>· Name :"+ CessPool.selected.story+ "</h3> </html>");	
+		player2.setBackground(new Color(0, 0, 77));
+		
+	     //Currently Hp
+	     ImageIcon Img4 = new ImageIcon("images/hp_bag.png");   
+	     JButton cuhp = new JButton("    HP is currently " + CessPool.selected.currHP, Img4);
+	     cuhp.setBounds(0, 660, 150, 15);
+	     cuhp.setBackground(Color.white);
+	     buton.add(cuhp, BorderLayout.NORTH);
+	     
+	     //Currently Gold
+	     ImageIcon Img5 = new ImageIcon("images/coin_bag.png");     
+	     JButton cugo = new JButton("       Gold is currently " + CessPool.selected.gold, Img5);
+	     cugo.setBounds(0, 690, 150, 15);
+	     cugo.setBackground(new Color(173, 78, 5));
+	     cugo.setForeground(Color.yellow);
+	     buton.add(cugo,  BorderLayout.CENTER);
+	     
+	     //Currently Mana
+	     ImageIcon Img6 = new ImageIcon("images/mana_bag.png"); 
+	     JButton cumana = new JButton("         Mana is currently " + CessPool.selected.currMana, Img6);
+	     cumana.setBounds(0, 720, 150, 15);
+	     cumana.setBackground(new Color(0, 0, 102));
+	     cumana.setForeground(new Color(0, 255, 255));
+	     buton.add(cumana,  BorderLayout.SOUTH);
+	     buton.setBackground(new Color(0, 0, 77));
+	     kiri_bawah_kiri.setBackground(new Color(0, 0, 77));
+	     
+	    kiri_atas.add(lblNewLabel1);
+		kiri_bawah_kiri.add(player, BorderLayout.NORTH);
+		kiri_bawah_kiri.add(buton, BorderLayout.SOUTH);
+		
+		kiri_bawah.add(kiri_bawah_kiri);
+		kiri_bawah.add(player2);
+		kiri.add(kiri_atas);
+		kiri.add(kiri_bawah);
 		this.add(kiri);
 		
 		JButton armor = new JButton("Armor");
@@ -59,7 +97,7 @@ public class BagPanel extends JPanel{
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					JPanel ArmorPanel = new ArmorPanel(1);
+    					JPanel ArmorPanel = new ArmorPanel(1, frame);
     					kanan_bawah.add(ArmorPanel, "armorpane");
     					cardlay.show(kanan_bawah, "armorpane");
     				}
@@ -75,7 +113,7 @@ public class BagPanel extends JPanel{
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					JPanel WeaponPanel = new WeaponPanel(1);
+    					JPanel WeaponPanel = new WeaponPanel(1, frame);
     					kanan_bawah.add(WeaponPanel, "weaponpane");
     					cardlay.show(kanan_bawah, "weaponpane");
     				}
@@ -91,7 +129,7 @@ public class BagPanel extends JPanel{
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					JPanel PotionPanel = new PotionPanel(1);
+    					JPanel PotionPanel = new PotionPanel(1, frame);
     					kanan_bawah.add(PotionPanel, "potionpane");
     					cardlay.show(kanan_bawah, "potionpane");
     				}
@@ -107,7 +145,7 @@ public class BagPanel extends JPanel{
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					JPanel SkillPanel = new SkillPanel(1);
+    					JPanel SkillPanel = new SkillPanel(1, frame);
     					kanan_bawah.add(SkillPanel, "skillpane");
     					cardlay.show(kanan_bawah, "skillpane");
     				}

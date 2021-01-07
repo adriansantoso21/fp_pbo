@@ -25,22 +25,49 @@ public class ShopPanel extends JPanel{
 		JPanel item = new JPanel();
 		JPanel kiri = new JPanel();
 		JPanel kanan = new JPanel();
+		JPanel kiri_atas = new JPanel(new GridLayout(1,3));
 		
 		CardLayout cardlay = new CardLayout();
 		JPanel kanan_bawah = new JPanel(cardlay);
 		
-		JPanel ArmorPanel = new ArmorPanel();
+		//Currently Hp
+	     ImageIcon Img1 = new ImageIcon("images/hp.png");   
+	     JButton cuhp = new JButton("  HP is : " + CessPool.selected.currHP, Img1);
+	     cuhp.setBounds(140, 0, 250, 50);
+	     cuhp.setBackground(Color.white);
+	     
+	     //Currently Gold
+	     ImageIcon Img = new ImageIcon("images/coin.png");     
+	     JButton cugo = new JButton("     Gold is : " + CessPool.selected.gold, Img);
+	     cugo.setBounds(140, 50, 250, 50);
+	     cugo.setBackground(new Color(173, 78, 5));
+	     cugo.setForeground(Color.yellow);
+	     
+	     //Currently Mana
+	     ImageIcon Img2 = new ImageIcon("images/mana.png"); 
+	     JButton cumana = new JButton("       Mana is : " + CessPool.selected.currMana, Img2);
+	     cumana.setBounds(140, 100, 250, 50);
+	     cumana.setBackground(new Color(0, 0, 102));
+	     cumana.setForeground(new Color(0, 255, 255));
+
+	     kiri_atas.add(cuhp);
+	     kiri_atas.add(cugo);
+	     kiri_atas.add(cumana);
+		
+		kiri.setLayout(new BorderLayout());
+		ImageIcon Img4 = new ImageIcon("images/shopPane2.jpg");
+		JLabel lblNewLabel = new JLabel();
+		lblNewLabel.setIcon(Img4);
+		
+		kiri.add(kiri_atas, BorderLayout.NORTH);
+		kiri.add(lblNewLabel,BorderLayout.CENTER);
+		
+		JPanel ArmorPanel = new ArmorPanel(frame);
 		JButton armor = new JButton("Armor");
 		armor.setPreferredSize(new Dimension(128, 60));
 		armor.setBackground(Color.black);
 		armor.setForeground(Color.white);
-	    
 		kanan_bawah.add(ArmorPanel, "armorpane");
-		
-		ImageIcon Img = new ImageIcon("images/shopPane2.jpg");
-		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setIcon(Img);
-		kiri.add(lblNewLabel);
 		
 		armor.addActionListener(
     			new ActionListener() {
@@ -51,7 +78,7 @@ public class ShopPanel extends JPanel{
     			}
     	);
 		
-		JPanel WeaponPanel = new WeaponPanel();
+		JPanel WeaponPanel = new WeaponPanel(frame);
 		JButton weapon = new JButton("Weapon");
 		weapon.setBackground(Color.black);
 		weapon.setForeground(Color.white);
@@ -67,7 +94,7 @@ public class ShopPanel extends JPanel{
     			}
     	);
 		
-		JPanel PotionPanel = new PotionPanel();
+		JPanel PotionPanel = new PotionPanel(frame);
 		JButton potion = new JButton("Potion");
 		potion.setBackground(Color.black);
 		potion.setForeground(Color.white);
@@ -83,7 +110,7 @@ public class ShopPanel extends JPanel{
     			}
     	);
 		
-		JPanel SkillPanel = new SkillPanel();
+		JPanel SkillPanel = new SkillPanel(frame);
         JButton skill = new JButton("Skill");
         skill.setBackground(Color.black);
         skill.setForeground(Color.white);

@@ -183,17 +183,36 @@ public class Map extends JPanel{
      boss_besar.setBackground(Color.RED);
      this.add(boss_besar);
      
-     JButton cuhp = new JButton();
-     cuhp.setBounds(300, 120, 200, 75);
-     cuhp.setText("HP is currently " + CessPool.selected.currHP);
-     cuhp.setBackground(Color.RED);
+     //Currently Hp
+     ImageIcon Img1 = new ImageIcon("images/hp.png");   
+     JButton cuhp = new JButton("    HP is currently " + CessPool.selected.currHP, Img1);
+     cuhp.setBounds(140, 0, 250, 50);
+     cuhp.setBackground(Color.white);
      this.add(cuhp);
      
-     JButton Bag = new JButton();
+     //Currently Gold
+     ImageIcon Img = new ImageIcon("images/coin.png");     
+     JButton cugo = new JButton("       Gold is currently " + CessPool.selected.gold, Img);
+     cugo.setBounds(140, 50, 250, 50);
+     cugo.setBackground(new Color(173, 78, 5));
+     cugo.setForeground(Color.yellow);
+     this.add(cugo);
+     
+     //Currently Mana
+     ImageIcon Img2 = new ImageIcon("images/mana.png"); 
+     JButton cumana = new JButton("         Mana is currently " + CessPool.selected.currMana, Img2);
+     cumana.setBounds(140, 100, 250, 50);
+     cumana.setBackground(new Color(0, 0, 102));
+     cumana.setForeground(new Color(0, 255, 255));
+     this.add(cumana);
+     
+     //Bag
+     ImageIcon Img3 = new ImageIcon("images/bag.png"); 
+     JButton Bag = new JButton("Your Bag", Img3);
      Bag.setForeground(Color.white);
      Bag.setBackground(new Color(51, 0, 16));
+     Bag.setForeground(new Color(255, 153, 0));
      Bag.setBounds(140, 665, 150, 50);
-     Bag.setText("Your Bag");
      this.add(Bag);
      
      Bag.addActionListener(

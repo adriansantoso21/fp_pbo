@@ -8,12 +8,14 @@ public class Character extends Creature {
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
 	public Armor equippedArmor;
 	public Weapon equippedWeapon;
-	public int gold;
+	public int gold;	
+	String story;
 	
 	public Character(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy,
-			float speed, float defence, float weight) {
+			float speed, float defence, float weight, String story) {
 		super(name, healthPoint, mana, intelligence, strength, accuracy, speed, defence, weight);
-		this.gold = 0;
+		this.gold = 1000;
+		this.story = story;
 	}
 	
 	public void equipArmor(Armor equippedArmor) {

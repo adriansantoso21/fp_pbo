@@ -5,8 +5,9 @@ public class AttackSkill extends Skill {
 	String type;
 	float att;
 
-	public AttackSkill(String name, float manaCost, String type, float att) {
-		super(name, manaCost);
+	public AttackSkill(String name, float manaCost, String type, float price) {
+		super(name, manaCost, price);
+		this.price = price;
 		this.type = type;
 		this.att = att;
 	}

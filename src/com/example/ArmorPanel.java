@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -22,8 +23,8 @@ import javax.swing.JTextPane;
 
 public class ArmorPanel extends JPanel{
 
-	public ArmorPanel() {
-		
+	//For Shop
+	public ArmorPanel(JFrame frame) {
 		GridLayout item_sold = new GridLayout(4,1);
 		this.setLayout(item_sold);
 		this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -45,12 +46,20 @@ public class ArmorPanel extends JPanel{
 		        		+"· Intelligence : "+ b.accuracy + "<br>"
 		        		+ "· Accuracy : "+ b.healthPoint + "<br>"
 		        		+ "· Speed : "+ b.speed + "<br>"
-		        		+ "· Weight : "+b.weight +"</h3> </html>");	
+		        		+ "· Weight : "+b.weight + "<br>"
+		        		+ "· Price : "+b.price+"</h3> </html>");	
 				armor.setBackground(new Color(51, 0, 16));
 				armor.setPreferredSize(new Dimension(313,20));
 				
 				JButton Button = new JButton();
-				Button.setText("Use");
+				if(CessPool.selected.gold >= b.price) {
+    				Button.setText("Buy");
+    				Button.setEnabled(true);
+    			}
+    			else {
+    				Button.setText("No Money");
+    				Button.setEnabled(false);
+    			}
 				Button.setFocusable(false);
 				Button.setFocusPainted(false);
 				Button.setBackground(new Color(61, 61, 92));
@@ -61,8 +70,10 @@ public class ArmorPanel extends JPanel{
 		    			new ActionListener() {
 		    				@Override
 		    				public void actionPerformed(ActionEvent event) {
-		    					Button.setEnabled(false);
 		    					CessPool.selected.inventory.add((Inventory)b);
+		    					CessPool.selected.gold -= b.price;
+		    					Main.frame.setContentPane(new ShopPanel(frame));
+		    			        Main.frame.pack();
 		    				}
 		    			}
 		    	);
@@ -74,7 +85,8 @@ public class ArmorPanel extends JPanel{
 		}
 	}
 	
-	public ArmorPanel(int test) {
+	//For Bag
+	public ArmorPanel(int test, JFrame frame) {
 		
         this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
@@ -112,9 +124,8 @@ public class ArmorPanel extends JPanel{
 		        		+"· Intelligence : "+ armor1.accuracy + "<br>"
 		        		+ "· Accuracy : "+ armor1.healthPoint + "<br>"
 		        		+ "· Speed : "+ armor1.speed + "<br>"
-		        		+ "· Weight : "+armor1.weight +"</h3> </html>");	
+		        		+ "· Weight : "+armor1.weight + "</h3> </html>");	
 				desc.setBackground(new Color(51, 0, 16));
-				desc.setOpaque(false);
 				desc.setPreferredSize(new Dimension(313,20));
             	
     			JButton Button = new JButton();
@@ -122,6 +133,7 @@ public class ArmorPanel extends JPanel{
     			Button.setFocusable(false);
     			Button.setFocusPainted(false);
     			Button.setBackground(new Color(61, 61, 92));
+    			Button.setForeground(Color.white);
     			Button.setPreferredSize(new Dimension(120,20));
                 
                 Button.addActionListener(new ActionListener() {
@@ -131,7 +143,7 @@ public class ArmorPanel extends JPanel{
 							Armor ArmorChar = CessPool.selected.equippedArmor;
 							CessPool.selected.unequipArmor(ArmorChar);
 						}
-
+                    	
     					CessPool.selected.equipArmor(armor1);
                     	addSkillButtons(panel);
                     }
