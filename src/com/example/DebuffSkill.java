@@ -7,9 +7,10 @@ import javax.swing.ImageIcon;
 public class DebuffSkill extends Skill {
 
 	public Buff debuff;
+	float price;
 	
-	public DebuffSkill(String name, float manaCost, Buff debuff) {
-		super(name, manaCost);
+	public DebuffSkill(String name, float manaCost,float price, Buff debuff) {
+		super(name, manaCost, price);
 		this.debuff = debuff;
 	}
 

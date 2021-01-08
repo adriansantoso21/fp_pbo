@@ -10,19 +10,21 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 public class SkillPanel extends JPanel{
-		public SkillPanel() {
+		public SkillPanel(JFrame frame) {
 			
 			GridLayout item_sold = new GridLayout(7,1);
 			this.setLayout(item_sold);
 			this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));				
 			
 			for(Skill b : CessPool.skillz) {
+				
 					JPanel a1 = new JPanel();
 					a1.setLayout(new BorderLayout());
 	
@@ -35,12 +37,27 @@ public class SkillPanel extends JPanel{
 					skill.setEditable(false);
 					skill.setContentType("text/html");
 					skill.setText("<html><h3 style=\"color:white;\">· Name :"+ b.name +"<br>"
-							+"· Mana Cost : "+ b.manaCost+"</h3> </html>");	
+							+"· Price : "+ b.price+"</h3> </html>");	
 					skill.setBackground(new Color(51, 0, 16));
 					skill.setPreferredSize(new Dimension(313,20));
 					
 					JButton Button = new JButton();
-					Button.setText("Use");
+					if(CessPool.selected.gold >= b.price) {
+	    				Button.setText("Buy");
+	    				Button.setEnabled(true);
+	    			}
+	    			else {
+	    				Button.setText("No Money");
+	    				Button.setEnabled(false);
+	    			}
+					
+					for(Skill b1 : CessPool.selected.skills) {
+						if(b1.equals(b)) {
+							Button.setText("Sold Out!!");
+							Button.setEnabled(false);
+						}
+					}
+					
 					Button.setFocusable(false);
 					Button.setFocusPainted(false);
 					Button.setBackground(new Color(61, 61, 92));
@@ -53,6 +70,9 @@ public class SkillPanel extends JPanel{
 			    				public void actionPerformed(ActionEvent event) {
 			    					Button.setEnabled(false);
 			    					CessPool.selected.skills.add(b);
+			    					CessPool.selected.gold -= b.price;
+			    					Main.frame.setContentPane(new ShopPanel(frame));
+			    			        Main.frame.pack();
 			    				}
 			    			}
 			    	);
@@ -64,18 +84,18 @@ public class SkillPanel extends JPanel{
 			}
 		}
 		
-		public SkillPanel(int test) {
+		public SkillPanel(int test, JFrame frame) {
 			
 	        this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 	        JPanel buttonPanel = new JPanel(new GridLayout(7, 1));
 //	        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-	        addSkillButtons(buttonPanel);
+	        addSkillButtons(buttonPanel, frame);
 	        this.add(buttonPanel);
-//	        this.add(buttonPanel, BorderLayout.CENTER);
+	        this.add(buttonPanel, BorderLayout.CENTER);
 		}
 		
-		private void addSkillButtons(JPanel panel) {
+		private void addSkillButtons(JPanel panel, JFrame frame) {
 	        panel.removeAll();
 	                
 	        for (Skill skill : CessPool.selected.skills) {
@@ -85,7 +105,7 @@ public class SkillPanel extends JPanel{
 	        	ImageIcon Img = new ImageIcon(skill.image);
 				JLabel lblNewLabel = new JLabel();
 				lblNewLabel.setIcon(Img);
-				lblNewLabel.setPreferredSize(new Dimension(84,90));
+				lblNewLabel.setPreferredSize(new Dimension(84,87));
 				
 				JTextPane desc = new JTextPane();
 				desc.setEditable(false);
@@ -93,20 +113,44 @@ public class SkillPanel extends JPanel{
 				desc.setText("<html><h3 style=\"color:white;\">· Name :"+ skill.name +"<br>"
 						+"· Mana Cost : "+ skill.manaCost+"</h3> </html>");	
 				desc.setBackground(new Color(51, 0, 16));
-				desc.setPreferredSize(new Dimension(429,20));
+				desc.setPreferredSize(new Dimension(431,20));
 	        	
 				JButton Button = new JButton();
-				Button.setText("Use");
+				Button.setText("Can't use");
+			
+				Button.setEnabled(false);
+				if(skill instanceof BuffSkill) {
+    				if(((BuffSkill) skill).buff.currHP > 0 || ((BuffSkill) skill).buff.currMana > 0) {
+    					if(CessPool.selected.currMana >= skill.manaCost) {
+    						Button.setText("Use");
+    						Button.setEnabled(true);
+    					}
+    					else {
+    						Button.setText("No Mana");
+    						Button.setEnabled(false);
+    					}
+    					
+    				}
+    				else {
+    					Button.setText("Can't use");
+    					Button.setEnabled(false);
+    				}
+    			}
+				
 				Button.setFocusable(false);
 				Button.setFocusPainted(false);
 				Button.setBackground(new Color(61, 61, 92));
     			Button.setPreferredSize(new Dimension(120,20));
-	            
+    			Button.setForeground(Color.white);
 	            Button.addActionListener(new ActionListener() {
 	                @Override
 	                public void actionPerformed(ActionEvent e) {
-	                	CessPool.selected.skills.remove(skill);
-	                	addSkillButtons(panel);
+	                	if (skill instanceof BuffSkill) {
+	                		((BuffSkill) skill).unleash(CessPool.selected);
+	                	}
+	            
+	                	Main.frame.setContentPane(new BagPanel(frame));
+	                    Main.frame.pack();
 	                }
 	            });
 	            

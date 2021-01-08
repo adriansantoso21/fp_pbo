@@ -28,9 +28,8 @@ public class Main {
 			     
 			     frame.add(mainPanel);
 			     cardLayout.show(mainPanel, "start");
-//			     frame.setContentPane(new BattlePanel(frame));
 
-			     
+//			     frame.setContentPane(new BattlePanel(frame));
 //			     frame.setContentPane(new BagPanel(frame));			     
 //			     frame.setContentPane(new StartPanel("images/StartPanel.jpg", frame));
 			     

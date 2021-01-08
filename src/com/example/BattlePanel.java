@@ -221,12 +221,12 @@ public class BattlePanel extends JPanel {
 			Main.frame.pack();
 		}
 	}
-	
 
 	public void enemyTurn(Monster turn) {
 		monsterAttack(fighted, fighter);
 		fighter.decreaseDuration();
 		fighted.decreaseDuration();
+
 	}
 	
 	//----------------------POTION AND SKILLS PANEL METHODS----------------------//

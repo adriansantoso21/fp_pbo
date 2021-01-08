@@ -8,11 +8,9 @@ public class BuffSkill extends Skill {
 
 	public Buff buff;
 	
-	
-	public BuffSkill(String name, float manaCost, Buff buff) {
-		super(name, manaCost);
+	public BuffSkill(String name, float manaCost,float price, Buff buff) {
+		super(name, manaCost, price);
 		this.buff = buff;
-		
 	}
 
 	void unleash(Creature buffed) {
