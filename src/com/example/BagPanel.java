@@ -16,7 +16,7 @@ import javax.swing.JTextPane;
 
 public class BagPanel extends JPanel{
 
-	public BagPanel(JFrame frame){
+	public BagPanel(JFrame frame, int choose){
 		GridLayout total = new GridLayout(1,2);
 		GridLayout grdLayout = new GridLayout(1, 5);
 		CardLayout cardlay = new CardLayout();
@@ -29,6 +29,7 @@ public class BagPanel extends JPanel{
 		JPanel kiri_bawah = new JPanel(new GridLayout(1,2));
 		JPanel kiri_bawah_kiri = new JPanel(new BorderLayout());
 		JPanel buton = new JPanel(new BorderLayout());
+		
 		
 		ImageIcon Img1 = new ImageIcon("images/bg_rando.jpg");
 		JLabel lblNewLabel1 = new JLabel();
@@ -87,66 +88,68 @@ public class BagPanel extends JPanel{
 		kiri.add(kiri_atas);
 		kiri.add(kiri_bawah);
 		this.add(kiri);
+
+		kanan.setBackground(new Color(0, 26, 0));
 		
 		JButton armor = new JButton("Armor");
+		JPanel ArmorPanel = new ArmorPanel(1, frame);
+		kanan_bawah.add(ArmorPanel, "armorpane");
 		armor.setPreferredSize(new Dimension(128, 60));
-		armor.setBackground(Color.black);
+		armor.setBackground(new Color(61, 61, 92));
 		armor.setForeground(Color.white);
 		
 		armor.addActionListener(
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					JPanel ArmorPanel = new ArmorPanel(1, frame);
-    					kanan_bawah.add(ArmorPanel, "armorpane");
     					cardlay.show(kanan_bawah, "armorpane");
     				}
     			}
     	);
 		
 		JButton weapon = new JButton("Weapon");
+		JPanel WeaponPanel = new WeaponPanel(1, frame);
+		kanan_bawah.add(WeaponPanel, "weaponpane");
 		weapon.setPreferredSize(new Dimension(128, 60));
-		weapon.setBackground(Color.black);
+		weapon.setBackground(new Color(61, 61, 92));
 		weapon.setForeground(Color.white);
 
 		weapon.addActionListener(
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					JPanel WeaponPanel = new WeaponPanel(1, frame);
-    					kanan_bawah.add(WeaponPanel, "weaponpane");
     					cardlay.show(kanan_bawah, "weaponpane");
     				}
     			}
     	);
 		
 		JButton potion = new JButton("Potion");
+		JPanel PotionPanel = new PotionPanel(1, frame);
+		kanan_bawah.add(PotionPanel, "potionpane");
 		potion.setPreferredSize(new Dimension(128, 60));
-		potion.setBackground(Color.black);
+		potion.setBackground(new Color(61, 61, 92));
 		potion.setForeground(Color.white);
 		
 		potion.addActionListener(
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					JPanel PotionPanel = new PotionPanel(1, frame);
-    					kanan_bawah.add(PotionPanel, "potionpane");
     					cardlay.show(kanan_bawah, "potionpane");
     				}
     			}
     	);
 		
         JButton skill = new JButton("Skill");
+        JPanel SkillPanel = new SkillPanel(1, frame);
+		kanan_bawah.add(SkillPanel, "skillpane");
         skill.setPreferredSize(new Dimension(128, 60));
-        skill.setBackground(Color.black);
+        skill.setBackground(new Color(61, 61, 92));
         skill.setForeground(Color.white);
         
         skill.addActionListener(
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					JPanel SkillPanel = new SkillPanel(1, frame);
-    					kanan_bawah.add(SkillPanel, "skillpane");
     					cardlay.show(kanan_bawah, "skillpane");
     				}
     			}
@@ -181,6 +184,12 @@ public class BagPanel extends JPanel{
         this.setLayout(total);
         this.add(kiri);
         this.add(kanan);
+        
+      //1 for armor, 2 for weapon, 3 for potion, 4 for skill
+  		if(choose == 1) cardlay.show(kanan_bawah, "armorpane");
+  		else if (choose == 2) cardlay.show(kanan_bawah, "weaponpane");
+  		else if (choose == 3) cardlay.show(kanan_bawah, "potionpane");
+  		else if (choose == 4) cardlay.show(kanan_bawah, "skillpane");
         
         kanan.add(BorderLayout.NORTH, item);
         kanan.add(BorderLayout.CENTER, kanan_bawah);

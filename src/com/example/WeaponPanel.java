@@ -56,6 +56,16 @@ public class WeaponPanel extends JPanel{
 				Button.setText("No Money");
 				Button.setEnabled(false);
 			}
+			
+			for(Inventory b1 : CessPool.selected.inventory) {
+				if(b1 instanceof Weapon) {
+					Weapon b2 = (Weapon)b1;
+					if(b2.equals(b)) {
+						Button.setText("Sold Out!!");
+						Button.setEnabled(false);
+					}
+				}
+			}
 			Button.setFocusable(false);
 			Button.setFocusPainted(false);
 			Button.setBackground(new Color(61, 61, 92));
@@ -69,7 +79,7 @@ public class WeaponPanel extends JPanel{
 	    					Button.setEnabled(false);
 	    					CessPool.selected.inventory.add((Inventory)b);
 	    					CessPool.selected.gold -= b.price;
-	    					Main.frame.setContentPane(new ShopPanel(frame));
+	    					Main.frame.setContentPane(new ShopPanel(frame, 2));
 	    					Main.frame.pack();
 	    				}
 	    			}
@@ -83,22 +93,20 @@ public class WeaponPanel extends JPanel{
 	}
 	
 	public WeaponPanel(int test, JFrame frame) {
-		
+		this.setBackground(new Color(0, 26, 0));
         this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        addSkillButtons(buttonPanel);
+        buttonPanel.setBackground(new Color(0, 26, 0));
+        addSkillButtons(buttonPanel, frame);
 
         this.add(buttonPanel);
 //        this.add(buttonPanel, BorderLayout.CENTER);
 	}
 	
-	private void addSkillButtons(JPanel panel) {
+	private void addSkillButtons(JPanel panel, JFrame frame) {
         panel.removeAll();
-
-        GridLayout sold = new GridLayout(1,3);
                 
         for (Inventory weapon : CessPool.selected.inventory) {
         	if(weapon instanceof Weapon) {
@@ -125,7 +133,21 @@ public class WeaponPanel extends JPanel{
 				desc.setPreferredSize(new Dimension(313,20));
             	
     			JButton Button = new JButton();
-    			Button.setText("Use");
+    			
+    			if (Objects.isNull(CessPool.selected.equippedWeapon)) {
+    				Button.setText("Equip");
+    				Button.setEnabled(true);
+    			}
+    			else {
+    				Button.setText("Equip");
+    				Button.setEnabled(false);
+    				Weapon WeaponChar2 = CessPool.selected.equippedWeapon;
+    				if(weapon1.equals(WeaponChar2)) {
+    					Button.setText("Unequip");
+        				Button.setEnabled(true);
+    				}
+    			}
+    			
     			Button.setFocusable(false);
     			Button.setFocusPainted(false);
     			Button.setBackground(new Color(61, 61, 92));
@@ -135,13 +157,17 @@ public class WeaponPanel extends JPanel{
                 Button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                    	
                     	if(!Objects.isNull(CessPool.selected.equippedWeapon) ) {
 							Weapon WeaponChar = CessPool.selected.equippedWeapon;
 							CessPool.selected.unequipWeapon(WeaponChar);
 						}
-                    	
-    					CessPool.selected.equipWeapon(weapon1);
-                    	addSkillButtons(panel);
+                    	else {
+                    		CessPool.selected.equipWeapon(weapon1);
+                    	}
+
+    					Main.frame.setContentPane(new BagPanel(frame,2));
+	                    Main.frame.pack();
                     }
                 });
                 

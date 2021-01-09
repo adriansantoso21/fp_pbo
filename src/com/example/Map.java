@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -21,179 +22,105 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
-public class Map extends JPanel{
+public class Map extends JPanel implements MouseListener, MouseMotionListener{
  
  private Image imgg;
-// private int areaWidth;
-// private int areaHeight;
-// private String text;
-// private String text2;
+ ArrayList <Map_Button> buttons = new ArrayList<Map_Button>();
+ private int areaWidth;
+ private int areaHeight;
+ private String text;
+ private String text2;
  
  public Map (JFrame frame) {
   
-//  this.areaWidth = 1280;
-//  this.areaHeight = 750;
-//  this.setPreferredSize(new Dimension(areaWidth, areaHeight));
-//  this.text = "Lakukan sesuatu menggunakan mouse...";
-//  this.text2 = "Mouse Position...";
-  
-//  this.addMouseMotionListener(this);
-//  this.addMouseListener(this);
-//  this.setFocusable(true);
-  
-//  frame.setPreferredSize(new Dimension(1000, 1016));
-  this.imgg = new ImageIcon("images/map.jpg").getImage();
-  this.setLayout(null);
-  
-  
-  
-  JButton a_1a = new JButton();
-     a_1a.setBounds(615, 628, 25, 25);
-     a_1a.setBackground(Color.RED);
-     this.add(a_1a);
-     
-     a_1a.addActionListener(
-       new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent event) {
-        	Main.frame.setContentPane(new BattlePanel(frame));
-        	Main.frame.pack();
-        }
-       }
-      );
-     
-     JButton a_1b = new JButton();
-     a_1b.setBounds(681, 565, 25, 25);
-     a_1b.setBackground(Color.RED);
-     this.add(a_1b);
-     
-     a_1b.addActionListener(
-    	       new ActionListener() {
-    	        @Override
-    	        public void actionPerformed(ActionEvent event) {
-    	        	Main.frame.setContentPane(new BattlePanel(frame));
-    	        	Main.frame.pack();
-    	        }
-    	       }
-    );
+	  this.areaWidth = 1280;
+	  this.areaHeight = 750;
+	  this.setPreferredSize(new Dimension(areaWidth, areaHeight));
+	  
+	  this.text = "Lakukan sesuatu menggunakan mouse...";
+	  this.text2 = "Mouse Position...";
+	  
+	  this.addMouseMotionListener(this);
+	  this.addMouseListener(this);
+	  
+	  this.setFocusable(true);
 
-     JButton a_2 = new JButton();
-     a_2.setBounds(553, 569, 25, 25);
-     a_2.setBackground(Color.RED);
-     this.add(a_2);
-     
-     JButton a_3 = new JButton();
-     a_3.setBounds(493, 513, 25, 25);
-     a_3.setBackground(Color.RED);
-     this.add(a_3);
-     
-     JButton a_4 = new JButton();
-     a_4.setBounds(443, 456, 25, 25);
-     a_4.setBackground(Color.RED);
-     this.add(a_4);
-     
-     JButton a_5 = new JButton();
-     a_5.setBounds(393, 393, 25, 25);
-     a_5.setBackground(Color.RED);
-     this.add(a_5);
-     
-     JButton a_6 = new JButton();
-     a_6.setBounds(457, 321, 25, 25);
-     a_6.setBackground(Color.RED);
-     this.add(a_6);
-     
-     JButton ab_1 = new JButton();
-     ab_1.setBounds(734, 497, 30, 30);
-     ab_1.setBackground(Color.RED);
-     this.add(ab_1);
-     
-     ab_1.addActionListener(
-       new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent event) {
-         Main.frame.setContentPane(new ShopPanel(frame));
-         Main.frame.pack();
-        }
-       }
-      );
-     
-     JButton ab_1a = new JButton();
-     ab_1a.setBounds(666, 447, 30, 30);
-     ab_1a.setBackground(Color.RED);
-     ab_1a.setOpaque(false);
-     this.add(ab_1a);
-     
-     JButton ab_2a = new JButton();
-     ab_2a.setBounds(621, 396, 25, 25);
-     ab_2a.setBackground(Color.RED);
-     this.add(ab_2a);
-     
-     JButton ab_3a = new JButton();
-     ab_3a.setBounds(623, 332, 25, 25);
-     ab_3a.setBackground(Color.RED);
-     this.add(ab_3a);
-     
-     JButton ab_1b = new JButton();
-     ab_1b.setBounds(726, 431, 25, 25);
-     ab_1b.setBackground(Color.RED);
-     this.add(ab_1b);
-     
-     JButton ab_2b = new JButton();
-     ab_2b.setBounds(717, 362, 25, 25);
-     ab_2b.setBackground(Color.RED);
-     this.add(ab_2b);
-     
-     JButton ab_3b = new JButton();
-     ab_3b.setBounds(693, 317, 25, 25);
-     ab_3b.setBackground(Color.RED);
-     this.add(ab_3b);
-     
-     JButton b_1 = new JButton();
-     b_1.setBounds(795, 611, 25, 25);
-     b_1.setBackground(Color.RED);
-     this.add(b_1);
-     
-     JButton b_2 = new JButton();
-     b_2.setBounds(860, 566, 25, 25);
-     b_2.setBackground(Color.RED);
-     this.add(b_2);
-     
-     JButton b_3 = new JButton();
-     b_3.setBounds(914, 504, 25, 25);
-     b_3.setBackground(Color.RED);
-     this.add(b_3);
-     
-     JButton b_4 = new JButton();
-     b_4.setBounds(909, 374, 25, 25);
-     b_4.setBackground(Color.RED);
-     this.add(b_4);
-     
-     JButton b_5 = new JButton();
-     b_5.setBounds(853, 328, 25, 25);
-     b_5.setBackground(Color.RED);
-     this.add(b_5);
-     
-     JButton b_6 = new JButton();
-     b_6.setBounds(805, 295, 25, 25);
-     b_6.setBackground(Color.RED);
-     this.add(b_6);
-     
-     JButton boss_besar = new JButton();
-     boss_besar.setBounds(600, 120, 75, 75);
-     boss_besar.setBackground(Color.RED);
-     this.add(boss_besar);
+	 
+	  this.imgg = new ImageIcon("images/map.jpg").getImage();
+	  this.setLayout(null);
+	  
+	  //for monster
+	  buttons.add(new Map_Button(1058, 690, 2, false));
+	  buttons.add(new Map_Button(993 , 684, 2, false));
+	  buttons.add(new Map_Button(924, 637, 2,false));
+	  buttons.add(new Map_Button(771, 501, 2, false));
+	  buttons.add(new Map_Button(693, 473, 2, false));
+	  buttons.add(new Map_Button(572, 491, 2, false));
+	  buttons.add(new Map_Button(819, 583, 2,false));
+	  buttons.add(new Map_Button(769, 637, 2, false));
+	  buttons.add(new Map_Button(678, 652, 2, false));
+	  buttons.add(new Map_Button(620, 636, 2, false));
+	  buttons.add(new Map_Button(503, 555, 2, false));
+	  buttons.add(new Map_Button(402, 551, 2, false));
+	  buttons.add(new Map_Button(392, 495, 2, false));
+	  buttons.add(new Map_Button(418, 388, 2, false));
+	  buttons.add(new Map_Button(536, 377, 2, false));
+	  buttons.add(new Map_Button(455, 440, 2, false));
+	  buttons.add(new Map_Button(516, 436, 2, false));
+	  buttons.add(new Map_Button(681, 380, 2, false));
+	  buttons.add(new Map_Button(716, 336, 2, false));
+	  buttons.add(new Map_Button(633, 134, 2, false));
+	  
+	  //for shop
+	  buttons.add(new Map_Button(857, 584, 1, false));
+	  buttons.add(new Map_Button(545 , 567, 1, false));
+	  buttons.add(new Map_Button(348, 411, 1,false));
+	  buttons.add(new Map_Button(573, 366, 1, false));
+	  
+	  for(Map_Button a : buttons) {
+		  this.add(a);
+	  }
+	  
+	  for(Map_Button a : buttons) {
+		  if(a.type == 1) {
+			  a.addActionListener(
+		    	       new ActionListener() {
+		    	        @Override
+		    	        public void actionPerformed(ActionEvent event) {
+		    	        	Main.frame.setContentPane(new ShopPanel(frame, -1));
+		    			      Main.frame.pack();
+		    	        }
+		    	       }
+		    );
+		  }
+		  
+		  else if (a.type == 2) {
+			  a.addActionListener(
+		    	       new ActionListener() {
+		    	        @Override
+		    	        public void actionPerformed(ActionEvent event) {
+		    	        	Main.frame.setContentPane(new BattlePanel(frame));
+		    			      Main.frame.pack();
+		    	        }
+		    	       }
+		    );
+		  }
+	  }
+    
+	  //Enable Map Battle
+
      
      //Currently Hp
      ImageIcon Img1 = new ImageIcon("images/hp.png");   
      JButton cuhp = new JButton("    HP is currently " + CessPool.selected.currHP, Img1);
-     cuhp.setBounds(140, 0, 250, 50);
+     cuhp.setBounds(0, 0, 250, 50);
      cuhp.setBackground(Color.white);
      this.add(cuhp);
      
      //Currently Gold
      ImageIcon Img = new ImageIcon("images/coin.png");     
      JButton cugo = new JButton("       Gold is currently " + CessPool.selected.gold, Img);
-     cugo.setBounds(140, 50, 250, 50);
+     cugo.setBounds(0, 50, 250, 50);
      cugo.setBackground(new Color(173, 78, 5));
      cugo.setForeground(Color.yellow);
      this.add(cugo);
@@ -201,7 +128,7 @@ public class Map extends JPanel{
      //Currently Mana
      ImageIcon Img2 = new ImageIcon("images/mana.png"); 
      JButton cumana = new JButton("         Mana is currently " + CessPool.selected.currMana, Img2);
-     cumana.setBounds(140, 100, 250, 50);
+     cumana.setBounds(0, 100, 250, 50);
      cumana.setBackground(new Color(0, 0, 102));
      cumana.setForeground(new Color(0, 255, 255));
      this.add(cumana);
@@ -212,14 +139,14 @@ public class Map extends JPanel{
      Bag.setForeground(Color.white);
      Bag.setBackground(new Color(51, 0, 16));
      Bag.setForeground(new Color(255, 153, 0));
-     Bag.setBounds(140, 665, 150, 50);
+     Bag.setBounds(0, 665, 150, 50);
      this.add(Bag);
      
      Bag.addActionListener(
        new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-         Main.frame.setContentPane(new BagPanel(frame));
+         Main.frame.setContentPane(new BagPanel(frame, -1));
          Main.frame.pack();
         }
        }
@@ -227,41 +154,41 @@ public class Map extends JPanel{
      
  }
  
- public void paintComponent(Graphics g) {
-  super.paintComponent(g);
-  g.drawImage(this.imgg, 140, 0, null);
-//  g.drawString(this.text, 0, this.areaHeight / 2);
-//  g.drawString(this.text2, 0, this.areaHeight / 30);
- }
- 
-// public void mouseClicked(MouseEvent e) {
-//  this.text = "Tombol mouse diklik pada posisi X: " + e.getX() +" Y: " + e.getY();
-//  repaint();
-// }
-// public void mousePressed(MouseEvent e) {
-//  this.text = "Tombol mouse ditekan pada posisi X: " + e.getX() +" Y: " + e.getY();
-//  repaint();
-// }
-// public void mouseReleased(MouseEvent e) {
-//  this.text = "Tombol mouse dilepas pada posisi X: " + e.getX() +" Y: " + e.getY();
-//  repaint();
-// }
-// public void mouseEntered(MouseEvent e) {
-//  this.text = "Mouse memasuki area MousePanel";
-//  repaint();
-// }
-// public void mouseExited(MouseEvent e) {
-//  this.text = "Mouse meninggalkan area MousePanel";
-//  repaint();
-// }
-// @Override
-// public void mouseDragged(MouseEvent e) {
-//  this.text2 = "Position X: " + e.getX() + " Y: " + e.getY() + " Dragged";
-//  repaint();
-// }
-// @Override
-// public void mouseMoved(MouseEvent e) {
-//  this.text2 = "Position X: " + e.getX() + " Y: " + e.getY();
-//  repaint();
-// }
+	 public void paintComponent(Graphics g) {
+	  super.paintComponent(g);
+	  g.drawImage(this.imgg, 0, 0, null);
+	  g.drawString(this.text, 0, this.areaHeight / 2);
+	  g.drawString(this.text2, 0, this.areaHeight / 3);
+	 }
+	 
+	 public void mouseClicked(MouseEvent e) {
+			this.text = "Tombol mouse diklik pada posisi X: " + e.getX() +" Y: " + e.getY();
+			repaint();
+		}
+		public void mousePressed(MouseEvent e) {
+			this.text = "Tombol mouse ditekan pada posisi X: " + e.getX() +" Y: " + e.getY();
+			repaint();
+		}
+		public void mouseReleased(MouseEvent e) {
+			this.text = "Tombol mouse dilepas pada posisi X: " + e.getX() +" Y: " + e.getY();
+			repaint();
+		}
+		public void mouseEntered(MouseEvent e) {
+			this.text = "Mouse memasuki area MousePanel";
+			repaint();
+		}
+		public void mouseExited(MouseEvent e) {
+			this.text = "Mouse meninggalkan area MousePanel";
+			repaint();
+		}
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			this.text2 = "Position X: " + e.getX() + " Y: " + e.getY() + " Dragged";
+			repaint();
+		}
+		@Override
+		public void mouseMoved(MouseEvent e) {
+			this.text2 = "Position X: " + e.getX() + " Y: " + e.getY();
+			repaint();
+		}
 }

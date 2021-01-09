@@ -12,9 +12,12 @@ public class CessPool {
 	public static ArrayList<Potion> potionz = new ArrayList<Potion>();
 	public static ArrayList<Skill> skillz = new ArrayList<Skill>();
 	public static ArrayList<SkillBook> skillbookz = new ArrayList<SkillBook>();
-
+	public static ArrayList<Integer> location = new ArrayList<Integer>();
+	int curLoc;
 	
 	public CessPool() {
+		location.add(0);
+		
 		monsterz.add(new Monster("Villain", 300, 28, 20, 40, 40, 30, 30, 30));
 		monsterz.add(new Monster("2nd Villain", 150, 34, 20, 40, 40, 30, 30, 30));
 		
