@@ -271,6 +271,8 @@ public class BattlePanel extends JPanel {
 			JLabel label = new JLabel("<html><center><p style style=\"background-color:powderblue; color: blue;\">YOU WON!!!<br> Loot : <br> "+ reward +"</p>");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			JOptionPane.showMessageDialog(frame, label, "CONGRATS!!", JOptionPane.PLAIN_MESSAGE);
+			fighter.buffs.clear();
+			fighted.buffs.clear();
 			Main.frame.setContentPane(new Map(frame));
 			Main.frame.pack();
 		}

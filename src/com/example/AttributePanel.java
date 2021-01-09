@@ -118,6 +118,44 @@ public class AttributePanel extends JPanel {
             manaPanel.add(manaButton, BorderLayout.EAST);
             panel.add(manaPanel);
             
+            JPanel streng = new JPanel();
+        	streng.setLayout(new BorderLayout());
+			
+        	JLabel strengthh = new JLabel();
+        	strengthh.setText("Strength : " + CessPool.selected.strength);
+    		strengthh.setFocusable(false);
+    		strengthh.setForeground(Color.WHITE);
+			strengthh.setBackground(new Color(51, 0, 16));
+        	
+			JButton strButton = new JButton();
+			strButton.setText("Can't use");
+		
+			strButton.setEnabled(true);
+			strButton.setText("Increase 1");
+			if(CessPool.selected.attributeP<1) {
+				strButton.setText("No Points");
+				strButton.setEnabled(false);
+			}
+			
+			strButton.setFocusable(false);
+			strButton.setFocusPainted(false);
+			strButton.setBackground(new Color(61, 61, 92));
+			strButton.setForeground(Color.white);
+            strButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                	CessPool.selected.strength += 1;
+                	CessPool.selected.attributeP -= 1;
+            
+                	Main.frame.setContentPane(new BagPanel(frame, 5));
+                    Main.frame.pack();
+                }
+            });
+            
+            streng.add(strengthh, BorderLayout.CENTER);
+            streng.add(strButton, BorderLayout.EAST);
+            panel.add(streng);
+            
             JPanel intelligence = new JPanel();
         	intelligence.setLayout(new BorderLayout());
 			
