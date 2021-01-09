@@ -57,12 +57,12 @@ public class Character extends Creature {
 	public void usePotion(Potion potion) {
 		if(potion.buff.currHP > 0 || potion.buff.currMana > 0) {
 			if(potion.buff.type.equals("Non")) {
-				this.currHP += potion.buff.currHP;
-				this.currMana += potion.buff.currMana;
+				this.healHealth(potion.buff.currHP);
+				this.healMana(potion.buff.currMana);
 			}
 			else {
-				this.currHP += (potion.buff.currHP * this.currHP /100);
-				this.currMana += (potion.buff.currMana * this.currMana /100);
+				this.healHealth(potion.buff.currHP * this.currHP /100);
+				this.healMana(potion.buff.currMana * this.currMana /100);
 			}
 		}
 		else {
