@@ -71,7 +71,7 @@ public class SkillPanel extends JPanel{
 			    					Button.setEnabled(false);
 			    					CessPool.selected.skills.add(b);
 			    					CessPool.selected.gold -= b.price;
-			    					Main.frame.setContentPane(new ShopPanel(frame));
+			    					Main.frame.setContentPane(new ShopPanel(frame, 4));
 			    			        Main.frame.pack();
 			    				}
 			    			}
@@ -85,11 +85,11 @@ public class SkillPanel extends JPanel{
 		}
 		
 		public SkillPanel(int test, JFrame frame) {
-			
+			this.setBackground(new Color(0, 26, 0));
 	        this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+	        
 	        JPanel buttonPanel = new JPanel(new GridLayout(7, 1));
-//	        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
+	        buttonPanel.setBackground(new Color(0, 26, 0));
 	        addSkillButtons(buttonPanel, frame);
 	        this.add(buttonPanel);
 	        this.add(buttonPanel, BorderLayout.CENTER);
@@ -149,7 +149,7 @@ public class SkillPanel extends JPanel{
 	                		((BuffSkill) skill).unleash(CessPool.selected);
 	                	}
 	            
-	                	Main.frame.setContentPane(new BagPanel(frame));
+	                	Main.frame.setContentPane(new BagPanel(frame, 4));
 	                    Main.frame.pack();
 	                }
 	            });

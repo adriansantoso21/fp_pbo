@@ -17,8 +17,7 @@ import javax.swing.JTextPane;
 
 public class ShopPanel extends JPanel{
 
-	public ShopPanel(JFrame frame){
-		
+	public ShopPanel(JFrame frame, int choose){	
 		GridLayout total = new GridLayout(1,2);
 		GridLayout grdLayout = new GridLayout(1, 5);
 		
@@ -154,6 +153,12 @@ public class ShopPanel extends JPanel{
         this.setLayout(total);
         this.add(kiri);
         this.add(kanan);
+        
+      //1 for armor, 2 for weapon, 3 for potion, 4 for skill
+  		if(choose == 1) cardlay.show(kanan_bawah, "armorpane");
+  		else if (choose == 2) cardlay.show(kanan_bawah, "weaponpane");
+  		else if (choose == 3) cardlay.show(kanan_bawah, "potionpane");
+  		else if (choose == 4) cardlay.show(kanan_bawah, "skillpane");
         
         kanan.add(BorderLayout.NORTH, item);
         kanan.add(BorderLayout.CENTER, kanan_bawah);
