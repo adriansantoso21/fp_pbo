@@ -31,7 +31,7 @@ public class Main {
 
 //			     frame.setContentPane(new BattlePanel(frame));
 //			     frame.setContentPane(new BagPanel(frame));			     
-//			     frame.setContentPane(new StartPanel("images/StartPanel.jpg", frame));
+//			     frame.setContentPane(new RestPanel());
 			     
 			     frame.pack();
 			     frame.setLocationRelativeTo(null);

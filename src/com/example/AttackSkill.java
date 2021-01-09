@@ -4,12 +4,13 @@ public class AttackSkill extends Skill {
 	
 	String type;
 	float att;
+	String desc;
 
-	public AttackSkill(String name, float manaCost, String type, float price) {
+	public AttackSkill(String name, float manaCost, String type, float price, float att, String desc) {
 		super(name, manaCost, price);
-		this.price = price;
 		this.type = type;
 		this.att = att;
+		this.desc = desc;
 	}
 	
 	float unleash(Creature attacker, Creature attacked) {
