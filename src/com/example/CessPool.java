@@ -16,6 +16,7 @@ public class CessPool {
 	
 	public CessPool() {
 		monsterz.add(new Monster("Villain", 300, 28, 20, 40, 40, 30, 30, 30));
+		monsterz.get(0).skills.add(new DebuffSkill("Earthquake", 35, 200, new Buff("Modifier", 0, 0, 0, 0, 0, -10, 0, 3, "Reduces enemy speed by 10%.")));
 		monsterz.add(new Monster("2nd Villain", 150, 34, 20, 40, 40, 30, 30, 30));
 		
 		armorz.add(new Armor("Sunlight Armor", 30, 60, 45, 15, 20, 750));
@@ -28,21 +29,21 @@ public class CessPool {
 		weaponz.add(new Weapon("Sword of the Warzone", 40, 60, 70, 30, 15, 700));
 		weaponz.add(new Weapon("Sunlight Spear", 30, 60, 45, 15, 20, 800));
 		
-		potionz.add(new Potion("Defence Potion", 0, 100, new Buff("Non", 0, 0, 0, 0, 0, 0, 10, 3)));
-		potionz.add(new Potion("Attack Potion", 0,100, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
-		potionz.add(new Potion("Accuracy Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3)));
-		potionz.add(new Potion("Speed Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3)));
-		potionz.add(new Potion("Mana Potion", 0,100, new Buff("Non", 0, 40, 0, 10, 0, 0, 0, 3)));
-		potionz.add(new Potion("Strength Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3)));
-		potionz.add(new Potion("Intelligence Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3)));
+		potionz.add(new Potion("Defence Potion", 0, 100, new Buff("Non", 0, 0, 0, 0, 0, 0, 30, 3, "Increases defense by 30 points for 3 turns.")));
+		potionz.add(new Potion("Attack Potion", 0,100, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3, "Increases attack by 10 points for 3 turns.")));
+		potionz.add(new Potion("Accuracy Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3, "Increases accuracy by 10% for 3 turns.")));
+		potionz.add(new Potion("Speed Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3, "Increases speed by 10% for 3 turns.")));
+		potionz.add(new Potion("Mana Potion", 0,100, new Buff("Non", 0, 40, 0, 10, 0, 0, 0, 3, "Replenishes mana by 40 points.")));
+		potionz.add(new Potion("Strength Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3, "Increases strength by 10% for 3 turns.")));
+		potionz.add(new Potion("Intelligence Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3, "Increases intelligence by 10% for 3 turns.")));
 		
-		skillz.add(new AttackSkill("Shattering Star", 50, "Modifier", 200));
-		skillz.add(new BuffSkill("Sword Saint", 40,200, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3)));
-		skillz.add(new BuffSkill("Faint Destroyer", 45,200, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3)));
-		skillz.add(new DebuffSkill("Earthquake", 35,200, new Buff("Modifier", 0, 0, 0, 0, 0, -10, 0, 3)));
-		skillz.add(new DebuffSkill("Meteor Shower", 30,200, new Buff("Non", 0, 0, 0, -10, 0, 0, 0, 3)));
-		skillz.add(new BuffSkill("Water Pulse", 50,200, new Buff("Modifier", 100, 0, 0, 0, 10, 0, 0, 3)));
-		skillz.add(new BuffSkill("Winter Blast", 45,200, new Buff("Modifier", 50, 0, 0, 0, 0, 0, 0, 3)));
+		skillz.add(new AttackSkill("Shattering Star", 50, "Modifier", 200, 50, "Attacks with 150% strength"));
+		skillz.add(new BuffSkill("Sword Saint", 40,200, new Buff("Non", 0, 0, 0, 10, 0, 0, 0, 3, "Increases strength by 10%")));
+		skillz.add(new BuffSkill("Faint Destroyer", 45,200, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3, "Increases accuracy by 10%.")));
+		skillz.add(new DebuffSkill("Earthquake", 35,200, new Buff("Modifier", 0, 0, 0, 0, 0, -10, 0, 3, "Reduces enemy speed by 10%.")));
+		skillz.add(new DebuffSkill("Meteor Shower", 30,200, new Buff("Non", 0, 0, 0, -20, 0, 0, 0, 3, "Reduces enemy strength by 20 pointa.")));
+		skillz.add(new BuffSkill("Water Pulse", 50,200, new Buff("Modifier", 50, 0, 0, 0, 10, 0, 0, 3, "Replenishes 50% HP.")));
+		skillz.add(new BuffSkill("Winter Blast", 45,200, new Buff("Modifier", 30, 0, 0, 0, 0, 0, 0, 3, "Replenishes 30% HP.")));
 		
 //		selected.skills.add(new AttackSkill("Shattering Star", 50, "Modifier", 30));
 //		selected.skills.add(new BuffSkill("Shattering Star", 0, new Buff("Non", 0, 0, 0, 0, 0, 0, 10, 3)));

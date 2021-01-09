@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -39,7 +40,6 @@ public class BattlePanel extends JPanel {
 		
 		fighted.healHP();
 		num=0;
-		//what if inside the cardlayout, we always call a new itemPane
         
         ta = new JTextPane();
         ta.setEditable(false);
@@ -213,8 +213,30 @@ public class BattlePanel extends JPanel {
 			
 		}
 		else if (dead instanceof Monster) {
+			String reward;
+			Random rand = new Random();
+			int int_random = rand.nextInt(100)+100; 
+			fighter.gold += int_random;
+			
+			reward = "got "+int_random+" gold";
+			int chance = rand.nextInt(10);
+			if(chance<=1) {
+				int chances = rand.nextInt(5)+10;
+				fighter.healHealth(fighter.healthPoint*chances/100);
+				reward += " and got "+ fighter.healthPoint*chances/100 + " HP healed";
+			}
+			else if (chance<=3) {
+				int chances = rand.nextInt(5)+10;
+				fighter.healMana(fighter.mana*chances/100);
+				reward += " and got "+ fighter.mana*chances/100 + " mana healed";
+			}
+			else if (chance <=5) {
+				int chances = rand.nextInt(6);
+				fighter.inventory.add(CessPool.potionz.get(chances));
+				reward += " and got "+ CessPool.potionz.get(chances).name;
+			}
 			JFrame frame = new JFrame("CONGRATS!");
-			JLabel label = new JLabel("<html><center><p style style=\"background-color:powderblue; color: blue;\">YOU WON!!!</p>");
+			JLabel label = new JLabel("<html><center><p style style=\"background-color:powderblue; color: blue;\">YOU WON!!!<br> And you "+ reward +"</p>");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			JOptionPane.showMessageDialog(frame, label, "CONGRATS!!", JOptionPane.PLAIN_MESSAGE);
 			Main.frame.setContentPane(new Map(frame));

@@ -102,6 +102,20 @@ public abstract class Creature {
 		this.buffs.removeAll(toRemove);
 	}
 	
+	void healHealth(float healed) {
+		this.currHP += healed;
+		if (this.currHP>this.healthPoint) {
+			this.currHP = this.healthPoint;
+		}
+	}
+	
+	void healMana(float healed) {
+		this.currMana += healed;
+		if (this.currMana>this.mana) {
+			this.currMana = this.mana;
+		}
+	}
+	
 	float showSpeed() {
 		float full = this.speed;
 		float part = 0;
