@@ -75,7 +75,7 @@ public class PotionPanel extends JPanel{
 	    				@Override
 	    				public void actionPerformed(ActionEvent event) {
 	    					Button.setEnabled(false);
-	    					CessPool.selected.inventory.add((Inventory)b);
+	    					CessPool.selected.inventory.add(new Potion(b));
 	    					CessPool.selected.gold -= b.price;
 	    					Main.frame.setContentPane(new ShopPanel(frame, 3));
 	    			         Main.frame.pack();
