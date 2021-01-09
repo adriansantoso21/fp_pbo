@@ -37,7 +37,7 @@ public class CessPool {
 		potionz.add(new Potion("Accuracy Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3, "Increases accuracy by 10% for 3 turns.")));
 		potionz.add(new Potion("Speed Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3, "Increases speed by 10% for 3 turns.")));
 		potionz.add(new Potion("Mana Potion", 0,100, new Buff("Non", 0, 40, 0, 10, 0, 0, 0, 3, "Replenishes mana by 40 points.")));
-		potionz.add(new Potion("Strength Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3, "Increases strength by 10% for 3 turns.")));
+		potionz.add(new Potion("Strength Potion", 0,100, new Buff("Modifier", 0, 0, 0, 10, 0, 0, 0, 3, "Increases strength by 10% for 3 turns.")));
 		potionz.add(new Potion("Intelligence Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3, "Increases intelligence by 10% for 3 turns.")));
 		
 		skillz.add(new AttackSkill("Shattering Star", 50, "Modifier", 200, 50, "Attacks with 150% strength"));
