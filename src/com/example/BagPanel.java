@@ -94,7 +94,7 @@ public class BagPanel extends JPanel{
 		JButton armor = new JButton("Armor");
 		JPanel ArmorPanel = new ArmorPanel(1, frame);
 		kanan_bawah.add(ArmorPanel, "armorpane");
-		armor.setPreferredSize(new Dimension(128, 60));
+		armor.setPreferredSize(new Dimension(106, 60));
 		armor.setBackground(new Color(61, 61, 92));
 		armor.setForeground(Color.white);
 		
@@ -110,7 +110,7 @@ public class BagPanel extends JPanel{
 		JButton weapon = new JButton("Weapon");
 		JPanel WeaponPanel = new WeaponPanel(1, frame);
 		kanan_bawah.add(WeaponPanel, "weaponpane");
-		weapon.setPreferredSize(new Dimension(102, 60));
+		weapon.setPreferredSize(new Dimension(106, 60));
 		weapon.setBackground(new Color(61, 61, 92));
 		weapon.setForeground(Color.white);
 
@@ -126,7 +126,7 @@ public class BagPanel extends JPanel{
 		JButton potion = new JButton("Potion");
 		JPanel PotionPanel = new PotionPanel(1, frame);
 		kanan_bawah.add(PotionPanel, "potionpane");
-		potion.setPreferredSize(new Dimension(102, 60));
+		potion.setPreferredSize(new Dimension(106, 60));
 		potion.setBackground(new Color(61, 61, 92));
 		potion.setForeground(Color.white);
 		
@@ -142,7 +142,7 @@ public class BagPanel extends JPanel{
         JButton skill = new JButton("Skill");
         JPanel SkillPanel = new SkillPanel(1, frame);
 		kanan_bawah.add(SkillPanel, "skillpane");
-        skill.setPreferredSize(new Dimension(102, 60));
+        skill.setPreferredSize(new Dimension(106, 60));
         skill.setBackground(new Color(61, 61, 92));
         skill.setForeground(Color.white);
         
@@ -158,7 +158,7 @@ public class BagPanel extends JPanel{
         JButton attr = new JButton("Attribute");
         JPanel attrPanel = new AttributePanel(choose, frame);
 		kanan_bawah.add(attrPanel, "attpane");
-        attr.setPreferredSize(new Dimension(102, 60));
+        attr.setPreferredSize(new Dimension(106, 60));
         attr.setBackground(new Color(61, 61, 92));
         attr.setForeground(Color.white);
         
@@ -172,7 +172,7 @@ public class BagPanel extends JPanel{
     	);
         
         JButton Button1 = new JButton();
-        Button1.setPreferredSize(new Dimension(102, 60));
+        Button1.setPreferredSize(new Dimension(106, 60));
 		Button1.setText("Back");
 		Button1.setFocusable(false);
 		Button1.setFocusPainted(false);

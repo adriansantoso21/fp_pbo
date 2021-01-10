@@ -54,7 +54,11 @@ public abstract class Creature {
 	}
 	
 	public float attack(Creature attacked) {
-		return 2 * this.showStrength() * this.showStrength() / (this.showStrength() + attacked.showDefence());
+		int criti = 1;
+		if(this.crit()) {
+			criti = 2;
+		}
+		return criti * 2 * this.showStrength() * this.showStrength() / (this.showStrength() + attacked.showDefence());
 	}
 	
 	public void healHP() {

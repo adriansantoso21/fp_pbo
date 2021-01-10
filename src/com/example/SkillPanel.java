@@ -36,10 +36,29 @@ public class SkillPanel extends JPanel{
 					JTextPane skill = new JTextPane();
 					skill.setEditable(false);
 					skill.setContentType("text/html");
-					skill.setText("<html><h3 style=\"color:white;\">· Name :"+ b.name +"<br>"
-							+"· Price : "+ b.price+"</h3> </html>");	
+					if(b instanceof AttackSkill) {
+						AttackSkill c = (AttackSkill) b;
+						skill.setText("<html><h3 style=\"color:white;\">· Name :"+ b.name +"<br>"
+								+"· Desc : "+ c.desc +"<br>"
+								+"· Mana Cost : "+ b.manaCost+ " || " + " Price : "+ b.price+"</h3> </html>");	
+					}
+					else if (b instanceof BuffSkill){
+						BuffSkill d = (BuffSkill) b;
+						skill.setText("<html><h3 style=\"color:white;\">· Name :"+ b.name +"<br>"
+								+"· Desc : "+ d.buff.desc +"<br>"
+								+"· Mana Cost : "+ b.manaCost+ " || " +" Price : "+ b.price+"</h3> </html>");
+					}
+					else {
+						DebuffSkill e = (DebuffSkill) b;
+						skill.setText("<html><h3 style=\"color:white;\">· Name :"+ b.name +"<br>"
+								+"· Price : "+ e.debuff.desc +"<br>"
+								+"· Mana Cost : "+ b.manaCost+" || "+" Price : "+ b.price+"</h3> </html>");
+					}
+					
 					skill.setBackground(new Color(51, 0, 16));
 					skill.setPreferredSize(new Dimension(313,20));
+					
+					
 					
 					JButton Button = new JButton();
 					if(CessPool.selected.gold >= b.price) {
@@ -110,8 +129,24 @@ public class SkillPanel extends JPanel{
 				JTextPane desc = new JTextPane();
 				desc.setEditable(false);
 				desc.setContentType("text/html");
-				desc.setText("<html><h3 style=\"color:white;\">· Name :"+ skill.name +"<br>"
-						+"· Mana Cost : "+ skill.manaCost+"</h3> </html>");	
+				if(skill instanceof AttackSkill) {
+					AttackSkill c = (AttackSkill) skill;
+					desc.setText("<html><h3 style=\"color:white;\">· Name :"+ skill.name +"<br>"
+							+"· Desc : "+ c.desc +"<br>"
+							+"· Mana Cost : "+ skill.manaCost+"</h3> </html>");	
+				}
+				else if (skill instanceof BuffSkill){
+					BuffSkill d = (BuffSkill) skill;
+					desc.setText("<html><h3 style=\"color:white;\">· Name :"+ skill.name +"<br>"
+							+"· Desc : "+ d.buff.desc +"<br>"
+							+"· Mana Cost : "+ skill.manaCost+"</h3> </html>");
+				}
+				else {
+					DebuffSkill e = (DebuffSkill) skill;
+					desc.setText("<html><h3 style=\"color:white;\">· Name :"+ skill.name +"<br>"
+							+"· Price : "+ e.debuff.desc +"<br>"
+							+"· Mana Cost : "+ skill.manaCost+"</h3> </html>");
+				}	
 				desc.setBackground(new Color(51, 0, 16));
 				desc.setPreferredSize(new Dimension(431,20));
 	        	

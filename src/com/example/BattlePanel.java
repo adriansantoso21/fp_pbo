@@ -306,11 +306,11 @@ public class BattlePanel extends JPanel {
 
         ButtonPanel buttonPanel = new ButtonPanel(new GridLayout(3, 3, 10, 10));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
+        buttonPanel.setBackground(new Color(0, 0, 102));
+        
         addPotionButtons(buttonPanel);
 
         panel.add(buttonPanel, BorderLayout.CENTER);
-        
         panel.setBackground(Color.LIGHT_GRAY);
 
         return panel;
@@ -322,6 +322,7 @@ public class BattlePanel extends JPanel {
         for (Inventory potion : CessPool.selected.inventory) {
         	if (potion instanceof Potion) {
 	            JButton button = new JButton(potion.name);
+	            button.setBackground(new Color(51, 153, 255));
 	            button.addActionListener(new ActionListener() {
 	                @Override
 	                public void actionPerformed(ActionEvent e) {
