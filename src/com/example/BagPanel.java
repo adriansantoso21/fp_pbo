@@ -183,7 +183,7 @@ public class BagPanel extends JPanel{
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	        	Main.frame.setContentPane(new Map(frame));
-	        	frame.pack();
+	        	Main.frame.pack();
 	         }
 		});
         

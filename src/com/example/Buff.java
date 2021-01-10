@@ -1,6 +1,7 @@
 package com.example;
 
 public class Buff {
+	String name;
 	String type;
 	String desc;
 	float currHP;
@@ -12,7 +13,8 @@ public class Buff {
 	float defence;
 	int duration;
 	
-	public Buff(String type, float healthPoint, float mana, float intelligence, float strength, float accuracy, float speed, float defence, int duration, String desc) {
+	public Buff(String name, String type, float healthPoint, float mana, float intelligence, float strength, float accuracy, float speed, float defence, int duration, String desc) {
+		this.name = name;
 		this.type = type;
 		this.desc = desc;
 		this.currHP = healthPoint;

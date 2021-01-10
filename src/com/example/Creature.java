@@ -11,6 +11,9 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
 public abstract class Creature {
 	String name;
@@ -51,11 +54,7 @@ public abstract class Creature {
 	}
 	
 	public float attack(Creature attacked) {
-		int criti = 1;
-		if(this.crit()) {
-			criti = 2;
-		}
-		return criti * 2 * this.showStrength() * this.showStrength() / (this.showStrength() + attacked.showDefence());
+		return 2 * this.showStrength() * this.showStrength() / (this.showStrength() + attacked.showDefence());
 	}
 	
 	public void healHP() {
@@ -79,7 +78,7 @@ public abstract class Creature {
 	}
 	
 	public boolean crit(){
-		double f = 2.71; // you can mess with this factor to change how quickly it diminishes
+		double f = 1.003; // you can mess with this factor to change how quickly it diminishes
 		return Math.random() > Math.pow(f, -this.accuracy); // assuming random is in the range [0.0, 1.0]
 	}
 	
@@ -90,34 +89,43 @@ public abstract class Creature {
 	
 	//----------------------BUFF RELATED----------------------//
 	
-	public void decreaseDuration() {
-//		Iterator<Buff> iter = buffs.iterator();
-//	    
-//	    while (iter.hasNext()) {
-//		    Buff str = iter.next();
-//		    str.duration -= 1;
-//		    System.out.println(str.strength + " with duration currently "+ str.duration);
-//
+	public void decreaseDuration(JTextPane ta) {
+		Iterator<Buff> iter = buffs.iterator();
+	    
+	    while (iter.hasNext()) {
+		    Buff str = iter.next();
+		    str.duration -= 1;
+		    System.out.println(str.strength + " with duration currently "+ str.duration);
+
+		    if (str.duration == 0) {
+		        iter.remove();
+		        System.out.println(str.strength + "removed");
+		        StyledDocument doc = ta.getStyledDocument();
+		        try {
+					doc.insertString(doc.getLength(), "· "+str.name+"'s effects on "+this.name+" have disappeared.\n", null);
+				} catch (BadLocationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }
+		}
+	    
+	    
+		
+//		for (Buff sumn : this.buffs) {
+//			System.out.println(sumn.strength + " with duration " + sumn.duration + "\n");
+//		}
+//		List<Buff> toRemove = new ArrayList<Buff>();
+//		for (Buff str : this.buffs) {
+//			str.duration -= 1;
+//			System.out.println(str.strength + " with duration currently "+ str.duration);
+//			
 //		    if (str.duration == 0) {
-//		        iter.remove();
+//		        toRemove.add(str);
 //		        System.out.println(str.strength + "removed");
 //		    }
 //		}
-		
-		for (Buff sumn : this.buffs) {
-			System.out.println(sumn.strength + " with duration " + sumn.duration + "\n");
-		}
-		List<Buff> toRemove = new ArrayList<Buff>();
-		for (Buff str : this.buffs) {
-			str.duration -= 1;
-			System.out.println(str.strength + " with duration currently "+ str.duration);
-			
-		    if (str.duration == 0) {
-		        toRemove.add(str);
-		        System.out.println(str.strength + "removed");
-		    }
-		}
-		this.buffs.removeAll(toRemove);
+//		this.buffs.removeAll(toRemove);
 	}
 	
 	void healHealth(float healed) {

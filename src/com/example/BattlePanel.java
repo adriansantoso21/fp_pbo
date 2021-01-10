@@ -28,7 +28,7 @@ import javax.swing.text.StyledDocument;
 public class BattlePanel extends JPanel {
 	
 	Character fighter = CessPool.selected;
-	Monster fighted = CessPool.monsterz.get(0);
+	Monster fighted;
 	int num;
 	
 	private CardLayout cardlayt = new CardLayout();
@@ -38,13 +38,17 @@ public class BattlePanel extends JPanel {
 	
 	public BattlePanel(JFrame frame) {
 		
+		Random rand = new Random();
+		int a = rand.nextInt(CessPool.monsterz.size());
+		fighted = CessPool.monsterz.get(a);
+		
 		fighted.healHP();
 		num=0;
         
         ta = new JTextPane();
         ta.setEditable(false);
         ta.setContentType("text/html");
-        ta.setText("<html><h2 style=\"color:white;\">");
+        ta.setText("<html><h3 style=\"color:white;\">");
         
         ta.setBackground(Color.black);
         potionPanel.add(ta, "text");
@@ -156,7 +160,7 @@ public class BattlePanel extends JPanel {
 	//----------------------BATTLE RELATED----------------------//
 	
 	public void monsterAttack(Monster attacker, Character attacked) {
-		if (num>5) {
+		if (num>3) {
 			ta.setText("");
 			num=0;
 		}
@@ -164,15 +168,20 @@ public class BattlePanel extends JPanel {
 		StyledDocument doc = ta.getStyledDocument();
 		
 		if(attacker.dodgeChance(attacked)) {
+			String crit = "";
 			float damage = attacker.attack(attacked);
+			if (attacker.crit()) {
+				crit = "Critical Damage! ";
+				damage *= 2;
+			}
 			attacked.damaged(damage);
 			try {
-				doc.insertString(doc.getLength(), "· You received " + damage + " damage from "+attacker.name+".\n", null);
+				doc.insertString(doc.getLength(), "· "+crit+"You received " + damage + " damage from "+attacker.name+".\n", null);
 			} catch (BadLocationException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}	
 		
 		else {
 			try {
@@ -191,7 +200,7 @@ public class BattlePanel extends JPanel {
 	
 	public void youAttack(Character attacker, Monster attacked) {
 		cardlayt.show(potionPanel, "text");
-		if (num>5) {
+		if (num>3) {
 			ta.setText("");
 			num=0;
 		}
@@ -199,10 +208,15 @@ public class BattlePanel extends JPanel {
 		StyledDocument doc = ta.getStyledDocument();
 		
 		if(attacker.dodgeChance(attacked)) {
+			String crit = "";
 			float damage = attacker.attack(attacked);
+			if (attacker.crit()) {
+				crit = "Critical Damage! ";
+				damage *= 2;
+			}
 			attacked.damaged(damage);
 			try {
-				doc.insertString(doc.getLength(), "· You dealt " + damage + " damage to "+attacked.name+".\n", null);
+				doc.insertString(doc.getLength(), "· "+crit+"You dealt " + damage + " damage to "+attacked.name+".\n", null);
 			} catch (BadLocationException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -280,9 +294,8 @@ public class BattlePanel extends JPanel {
 
 	public void enemyTurn(Monster turn) {
 		monsterAttack(fighted, fighter);
-		fighter.decreaseDuration();
-		fighted.decreaseDuration();
-
+		fighter.decreaseDuration(ta);
+		fighted.decreaseDuration(ta);
 	}
 	
 	//----------------------POTION AND SKILLS PANEL METHODS----------------------//
@@ -291,7 +304,7 @@ public class BattlePanel extends JPanel {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        JPanel buttonPanel = new JPanel(new GridLayout(3, 3, 10, 10));
+        ButtonPanel buttonPanel = new ButtonPanel(new GridLayout(3, 3, 10, 10));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         addPotionButtons(buttonPanel);
@@ -551,7 +564,7 @@ public class BattlePanel extends JPanel {
 		buff.setEditable(false);
 		buff.setText("Current buffs/debuffs: ");
 		for(Buff buffs : fighter.buffs) {
-			buff.append("\n"+buffs.type);
+			buff.append("\n"+buffs.name+" ends in "+buffs.duration);
 		}
 		panel.add(buff);
     }

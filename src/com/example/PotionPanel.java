@@ -145,7 +145,6 @@ public class PotionPanel extends JPanel{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                     	CessPool.selected.usePotion(potion1);
-                    	CessPool.selected.inventory.remove(potion1);
                     	Main.frame.setContentPane(new BagPanel(frame, 3));
 	                    Main.frame.pack();
                     }
