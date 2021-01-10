@@ -15,5 +15,12 @@ public class Potion extends Consumables {
 		this.price = price;
 		this.image = new ImageIcon("potion/"+name+".jpg").getImage();
 	}
+	
+	public Potion(Potion pot) {
+		super(pot.name, pot.weight);
+		this.buff = pot.buff;
+		this.price = pot.price;
+		this.image = new ImageIcon("potion/"+pot.name+".jpg").getImage();
+	}
 
 }

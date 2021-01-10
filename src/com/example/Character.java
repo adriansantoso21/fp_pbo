@@ -17,6 +17,7 @@ public class Character extends Creature {
 		super(name, healthPoint, mana, intelligence, strength, accuracy, speed, defence, weight);
 		this.gold = 10000;
 		this.story = story;
+		this.attributeP = 10;
 	}
 	
 	public void equipArmor(Armor equippedArmor) {

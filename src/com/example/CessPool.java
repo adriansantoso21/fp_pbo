@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class CessPool {
-	public static Character selected = new Character("Heroman", 3000, 60, 20, 40, 40, 30, 30, 30," ");
+	public static Character selected = new Character("Heroman", 300, 60, 20, 40, 40, 30, 30, 30," ");
 	public static ArrayList<Monster> monsterz = new ArrayList<Monster>();
 	public static ArrayList<Weapon> weaponz = new ArrayList<Weapon>();
 	public static ArrayList<Armor> armorz = new ArrayList<Armor>();
@@ -13,9 +13,9 @@ public class CessPool {
 	public static ArrayList<Skill> skillz = new ArrayList<Skill>();
 	public static ArrayList<SkillBook> skillbookz = new ArrayList<SkillBook>();
 	public static ArrayList<Integer> location = new ArrayList<Integer>();
+	int curLoc = 0;
 	
 	public CessPool() {
-		
 		location.add(-1);
 		
 		monsterz.add(new Monster("Villain", 300, 28, 20, 40, 40, 30, 30, 30));

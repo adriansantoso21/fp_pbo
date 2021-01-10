@@ -156,18 +156,31 @@ public class BattlePanel extends JPanel {
 	//----------------------BATTLE RELATED----------------------//
 	
 	public void monsterAttack(Monster attacker, Character attacked) {
-		float damage = attacker.attack(attacked);
-		attacked.damaged(damage);
 		if (num>5) {
 			ta.setText("");
 			num=0;
 		}
+		
 		StyledDocument doc = ta.getStyledDocument();
-		try {
-			doc.insertString(doc.getLength(), "· You received " + damage + " damage from "+attacker.name+".\n", null);
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		if(attacker.dodgeChance(attacked)) {
+			float damage = attacker.attack(attacked);
+			attacked.damaged(damage);
+			try {
+				doc.insertString(doc.getLength(), "· You received " + damage + " damage from "+attacker.name+".\n", null);
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		else {
+			try {
+				doc.insertString(doc.getLength(), "· You dodged.\n", null);
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		num++;
 		tb.setText("<html><h3>~~~~~~~~~~~HP:"+fighter.currHP+"/"+fighter.healthPoint+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HP: "+fighted.currHP+"/"+fighted.healthPoint+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>~~~~~~~~~~~MP:"+fighter.currMana+"/"+fighter.mana+"</h3></html>");
@@ -178,21 +191,37 @@ public class BattlePanel extends JPanel {
 	
 	public void youAttack(Character attacker, Monster attacked) {
 		cardlayt.show(potionPanel, "text");
-		float damage = attacker.attack(attacked);
-		attacked.damaged(damage);
 		if (num>5) {
 			ta.setText("");
 			num=0;
 		}
+		
 		StyledDocument doc = ta.getStyledDocument();
-		try {
-			doc.insertString(doc.getLength(), "· You dealt " + damage + " damage to "+attacked.name+".\n", null);
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		if(attacker.dodgeChance(attacked)) {
+			float damage = attacker.attack(attacked);
+			attacked.damaged(damage);
+			try {
+				doc.insertString(doc.getLength(), "· You dealt " + damage + " damage to "+attacked.name+".\n", null);
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
+		else {
+			try {
+				doc.insertString(doc.getLength(), "· You missed.\n", null);
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		num++;
 		tb.setText("<html><h3>~~~~~~~~~~~HP:"+fighter.currHP+"/"+fighter.healthPoint+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HP: "+fighted.currHP+"/"+fighted.healthPoint+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>~~~~~~~~~~~MP:"+fighter.currMana+"/"+fighter.mana+"</h3></html>");
+	
+		
 		if (attacked.isDead()) {
 			someoneDead(attacker, attacked);
 		}
@@ -218,27 +247,32 @@ public class BattlePanel extends JPanel {
 			int int_random = rand.nextInt(100)+100; 
 			fighter.gold += int_random;
 			
-			reward = "got "+int_random+" gold";
+			reward = "· "+int_random+" gold<br>";
 			int chance = rand.nextInt(10);
 			if(chance<=1) {
 				int chances = rand.nextInt(5)+10;
 				fighter.healHealth(fighter.healthPoint*chances/100);
-				reward += " and got "+ fighter.healthPoint*chances/100 + " HP healed";
+				reward += "· "+ fighter.healthPoint*chances/100 + " HP healed<br>";
 			}
 			else if (chance<=3) {
 				int chances = rand.nextInt(5)+10;
 				fighter.healMana(fighter.mana*chances/100);
-				reward += " and got "+ fighter.mana*chances/100 + " mana healed";
+				reward += "· "+ fighter.mana*chances/100 + " mana healed<br>";
 			}
 			else if (chance <=5) {
 				int chances = rand.nextInt(6);
 				fighter.inventory.add(CessPool.potionz.get(chances));
-				reward += " and got "+ CessPool.potionz.get(chances).name;
+				reward += "· "+ CessPool.potionz.get(chances).name + "<br>";
 			}
+			int attPoint = rand.nextInt(1)+2;
 			JFrame frame = new JFrame("CONGRATS!");
-			JLabel label = new JLabel("<html><center><p style style=\"background-color:powderblue; color: blue;\">YOU WON!!!<br> And you "+ reward +"</p>");
+			reward += "· "+ attPoint + " attribute points<br>";
+			fighter.attributeP += attPoint;
+			JLabel label = new JLabel("<html><center><p style style=\"background-color:powderblue; color: blue;\">YOU WON!!!<br> Loot : <br> "+ reward +"</p>");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			JOptionPane.showMessageDialog(frame, label, "CONGRATS!!", JOptionPane.PLAIN_MESSAGE);
+			fighter.buffs.clear();
+			fighted.buffs.clear();
 			Main.frame.setContentPane(new Map(frame));
 			Main.frame.pack();
 		}
@@ -259,11 +293,11 @@ public class BattlePanel extends JPanel {
 
         JPanel buttonPanel = new JPanel(new GridLayout(3, 3, 10, 10));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
+        buttonPanel.setBackground(new Color(0, 0, 102));
+        
         addPotionButtons(buttonPanel);
 
         panel.add(buttonPanel, BorderLayout.CENTER);
-        
         panel.setBackground(Color.LIGHT_GRAY);
 
         return panel;
@@ -275,6 +309,7 @@ public class BattlePanel extends JPanel {
         for (Inventory potion : CessPool.selected.inventory) {
         	if (potion instanceof Potion) {
 	            JButton button = new JButton(potion.name);
+	            button.setBackground(new Color(51, 153, 255));
 	            button.addActionListener(new ActionListener() {
 	                @Override
 	                public void actionPerformed(ActionEvent e) {

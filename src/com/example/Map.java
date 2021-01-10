@@ -117,7 +117,7 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener{
 		    	        public void actionPerformed(ActionEvent event) {
 		    	        	int b = buttons.indexOf(a);
 		    	        	CessPool.location.add(b);
-		    	        	Main.frame.setContentPane(new RestPanel());
+		    	        	Main.frame.setContentPane(new RestPanel(frame));
 		    			    Main.frame.pack();
 		    	        }
 		    	       }

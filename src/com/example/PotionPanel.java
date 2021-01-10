@@ -39,7 +39,8 @@ public class PotionPanel extends JPanel{
 			potion.setEditable(false);
 			potion.setContentType("text/html");
 			potion.setText("<html><h3 style=\"color:white;\">· Name : "+ b.name +"<br>"
-					+"· Price : "+b.price+ "</h3> </html>");
+					+"· Price : "+b.price+"<br>"
+					+"· Desc : "+ b.buff.desc + "</h3> </html>");
 			potion.setBackground(new Color(51, 0, 16));
 			potion.setPreferredSize(new Dimension(313,20));
 			
@@ -75,7 +76,7 @@ public class PotionPanel extends JPanel{
 	    				@Override
 	    				public void actionPerformed(ActionEvent event) {
 	    					Button.setEnabled(false);
-	    					CessPool.selected.inventory.add((Inventory)b);
+	    					CessPool.selected.inventory.add(new Potion(b));
 	    					CessPool.selected.gold -= b.price;
 	    					Main.frame.setContentPane(new ShopPanel(frame, 3));
 	    			         Main.frame.pack();
@@ -119,7 +120,8 @@ public class PotionPanel extends JPanel{
     			JTextPane desc = new JTextPane();
 				desc.setEditable(false);
 				desc.setContentType("text/html");
-				desc.setText("<html><h3 style=\"color:white;\">· Name :"+ potion1.name +"<br></h3> </html>");
+				desc.setText("<html><h3 style=\"color:white;\">· Name : "+ potion1.name + "<br>"
+						+ "· Desc : "+ potion1.buff.desc+"</h3> </html>");
 				desc.setBackground(new Color(51, 0, 16));
 				desc.setPreferredSize(new Dimension(429,20));
             	

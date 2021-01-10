@@ -51,7 +51,11 @@ public abstract class Creature {
 	}
 	
 	public float attack(Creature attacked) {
-		return 2 * this.showStrength() * this.showStrength() / (this.showStrength() + attacked.showDefence());
+		int criti = 1;
+		if(this.crit()) {
+			criti = 2;
+		}
+		return criti * 2 * this.showStrength() * this.showStrength() / (this.showStrength() + attacked.showDefence());
 	}
 	
 	public void healHP() {
@@ -63,6 +67,20 @@ public abstract class Creature {
 		if (this.currHP < 0) {
 			this.currHP=0;
 		}
+	}
+	
+	public boolean dodgeChance(Creature attacked){
+		double attacker_level = this.showSpeed();
+		double defender_level = attacked.showSpeed();
+	    double x = defender_level/attacker_level;
+	    double a = 10.0/ Math.sqrt( 111111.0);
+	    double b = 111071.0/ 40000.0;
+	    return Math.random() > (a*Math.sqrt(x+b));
+	}
+	
+	public boolean crit(){
+		double f = 2.71; // you can mess with this factor to change how quickly it diminishes
+		return Math.random() > Math.pow(f, -this.accuracy); // assuming random is in the range [0.0, 1.0]
 	}
 	
 	public boolean isDead() {

@@ -19,7 +19,6 @@ public class Main {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			 public void run() {
 				 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
 				 new CessPool();
 				 start = new StartPanel("images/StartPanel.jpg", frame, cardLayout, mainPanel);
 				 characterSelect = new CharacterSelectPanel("images/StartPanel.jpg", frame, cardLayout, mainPanel);
@@ -31,8 +30,8 @@ public class Main {
 			     cardLayout.show(mainPanel, "start");
 
 //			     frame.setContentPane(new BattlePanel(frame));
-//			     frame.setContentPane(new ShopPanel(frame,-1));			     
-//			     frame.setContentPane(new RestPanel());
+//			     frame.setContentPane(new BagPanel(frame));			     
+//			     frame.setContentPane(new RestPanel(frame));
 			     
 			     frame.pack();
 			     frame.setLocationRelativeTo(null);

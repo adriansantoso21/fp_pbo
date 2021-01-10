@@ -10,7 +10,7 @@ public class Map_Button extends JButton{
 	int type;
 	boolean active;
 	
-	//1 for shop , 2 for random monster
+	//1 for shop , 2 for random monster, 3 for rest
 	public Map_Button(int x, int y, int type, boolean active) {
 		this.x = x;
 		this.y = y;
