@@ -8,6 +8,7 @@ public class Character extends Creature {
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
 	public Armor equippedArmor;
 	public Weapon equippedWeapon;
+	public int attributeP;
 	public int gold;	
 	String story;
 	

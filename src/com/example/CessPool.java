@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class CessPool {
-	public static Character selected = new Character("Heroman", 300, 60, 20, 40, 40, 30, 30, 30," ");
+	public static Character selected = new Character("Heroman", 3000, 60, 20, 40, 40, 30, 30, 30," ");
 	public static ArrayList<Monster> monsterz = new ArrayList<Monster>();
 	public static ArrayList<Weapon> weaponz = new ArrayList<Weapon>();
 	public static ArrayList<Armor> armorz = new ArrayList<Armor>();
@@ -13,10 +13,10 @@ public class CessPool {
 	public static ArrayList<Skill> skillz = new ArrayList<Skill>();
 	public static ArrayList<SkillBook> skillbookz = new ArrayList<SkillBook>();
 	public static ArrayList<Integer> location = new ArrayList<Integer>();
-	int curLoc = 0;
 	
 	public CessPool() {
-		location.add(0);
+		
+		location.add(-1);
 		
 		monsterz.add(new Monster("Villain", 300, 28, 20, 40, 40, 30, 30, 30));
 		monsterz.get(0).skills.add(new DebuffSkill("Earthquake", 35, 200, new Buff("Modifier", 0, 0, 0, 0, 0, -10, 0, 3, "Reduces enemy speed by 10%.")));
@@ -37,7 +37,7 @@ public class CessPool {
 		potionz.add(new Potion("Accuracy Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3, "Increases accuracy by 10% for 3 turns.")));
 		potionz.add(new Potion("Speed Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3, "Increases speed by 10% for 3 turns.")));
 		potionz.add(new Potion("Mana Potion", 0,100, new Buff("Non", 0, 40, 0, 10, 0, 0, 0, 3, "Replenishes mana by 40 points.")));
-		potionz.add(new Potion("Strength Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 10, 0, 0, 3, "Increases strength by 10% for 3 turns.")));
+		potionz.add(new Potion("Strength Potion", 0,100, new Buff("Modifier", 0, 0, 0, 10, 0, 0, 0, 3, "Increases strength by 10% for 3 turns.")));
 		potionz.add(new Potion("Intelligence Potion", 0,100, new Buff("Modifier", 0, 0, 0, 0, 0, 10, 0, 3, "Increases intelligence by 10% for 3 turns.")));
 		
 		skillz.add(new AttackSkill("Shattering Star", 50, "Modifier", 200, 50, "Attacks with 150% strength"));
