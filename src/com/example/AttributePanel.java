@@ -5,7 +5,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +21,7 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 public class AttributePanel extends JPanel {
+	private Image imgg = new ImageIcon("images/attpanelimage.jpg").getImage();
 	
 	public AttributePanel(int test, JFrame frame) {
 		this.setBackground(new Color(0, 26, 0));

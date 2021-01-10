@@ -5,7 +5,9 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
@@ -68,7 +70,7 @@ public class BattlePanel extends JPanel {
         JPanel panel1 = new JPanel(layout);
         panel1.setLayout(layout);
         JPanel panel2 = new JPanel();
-        JPanel fights = new JPanel();
+        JPanel fights = new BackgroundBattlePanel();
         
         GridLayout layout1 = new GridLayout(1,2, 10, 50);
         
@@ -326,24 +328,31 @@ public class BattlePanel extends JPanel {
 	            button.addActionListener(new ActionListener() {
 	                @Override
 	                public void actionPerformed(ActionEvent e) {
-	                	CessPool.selected.usePotion((Potion)potion);
-	                    button.setEnabled(false);
-	                    cardlayt.show(potionPanel, "text");
-	                    if (num>5) {
-	            			ta.setText("");
-	            			num=0;
-	            		}
-	            		StyledDocument doc = ta.getStyledDocument();
-	            		try {
-	            			doc.insertString(doc.getLength(), "· You used the "+potion.name+"\n", null);
-	            		} catch (BadLocationException a) {
-	            			// TODO Auto-generated catch block
-	            			a.printStackTrace();
-	            		}
-	            		num++;
-	            		
-	            		enemyTurn(fighted);
-	            		addCharaLabel(charaPanel);
+	                	int choice = JOptionPane.YES_OPTION;
+	                	Potion aa = (Potion) potion;
+	                    choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to use this skill : " + aa.buff.desc,
+	                                    "Confirmation", JOptionPane.YES_NO_OPTION);
+
+	                    if (choice == JOptionPane.YES_OPTION) {
+		                	CessPool.selected.usePotion((Potion)potion);
+		                    button.setEnabled(false);
+		                    cardlayt.show(potionPanel, "text");
+		                    if (num>5) {
+		            			ta.setText("");
+		            			num=0;
+		            		}
+		            		StyledDocument doc = ta.getStyledDocument();
+		            		try {
+		            			doc.insertString(doc.getLength(), "· You used the "+potion.name+"\n", null);
+		            		} catch (BadLocationException a) {
+		            			// TODO Auto-generated catch block
+		            			a.printStackTrace();
+		            		}
+		            		num++;
+		            		
+		            		enemyTurn(fighted);
+		            		addCharaLabel(charaPanel);
+		                    }
 	                }
 	            });
 	            panel.add(button);
@@ -355,7 +364,7 @@ public class BattlePanel extends JPanel {
     	JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        skillButtonPanel = new JPanel(new GridLayout(3, 3, 10, 10));
+        skillButtonPanel = new ButtonPanel(new GridLayout(3, 3, 10, 10));
         skillButtonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
         addSkillButtons(skillButtonPanel);
@@ -380,36 +389,58 @@ public class BattlePanel extends JPanel {
             	String text;
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                	if(skill instanceof BuffSkill) {
-                		((BuffSkill) skill).unleash(fighter);
-                		text = "· You used the buff skill "+skill.name+"\n";
-                	}
-                	else if(skill instanceof DebuffSkill) {
-                		((DebuffSkill) skill).unleash(fighted, fighter);
-                		text = "· You used the debuff skill "+skill.name+"\n";
-                	}
-                	else if(skill instanceof AttackSkill) {
-                		float damage = ((AttackSkill) skill).unleash(fighter, fighted);
-                		text = "· You used the attack skill "+skill.name+" dealing " + damage +" damage\n";
-                	}
-                    cardlayt.show(potionPanel, "text");
-                    if (num>5) {
-            			ta.setText("");
-            			num=0;
-            		}
+                	String desc;
+                	if(skill instanceof AttackSkill) {
+						AttackSkill c = (AttackSkill) skill;
+						desc = c.desc;
+						
+					}
+					else if (skill instanceof BuffSkill){
+						BuffSkill d = (BuffSkill) skill;
+						desc = d.buff.desc;
+					}
+					else {
+						DebuffSkill ee = (DebuffSkill) skill;
+						desc = ee.debuff.desc;
+					}
+                	int choice = JOptionPane.YES_OPTION;
+                    choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to use this skill : " + desc,
+                                    "Confirmation", JOptionPane.YES_NO_OPTION);
+
+                    if (choice == JOptionPane.YES_OPTION) {
+                        System.out.println("Exit Button Clicked.");
+                        if(skill instanceof BuffSkill) {
+                    		((BuffSkill) skill).unleash(fighter);
+                    		text = "· You used the buff skill "+skill.name+"\n";
+                    	}
+                    	else if(skill instanceof DebuffSkill) {
+                    		((DebuffSkill) skill).unleash(fighted, fighter);
+                    		text = "· You used the debuff skill "+skill.name+"\n";
+                    	}
+                    	else if(skill instanceof AttackSkill) {
+                    		float damage = ((AttackSkill) skill).unleash(fighter, fighted);
+                    		text = "· You used the attack skill "+skill.name+" dealing " + damage +" damage\n";
+                    	}
+                        cardlayt.show(potionPanel, "text");
+                        if (num>5) {
+                			ta.setText("");
+                			num=0;
+                		}
+                        
+                		StyledDocument doc = ta.getStyledDocument();
+                		
+                		try {
+                			doc.insertString(doc.getLength(), text, null);
+                		} catch (BadLocationException a) {
+                			// TODO Auto-generated catch block
+                			a.printStackTrace();
+                		}
+                		num++;
+                		enemyTurn(fighted);
+                		addSkillButtons(panel);
+                		addCharaLabel(charaPanel);
+                    }
                     
-            		StyledDocument doc = ta.getStyledDocument();
-            		
-            		try {
-            			doc.insertString(doc.getLength(), text, null);
-            		} catch (BadLocationException a) {
-            			// TODO Auto-generated catch block
-            			a.printStackTrace();
-            		}
-            		num++;
-            		enemyTurn(fighted);
-            		addSkillButtons(panel);
-            		addCharaLabel(charaPanel);
                 }
             });
             panel.add(button);
@@ -420,7 +451,7 @@ public class BattlePanel extends JPanel {
     	JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        charaPanel = new JPanel(new GridLayout(5, 4, 5, 5));
+        charaPanel = new ButtonPanel(new GridLayout(5, 4, 5, 5));
         charaPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
         addCharaLabel(charaPanel);
