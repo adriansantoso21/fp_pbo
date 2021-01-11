@@ -7,13 +7,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class ButtonPanel extends JPanel {
-	Image imgg = new ImageIcon("images/skillpic.jpg").getImage();
-	public ButtonPanel(GridLayout gridLayout) {
-		super(gridLayout);
+public class BackgroundBattlePanel extends JPanel {
+	Image imgg = new ImageIcon("images/battlegrounds2.jpg").getImage();
+	public BackgroundBattlePanel() {
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(this.imgg, 0, 0, null);
+		g.drawImage(this.imgg, -200, -300, null);
 	}
 }
