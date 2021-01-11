@@ -34,11 +34,13 @@ public class CessPool {
 		armorz.add(new Armor("Ancient Armor", 10, 40, 25, 25, 30, 800));
 		armorz.add(new Armor("Armor of the Warzone", 40, 60, 70, 30, 15, 900));
 		armorz.add(new Armor("Death", 100, 100, 100, 100, 100, 1500));
+		armorz.add(new Armor("Amberlite", 100, 100, 100, 100, 100, 1500));
 		
 		weaponz.add(new Weapon("Killer", 100, 100, 100, 100, 100, 400));
 		weaponz.add(new Weapon("Ancient Sword", 10, 40, 25, 25, 30, 600));
 		weaponz.add(new Weapon("Sword of the Warzone", 40, 60, 70, 30, 15, 700));
 		weaponz.add(new Weapon("Sunlight Spear", 30, 60, 45, 15, 20, 800));
+		weaponz.add(new Weapon("Lost Prayer to the Wind", 30, 60, 45, 15, 20, 800));
 		
 		potionz.add(new Potion("Defence Potion", 0, 100, new Buff("Defence Potion", "Non", 0, 0, 0, 0, 0, 0, 30, 3, "Increases defense by 30 points for 3 turns.")));
 		potionz.add(new Potion("Attack Potion", 0,100, new Buff("Attack Potion", "Non", 0, 0, 0, 10, 0, 0, 0, 3, "Increases attack by 10 points for 3 turns.")));
@@ -47,6 +49,7 @@ public class CessPool {
 		potionz.add(new Potion("Mana Potion", 0,100, new Buff("Mana Potion", "Non", 0, 40, 0, 10, 0, 0, 0, 3, "Replenishes mana by 40 points.")));
 		potionz.add(new Potion("Strength Potion", 0,100, new Buff("Strength Potion", "Modifier", 0, 0, 0, 10, 0, 0, 0, 3, "Increases strength by 10% for 3 turns.")));
 		potionz.add(new Potion("Intelligence Potion", 0,100, new Buff("Intelligence Potion", "Modifier", 0, 0, 0, 0, 0, 10, 0, 3, "Increases intelligence by 10% for 3 turns.")));
+		potionz.add(new Potion("Health Potion", 0,100, new Buff("Health Potion", "Modifier", 50, 0, 0, 0, 0, 0, 0, 3, "Replenishes HP by 50%.")));
 		
 		skillz.add(new AttackSkill("Shattering Star", 50, "Modifier", 200, 50, "Attacks with 150% strength"));
 		skillz.add(new BuffSkill("Sword Saint", 40,200, new Buff("Sword Saint", "Non", 0, 0, 0, 10, 0, 0, 0, 3, "Increases strength by 10%")));
