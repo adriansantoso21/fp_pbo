@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 import javax.swing.BorderFactory;
@@ -18,14 +20,36 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 public class WeaponPanel extends JPanel{
+	
+	static ArrayList<Weapon> sumn;
 
-	public WeaponPanel(JFrame frame) {
+	public WeaponPanel(JFrame frame, char hm) {
 		
 		GridLayout item_sold = new GridLayout(4,1);
 		this.setLayout(item_sold);
 		this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		int sum = 0;
 		
-		for(Weapon b : CessPool.weaponz) {
+		if(hm == 'y') {
+			Collections.shuffle(CessPool.armorz);
+			
+			sumn = new ArrayList<Weapon>();
+			
+			
+			for(Weapon a : CessPool.weaponz) {
+				if(sum>3) {
+					break;
+				}
+				if(CessPool.selected.inventory.contains(a)) {
+					continue;
+				}
+				
+				sumn.add(a);
+				sum++;
+			}
+		}
+		
+		for(Weapon b : sumn) {
 			JPanel a1 = new JPanel();
 			a1.setLayout(new BorderLayout());
 			
@@ -57,6 +81,11 @@ public class WeaponPanel extends JPanel{
 				Button.setEnabled(false);
 			}
 			
+			if(CessPool.selected.weaponA > 3) {
+				Button.setText("No Space");
+				Button.setEnabled(false);
+			}
+			
 			for(Inventory b1 : CessPool.selected.inventory) {
 				if(b1 instanceof Weapon) {
 					Weapon b2 = (Weapon)b1;
@@ -79,7 +108,8 @@ public class WeaponPanel extends JPanel{
 	    					Button.setEnabled(false);
 	    					CessPool.selected.inventory.add((Inventory)b);
 	    					CessPool.selected.gold -= b.price;
-	    					Main.frame.setContentPane(new ShopPanel(frame, 2));
+	    					CessPool.selected.weaponA += 1;
+	    					Main.frame.setContentPane(new ShopPanel(frame, 2, 'n'));
 	    					Main.frame.pack();
 	    				}
 	    			}
@@ -96,7 +126,7 @@ public class WeaponPanel extends JPanel{
 		this.setBackground(new Color(0, 26, 0));
         this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
+        JPanel buttonPanel = new JPanel(new GridLayout(5, 1));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         buttonPanel.setBackground(new Color(0, 26, 0));
         addSkillButtons(buttonPanel, frame);
@@ -107,7 +137,7 @@ public class WeaponPanel extends JPanel{
 	
 	private void addSkillButtons(JPanel panel, JFrame frame) {
         panel.removeAll();
-                
+        
         for (Inventory weapon : CessPool.selected.inventory) {
         	if(weapon instanceof Weapon) {
         		JPanel skill_panel = new JPanel();

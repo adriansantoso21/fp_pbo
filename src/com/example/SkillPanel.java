@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -17,13 +19,36 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 public class SkillPanel extends JPanel{
-		public SkillPanel(JFrame frame) {
+	
+	static ArrayList<Skill> sumn;
+	
+		public SkillPanel(JFrame frame, char hm) {
 			
 			GridLayout item_sold = new GridLayout(7,1);
 			this.setLayout(item_sold);
 			this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));				
+			int sum = 0;
 			
-			for(Skill b : CessPool.skillz) {
+			if(hm == 'y') {
+				Collections.shuffle(CessPool.armorz);
+				
+				sumn = new ArrayList<Skill>();
+				
+				
+				for(Skill a : CessPool.skillz) {
+					if(sum>6) {
+						break;
+					}
+					if(CessPool.selected.skills.contains(a)) {
+						continue;
+					}
+					
+					sumn.add(a);
+					sum++;
+				}
+			}
+			
+			for(Skill b : sumn) {
 				
 					JPanel a1 = new JPanel();
 					a1.setLayout(new BorderLayout());
@@ -69,6 +94,10 @@ public class SkillPanel extends JPanel{
 	    				Button.setText("No Money");
 	    				Button.setEnabled(false);
 	    			}
+					if(CessPool.selected.skills.size()>6) {
+						Button.setText("Mind Full");
+	    				Button.setEnabled(false);
+					}
 					
 					for(Skill b1 : CessPool.selected.skills) {
 						if(b1.equals(b)) {
@@ -90,7 +119,7 @@ public class SkillPanel extends JPanel{
 			    					Button.setEnabled(false);
 			    					CessPool.selected.skills.add(b);
 			    					CessPool.selected.gold -= b.price;
-			    					Main.frame.setContentPane(new ShopPanel(frame, 4));
+			    					Main.frame.setContentPane(new ShopPanel(frame, 4, 'n'));
 			    			        Main.frame.pack();
 			    				}
 			    			}
@@ -100,6 +129,7 @@ public class SkillPanel extends JPanel{
 					a1.add(skill, BorderLayout.CENTER);
 					a1.add(Button, BorderLayout.EAST);
 					this.add(a1);
+					sum++;
 			}
 		}
 		
@@ -107,7 +137,7 @@ public class SkillPanel extends JPanel{
 			this.setBackground(new Color(0, 26, 0));
 	        this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 	        
-	        JPanel buttonPanel = new JPanel(new GridLayout(7, 1));
+	        JPanel buttonPanel = new JPanel(new GridLayout(8, 1));
 	        buttonPanel.setBackground(new Color(0, 26, 0));
 	        addSkillButtons(buttonPanel, frame);
 	        this.add(buttonPanel);

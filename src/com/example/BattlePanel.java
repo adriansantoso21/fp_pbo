@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -35,8 +36,8 @@ public class BattlePanel extends JPanel {
 	
 	private CardLayout cardlayt = new CardLayout();
 	private JPanel potionPanel = new JPanel(cardlayt);
-	private JTextPane ta, tb;
-	private JPanel skillButtonPanel, charaPanel;
+	private JTextPane ta, te, tf;
+	private JPanel skillButtonPanel, charaPanel, tb, tc, td;
 	
 	public BattlePanel(JFrame frame) {
 		
@@ -47,6 +48,8 @@ public class BattlePanel extends JPanel {
 		fighted.healHP();
 		num=0;
         
+		this.setBackground(new Color(204, 153, 0));
+		
         ta = new JTextPane();
         ta.setEditable(false);
         ta.setContentType("text/html");
@@ -59,11 +62,27 @@ public class BattlePanel extends JPanel {
         potionPanel.add(addCharaPanel(), "chara");
         cardlayt.show(potionPanel, "text");
         
-        tb = new JTextPane();
-        tb.setEditable(false);
-        tb.setContentType("text/html");
-        tb.setText("<html><h3>~~~~~~~~~~~HP:"+fighter.currHP+"/"+fighter.healthPoint+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HP: "+fighted.currHP+"/"+fighted.healthPoint+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>~~~~~~~~~~~MP:"+fighter.currMana+"/"+fighter.mana+"</h3></html>");
+        tb = new ButtonPanel(new GridLayout(1,2), 3);
         
+        te = new JTextPane();
+        te.setEditable(false);
+        te.setContentType("text/html");
+        te.setOpaque(false);
+        te.setFont(new Font("Verdana", Font.BOLD, 13));
+        te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
+        					+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+        
+        tf = new JTextPane();
+        tf.setEditable(false);
+        tf.setContentType("text/html");
+        tf.setForeground(new Color(0, 255, 255));
+        tf.setFont(new Font("Verdana", Font.BOLD, 13));
+        tf.setOpaque(false);
+        tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
+        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+        
+        tb.add(te);
+        tb.add(tf);
         
         GridLayout layout = new GridLayout(2, 1);
         
@@ -76,7 +95,7 @@ public class BattlePanel extends JPanel {
         
         fights.setLayout(layout1);
         
-        ImageIcon Img = new ImageIcon("images/enemy.png");
+        ImageIcon Img = new ImageIcon(fighted.image);
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(Img);
 		
@@ -87,7 +106,6 @@ public class BattlePanel extends JPanel {
 		
 		fights.add(lblNewLabel1);
 		fights.add(lblNewLabel);
-		
 		
 		panel2.add(fights);
 		
@@ -157,6 +175,7 @@ public class BattlePanel extends JPanel {
 		this.add(BorderLayout.CENTER, panel1);
 		panel.setPreferredSize(new Dimension(500, 80));
 		tb.setPreferredSize(new Dimension(300, 60));
+		
 	}
 	
 	//----------------------BATTLE RELATED----------------------//
@@ -194,7 +213,10 @@ public class BattlePanel extends JPanel {
 			}
 		}
 		num++;
-		tb.setText("<html><h3>~~~~~~~~~~~HP:"+fighter.currHP+"/"+fighter.healthPoint+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HP: "+fighted.currHP+"/"+fighted.healthPoint+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>~~~~~~~~~~~MP:"+fighter.currMana+"/"+fighter.mana+"</h3></html>");
+		te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
+				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
+        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
 		if (attacked.isDead()) {
 			someoneDead(attacker, attacked);
 		}
@@ -235,7 +257,10 @@ public class BattlePanel extends JPanel {
 		}
 		
 		num++;
-		tb.setText("<html><h3>~~~~~~~~~~~HP:"+fighter.currHP+"/"+fighter.healthPoint+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~HP: "+fighted.currHP+"/"+fighted.healthPoint+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>~~~~~~~~~~~MP:"+fighter.currMana+"/"+fighter.mana+"</h3></html>");
+		te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
+				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
+        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
 	
 		
 		if (attacked.isDead()) {
@@ -306,7 +331,7 @@ public class BattlePanel extends JPanel {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        ButtonPanel buttonPanel = new ButtonPanel(new GridLayout(3, 3, 10, 10));
+        ButtonPanel buttonPanel = new ButtonPanel(new GridLayout(3, 3, 10, 10), 0);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         buttonPanel.setBackground(new Color(0, 0, 102));
         
@@ -324,7 +349,9 @@ public class BattlePanel extends JPanel {
         for (Inventory potion : CessPool.selected.inventory) {
         	if (potion instanceof Potion) {
 	            JButton button = new JButton(potion.name);
-	            button.setBackground(new Color(51, 153, 255));
+	            button.setBackground(new Color(0, 51, 51));
+	            button.setForeground(new Color(77, 255, 255));
+	            button.setFont(new Font("Verdana", Font.BOLD, 15));
 	            button.addActionListener(new ActionListener() {
 	                @Override
 	                public void actionPerformed(ActionEvent e) {
@@ -364,7 +391,7 @@ public class BattlePanel extends JPanel {
     	JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        skillButtonPanel = new ButtonPanel(new GridLayout(3, 3, 10, 10));
+        skillButtonPanel = new ButtonPanel(new GridLayout(3, 3, 10, 10), 0);
         skillButtonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
         addSkillButtons(skillButtonPanel);
@@ -382,6 +409,9 @@ public class BattlePanel extends JPanel {
         
         for (Skill skill : CessPool.selected.skills) {
             JButton button = new JButton(skill.name);
+            button.setBackground(new Color(51, 0, 51));
+            button.setForeground(new Color(255, 128, 255));
+            button.setFont(new Font("Verdana", Font.BOLD, 15));
             if(fighter.currMana<skill.manaCost) {
             	button.setEnabled(false);
             }
@@ -451,7 +481,7 @@ public class BattlePanel extends JPanel {
     	JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        charaPanel = new ButtonPanel(new GridLayout(5, 4, 5, 5));
+        charaPanel = new ButtonPanel(new GridLayout(5, 4, 5, 5), 1);
         charaPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
         addCharaLabel(charaPanel);
@@ -470,8 +500,9 @@ public class BattlePanel extends JPanel {
     	JLabel name = new JLabel();
     	name.setText("Name : " + fighter.name);
 		name.setFocusable(false);
-		name.setBackground(new Color(255, 238, 88));
-		name.setForeground(Color.BLACK);
+		name.setFont(new Font("Verdana", Font.BOLD, 13));
+//		name.setBackground(new Color(0, 0, 102));
+		name.setForeground(new Color(26, 163, 255));
 		panel.add(name);
 		
 		JLabel empt = new JLabel();
@@ -485,8 +516,8 @@ public class BattlePanel extends JPanel {
 		JLabel hp = new JLabel();
     	hp.setText("Max HP : " + fighter.healthPoint);
 		hp.setFocusable(false);
-		hp.setBackground(new Color(255, 238, 88));
-		hp.setForeground(Color.BLACK);
+		hp.setForeground(new Color(26, 163, 255));
+		hp.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(hp);
 		
 		JLabel acc = new JLabel();
@@ -497,8 +528,9 @@ public class BattlePanel extends JPanel {
 		}
     	acc.setText("Accuracy : " + fighter.accuracy + " (" + indif + ")" );
 		acc.setFocusable(false);
-		acc.setBackground(new Color(255, 238, 88));
-		acc.setForeground(Color.BLACK);
+//		acc.setBackground(new Color(26, 163, 255));
+		acc.setForeground(new Color(26, 163, 255));
+		acc.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(acc);
 		
 		JLabel weapon = new JLabel();
@@ -509,15 +541,17 @@ public class BattlePanel extends JPanel {
 			weapon.setText("Weapon " + fighter.equippedWeapon.name + " equipped");
 		}
 		weapon.setFocusable(false);
-		weapon.setBackground(new Color(255, 238, 88));
-		weapon.setForeground(Color.BLACK);
+//		weapon.setBackground(new Color(26, 163, 255));
+		weapon.setForeground(new Color(26, 163, 255));
+		weapon.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(weapon);
 		
 		JLabel mana = new JLabel();
     	mana.setText("Max Mana : " + fighter.mana);
 		mana.setFocusable(false);
-		mana.setBackground(new Color(255, 238, 88));
-		mana.setForeground(Color.BLACK);
+//		mana.setBackground(new Color(26, 163, 255));
+		mana.setForeground(new Color(26, 163, 255));
+		mana.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(mana);
 		
 		JLabel spd = new JLabel();
@@ -528,8 +562,9 @@ public class BattlePanel extends JPanel {
 		}
     	spd.setText("Speed : " + fighter.speed + " (" + indif + ")" );
 		spd.setFocusable(false);
-		spd.setBackground(new Color(255, 238, 88));
-		spd.setForeground(Color.BLACK);
+//		spd.setBackground(new Color(26, 163, 255));
+		spd.setForeground(new Color(26, 163, 255));
+		spd.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(spd);
 		
 		JLabel armor = new JLabel();
@@ -540,8 +575,9 @@ public class BattlePanel extends JPanel {
 			armor.setText("Armor " + fighter.equippedArmor.name + " equipped");
 		}
 		armor.setFocusable(false);
-		armor.setBackground(new Color(255, 238, 88));
-		armor.setForeground(Color.BLACK);
+//		armor.setBackground(new Color(26, 163, 255));
+		armor.setForeground(new Color(26, 163, 255));
+		armor.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(armor);
 		
 		JLabel inte = new JLabel();
@@ -552,8 +588,9 @@ public class BattlePanel extends JPanel {
 		}
     	inte.setText("Intelligence : " + fighter.intelligence + " (" + indif + ")" );
 		inte.setFocusable(false);
-		inte.setBackground(new Color(255, 238, 88));
-		inte.setForeground(Color.BLACK);
+//		inte.setBackground(new Color(26, 163, 255));
+		inte.setForeground(new Color(26, 163, 255));
+		inte.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(inte);
 		
 		JLabel def = new JLabel();
@@ -564,8 +601,9 @@ public class BattlePanel extends JPanel {
 		}
     	def.setText("Defence : " + fighter.defence + " (" + indif + ")" );
 		def.setFocusable(false);
-		def.setBackground(new Color(255, 238, 88));
-		def.setForeground(Color.BLACK);
+//		def.setBackground(new Color(26, 163, 255));
+		def.setFont(new Font("Verdana", Font.BOLD, 13));
+		def.setForeground(new Color(26, 163, 255));
 		panel.add(def);
 		
 		JLabel empty = new JLabel();
@@ -580,24 +618,29 @@ public class BattlePanel extends JPanel {
 		}
     	str.setText("Strength : " + fighter.strength + " (" + indif + ")" );
 		str.setFocusable(false);
-		str.setBackground(new Color(255, 238, 88));
-		str.setForeground(Color.BLACK);
+//		str.setBackground(new Color(26, 163, 255));
+		str.setForeground(new Color(26, 163, 255));
+		str.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(str);
 		
 		
 		JLabel wei = new JLabel();
     	wei.setText("Weight :" + fighter.weight);
 		wei.setFocusable(false);
-		wei.setBackground(new Color(255, 238, 88));
-		wei.setForeground(Color.BLACK);
+//		wei.setBackground(new Color(26, 163, 255));
+		wei.setForeground(new Color(26, 163, 255));
+		wei.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(wei);
 		
 		JTextArea buff = new JTextArea();
+//		buff.setBackground(new Color(26, 163, 255));
+		buff.setForeground(new Color(26, 163, 255));
 		buff.setEditable(false);
 		buff.setText("Current buffs/debuffs: ");
 		for(Buff buffs : fighter.buffs) {
 			buff.append("\n"+buffs.name+" ends in "+buffs.duration);
 		}
+		buff.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(buff);
     }
    

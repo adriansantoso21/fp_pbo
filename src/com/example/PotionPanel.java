@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 import javax.swing.BorderFactory;
@@ -19,14 +21,33 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 public class PotionPanel extends JPanel{
+	static ArrayList<Potion> sumn;
 
-	public PotionPanel(JFrame frame) {
+	public PotionPanel(JFrame frame, char hm) {
 		
 		GridLayout item_sold = new GridLayout(7,1);
 		this.setLayout(item_sold);
 		this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		
-		for(Potion b : CessPool.potionz) {
+		
+		if(hm == 'y') {
+			Collections.shuffle(CessPool.potionz);
+			
+			sumn = new ArrayList<Potion>();
+			
+			int sum = 0;
+			
+			for(Potion a : CessPool.potionz) {
+				if(sum>6) {
+					break;
+				}
+				
+				sumn.add(a);
+				sum++;
+			}
+		}
+		
+		for(Potion b : sumn) {
 			JPanel a1 = new JPanel();
 			a1.setLayout(new BorderLayout());
 
@@ -54,17 +75,11 @@ public class PotionPanel extends JPanel{
 				Button.setEnabled(false);
 			}
 			
-			int count =0;
-			for (Inventory potion3 : CessPool.selected.inventory) {
-	        	if(potion3 instanceof Potion) {
-	        		count++;
-	        		if(count == 7) {
-	        			Button.setText("No Space");
-	    				Button.setEnabled(false);
-	        		}
-	        	}	
-			}
-			
+	        if(CessPool.selected.potionA == 7) {
+	        	Button.setText("No Space");
+	    		Button.setEnabled(false);
+	        }
+	        		
 			Button.setFocusable(false);
 			Button.setFocusPainted(false);
 			Button.setBackground(new Color(61, 61, 92));
@@ -78,7 +93,8 @@ public class PotionPanel extends JPanel{
 	    					Button.setEnabled(false);
 	    					CessPool.selected.inventory.add(new Potion(b));
 	    					CessPool.selected.gold -= b.price;
-	    					Main.frame.setContentPane(new ShopPanel(frame, 3));
+	    					CessPool.selected.potionA += 1;
+	    					Main.frame.setContentPane(new ShopPanel(frame, 3, 'n'));
 	    			         Main.frame.pack();
 	    				}
 	    			}
@@ -95,7 +111,7 @@ public class PotionPanel extends JPanel{
 		this.setBackground(new Color(0, 26, 0));
         this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         
-        JPanel buttonPanel = new JPanel(new GridLayout(7, 1));
+        JPanel buttonPanel = new JPanel(new GridLayout(8, 1));
         buttonPanel.setBackground(new Color(0, 26, 0));
         addSkillButtons(buttonPanel, frame);
         this.add(buttonPanel);

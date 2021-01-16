@@ -8,6 +8,7 @@ public class Character extends Creature {
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
 	public Armor equippedArmor;
 	public Weapon equippedWeapon;
+	public int armorA, weaponA, potionA;
 	public int attributeP;
 	public int gold;	
 	String story;
@@ -71,6 +72,7 @@ public class Character extends Creature {
 			this.buffs.add(potion.buff);
 		}
 		this.inventory.remove(potion);
+		this.potionA -= 1;
 	}
 	
 }

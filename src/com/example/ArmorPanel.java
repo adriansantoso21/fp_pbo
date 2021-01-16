@@ -1,9 +1,12 @@
 package com.example;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -25,13 +28,34 @@ import javax.swing.JTextPane;
 public class ArmorPanel extends JPanel{
 
 	Image image;
+	static ArrayList<Armor> sumn;
 	//For Shop
-	public ArmorPanel(JFrame frame) {
+	public ArmorPanel(JFrame frame, char hm) {
 		GridLayout item_sold = new GridLayout(4,1);
 		this.setLayout(item_sold);
 		this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		
-		for(Armor b : CessPool.armorz) {
+		if(hm == 'y') {
+			Collections.shuffle(CessPool.armorz);
+			
+			sumn = new ArrayList<Armor>();
+			
+			int sum = 0;
+			
+			for(Armor a : CessPool.armorz) {
+				if(sum>3) {
+					break;
+				}
+				if(CessPool.selected.inventory.contains(a)) {
+					continue;
+				}
+				
+				sumn.add(a);
+				sum++;
+			}
+		}
+
+		for(Armor b : sumn) {
 				JPanel a1 = new JPanel();
 				a1.setLayout(new BorderLayout());
 				
@@ -62,6 +86,10 @@ public class ArmorPanel extends JPanel{
     				Button.setText("No Money");
     				Button.setEnabled(false);
     			}
+				if(CessPool.selected.armorA > 3) {
+					Button.setText("No Space");
+					Button.setEnabled(false);
+				}
 				
 				for(Inventory b1 : CessPool.selected.inventory) {
 					if(b1 instanceof Armor) {
@@ -85,7 +113,8 @@ public class ArmorPanel extends JPanel{
 		    					Button.setEnabled(false);
 		    					CessPool.selected.inventory.add((Inventory)b);
 		    					CessPool.selected.gold -= b.price;
-		    					Main.frame.setContentPane(new ShopPanel(frame, 1));
+		    					CessPool.selected.armorA += 1;
+		    					Main.frame.setContentPane(new ShopPanel(frame, 1, 'n'));
 		    			        Main.frame.pack();
 		    				}
 		    			}
@@ -104,16 +133,19 @@ public class ArmorPanel extends JPanel{
 		this.setBackground(new Color(0, 26, 0));
         this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
+        JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(0, 26, 0));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
         addSkillButtons(buttonPanel, frame);
-        this.add(buttonPanel);
-//        this.add(buttonPanel, BorderLayout.CENTER);
+        
+        this.add(buttonPanel, BorderLayout.CENTER);
 	}
 	
 	private void addSkillButtons(JPanel panel, JFrame frame) {
         panel.removeAll();
+        
+        panel.setLayout(new GridLayout(4,1));
                 
         for (Inventory armor : CessPool.selected.inventory) {
         	if(armor instanceof Armor) {

@@ -17,7 +17,7 @@ import javax.swing.JTextPane;
 
 public class ShopPanel extends JPanel{
 
-	public ShopPanel(JFrame frame, int choose){	
+	public ShopPanel(JFrame frame, int choose, char hmm){	
 		GridLayout total = new GridLayout(1,2);
 		GridLayout grdLayout = new GridLayout(1, 5);
 		
@@ -61,7 +61,7 @@ public class ShopPanel extends JPanel{
 		kiri.add(kiri_atas, BorderLayout.NORTH);
 		kiri.add(lblNewLabel,BorderLayout.CENTER);
 		
-		JPanel ArmorPanel = new ArmorPanel(frame);
+		JPanel ArmorPanel = new ArmorPanel(frame, hmm);
 		JButton armor = new JButton("Armor");
 		armor.setPreferredSize(new Dimension(128, 60));
 		armor.setBackground(Color.black);
@@ -77,7 +77,7 @@ public class ShopPanel extends JPanel{
     			}
     	);
 		
-		JPanel WeaponPanel = new WeaponPanel(frame);
+		JPanel WeaponPanel = new WeaponPanel(frame, hmm);
 		JButton weapon = new JButton("Weapon");
 		weapon.setBackground(Color.black);
 		weapon.setForeground(Color.white);
@@ -93,7 +93,7 @@ public class ShopPanel extends JPanel{
     			}
     	);
 		
-		JPanel PotionPanel = new PotionPanel(frame);
+		JPanel PotionPanel = new PotionPanel(frame, hmm);
 		JButton potion = new JButton("Potion");
 		potion.setBackground(Color.black);
 		potion.setForeground(Color.white);
@@ -109,7 +109,7 @@ public class ShopPanel extends JPanel{
     			}
     	);
 		
-		JPanel SkillPanel = new SkillPanel(frame);
+		JPanel SkillPanel = new SkillPanel(frame, hmm);
         JButton skill = new JButton("Skill");
         skill.setBackground(Color.black);
         skill.setForeground(Color.white);
