@@ -275,10 +275,11 @@ public class BattlePanel extends JPanel {
 				fighter.healMana(fighter.mana*chances/100);
 				reward += "· "+ fighter.mana*chances/100 + " mana healed<br>";
 			}
-			else if (chance <=5) {
+			else if (chance <=5 && fighter.potionA < 7) {
 				int chances = rand.nextInt(6);
 				fighter.inventory.add(CessPool.potionz.get(chances));
 				reward += "· "+ CessPool.potionz.get(chances).name + "<br>";
+				fighter.potionA += 1;
 			}
 			int attPoint = rand.nextInt(1)+2;
 			JFrame frame = new JFrame("CONGRATS!");
