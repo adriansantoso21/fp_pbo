@@ -108,20 +108,30 @@ public class BattlePanel extends JPanel {
 		fights.add(lblNewLabel);
 		
 		panel2.add(fights);
+		panel2.setBackground(Color.black);
 		
         panel1.add(panel2);
         panel1.add(potionPanel);
+		panel1.setBackground(Color.black);
         
-        
+
         JPanel panel = new JPanel();
-		JButton fight = new JButton("Fight");
-		fight.setPreferredSize(new Dimension(200, 60));
+        
+		Image img = new ImageIcon("button/fight.jpg").getImage();
+		JButton fight = new JButton();
+		fight.setIcon(new ImageIcon(img));
+		
+		Image img2 = new ImageIcon("button/item.jpg").getImage();
 		JButton item = new JButton("Item");
-		item.setPreferredSize(new Dimension(200, 60));
+		item.setIcon(new ImageIcon(img2));
+		
+		Image img3 = new ImageIcon("button/skill.jpg").getImage();
 		JButton skill = new JButton("Skill");
-		skill.setPreferredSize(new Dimension(200, 60));
+		skill.setIcon(new ImageIcon(img3));
+		
+		Image img4 = new ImageIcon("button/chara.jpg").getImage();
         JButton chara = new JButton("Char");
-        chara.setPreferredSize(new Dimension(200, 60));
+        chara.setIcon(new ImageIcon(img4));
         
         GridLayout grdLayout = new GridLayout(1, 4, 50, 50);
         
@@ -131,6 +141,7 @@ public class BattlePanel extends JPanel {
         panel.add(item);
         panel.add(skill);
         panel.add(chara);
+        panel.setBackground(new Color(0, 26, 0));
         
         fight.addActionListener(
     			new ActionListener() {
