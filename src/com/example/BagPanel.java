@@ -17,6 +17,7 @@ import javax.swing.JTextPane;
 public class BagPanel extends JPanel{
 
 	public BagPanel(JFrame frame, int choose){
+		Map.music2.musicLoop();
 		GridLayout total = new GridLayout(1,2);
 		GridLayout grdLayout = new GridLayout(1, 6);
 		CardLayout cardlay = new CardLayout();
@@ -181,6 +182,7 @@ public class BagPanel extends JPanel{
 		Button1.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
+	        	Map.music2.stopMusic();
 	        	Main.frame.setContentPane(new Map(frame));
 	        	Main.frame.pack();
 	         }

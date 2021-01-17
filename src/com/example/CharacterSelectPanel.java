@@ -14,17 +14,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class CharacterSelectPanel extends JPanel {
 	
 	public Image imgg;
 	
-	public CharacterSelectPanel(String imgg, JFrame frame, CardLayout cardLayout, JPanel mainPanel) {
+	public CharacterSelectPanel(String imgg, JFrame frame) {
+		
 		frame.setPreferredSize(new Dimension(1280, 750));
 		JLabel label1 = new JLabel("Choose Your Own Character !!");
 		label1.setFont(new Font("Verdana", Font.BOLD, 30));
@@ -74,6 +71,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected = new Character("Wizard", 20000, 200, 50, 10, 50, 25, 25, 30, "The Wizard is a magical man that wears a hooded cloak, a leather belt with a golden buckle, and matching boots.\r\n"
 	                		+ "The Wizard is a ranged unit, meaning that he can shoot over Walls. He shoots fireballs or energy blasts that do high damage but requires support as he has relatively low hit points and"
 	                		+ " can easily be killed by point defenses.");
+	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new Map(frame));
 	                frame.pack();
 	            }
@@ -121,6 +119,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected = new Character("Warrior", 4000, 50, 10, 50, 50, 30, 50, 50,"The Barbarian King is a larger, stronger, more aggressive, more impressive, "
 	                		+ "and more powerful Barbarian. He is automatically summoned once the Barbarian King Altar is constructed, which costs 10,000 Dark Elixir. The Dark "
 	                		+ "Elixir Storage is required to get him.\r\n");
+	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new Map(frame));
 	                frame.pack();
 	            }
@@ -168,6 +167,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected = new Character("Rogue", 300, 100, 30, 35, 50, 50, 20, 20, "The Goblin is the fourth troop unlocked in the Barracks.\r\n"
 	                		+ "Goblins prioritize resource buildings above all other targets, and will bypass all other types of enemy buildings and troops while any resource buildings remain on the battlefield."
 	                		+ " This is true even if they are under attack by enemy Clan Castle troops, heroes or Skeleton Trap skeletons");
+	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new Map(frame));
 	                frame.pack();
 	            }

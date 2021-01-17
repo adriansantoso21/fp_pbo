@@ -1,6 +1,5 @@
 package com.example;
 
-import java.awt.CardLayout; 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -8,31 +7,21 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EtchedBorder;
 
-public class Map extends JPanel implements MouseListener, MouseMotionListener{
+public class Map extends JPanel{
  
  private Image imgg;
  ArrayList <Map_Button> buttons = new ArrayList<Map_Button>();
  public int last = CessPool.location.get(CessPool.location.size()-1);
  private int areaWidth;
  private int areaHeight;
- private String text;
- private String text2;
-
+ static musicPlay music2 = new musicPlay();
  
  public Map (JFrame frame) {
   
@@ -40,15 +29,8 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener{
 	  this.areaHeight = 750;
 	  this.setPreferredSize(new Dimension(areaWidth, areaHeight));
 	  
-	  this.text = "Lakukan sesuatu menggunakan mouse...";
-	  this.text2 = "Mouse Position...";
-	  
-	  this.addMouseMotionListener(this);
-	  this.addMouseListener(this);
-	  
 	  this.setFocusable(true);
 
-	 
 	  this.imgg = new ImageIcon("images/map.jpg").getImage();
 	  this.setLayout(null);
 	  
@@ -89,6 +71,7 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener{
 		    	        public void actionPerformed(ActionEvent event) {
 		    	        	int b = buttons.indexOf(a);
 		    	        	CessPool.location.add(b);
+		    	        	music2.playMusic("song/map_bag_shop_rest.wav");
 		    	        	Main.frame.setContentPane(new ShopPanel(frame, -1, 'y'));
 		    			    Main.frame.pack();
 		    	        }
@@ -103,6 +86,22 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener{
 		    	        public void actionPerformed(ActionEvent event) {
 		    	        	int b = buttons.indexOf(a);
 		    	        	CessPool.location.add(b);
+		    	        	
+		    	        	Random rand = new Random();
+		    	        	int int_random = rand.nextInt(3);
+		    	        	
+		    	        	if(int_random == 0) {
+		    	        		music2.playMusic("song/battle1.wav");
+		    	        	}
+		    	        	
+							if(int_random == 1) {
+								music2.playMusic("song/battle2.wav");
+		    	        	}
+							
+							if(int_random == 2) {
+								music2.playMusic("song/battle3.wav");
+		    	        	}
+		    	        	
 		    	        	Main.frame.setContentPane(new BattlePanel(frame));
 		    			    Main.frame.pack();
 		    	        }
@@ -117,6 +116,7 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener{
 		    	        public void actionPerformed(ActionEvent event) {
 		    	        	int b = buttons.indexOf(a);
 		    	        	CessPool.location.add(b);
+		    	        	music2.playMusic("song/map_bag_shop_rest.wav");
 		    	        	Main.frame.setContentPane(new RestPanel(frame));
 		    			    Main.frame.pack();
 		    	        }
@@ -204,38 +204,6 @@ public class Map extends JPanel implements MouseListener, MouseMotionListener{
 	 public void paintComponent(Graphics g) {
 	  super.paintComponent(g);
 	  g.drawImage(this.imgg, 0, 0, null);
-	  g.drawString(this.text, 0, this.areaHeight / 2);
-	  g.drawString(this.text2, 0, this.areaHeight / 3);
 	 }
 	 
-	 public void mouseClicked(MouseEvent e) {
-			this.text = "Tombol mouse diklik pada posisi X: " + e.getX() +" Y: " + e.getY();
-			repaint();
-		}
-		public void mousePressed(MouseEvent e) {
-			this.text = "Tombol mouse ditekan pada posisi X: " + e.getX() +" Y: " + e.getY();
-			repaint();
-		}
-		public void mouseReleased(MouseEvent e) {
-			this.text = "Tombol mouse dilepas pada posisi X: " + e.getX() +" Y: " + e.getY();
-			repaint();
-		}
-		public void mouseEntered(MouseEvent e) {
-			this.text = "Mouse memasuki area MousePanel";
-			repaint();
-		}
-		public void mouseExited(MouseEvent e) {
-			this.text = "Mouse meninggalkan area MousePanel";
-			repaint();
-		}
-		@Override
-		public void mouseDragged(MouseEvent e) {
-			this.text2 = "Position X: " + e.getX() + " Y: " + e.getY() + " Dragged";
-			repaint();
-		}
-		@Override
-		public void mouseMoved(MouseEvent e) {
-			this.text2 = "Position X: " + e.getX() + " Y: " + e.getY();
-			repaint();
-		}
 }

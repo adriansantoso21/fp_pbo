@@ -15,6 +15,7 @@ public class RestPanel extends JPanel {
 	private Image imgg;
 	
 	public RestPanel(JFrame frame) {
+		Map.music2.musicLoop();
 		this.imgg = new ImageIcon("images/restpanel.png").getImage();
 		this.setLayout(null);
 		
@@ -31,6 +32,7 @@ public class RestPanel extends JPanel {
 		Button1.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
+	        	Map.music2.stopMusic();
 	        	Main.frame.setContentPane(new Map(frame));
 	        	Main.frame.pack();
 	        	CessPool.selected.healHealth(CessPool.selected.healthPoint/100*30);
@@ -49,6 +51,7 @@ public class RestPanel extends JPanel {
 		Button2.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
+	        	Map.music2.stopMusic();
 	        	CessPool.selected.attributeP += 5;
 	        	Main.frame.setContentPane(new Map(frame));
 	        	Main.frame.pack();

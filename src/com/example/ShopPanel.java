@@ -18,6 +18,7 @@ import javax.swing.JTextPane;
 public class ShopPanel extends JPanel{
 
 	public ShopPanel(JFrame frame, int choose, char hmm){	
+		Map.music2.musicLoop();
 		GridLayout total = new GridLayout(1,2);
 		GridLayout grdLayout = new GridLayout(1, 5);
 		
@@ -136,6 +137,7 @@ public class ShopPanel extends JPanel{
 		Button1.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
+	        	Map.music2.stopMusic();
 	        	Main.frame.setContentPane(new Map(frame));
 	        	Main.frame.pack();
 	         }

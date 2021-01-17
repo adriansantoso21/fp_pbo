@@ -9,8 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Main {
-	public static CardLayout cardLayout = new CardLayout();
-	public static JPanel mainPanel = new JPanel(cardLayout);
 	public static JFrame frame = new JFrame("Diamond Castle");
 	public static StartPanel start;
 	public static CharacterSelectPanel characterSelect;
@@ -20,18 +18,8 @@ public class Main {
 			 public void run() {
 				 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				 new CessPool();
-				 start = new StartPanel("images/StartPanel.jpg", frame, cardLayout, mainPanel);
-				 characterSelect = new CharacterSelectPanel("images/StartPanel.jpg", frame, cardLayout, mainPanel);
 				 
-				 mainPanel.add(start, "start");
-			     mainPanel.add(characterSelect, "characterSelect");
-			     
-			     frame.add(mainPanel);
-			     cardLayout.show(mainPanel, "start");
-
-//			     frame.setContentPane(new BattlePanel(frame));
-//			     frame.setContentPane(new BagPanel(frame, -1));			     
-//			     frame.setContentPane(new RestPanel(frame));
+			     Main.frame.setContentPane(new StartPanel("images/StartPanel.jpg", frame));
 			     
 			     frame.pack();
 			     frame.setLocationRelativeTo(null);

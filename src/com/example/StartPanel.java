@@ -20,8 +20,11 @@ public class StartPanel extends JPanel{
 	private Container contain;
 	private Image imgg;
 	public JPanel CharacaterSelected;
+	static musicPlay music = new musicPlay();
 
-	public StartPanel(String imgg, JFrame frame, CardLayout cardLayout, JPanel mainPanel) {
+	public StartPanel(String imgg, JFrame frame) {
+		music.playMusic("song/title.wav");
+		music.musicLoop();
 		frame.setPreferredSize(new Dimension(1280, 750));
 		this.imgg = new ImageIcon("images/StartPanel.jpg").getImage();
 		ImageIcon Img = new ImageIcon("images/DiamondCastle.png");
@@ -51,7 +54,7 @@ public class StartPanel extends JPanel{
 		Button1.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	        	Main.frame.setContentPane(new CharacterSelectPanel(imgg, frame, cardLayout, mainPanel));
+	        	Main.frame.setContentPane(new CharacterSelectPanel(imgg, frame));
 	        	frame.pack();
 	         }
 		});

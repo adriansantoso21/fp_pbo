@@ -40,7 +40,7 @@ public class BattlePanel extends JPanel {
 	private JPanel skillButtonPanel, charaPanel, tb, tc, td;
 	
 	public BattlePanel(JFrame frame) {
-		
+		Map.music2.musicLoop();
 		Random rand = new Random();
 		int a = rand.nextInt(CessPool.monsterz.size());
 		fighted = CessPool.monsterz.get(a);
@@ -141,7 +141,7 @@ public class BattlePanel extends JPanel {
         panel.add(item);
         panel.add(skill);
         panel.add(chara);
-        panel.setBackground(new Color(0, 26, 0));
+        panel.setBackground(new Color(0, 0, 77));
         
         fight.addActionListener(
     			new ActionListener() {
@@ -150,7 +150,7 @@ public class BattlePanel extends JPanel {
     					youAttack(fighter, fighted);
     				}
     			}
-    		);
+    	);
         
         item.addActionListener(
         	       new ActionListener() {
@@ -290,6 +290,7 @@ public class BattlePanel extends JPanel {
 			JLabel label = new JLabel("<html><center><p style style=\"background-color:red; color: blue;\"> YOU DIED LOSER </p>");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			JOptionPane.showMessageDialog(frame, label, "Sorry man", JOptionPane.PLAIN_MESSAGE);
+			Map.music2.stopMusic();
 			Main.frame.dispose();
 			
 		}
@@ -326,6 +327,8 @@ public class BattlePanel extends JPanel {
 			JOptionPane.showMessageDialog(frame, label, "CONGRATS!!", JOptionPane.PLAIN_MESSAGE);
 			fighter.buffs.clear();
 			fighted.buffs.clear();
+			
+			Map.music2.stopMusic();
 			Main.frame.setContentPane(new Map(frame));
 			Main.frame.pack();
 		}
