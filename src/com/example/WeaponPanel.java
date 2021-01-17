@@ -137,9 +137,6 @@ public class WeaponPanel extends JPanel{
 	
 	private void addSkillButtons(JPanel panel, JFrame frame) {
         panel.removeAll();
-        JLabel showing = new JLabel();
-        showing.setText("Weapon Capacity : " + CessPool.selected.weaponA+"/4");
-        panel.add(showing);
         
         for (Inventory weapon : CessPool.selected.inventory) {
         	if(weapon instanceof Weapon) {

@@ -120,9 +120,6 @@ public class PotionPanel extends JPanel{
 	
 	private void addSkillButtons(JPanel panel,JFrame frame) {
         panel.removeAll();
-        JLabel showing = new JLabel();
-        showing.setText("Potion Capacity : " + CessPool.selected.potionA+"/7");
-        panel.add(showing);
                 
         for (Inventory potion : CessPool.selected.inventory) {
         	if(potion instanceof Potion) {

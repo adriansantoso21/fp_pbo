@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -132,19 +133,19 @@ public class ArmorPanel extends JPanel{
 		this.setBackground(new Color(0, 26, 0));
         this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        JPanel buttonPanel = new JPanel(new GridLayout(5, 1));
+        JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(0, 26, 0));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
         addSkillButtons(buttonPanel, frame);
-        this.add(buttonPanel);
-//        this.add(buttonPanel, BorderLayout.CENTER);
+        
+        this.add(buttonPanel, BorderLayout.CENTER);
 	}
 	
 	private void addSkillButtons(JPanel panel, JFrame frame) {
         panel.removeAll();
-        JLabel showing = new JLabel();
-        showing.setText("Armor Capacity : " + CessPool.selected.armorA+"/4");
-        panel.add(showing);
+        
+        panel.setLayout(new GridLayout(4,1));
                 
         for (Inventory armor : CessPool.selected.inventory) {
         	if(armor instanceof Armor) {

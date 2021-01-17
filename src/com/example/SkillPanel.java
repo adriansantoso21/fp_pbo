@@ -146,9 +146,6 @@ public class SkillPanel extends JPanel{
 		
 		private void addSkillButtons(JPanel panel, JFrame frame) {
 	        panel.removeAll();
-	        JLabel showing = new JLabel();
-	        showing.setText("Skill Capacity : " + CessPool.selected.skills.size()+"/7");
-	        panel.add(showing);
 	                
 	        for (Skill skill : CessPool.selected.skills) {
 	        	JPanel skill_panel = new JPanel();

@@ -30,7 +30,6 @@ public class BagPanel extends JPanel{
 		JPanel kiri_bawah_kiri = new JPanel(new BorderLayout());
 		JPanel buton = new JPanel(new BorderLayout());
 		
-		
 		ImageIcon Img1 = new ImageIcon("images/bg_rando.jpg");
 		JLabel lblNewLabel1 = new JLabel();
 		lblNewLabel1.setIcon(Img1);
@@ -91,7 +90,7 @@ public class BagPanel extends JPanel{
 
 		kanan.setBackground(new Color(0, 26, 0));
 		
-		JButton armor = new JButton("Armor");
+		JButton armor = new JButton("Armor ( " + CessPool.selected.armorA+ "/4 )" );
 		JPanel ArmorPanel = new ArmorPanel(1, frame);
 		kanan_bawah.add(ArmorPanel, "armorpane");
 		armor.setPreferredSize(new Dimension(106, 60));
@@ -107,7 +106,7 @@ public class BagPanel extends JPanel{
     			}
     	);
 		
-		JButton weapon = new JButton("Weapon");
+		JButton weapon = new JButton("Weapon("+ CessPool.selected.weaponA+ "/4)");
 		JPanel WeaponPanel = new WeaponPanel(1, frame);
 		kanan_bawah.add(WeaponPanel, "weaponpane");
 		weapon.setPreferredSize(new Dimension(106, 60));
@@ -123,7 +122,7 @@ public class BagPanel extends JPanel{
     			}
     	);
 		
-		JButton potion = new JButton("Potion");
+		JButton potion = new JButton("Potion ( " + CessPool.selected.potionA+ "/7 )");
 		JPanel PotionPanel = new PotionPanel(1, frame);
 		kanan_bawah.add(PotionPanel, "potionpane");
 		potion.setPreferredSize(new Dimension(106, 60));
@@ -139,7 +138,7 @@ public class BagPanel extends JPanel{
     			}
     	);
 		
-        JButton skill = new JButton("Skill");
+        JButton skill = new JButton("Skill ( " + CessPool.selected.skills.size() + " /7 )");
         JPanel SkillPanel = new SkillPanel(1, frame);
 		kanan_bawah.add(SkillPanel, "skillpane");
         skill.setPreferredSize(new Dimension(106, 60));

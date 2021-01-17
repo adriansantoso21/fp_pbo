@@ -18,17 +18,19 @@ public class CessPool {
 	public CessPool() {
 		location.add(-1);
 		
-		monsterz.add(new Monster("Villain", 300, 28, 20, 40, 40, 30, 30, 30));
-		monsterz.get(0).skills.add(new DebuffSkill("Earthquake", 35, 200, new Buff("Earthquake", "Modifier", 0, 0, 0, 0, 0, -10, 0, 3, "Reduces enemy speed by 10%.")));
-		monsterz.add(new Monster("2nd Villain", 200, 34, 20, 40, 40, 30, 30, 30));
-		monsterz.add(new Monster("3rd Villain", 300, 34, 20, 40, 40, 30, 30, 30));
-		monsterz.add(new Monster("4th Villain", 400, 34, 20, 40, 40, 30, 30, 30));
-		monsterz.add(new Monster("5th Villain", 500, 34, 20, 40, 40, 30, 30, 30));
-		monsterz.add(new Monster("6th Villain", 600, 34, 20, 40, 40, 30, 30, 30));
-		monsterz.add(new Monster("7th Villain", 700, 34, 20, 40, 40, 30, 30, 30));
-		monsterz.add(new Monster("8th Villain", 800, 34, 20, 40, 40, 30, 30, 30));
-		monsterz.add(new Monster("9th Villain", 900, 34, 20, 40, 40, 30, 30, 30));
-		monsterz.add(new Monster("10th Villain", 1000, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Abyss-step", 300, 28, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Ancurantus", 200, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Blightsnare", 300, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Bonelich", 400, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Duskfiend", 500, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Hell Vengeance", 600, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Nethermask", 700, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Phasebrute", 800, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Plaguechild", 900, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("ShapePod", 1000, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Venomtooth", 900, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Warpwings", 1000, 34, 20, 40, 40, 30, 30, 30));
+//		monsterz.get(0).skills.add(new DebuffSkill("Earthquake", 35, 200, new Buff("Earthquake", "Modifier", 0, 0, 0, 0, 0, -10, 0, 3, "Reduces enemy speed by 10%.")));
 		
 		armorz.add(new Armor("Sunlight Armor", 30, 60, 45, 15, 20, 750));
 		armorz.add(new Armor("Ancient Armor", 10, 40, 25, 25, 30, 800));
@@ -39,7 +41,7 @@ public class CessPool {
 		weaponz.add(new Weapon("Killer", 100, 100, 100, 100, 100, 400));
 		weaponz.add(new Weapon("Ancient Sword", 10, 40, 25, 25, 30, 600));
 		weaponz.add(new Weapon("Sword of the Warzone", 40, 60, 70, 30, 15, 700));
-		weaponz.add(new Weapon("Sunlight Spear", 30, 60, 45, 15, 20, 800));
+		weaponz.add(new Weapon("Sunlight Sword", 30, 60, 45, 15, 20, 800));
 		weaponz.add(new Weapon("Lost Prayer to the Wind", 30, 60, 45, 15, 20, 800));
 		
 		potionz.add(new Potion("Defence Potion", 0, 100, new Buff("Defence Potion", "Non", 0, 0, 0, 0, 0, 0, 30, 3, "Increases defense by 30 points for 3 turns.")));

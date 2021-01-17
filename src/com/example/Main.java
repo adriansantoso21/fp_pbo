@@ -30,7 +30,7 @@ public class Main {
 			     cardLayout.show(mainPanel, "start");
 
 //			     frame.setContentPane(new BattlePanel(frame));
-			     frame.setContentPane(new BagPanel(frame, -1));			     
+//			     frame.setContentPane(new BagPanel(frame, -1));			     
 //			     frame.setContentPane(new RestPanel(frame));
 			     
 			     frame.pack();
