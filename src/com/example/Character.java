@@ -117,21 +117,24 @@ public class Character extends Creature {
 	}
 	
 	public void AttackAnimation() {
-		if (this.now==this.ImgPool.size()-1)this.now=0;
+		if (this.now>=this.ImgPool.size()-1)this.now=0;
 		else {this.now++;}
 		this.curr = this.ImgPool.get(now);
 		this.whatnow = 3;
 	}
 	
 	public void IdleAnimation() {
-		if (this.idlenow==this.IdleImgPool.size()-1)this.idlenow=0;
+		if (this.idlenow>=this.IdleImgPool.size()-1) {
+			this.idlenow=0;
+		}
 		else {this.idlenow++;}
 		this.curr = this.IdleImgPool.get(idlenow);
 		this.whatnow = 2;
+		System.out.println(idlenow);
 	}
 	
 	public void SpellAnimation() {
-		if (this.spellnow==this.SpellImgPool.size()-1)this.spellnow=0;
+		if (this.spellnow>=this.SpellImgPool.size()-1)this.spellnow=0;
 		else {this.spellnow++;}
 		this.curr = this.SpellImgPool.get(spellnow);
 		this.whatnow = 1;

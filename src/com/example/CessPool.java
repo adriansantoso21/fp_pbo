@@ -13,7 +13,7 @@ public class CessPool {
 	public static ArrayList<Skill> skillz = new ArrayList<Skill>();
 	public static ArrayList<SkillBook> skillbookz = new ArrayList<SkillBook>();
 	public static ArrayList<Integer> location = new ArrayList<Integer>();
-	int curLoc = 0;
+	public static int curLoc = 0;
 	
 	public CessPool() {
 		location.add(-1);

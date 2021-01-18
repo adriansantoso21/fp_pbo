@@ -139,7 +139,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	            	System.out.println("Warrior is chosen.");
-	                CessPool.selected = new Character("Warrior", 4000, 500, 10, 50, 50, 30, 50, 50,"The Barbarian King is a larger, stronger, more aggressive, more impressive, "
+	                CessPool.selected = new Character("Warrior", 4000, 500, 10, 500, 50, 30, 50, 50,"The Barbarian King is a larger, stronger, more aggressive, more impressive, "
 	                		+ "and more powerful Barbarian. He is automatically summoned once the Barbarian King Altar is constructed, which costs 10,000 Dark Elixir. The Dark "
 	                		+ "Elixir Storage is required to get him.\r\n");
 	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_1.png").getImage());
@@ -173,6 +173,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.skills.add(CessPool.skillz.get(2));
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new Map(frame));
+	                frame.setContentPane(new FinalBossPanel(frame));
 	                frame.pack();
 	            }
 	         }

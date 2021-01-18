@@ -21,6 +21,7 @@ public class Main {
 				 
 			     Main.frame.setContentPane(new StartPanel("images/StartPanel.jpg", frame));
 			     
+			     
 			     frame.pack();
 			     frame.setLocationRelativeTo(null);
 			     frame.setResizable(false);

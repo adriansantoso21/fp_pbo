@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +29,7 @@ import javax.swing.SwingConstants;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
-public class BattlePanel extends JPanel {
+public class FinalBossPanel extends JPanel {
 	
 	Character fighter = CessPool.selected;
 	Monster fighted;
@@ -40,13 +41,10 @@ public class BattlePanel extends JPanel {
 	private JPanel skillButtonPanel, charaPanel, tb, tc, td;
 	private BackgroundBattlePanel fights;
 	
-	public BattlePanel(JFrame frame) {
-		Map.music2.musicLoop();
-		Random rand = new Random();
-		int a = rand.nextInt(CessPool.monsterz.size());
-		fighted = CessPool.monsterz.get(a);
+	public FinalBossPanel(JFrame frame) {
+
+		fighted = new Monster("I Don't Want to Go Back", 1200, 100, 50, 50, 50, 50, 50, 50);
 		
-		fighted.healHP();
 		num=0;
         
 		this.setBackground(new Color(204, 153, 0));
@@ -54,7 +52,7 @@ public class BattlePanel extends JPanel {
         ta = new JTextPane();
         ta.setEditable(false);
         ta.setContentType("text/html");
-        ta.setText("<html><h3 style=\"color:white;\">");
+        ta.setText("<html><h2 style=\"color:white;\">");
         
         ta.setBackground(Color.black);
         potionPanel.add(ta, "text");
@@ -92,7 +90,7 @@ public class BattlePanel extends JPanel {
         JPanel panel2 = new JPanel();
         fights = new BackgroundBattlePanel(fighter);
         
-        GridLayout layout1 = new GridLayout(1,2, 10, 50);
+        GridLayout layout1 = new GridLayout(1,2, 10, 1000);
         
         fights.setLayout(layout1);
         
@@ -100,7 +98,7 @@ public class BattlePanel extends JPanel {
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(Img);
 		
-		ImageIcon Img1 = new ImageIcon("images/null.png");
+		ImageIcon Img1 = new ImageIcon("images/null1.png");
 		JLabel lblNewLabel1 = new JLabel();
 		lblNewLabel1.setIcon(Img1);
 		
@@ -190,6 +188,55 @@ public class BattlePanel extends JPanel {
 		panel.setPreferredSize(new Dimension(500, 80));
 		tb.setPreferredSize(new Dimension(300, 60));
 		fights.startIdleThread();
+		
+		Thread startChatThread = new Thread() {
+			public void run() {
+				fight.setEnabled(false);
+				item.setEnabled(false);
+				skill.setEnabled(false);
+				chara.setEnabled(false);
+				ArrayList<String> chatz = new ArrayList<String>();
+				chatz.add(new String("  D o  y o u  h a v e  t o  g o  b a c k ? ? ?"));
+				chatz.add(new String("  I s n ' t  t h i s  p l a c e  a  l o t  b e t t e r ?"));
+				chatz.add(new String("   .   .   .   .   ."));
+				chatz.add(new String("  Y o u  d o n ' t  w a n t  t o  s t a y ?"));
+				chatz.add(new String("   .   .   .   .   ."));
+				chatz.add(new String("  T H E N  I ' L L  M A K E  S U R E  Y O U  D O N ' T"));
+				
+				for(String chats : chatz) {
+					for (int i = 0; i < chats.length(); i++){
+					    String c = String.valueOf(chats.charAt(i));        
+					    StyledDocument doc = ta.getStyledDocument();
+					    try {
+							doc.insertString(doc.getLength(), c, null);
+						} catch (BadLocationException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					    try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					StyledDocument doc = ta.getStyledDocument();
+					try {
+						doc.insertString(doc.getLength(), "\n", null);
+					} catch (BadLocationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				fight.setEnabled(true);
+				item.setEnabled(true);
+				skill.setEnabled(true);
+				chara.setEnabled(true);
+				
+			}
+		};
+		startChatThread.start();
+		
 		
 	}
 	
@@ -358,8 +405,6 @@ public class BattlePanel extends JPanel {
 			fighter.buffs.clear();
 			fighted.buffs.clear();
 			
-			fights.setCurrent(10);
-			Map.music2.stopMusic();
 			Main.frame.setContentPane(new Map(frame));
 			Main.frame.pack();
 		}
@@ -485,6 +530,7 @@ public class BattlePanel extends JPanel {
                                     "Confirmation", JOptionPane.YES_NO_OPTION);
 
                     if (choice == JOptionPane.YES_OPTION) {
+                        System.out.println("Exit Button Clicked.");
                         if(skill instanceof BuffSkill) {
                     		((BuffSkill) skill).unleash(fighter);
                     		text = "· You used the buff skill "+skill.name+", "+desc+"\n";
