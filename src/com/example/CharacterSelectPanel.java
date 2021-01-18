@@ -71,6 +71,29 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected = new Character("Wizard", 20000, 200, 50, 10, 50, 25, 25, 30, "The Wizard is a magical man that wears a hooded cloak, a leather belt with a golden buckle, and matching boots.\r\n"
 	                		+ "The Wizard is a ranged unit, meaning that he can shoot over Walls. He shoots fireballs or energy blasts that do high damage but requires support as he has relatively low hit points and"
 	                		+ " can easily be killed by point defenses.");
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_001.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_002.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_003.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_004.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_005.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_006.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_007.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_008.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Wizard/idle_001.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Wizard/idle_002.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Wizard/idle_003.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Wizard/idle_004.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Wizard/idle_005.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Wizard/idle_006.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_001.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_002.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_003.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_004.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_005.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_006.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_007.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_008.png").getImage());
+	                CessPool.selected.skills.add(CessPool.skillz.get(2));
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new Map(frame));
 	                frame.pack();
@@ -116,9 +139,38 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	            	System.out.println("Warrior is chosen.");
-	                CessPool.selected = new Character("Warrior", 4000, 50, 10, 50, 50, 30, 50, 50,"The Barbarian King is a larger, stronger, more aggressive, more impressive, "
+	                CessPool.selected = new Character("Warrior", 4000, 500, 10, 50, 50, 30, 50, 50,"The Barbarian King is a larger, stronger, more aggressive, more impressive, "
 	                		+ "and more powerful Barbarian. He is automatically summoned once the Barbarian King Altar is constructed, which costs 10,000 Dark Elixir. The Dark "
 	                		+ "Elixir Storage is required to get him.\r\n");
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_1.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_2.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_3.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_4.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_5.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_6.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_7.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_8.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_9.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_10.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_11.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_12.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Warrior/Individual Sprite/idle/Warrior_Idle_1.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Warrior/Individual Sprite/idle/Warrior_Idle_2.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Warrior/Individual Sprite/idle/Warrior_Idle_3.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Warrior/Individual Sprite/idle/Warrior_Idle_4.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Warrior/Individual Sprite/idle/Warrior_Idle_5.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Warrior/Individual Sprite/idle/Warrior_Idle_6.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_1.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_2.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_3.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_4.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_5.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_6.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_7.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_8.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_9.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_10.png").getImage());
+	                CessPool.selected.skills.add(CessPool.skillz.get(2));
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new Map(frame));
 	                frame.pack();
@@ -164,9 +216,26 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	            	System.out.println("Rogue is chosen.");
-	                CessPool.selected = new Character("Rogue", 300, 100, 30, 35, 50, 50, 20, 20, "The Goblin is the fourth troop unlocked in the Barracks.\r\n"
+	                CessPool.selected = new Character("Rogue", 3000, 100, 300, 35, 50, 50, 20, 20, "The Goblin is the fourth troop unlocked in the Barracks.\r\n"
 	                		+ "Goblins prioritize resource buildings above all other targets, and will bypass all other types of enemy buildings and troops while any resource buildings remain on the battlefield."
 	                		+ " This is true even if they are under attack by enemy Clan Castle troops, heroes or Skeleton Trap skeletons");
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Rogue/attack1.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Rogue/attack2.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Rogue/attack3.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Rogue/attack4.png").getImage());
+	                CessPool.selected.addAttackImage(new ImageIcon("character/Rogue/attack5.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Rogue/idle1.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Rogue/idle2.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Rogue/idle3.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Rogue/idle4.png").getImage());
+	                CessPool.selected.addIdleImage(new ImageIcon("character/Rogue/idle5.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion1.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion2.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion3.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion4.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion5.png").getImage());
+	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion6.png").getImage());
+	                CessPool.selected.skills.add(CessPool.skillz.get(2));
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new Map(frame));
 	                frame.pack();

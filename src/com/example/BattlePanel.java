@@ -38,6 +38,7 @@ public class BattlePanel extends JPanel {
 	private JPanel potionPanel = new JPanel(cardlayt);
 	private JTextPane ta, te, tf;
 	private JPanel skillButtonPanel, charaPanel, tb, tc, td;
+	private BackgroundBattlePanel fights;
 	
 	public BattlePanel(JFrame frame) {
 		Map.music2.musicLoop();
@@ -89,7 +90,7 @@ public class BattlePanel extends JPanel {
         JPanel panel1 = new JPanel(layout);
         panel1.setLayout(layout);
         JPanel panel2 = new JPanel();
-        JPanel fights = new BackgroundBattlePanel();
+        fights = new BackgroundBattlePanel(fighter);
         
         GridLayout layout1 = new GridLayout(1,2, 10, 50);
         
@@ -99,7 +100,7 @@ public class BattlePanel extends JPanel {
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(Img);
 		
-		ImageIcon Img1 = new ImageIcon("images/hero.png");
+		ImageIcon Img1 = new ImageIcon("images/null.png");
 		JLabel lblNewLabel1 = new JLabel();
 		lblNewLabel1.setIcon(Img1);
 		
@@ -147,6 +148,7 @@ public class BattlePanel extends JPanel {
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
+    					fights.startAttackThread();
     					youAttack(fighter, fighted);
     				}
     			}
@@ -179,13 +181,15 @@ public class BattlePanel extends JPanel {
     			}
     		);
         
-        setLayout(new BorderLayout());     
+        setLayout(new BorderLayout());  
+        fights.addButton(fight, item, skill);
         
 		this.add(BorderLayout.SOUTH, panel);
 		this.add(BorderLayout.NORTH, tb);
 		this.add(BorderLayout.CENTER, panel1);
 		panel.setPreferredSize(new Dimension(500, 80));
 		tb.setPreferredSize(new Dimension(300, 60));
+		fights.startIdleThread();
 		
 	}
 	
@@ -241,6 +245,7 @@ public class BattlePanel extends JPanel {
 		}
 		
 		StyledDocument doc = ta.getStyledDocument();
+
 		
 		if(attacker.dodgeChance(attacked)) {
 			String crit = "";
@@ -394,6 +399,7 @@ public class BattlePanel extends JPanel {
 		            		
 		            		enemyTurn(fighted);
 		            		addCharaLabel(charaPanel);
+		            		fights.startSpellThread();
 		                    }
 	                }
 	            });
@@ -484,6 +490,7 @@ public class BattlePanel extends JPanel {
                 		enemyTurn(fighted);
                 		addSkillButtons(panel);
                 		addCharaLabel(charaPanel);
+                		fights.startSpellThread();
                     }
                     
                 }
