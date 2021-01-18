@@ -24,7 +24,7 @@ public class Map extends JPanel{
  static musicPlay music2 = new musicPlay();
  
  public Map (JFrame frame) {
-  
+	 music2.playMusic("song/map.wav");
 	  this.areaWidth = 1280;
 	  this.areaHeight = 750;
 	  this.setPreferredSize(new Dimension(areaWidth, areaHeight));
@@ -51,7 +51,7 @@ public class Map extends JPanel{
 	  buttons.add(new Map_Button(392, 495, 3, false));//rest
 	  buttons.add(new Map_Button(348, 411, 1,false));//shop
 	  buttons.add(new Map_Button(418, 388, 2, false));
-	  buttons.add(new Map_Button(536, 377, 2, false));
+	  buttons.add(new Map_Button(536, 377, 3, false));
 	  buttons.add(new Map_Button(455, 440, 2, false));
 	  buttons.add(new Map_Button(516, 436, 2, false));
 	  buttons.add(new Map_Button(573, 366, 1, false));//shop
@@ -69,9 +69,10 @@ public class Map extends JPanel{
 		    	       new ActionListener() {
 		    	        @Override
 		    	        public void actionPerformed(ActionEvent event) {
+		    	        	music2.stopMusic();
 		    	        	int b = buttons.indexOf(a);
 		    	        	CessPool.location.add(b);
-		    	        	music2.playMusic("song/map_bag_shop_rest.wav");
+		    	        	music2.playMusic("song/bag_shop_rest.wav");
 		    	        	Main.frame.setContentPane(new ShopPanel(frame, -1, 'y'));
 		    			    Main.frame.pack();
 		    	        }
@@ -84,6 +85,7 @@ public class Map extends JPanel{
 		    	       new ActionListener() {
 		    	        @Override
 		    	        public void actionPerformed(ActionEvent event) {
+		    	        	music2.stopMusic();
 		    	        	int b = buttons.indexOf(a);
 		    	        	CessPool.location.add(b);
 		    	        	
@@ -114,9 +116,10 @@ public class Map extends JPanel{
 		    	       new ActionListener() {
 		    	        @Override
 		    	        public void actionPerformed(ActionEvent event) {
+		    	        	music2.stopMusic();
 		    	        	int b = buttons.indexOf(a);
 		    	        	CessPool.location.add(b);
-		    	        	music2.playMusic("song/map_bag_shop_rest.wav");
+		    	        	music2.playMusic("song/bag_shop_rest.wav");
 		    	        	Main.frame.setContentPane(new RestPanel(frame));
 		    			    Main.frame.pack();
 		    	        }
@@ -193,8 +196,10 @@ public class Map extends JPanel{
        new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-         Main.frame.setContentPane(new BagPanel(frame, -1));
-         Main.frame.pack();
+        	music2.stopMusic();
+        	music2.playMusic("song/bag_shop_rest.wav");
+        	Main.frame.setContentPane(new BagPanel(frame, -1));
+        	Main.frame.pack();
         }
        }
       );

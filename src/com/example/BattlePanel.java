@@ -583,7 +583,7 @@ public class BattlePanel extends JPanel {
 		panel.add(spd);
 		
 		JLabel armor = new JLabel();
-		if(Objects.isNull(fighter.equippedWeapon)) {
+		if(Objects.isNull(fighter.equippedArmor)) {
 			armor.setText("No armor equipped");
 		}
 		else {

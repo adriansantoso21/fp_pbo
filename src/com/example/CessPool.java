@@ -30,6 +30,7 @@ public class CessPool {
 		monsterz.add(new Monster("ShapePod", 1000, 34, 20, 40, 40, 30, 30, 30));
 		monsterz.add(new Monster("Venomtooth", 900, 34, 20, 40, 40, 30, 30, 30));
 		monsterz.add(new Monster("Warpwings", 1000, 34, 20, 40, 40, 30, 30, 30));
+		monsterz.add(new Monster("Astralvind", 1000, 34, 20, 40, 40, 30, 30, 30));
 //		monsterz.get(0).skills.add(new DebuffSkill("Earthquake", 35, 200, new Buff("Earthquake", "Modifier", 0, 0, 0, 0, 0, -10, 0, 3, "Reduces enemy speed by 10%.")));
 		
 		armorz.add(new Armor("Sunlight Armor", 30, 60, 45, 15, 20, 750));
