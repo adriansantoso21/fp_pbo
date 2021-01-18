@@ -36,7 +36,7 @@ public class CharacterSelectPanel extends JPanel {
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(Img);
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel.setBounds(150, 150, 230, 252);
+		lblNewLabel.setBounds(150, 117, 230, 252);
 		this.add(lblNewLabel);
 		
 		JTextPane ta = new JTextPane();
@@ -179,7 +179,7 @@ public class CharacterSelectPanel extends JPanel {
 		});
 		
 		//Rogue Character
-		ImageIcon Img3 = new ImageIcon("images/rogue1.png");
+		ImageIcon Img3 = new ImageIcon("creature/rogue.png");
 		this.setLayout(null);
 		JLabel lblNewLabel3 = new JLabel();
 		lblNewLabel3.setIcon(Img3);

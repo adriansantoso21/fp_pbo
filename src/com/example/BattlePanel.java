@@ -334,8 +334,14 @@ public class BattlePanel extends JPanel {
 			fighted.buffs.clear();
 			
 			Map.music2.stopMusic();
-			Main.frame.setContentPane(new Map(frame));
-			Main.frame.pack();
+			if( Map.last == 23) {
+				Main.frame.setContentPane(new credit());
+				Main.frame.pack();
+			}
+			else {
+				Main.frame.setContentPane(new Map(frame));
+				Main.frame.pack();
+			}	
 		}
 	}
 
