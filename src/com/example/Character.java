@@ -130,7 +130,6 @@ public class Character extends Creature {
 		else {this.idlenow++;}
 		this.curr = this.IdleImgPool.get(idlenow);
 		this.whatnow = 2;
-		System.out.println(idlenow);
 	}
 	
 	public void SpellAnimation() {

@@ -15,7 +15,6 @@ public class BackgroundBattlePanel extends JPanel {
 	private Character fighter;
 	private int current, bg;
 	JButton a, b, c;
-	MediaPlayer mediaPanel = new MediaPlayer();
 	
 	public BackgroundBattlePanel(Character fighter) {
 		this.fighter = fighter;

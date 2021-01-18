@@ -38,8 +38,10 @@ public class FinalBossPanel extends JPanel {
 	private CardLayout cardlayt = new CardLayout();
 	private JPanel potionPanel = new JPanel(cardlayt);
 	private JTextPane ta, te, tf;
+	JButton fight, item, skill, chara;
 	private JPanel skillButtonPanel, charaPanel, tb, tc, td;
 	private BackgroundBattlePanel fights;
+	private int apple = 1, sumn = 0;
 	
 	public FinalBossPanel(JFrame frame) {
 
@@ -117,19 +119,19 @@ public class FinalBossPanel extends JPanel {
         JPanel panel = new JPanel();
         
 		Image img = new ImageIcon("button/fight.jpg").getImage();
-		JButton fight = new JButton();
+		fight = new JButton();
 		fight.setIcon(new ImageIcon(img));
 		
 		Image img2 = new ImageIcon("button/item.jpg").getImage();
-		JButton item = new JButton("Item");
+		item = new JButton("Item");
 		item.setIcon(new ImageIcon(img2));
 		
 		Image img3 = new ImageIcon("button/skill.jpg").getImage();
-		JButton skill = new JButton("Skill");
+		skill = new JButton("Skill");
 		skill.setIcon(new ImageIcon(img3));
 		
 		Image img4 = new ImageIcon("button/chara.jpg").getImage();
-        JButton chara = new JButton("Char");
+        chara = new JButton("Char");
         chara.setIcon(new ImageIcon(img4));
         
         GridLayout grdLayout = new GridLayout(1, 4, 50, 50);
@@ -214,7 +216,7 @@ public class FinalBossPanel extends JPanel {
 							e.printStackTrace();
 						}
 					    try {
-							Thread.sleep(200);
+							Thread.sleep(20);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -290,9 +292,11 @@ public class FinalBossPanel extends JPanel {
 			if (attacked.isDead()) {
 				someoneDead(attacker, attacked);
 			}
+			
 			}
 		};
 		monsterAttackThread.start();
+		
 	}
 	
 	public void youAttack(Character attacker, Monster attacked) {
@@ -348,6 +352,8 @@ public class FinalBossPanel extends JPanel {
 		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
         		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
 		
+		addCharaLabel(charaPanel);
+		addSkillButtons(skillButtonPanel);
 		if (attacked.isDead()) {
 			someoneDead(attacker, attacked);
 		}
@@ -355,7 +361,6 @@ public class FinalBossPanel extends JPanel {
 		else {
 			enemyTurn(fighted);
 		}
-		addCharaLabel(charaPanel);
 			}
 		};
 		youAttackThread.start();
@@ -372,48 +377,132 @@ public class FinalBossPanel extends JPanel {
 			
 		}
 		else if (dead instanceof Monster) {
-			String reward;
-			Random rand = new Random();
-			int int_random = rand.nextInt(100)+100; 
-			fighter.gold += int_random;
-			
-			reward = "· "+int_random+" gold<br>";
-			int chance = rand.nextInt(10);
-			if(chance<=1) {
-				int chances = rand.nextInt(5)+10;
-				fighter.healHealth(fighter.healthPoint*chances/100);
-				reward += "· "+ fighter.healthPoint*chances/100 + " HP healed<br>";
-			}
-			else if (chance<=3) {
-				int chances = rand.nextInt(5)+10;
-				fighter.healMana(fighter.mana*chances/100);
-				reward += "· "+ fighter.mana*chances/100 + " mana healed<br>";
-			}
-			else if (chance <=5 && fighter.potionA < 7) {
-				int chances = rand.nextInt(6);
-				fighter.inventory.add(CessPool.potionz.get(chances));
-				reward += "· "+ CessPool.potionz.get(chances).name + "<br>";
-				fighter.potionA += 1;
-			}
-			int attPoint = rand.nextInt(1)+2;
-			JFrame frame = new JFrame("CONGRATS!");
-			reward += "· "+ attPoint + " attribute points<br>";
-			fighter.attributeP += attPoint;
-			JLabel label = new JLabel("<html><center><p style style=\"background-color:powderblue; color: blue;\">YOU WON!!!<br> Loot : <br> "+ reward +"</p>");
-			label.setHorizontalAlignment(SwingConstants.CENTER);
-			JOptionPane.showMessageDialog(frame, label, "CONGRATS!!", JOptionPane.PLAIN_MESSAGE);
-			fighter.buffs.clear();
-			fighted.buffs.clear();
-			
-			Main.frame.setContentPane(new Map(frame));
+			Main.frame.setContentPane(new Map(null));
 			Main.frame.pack();
 		}
 	}
-
-	public void enemyTurn(Monster turn) {
-		monsterAttack(fighted, fighter);
+	
+	public void midThread() {
+		Thread midThread = new Thread() {
+			public void run() {
+				while(sumn == 0) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				StyledDocument doc = ta.getStyledDocument();
+				try {
+					doc.insertString(doc.getLength(), "· YOU?? casted the debuff skill 'Don't Leave' on you : All your stats are limited to 5\n", null);
+				} catch (BadLocationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				fighter.healthPoint = 5;
+				fighter.currHP = 5;
+				fighter.currMana = 5;
+				fighter.mana = 5;
+				fighter.intelligence = 5;
+				fighter.strength = 5;
+				fighter.accuracy = 5;
+				fighter.speed = 5;
+				fighter.defence = 5;
+				fighter.unequipArmor(fighter.equippedArmor);
+				fighter.unequipWeapon(fighter.equippedWeapon);
+				fighter.skills.clear();
+				fighter.inventory.clear();
+			}
+		};
+		midThread.start();
 		fighter.decreaseDuration(ta);
 		fighted.decreaseDuration(ta);
+	}
+
+	public void enemyTurn(Monster turn) {
+		if (fighted.currHP <= 600 && apple ==1) {
+			ArrayList<String> chatz = new ArrayList<String>();
+			chatz.add(new String(" S T O P  R E S I S T I N G"));
+			chatz.add(new String(" I  K N O W  Y O U  D O N ' T  W A N T  T O  L E A V E"));
+			chatz.add(new String(" I ' L L  S H O W  Y O U"));
+			chatsThread(chatz);
+			apple = 0;
+			midThread();
+		}
+		else if (apple ==0) {
+			ArrayList<String> chatz = new ArrayList<String>();
+			chatz.add(new String(" THE WORLD IS CRUEL"));
+			chatz.add(new String(" IT IS HOSTILE"));
+			chatz.add(new String(" THE WORLD WILL NOT BE KIND"));
+			chatsThread(chatz);
+			apple = -1;
+			StyledDocument doc = ta.getStyledDocument();
+			fighter.damaged(1);
+			try {
+				doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if (apple ==-1) {
+			ArrayList<String> chatz = new ArrayList<String>();
+			chatz.add(new String(" IF YOU LEAVE, YOU WILL NEVER FEEL HAPPINESS"));
+			chatz.add(new String(" LIFE HERE WOULD BE PEACEFUL"));
+			chatz.add(new String(" LIFE HERE WILL BE KIND"));
+			chatsThread(chatz);
+			apple = -2;
+			StyledDocument doc = ta.getStyledDocument();
+			fighter.damaged(1);
+			try {
+				doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if (apple ==-2) {
+			ArrayList<String> chatz = new ArrayList<String>();
+			chatz.add(new String(" S  T  A  Y  "));
+			chatz.add(new String(" .  .  .  .  .  .  ."));
+			chatz.add(new String(" please"));
+			chatz.add(new String(" i don't want to leave"));
+			chatsThread(chatz);
+			apple = -3;
+			StyledDocument doc = ta.getStyledDocument();
+			fighter.damaged(1);
+			try {
+				doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if (apple == -3) {
+			ArrayList<String> chatz = new ArrayList<String>();
+			chatz.add(new String(" just succumb to the bliss"));
+			chatsThread(chatz);
+			apple = -4;
+			StyledDocument doc = ta.getStyledDocument();
+			fighter.damaged(1);
+			try {
+				doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			fight.setEnabled(false);
+			item.setEnabled(false);
+			chara.setEnabled(false);
+			fighter.skills.add(new BuffSkill("Wake up", 0,0, new Buff("Wake up", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Wake up to the cruel world.")));
+			fighter.skills.add(new BuffSkill("Wake up", 0,0, new Buff("Stay", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Stay here in this kind world.")));
+		}
+		else {
+			monsterAttack(fighted, fighter);
+			fighter.decreaseDuration(ta);
+			fighted.decreaseDuration(ta);
+		}
 	}
 	
 	//----------------------POTION AND SKILLS PANEL METHODS----------------------//
@@ -735,6 +824,58 @@ public class FinalBossPanel extends JPanel {
 		}
 		buff.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(buff);
+    }
+    
+    
+    public void chatsThread(ArrayList<String> chatzz) {
+    	Thread chatsThread = new Thread() {
+			public void run() {
+				fight.setEnabled(false);
+				item.setEnabled(false);
+				skill.setEnabled(false);
+				chara.setEnabled(false);
+				ta.setText("<html><h2 style=\"color:white;\">");
+				for(String chats : chatzz) {
+					for (int i = 0; i < chats.length(); i++){
+					    String c = String.valueOf(chats.charAt(i));        
+					    StyledDocument doc = ta.getStyledDocument();
+					    try {
+							doc.insertString(doc.getLength(), c, null);
+						} catch (BadLocationException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					    try {
+							Thread.sleep(20);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					StyledDocument doc = ta.getStyledDocument();
+					try {
+						doc.insertString(doc.getLength(), "\n", null);
+					} catch (BadLocationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				ta.setText("");
+				fight.setEnabled(true);
+				item.setEnabled(true);
+				skill.setEnabled(true);
+				chara.setEnabled(true);
+				sumn = 1;
+				monsterAttack(fighted, fighter);
+			}
+    	};
+    	chatsThread.start();
     }
    
 }
