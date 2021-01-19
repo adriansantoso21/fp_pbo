@@ -409,8 +409,12 @@ public class FinalBossPanel extends JPanel {
 				fighter.accuracy = 5;
 				fighter.speed = 5;
 				fighter.defence = 5;
-				fighter.unequipArmor(fighter.equippedArmor);
-				fighter.unequipWeapon(fighter.equippedWeapon);
+				if(!Objects.isNull(fighter.equippedArmor)) {
+					fighter.unequipArmor(fighter.equippedArmor);
+				}
+				if(!Objects.isNull(fighter.equippedWeapon)) {
+					fighter.unequipWeapon(fighter.equippedWeapon);
+				}
 				fighter.skills.clear();
 				fighter.inventory.clear();
 			}

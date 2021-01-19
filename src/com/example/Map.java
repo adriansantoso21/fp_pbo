@@ -18,7 +18,7 @@ public class Map extends JPanel{
  
  private Image imgg;
  ArrayList <Map_Button> buttons = new ArrayList<Map_Button>();
- public int last = CessPool.location.get(CessPool.location.size()-1);
+ static int last = CessPool.location.get(CessPool.location.size()-1);
  private int areaWidth;
  private int areaHeight;
  static musicPlay music2 = new musicPlay();
