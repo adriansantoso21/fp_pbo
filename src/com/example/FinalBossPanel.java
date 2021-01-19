@@ -39,7 +39,7 @@ public class FinalBossPanel extends JPanel {
 	private JPanel potionPanel = new JPanel(cardlayt);
 	private JTextPane ta, te, tf;
 	JButton fight, item, skill, chara;
-	private JPanel skillButtonPanel, charaPanel, tb, tc, td;
+	private JPanel skillButtonPanel, potionButtonPanel, charaPanel, tb, tc, td;
 	private BackgroundBattlePanel fights;
 	private int apple = 1, sumn = 0;
 	
@@ -230,10 +230,17 @@ public class FinalBossPanel extends JPanel {
 						e.printStackTrace();
 					}
 				}
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				fight.setEnabled(true);
 				item.setEnabled(true);
 				skill.setEnabled(true);
 				chara.setEnabled(true);
+				ta.setText("");
 				
 			}
 		};
@@ -417,15 +424,19 @@ public class FinalBossPanel extends JPanel {
 				}
 				fighter.skills.clear();
 				fighter.inventory.clear();
+				potionButtonPanel.removeAll();
+				addCharaLabel(charaPanel);
+				addSkillButtons(skillButtonPanel);
 			}
 		};
 		midThread.start();
 		fighter.decreaseDuration(ta);
 		fighted.decreaseDuration(ta);
+		
 	}
 
 	public void enemyTurn(Monster turn) {
-		if (fighted.currHP <= 600 && apple ==1) {
+		if (fighted.currHP <= 300 && apple ==1) {
 			ArrayList<String> chatz = new ArrayList<String>();
 			chatz.add(new String(" S T O P  R E S I S T I N G"));
 			chatz.add(new String(" I  K N O W  Y O U  D O N ' T  W A N T  T O  L E A V E"));
@@ -499,14 +510,17 @@ public class FinalBossPanel extends JPanel {
 			fight.setEnabled(false);
 			item.setEnabled(false);
 			chara.setEnabled(false);
-			fighter.skills.add(new BuffSkill("Wake up", 0,0, new Buff("Wake up", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Wake up to the cruel world.")));
-			fighter.skills.add(new BuffSkill("Wake up", 0,0, new Buff("Stay", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Stay here in this kind world.")));
+			fighter.skills.add(new BuffSkill("Wake Up", 0,0, new Buff("Wake Up", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Wake up to the cruel world.")));
+			fighter.skills.add(new BuffSkill("Stay", 0,0, new Buff("Stay", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Stay here in this kind world.")));
 		}
 		else {
 			monsterAttack(fighted, fighter);
 			fighter.decreaseDuration(ta);
 			fighted.decreaseDuration(ta);
 		}
+		addCharaLabel(charaPanel);
+		addSkillButtons(skillButtonPanel);
+		
 	}
 	
 	//----------------------POTION AND SKILLS PANEL METHODS----------------------//
@@ -515,13 +529,13 @@ public class FinalBossPanel extends JPanel {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        ButtonPanel buttonPanel = new ButtonPanel(new GridLayout(3, 3, 10, 10), 0);
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        buttonPanel.setBackground(new Color(0, 0, 102));
+        potionButtonPanel = new ButtonPanel(new GridLayout(3, 3, 10, 10), 0);
+        potionButtonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        potionButtonPanel.setBackground(new Color(0, 0, 102));
         
-        addPotionButtons(buttonPanel);
+        addPotionButtons(potionButtonPanel);
 
-        panel.add(buttonPanel, BorderLayout.CENTER);
+        panel.add(potionButtonPanel, BorderLayout.CENTER);
         panel.setBackground(Color.LIGHT_GRAY);
 
         return panel;
@@ -623,6 +637,10 @@ public class FinalBossPanel extends JPanel {
                                     "Confirmation", JOptionPane.YES_NO_OPTION);
 
                     if (choice == JOptionPane.YES_OPTION) {
+                    	if(skill.name.equals("Wake Up")) {
+                    		Main.frame.setContentPane(new VideoCredit());
+                    		Main.frame.pack();
+                    	}
                         System.out.println("Exit Button Clicked.");
                         if(skill instanceof BuffSkill) {
                     		((BuffSkill) skill).unleash(fighter);
@@ -871,12 +889,13 @@ public class FinalBossPanel extends JPanel {
 					e.printStackTrace();
 				}
 				ta.setText("");
-				fight.setEnabled(true);
-				item.setEnabled(true);
+				if(apple!=-4) {
+					fight.setEnabled(true);
+					item.setEnabled(true);
+					chara.setEnabled(true);
+				}
 				skill.setEnabled(true);
-				chara.setEnabled(true);
 				sumn = 1;
-				monsterAttack(fighted, fighter);
 			}
     	};
     	chatsThread.start();
