@@ -513,6 +513,9 @@ public class FinalBossPanel extends JPanel {
 			fighter.skills.add(new BuffSkill("Wake Up", 0,0, new Buff("Wake Up", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Wake up to the cruel world.")));
 			fighter.skills.add(new BuffSkill("Stay", 0,0, new Buff("Stay", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Stay here in this kind world.")));
 		}
+		else if (apple == -4) {
+			
+		}
 		else {
 			monsterAttack(fighted, fighter);
 			fighter.decreaseDuration(ta);
@@ -520,7 +523,10 @@ public class FinalBossPanel extends JPanel {
 		}
 		addCharaLabel(charaPanel);
 		addSkillButtons(skillButtonPanel);
-		
+		te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
+				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
+        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
 	}
 	
 	//----------------------POTION AND SKILLS PANEL METHODS----------------------//
@@ -641,7 +647,6 @@ public class FinalBossPanel extends JPanel {
                     		Main.frame.setContentPane(new VideoCredit());
                     		Main.frame.pack();
                     	}
-                        System.out.println("Exit Button Clicked.");
                         if(skill instanceof BuffSkill) {
                     		((BuffSkill) skill).unleash(fighter);
                     		text = "· You used the buff skill "+skill.name+", "+desc+"\n";

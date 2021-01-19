@@ -160,14 +160,14 @@ public class Map extends JPanel{
 	  }
 	  
 
-     //Currently Hp
+     //Current Hp
      ImageIcon Img1 = new ImageIcon("images/hp.png");   
      JButton cuhp = new JButton("    HP is currently " + CessPool.selected.currHP, Img1);
      cuhp.setBounds(0, 0, 250, 50);
      cuhp.setBackground(Color.white);
      this.add(cuhp);
      
-     //Currently Gold
+     //Current Gold
      ImageIcon Img = new ImageIcon("images/coin.png");     
      JButton cugo = new JButton("       Gold is currently " + CessPool.selected.gold, Img);
      cugo.setBounds(0, 50, 250, 50);
@@ -175,7 +175,7 @@ public class Map extends JPanel{
      cugo.setForeground(Color.yellow);
      this.add(cugo);
      
-     //Currently Mana
+     //Current Mana
      ImageIcon Img2 = new ImageIcon("images/mana.png"); 
      JButton cumana = new JButton("         Mana is currently " + CessPool.selected.currMana, Img2);
      cumana.setBounds(0, 100, 250, 50);

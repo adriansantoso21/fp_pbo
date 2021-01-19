@@ -16,7 +16,6 @@ public class VideoCharacterSelectPanel extends JPanel{
 	static musicPlay music4 = new musicPlay();
 	
 	public VideoCharacterSelectPanel(JFrame frame){
-		music4.playMusic("song/beginning.wav");
 		beg = new ArrayList<Image>();
 		this.frame = frame;
 		for(int i = 0; i<439; i++) {
@@ -35,6 +34,7 @@ public class VideoCharacterSelectPanel extends JPanel{
 	public void startVideoThread() {
 		Thread vidThread = new Thread() {
 			public void run() {
+				music4.playMusic("song/beginning.wav");
 				for(i =0; i<beg.size(); i++) {
 					current = beg.get(i);
 					repaint();
