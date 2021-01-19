@@ -25,10 +25,10 @@ public class Map extends JPanel{
  
  public Map (JFrame frame) {
 	 music2.playMusic("song/map.wav");
+	 music2.musicLoop();
 	  this.areaWidth = 1280;
 	  this.areaHeight = 750;
 	  this.setPreferredSize(new Dimension(areaWidth, areaHeight));
-	  
 	  this.setFocusable(true);
 
 	  this.imgg = new ImageIcon("images/map.jpg").getImage();
@@ -61,6 +61,39 @@ public class Map extends JPanel{
 	  
 	  for(Map_Button a : buttons) {
 		  this.add(a);
+	  }
+	  
+	  last = CessPool.location.get(CessPool.location.size()-1);
+	  
+	  //Enable Map Battle
+	  if(Map.last == -1 || Map.last == 0 ||Map.last == 1 || Map.last == 4 || Map.last == 5 || Map.last == 7 || Map.last == 8 || 
+			  Map.last == 9 || Map.last == 10 || Map.last == 12 || Map.last == 13 || Map.last == 14 || Map.last == 16 ||
+					  Map.last == 18 || Map.last == 20 || Map.last == 21 || Map.last == 22 ) {
+		  buttons.get(Map.last + 1).setEnabled(true);
+	  }
+	  else if (Map.last == 2 || Map.last == 3){
+		  buttons.get(3).setEnabled(true);
+		  buttons.get(4).setEnabled(true);
+		  buttons.get(7).setEnabled(true);
+	  }
+	  else if(Map.last == 6 || Map.last == 11) {
+		  buttons.get(12).setEnabled(true);
+	  }
+	  else if(Map.last == 15) {
+		  buttons.get(16).setEnabled(true);
+		  buttons.get(18).setEnabled(true);
+	  }
+	  else if(Map.last == 17 || Map.last == 19) {
+		  buttons.get(20).setEnabled(true);
+	  }
+	  
+	  for(Integer a : CessPool.location) {
+		  if(a !=-1) {
+			  buttons.get(a).setOpaque(true);
+			  buttons.get(a).setFont(new Font("Arial", Font.BOLD, 11));
+			  buttons.get(a).setText("x");
+			  buttons.get(a).setForeground(Color.white);
+		  }
 	  }
 	  
 	  for(Map_Button a : buttons) {
@@ -128,36 +161,7 @@ public class Map extends JPanel{
 		  }
 	  }
     
-	  //Enable Map Battle
-	  if(this.last == -1 || this.last == 0 ||this.last == 1 || this.last == 4 || this.last == 5 || this.last == 7 || this.last == 8 || 
-			  this.last == 9 || this.last == 10 || this.last == 12 || this.last == 13 || this.last == 14 || this.last == 16 ||
-					  this.last == 18 || this.last == 20 || this.last == 21 || this.last == 22 ) {
-		  buttons.get(this.last + 1).setEnabled(true);
-	  }
-	  else if (this.last == 2 || this.last == 3){
-		  buttons.get(3).setEnabled(true);
-		  buttons.get(4).setEnabled(true);
-		  buttons.get(7).setEnabled(true);
-	  }
-	  else if(this.last == 6 || this.last == 11) {
-		  buttons.get(12).setEnabled(true);
-	  }
-	  else if(this.last == 15) {
-		  buttons.get(16).setEnabled(true);
-		  buttons.get(18).setEnabled(true);
-	  }
-	  else if(this.last == 17 || this.last == 19) {
-		  buttons.get(20).setEnabled(true);
-	  }
-	  
-	  for(Integer a : CessPool.location) {
-		  if(a !=-1) {
-			  buttons.get(a).setOpaque(true);
-			  buttons.get(a).setFont(new Font("Arial", Font.BOLD, 11));
-			  buttons.get(a).setText("x");
-			  buttons.get(a).setForeground(Color.white);
-		  }
-	  }
+
 	  
 
      //Currently Hp
