@@ -95,7 +95,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_008.png").getImage());
 	                CessPool.selected.skills.add(CessPool.skillz.get(2));
 	                StartPanel.music.stopMusic();
-	                Main.frame.setContentPane(new Map(frame));
+	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();
 	            }
 	         }
@@ -172,7 +172,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_10.png").getImage());
 	                CessPool.selected.skills.add(CessPool.skillz.get(2));
 	                StartPanel.music.stopMusic();
-	                Main.frame.setContentPane(new Map(frame));
+	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();
 	            }
 	         }
@@ -237,7 +237,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion6.png").getImage());
 	                CessPool.selected.skills.add(CessPool.skillz.get(2));
 	                StartPanel.music.stopMusic();
-	                Main.frame.setContentPane(new Map(frame));
+	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();
 	            }
 	         }
