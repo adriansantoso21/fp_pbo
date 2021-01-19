@@ -314,6 +314,55 @@ public class BattlePanel extends JPanel {
 		youAttackThread.start();
 	}
 	
+	public void monsterSkill() {
+		String desc;
+    	if(skill instanceof AttackSkill) {
+			AttackSkill c = (AttackSkill) skill;
+			desc = c.desc;
+			
+		}
+		else if (skill instanceof BuffSkill){
+			BuffSkill d = (BuffSkill) skill;
+			desc = d.buff.desc;
+		}
+		else {
+			DebuffSkill ee = (DebuffSkill) skill;
+			desc = ee.debuff.desc;
+		}
+    	int choice = JOptionPane.YES_OPTION;
+        choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to use this skill : " + desc,
+                        "Confirmation", JOptionPane.YES_NO_OPTION);
+
+        if (choice == JOptionPane.YES_OPTION) {
+            if(skill instanceof BuffSkill) {
+        		((BuffSkill) skill).unleash(fighter);
+        		text = "· You used the buff skill "+skill.name+", "+desc+"\n";
+        	}
+        	else if(skill instanceof DebuffSkill) {
+        		((DebuffSkill) skill).unleash(fighted, fighter);
+        		text = "· You used the debuff skill "+skill.name+", "+desc+"\n";
+        	}
+        	else if(skill instanceof AttackSkill) {
+        		float damage = ((AttackSkill) skill).unleash(fighter, fighted);
+        		text = "· You used the attack skill "+skill.name+" dealing " + damage +" damage\n";
+        	}
+            cardlayt.show(potionPanel, "text");
+            if (num>5) {
+    			ta.setText("");
+    			num=0;
+    		}
+            
+    		StyledDocument doc = ta.getStyledDocument();
+    		
+    		try {
+    			doc.insertString(doc.getLength(), text, null);
+    		} catch (BadLocationException a) {
+    			// TODO Auto-generated catch block
+    			a.printStackTrace();
+    		}
+    		num++;
+	}
+	
 	public void someoneDead(Creature living, Creature dead) {
 		if (dead instanceof Character) {
 			JFrame frame = new JFrame("Sorry");

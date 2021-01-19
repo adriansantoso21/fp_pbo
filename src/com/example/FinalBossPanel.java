@@ -45,7 +45,7 @@ public class FinalBossPanel extends JPanel {
 	
 	public FinalBossPanel(JFrame frame) {
 
-		fighted = new Monster("I Don't Want to Go Back", 1200, 100, 50, 50, 50, 50, 50, 50);
+		fighted = new Monster("I Don't Want to Go Back", 1200, 100, 50, 50, 50, 50, 50, 50, 33);
 		
 		num=0;
         

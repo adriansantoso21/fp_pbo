@@ -17,19 +17,19 @@ public class CessPool {
 	public CessPool() {
 		location.add(-1);
 		
-		monsterz.add(new Monster("Abyss-step", 200, 70, 50, 10, 30, 20, 20, 20)); //wizard type
-		monsterz.add(new Monster("Ancurantus", 250, 20, 10, 40, 30, 20, 40, 30)); //warrior type
-		monsterz.add(new Monster("Blightsnare", 150, 50, 30, 30, 50, 50, 10, 30)); // rogue type
-		monsterz.add(new Monster("Bonelich", 200, 60, 45, 10, 35, 35, 20, 30)); // healing type
-		monsterz.add(new Monster("Duskfiend", 100, 10, 70, 10, 10, 5, 5, 30)); //High attack
-		monsterz.add(new Monster("Hell Vengeance", 400, 10, 10, 10, 10, 70, 70, 30)); //high defence speed
-		monsterz.add(new Monster("Nethermask", 200, 150, 20, 5, 20, 20, 20, 30)); // regenerator
-		monsterz.add(new Monster("Phasebrute", 200, 40, 20, 20, 20, 20, 20, 20)); //invincible skill
-		monsterz.add(new Monster("Plaguechild", 280, 90, 30, 10, 30, 30, 20, 30)); //debuff wizard
-		monsterz.add(new Monster("ShapePod", 200, 50, 30, 30, 30, 30, 30, 30)); //warrior wizard
-		monsterz.add(new Monster("Venomtooth", 200, 90, 30, 10, 20, 20, 20, 30)); //buff wizard
-		monsterz.add(new Monster("Warpwings", 300, 10, 10, 60, 20, 20, 40, 30)); //pure warrior
-		monsterz.add(new Monster("Astralvind", 200, 60, 10, 30, 40, 40, 20, 30)); //rogue
+		monsterz.add(new Monster("Abyss-step", 200, 90, 50, 10, 30, 20, 20, 20, 70)); //wizard type
+		monsterz.add(new Monster("Ancurantus", 250, 20, 10, 40, 30, 20, 40, 30, 100)); //warrior type
+		monsterz.add(new Monster("Blightsnare", 150, 50, 30, 30, 50, 50, 10, 30, 50)); // rogue type
+		monsterz.add(new Monster("Bonelich", 200, 60, 45, 10, 35, 35, 20, 30, 40)); // healing type
+		monsterz.add(new Monster("Duskfiend", 100, 10, 70, 10, 10, 5, 5, 30, 33)); //High attack
+		monsterz.add(new Monster("Hell Vengeance", 400, 10, 10, 10, 10, 70, 70, 30, 0)); //high defence speed
+		monsterz.add(new Monster("Nethermask", 200, 150, 20, 5, 20, 20, 20, 30, 50)); // regenerator
+		monsterz.add(new Monster("Phasebrute", 200, 40, 20, 20, 20, 20, 20, 20, 50)); //invincible skill
+		monsterz.add(new Monster("Plaguechild", 280, 90, 30, 10, 30, 30, 20, 30, 50)); //debuff wizard
+		monsterz.add(new Monster("ShapePod", 200, 50, 30, 30, 30, 30, 30, 30, 40)); //warrior wizard
+		monsterz.add(new Monster("Venomtooth", 200, 90, 30, 10, 20, 20, 20, 30, 50)); //buff wizard
+		monsterz.add(new Monster("Warpwings", 300, 10, 10, 60, 20, 20, 40, 30, 0)); //pure warrior
+		monsterz.add(new Monster("Astralvind", 200, 60, 10, 30, 40, 40, 20, 30, 40)); //rogue
 		monsterz.get(0).skills.add(new DebuffSkill("Earthquake", 15, 200, new Buff("Earthquake", "Modifier", 0, 0, 0, 0, 0, -20, 0, 3, "Reduces enemy speed by 20%.")));
 		monsterz.get(0).skills.add(new BuffSkill("Blessed Mind", 20, 200, new Buff("Blessed Mind", "Modifier", 0, 0, 20, 0, 0, 0, 0, 3, "Increases intelligence by 20%.")));
 		monsterz.get(0).skills.add(new AttackSkill("Shattering Star", 20, "Modifier", 200, 50, 1, "Attacks with 150% intelligence."));
@@ -53,9 +53,9 @@ public class CessPool {
 		monsterz.get(10).skills.add(new BuffSkill("Oily Carapace", 15, 200, new Buff("Oily Carapace", "Modifier", 0, 0, 0, 0, 0, 25, 25, 3, "Increases defense and speed by 25%.")));
 		monsterz.get(10).skills.add(new BuffSkill("Flaming Crescendo", 15, 200, new Buff("Flaming Crescendo", "Modifier", 0, 0, 25, 0, 0, 25, 0, 3, "Increases intelligence and defense by 25%.")));
 		monsterz.get(10).skills.add(new BuffSkill("Door to Eternity", 20, 200, new Buff("Door to Eternity", "Modifier", 0, 0, 33, 0, 0, 0, 0, 3, "Increases intelligence by 33%.")));
-		monsterz.get(2).skills.add(new DebuffSkill("Dominate Mind", 10, 200, new Buff("Dominate Mind", "Modifier", 0, 0, 0, 0, 25, 0, 0, 3, "Decreases accuracy by 25%.")));
-		monsterz.get(2).skills.add(new BuffSkill("Evasive Aura", 15, 200, new Buff("Favorable Wind", "Modifier", 0, 0, 0, 0, 25, 25, 0, 3, "Increases speed and accuracy by 25%.")));
-		monsterz.get(2).skills.add(new AttackSkill("Fan of Knives", 20, "Modifier", 220, 50, 0, "Attacks with 220% strength."));
+		monsterz.get(12).skills.add(new DebuffSkill("Dominate Mind", 10, 200, new Buff("Dominate Mind", "Modifier", 0, 0, 0, 0, 25, 0, 0, 3, "Decreases accuracy by 25%.")));
+		monsterz.get(12).skills.add(new BuffSkill("Evasive Aura", 15, 200, new Buff("Favorable Wind", "Modifier", 0, 0, 0, 0, 25, 25, 0, 3, "Increases speed and accuracy by 25%.")));
+		monsterz.get(12).skills.add(new AttackSkill("Fan of Knives", 20, "Modifier", 220, 50, 0, "Attacks with 220% strength."));
 		
 		armorz.add(new Armor("Sunlight Armor", 30, 60, 45, 15, 20, 750));
 		armorz.add(new Armor("Ancient Armor", 10, 40, 25, 25, 30, 800));
