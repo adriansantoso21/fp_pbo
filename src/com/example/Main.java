@@ -20,11 +20,11 @@ public class Main {
 				 new CessPool();
 				 frame.setPreferredSize(new Dimension(1280, 750));
 				 
-			     Main.frame.setContentPane(new StartPanel("images/StartPanel.jpg", frame));
+			     frame.setContentPane(new StartPanel("images/StartPanel.jpg", frame));
 //			     Main.frame.setContentPane(new VideoMiddle(frame));
 //				 Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 			     
-			     
+			    
 			     frame.pack();
 			     frame.setLocationRelativeTo(null);
 			     frame.setResizable(false);

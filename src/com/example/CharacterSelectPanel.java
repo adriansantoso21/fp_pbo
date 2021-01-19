@@ -4,10 +4,15 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,21 +20,35 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 public class CharacterSelectPanel extends JPanel {
 	
 	public Image imgg;
+	public Font CharSelect;
 	
 	public CharacterSelectPanel(String imgg, JFrame frame) {
+		try {
+			CharSelect = Font.createFont(Font.TRUETYPE_FONT, new File("font/AfternoonCoffee-GOqyO.ttf")).deriveFont(22f);
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/AfternoonCoffee-GOqyO.ttf")));
+			
+	   }
+	   catch(IOException | FontFormatException e) {
+	    
+	   }
 		
-		frame.setPreferredSize(new Dimension(1280, 750));
-		JLabel label1 = new JLabel("Choose Your Own Character !!");
-		label1.setFont(new Font("Verdana", Font.BOLD, 30));
-		label1.setBounds(375, 0, 600, 100);
-		label1.setForeground (Color.WHITE);
-		this.add(label1);
+		JButton Button4 = new JButton();
+		Image img4 = new ImageIcon("button/choose.png").getImage();
+		Button4.setIcon(new ImageIcon(img4));
+		Button4.setFocusable(false);
+		Button4.setFocusPainted(false);
+		Button4.setBounds(400, 20, 500, 86);
+		this.add(Button4);
+		
 		this.setLayout(null);
-		this.imgg = new ImageIcon("images/StartPanel.jpg").getImage();
+		this.imgg = new ImageIcon("images/StartPanel3.jpg").getImage();
 		
 		//Wizard Character
 		ImageIcon Img = new ImageIcon("creature/wizard.png");
@@ -39,24 +58,30 @@ public class CharacterSelectPanel extends JPanel {
 		lblNewLabel.setBounds(150, 117, 230, 252);
 		this.add(lblNewLabel);
 		
+	    SimpleAttributeSet wiz = new SimpleAttributeSet();
+	    StyleConstants.setForeground(wiz, Color.white);
+	    StyleConstants.setBold(wiz, true);
+		
 		JTextPane ta = new JTextPane();
         ta.setEditable(false);
-        ta.setContentType("text/html");
-        ta.setText("<html><h3 style=\"color:white;\">· Name : Wizard <br>"
-        		+"· Very Good in magic <br>"
-        		+ "· High Mana <br>"
-        		+ "· Low Defence</h3> </html>");
+        ta.setFont(CharSelect);
+        ta.setCharacterAttributes(wiz, true);
+        ta.setText("· Name : Wizard \n"
+		  +"· Very Good in magic \n"
+		  + "· High Mana \n"
+		  + "· Low Defence\n");
         ta.setBackground(Color.black);
         ta.setBounds(150, 400, 200, 117);
+        
         this.add(ta);
 		
+        Image img = new ImageIcon("button/confirm.jpg").getImage();
+		
 		JButton Button1 = new JButton();
-		Button1.setText("CHOOSE");
+		Button1.setIcon(new ImageIcon(img));
 		Button1.setFocusable(false);
 		Button1.setFocusPainted(false);
-		Button1.setBackground(new Color(255, 238, 88));
-		Button1.setForeground(Color.WHITE);
-		Button1.setBounds(200, 550, 100, 50);
+		Button1.setBounds(178, 550, 145, 42);
 		this.add(Button1);
 		
 		Button1.addActionListener(new ActionListener() {
@@ -93,7 +118,11 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_006.png").getImage());
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_007.png").getImage());
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_008.png").getImage());
-	                CessPool.selected.skills.add(CessPool.skillz.get(2));
+	                CessPool.selected.skills.add(CessPool.skillz.get(7));
+	                CessPool.selected.inventory.add(CessPool.potionz.get(4));
+	                CessPool.selected.inventory.add(CessPool.potionz.get(6));
+	                CessPool.selected.potionA = 2;
+	               
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();
@@ -112,22 +141,21 @@ public class CharacterSelectPanel extends JPanel {
 		
 		JTextPane tb = new JTextPane();
         tb.setEditable(false);
-        tb.setContentType("text/html");
-        tb.setText("<html><h3 style=\"color:white;\">· Name : Warrior <br>"
-        		+"· Very Good in strength <br>"
-        		+ "· High Defence <br>"
-        		+ "· Low Mana</h3> </html>");
+        tb.setFont(CharSelect);
+        tb.setCharacterAttributes(wiz, true);
+        tb.setText("· Name : Warrior \n"
+        		+"· Very Good in strength \n"
+        		+ "· High Defence \n"
+        		+ "· Low Mana \n");
         tb.setBackground(Color.black);
         tb.setBounds(540, 400, 200, 117);
         this.add(tb);
 		
 		JButton Button2 = new JButton();
-		Button2.setText("CHOOSE");
+		Button2.setIcon(new ImageIcon(img));
 		Button2.setFocusable(false);
 		Button2.setFocusPainted(false);
-		Button2.setBackground(new Color(255, 238, 88));
-		Button2.setForeground(Color.WHITE);
-		Button2.setBounds(590, 550, 100, 50);
+		Button2.setBounds(568, 550, 145, 42);
 		this.add(Button2);
 		
 		Button2.addActionListener(new ActionListener() {
@@ -170,7 +198,10 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_8.png").getImage());
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_9.png").getImage());
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_10.png").getImage());
-	                CessPool.selected.skills.add(CessPool.skillz.get(2));
+	                CessPool.selected.skills.add(CessPool.skillz.get(1));
+	                CessPool.selected.inventory.add(CessPool.potionz.get(0));
+	                CessPool.selected.inventory.add(CessPool.potionz.get(1));
+	                CessPool.selected.potionA = 2;
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new Map(frame));
 	                frame.setContentPane(new FinalBossPanel(frame));
@@ -190,22 +221,21 @@ public class CharacterSelectPanel extends JPanel {
 		
 		JTextPane tc = new JTextPane();
         tc.setEditable(false);
-        tc.setContentType("text/html");
-        tc.setText("<html><h3 style=\"color:white;\">· Name : Rogue <br>"
-        		+"· Very Good in speed <br>"
-        		+ "· High Accuracy <br>"
-        		+ "· Low Defence</h3> </html>");
+        tc.setFont(CharSelect);
+        tc.setCharacterAttributes(wiz, true);
+        tc.setText("· Name : Rogue \n"
+        		+"· Very Good in speed \n"
+        		+ "· High Accuracy \n"
+        		+ "· Low Defence \n");
         tc.setBackground(Color.black);
         tc.setBounds(930, 400, 200, 117);
         this.add(tc);
 		
 		JButton Button3 = new JButton();
-		Button3.setText("CHOOSE");
+		Button3.setIcon(new ImageIcon(img));
 		Button3.setFocusable(false);
 		Button3.setFocusPainted(false);
-		Button3.setBackground(new Color(255, 238, 88));
-		Button3.setForeground(Color.WHITE);
-		Button3.setBounds(980, 550, 100, 50);
+		Button3.setBounds(957, 550, 145, 42);
 		this.add(Button3);
 		
 		Button3.addActionListener(new ActionListener() {
@@ -236,7 +266,10 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion4.png").getImage());
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion5.png").getImage());
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion6.png").getImage());
-	                CessPool.selected.skills.add(CessPool.skillz.get(2));
+	                CessPool.selected.skills.add(CessPool.skillz.get(7));
+	                CessPool.selected.inventory.add(CessPool.potionz.get(3));
+	                CessPool.selected.inventory.add(CessPool.potionz.get(7));
+	                CessPool.selected.potionA = 2;
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();
@@ -248,6 +281,6 @@ public class CharacterSelectPanel extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(this.imgg, -200, 0, null);
+		g.drawImage(this.imgg, 0, 0, null);
 	}
 }

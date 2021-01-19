@@ -26,29 +26,23 @@ public class StartPanel extends JPanel{
 		music.playMusic("song/title.wav");
 		music.musicLoop();
 		frame.setPreferredSize(new Dimension(1280, 750));
-		this.imgg = new ImageIcon("images/StartPanel.jpg").getImage();
-		ImageIcon Img = new ImageIcon("images/DiamondCastle.png");
+		this.imgg = new ImageIcon("images/StartPanel3.jpg").getImage();
+		
+		ImageIcon Img = new ImageIcon("images/DiamondCastle2.png");
 		this.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(Img);
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel.setBounds(440, 0, 350, 350);
+		lblNewLabel.setBounds(440, -30, 350, 350);
 		this.add(lblNewLabel);
 		
-		JLabel lblNewLabel1 = new JLabel();
-		lblNewLabel1.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel1.setBounds(280, 220, 570, 150);
-		lblNewLabel1.setForeground(Color.ORANGE);
-		this.add(lblNewLabel1);
-		
 		JButton Button1 = new JButton();
-		Button1.setText("PLAY");
+		Image img = new ImageIcon("button/start_button.jpg").getImage();
+		Button1.setIcon(new ImageIcon(img));
 		Button1.setFocusable(false);
 		Button1.setFocusPainted(false);
-		Button1.setBackground(new Color(255, 238, 88));
-		Button1.setForeground(Color.BLACK);
-		Button1.setBounds(535, 400, 150, 51);
+		Button1.setBounds(500, 450, 231, 57);
 		this.add(Button1);
 		
 		Button1.addActionListener(new ActionListener() {
@@ -59,13 +53,20 @@ public class StartPanel extends JPanel{
 	         }
 		});
 		
+		JButton Button2 = new JButton();
+		Image img2 = new ImageIcon("button/team.png").getImage();
+		Button2.setIcon(new ImageIcon(img2));
+		Button2.setFocusable(false);
+		Button2.setFocusPainted(false);
+		Button2.setBounds(1081, 663, 180, 48);
+		this.add(Button2);
+		
 		JButton Button3 = new JButton();
-		Button3.setText("EXIT");
+		Image img3 = new ImageIcon("button/exit_button.jpg").getImage();
+		Button3.setIcon(new ImageIcon(img3));
 		Button3.setFocusable(false);
 		Button3.setFocusPainted(false);
-		Button3.setBackground(new Color(255, 238, 88));
-		Button3.setForeground(Color.BLACK);
-		Button3.setBounds(535, 470, 150, 51);
+		Button3.setBounds(500, 520, 231, 57);
 		this.add(Button3);
 		
 		Button3.addActionListener(new ActionListener() {
@@ -82,11 +83,27 @@ public class StartPanel extends JPanel{
 	            }
 	         }
 		});
+		
+		JButton Button4 = new JButton();
+		Image img4 = new ImageIcon("button/diamondCastle.png").getImage();
+		Button4.setIcon(new ImageIcon(img4));
+		Button4.setFocusable(false);
+		Button4.setFocusPainted(false);
+		Button4.setBounds(428, 295, 375, 98);
+		this.add(Button4);
+		
+		JButton Button5 = new JButton();
+		Image img5 = new ImageIcon("button/version.png").getImage();
+		Button5.setIcon(new ImageIcon(img5));
+		Button5.setFocusable(false);
+		Button5.setFocusPainted(false);
+		Button5.setBounds(0, 0, 120, 42);
+		this.add(Button5);
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(this.imgg, -200, 0, null);
+		g.drawImage(this.imgg, 0, 0, null);
 	}
 
 }
