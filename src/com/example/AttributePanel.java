@@ -21,7 +21,7 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 public class AttributePanel extends JPanel {
-	private Image imgg = new ImageIcon("images/attpanelimage.jpg").getImage();
+	private Image imgg = new ImageIcon("resource/images/attpanelimage.jpg").getImage();
 	
 	public AttributePanel(int test, JFrame frame) {
 		this.setBackground(new Color(0, 26, 0));

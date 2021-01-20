@@ -12,7 +12,7 @@ public class Monster extends Creature {
 	public Monster(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy,
 			float speed, float defence, float weight, int skillChance) {
 		super(name, healthPoint, mana, intelligence, strength, accuracy, speed, defence, weight);
-		this.image = new ImageIcon("monster/"+name+".png").getImage();
+		this.image = new ImageIcon("resource/creatures/monster/"+name+".png").getImage();
 		this.skillChance = skillChance;
 	}
 	

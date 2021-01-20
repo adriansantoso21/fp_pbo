@@ -30,9 +30,9 @@ public class CharacterSelectPanel extends JPanel {
 	
 	public CharacterSelectPanel(String imgg, JFrame frame) {
 		try {
-			CharSelect = Font.createFont(Font.TRUETYPE_FONT, new File("font/AfternoonCoffee-GOqyO.ttf")).deriveFont(22f);
+			CharSelect = Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/AfternoonCoffee-GOqyO.ttf")).deriveFont(22f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/AfternoonCoffee-GOqyO.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/AfternoonCoffee-GOqyO.ttf")));
 			
 	   }
 	   catch(IOException | FontFormatException e) {
@@ -40,7 +40,7 @@ public class CharacterSelectPanel extends JPanel {
 	   }
 		
 		JButton Button4 = new JButton();
-		Image img4 = new ImageIcon("button/choose.png").getImage();
+		Image img4 = new ImageIcon("resource/button/choose.png").getImage();
 		Button4.setIcon(new ImageIcon(img4));
 		Button4.setFocusable(false);
 		Button4.setFocusPainted(false);
@@ -48,10 +48,10 @@ public class CharacterSelectPanel extends JPanel {
 		this.add(Button4);
 		
 		this.setLayout(null);
-		this.imgg = new ImageIcon("images/StartPanel3.jpg").getImage();
+		this.imgg = new ImageIcon("resource/images/StartPanel3.jpg").getImage();
 		
 		//Wizard Character
-		ImageIcon Img = new ImageIcon("creature/wizard.png");
+		ImageIcon Img = new ImageIcon("resource/creatures/creature/wizard.png");
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(Img);
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -75,7 +75,7 @@ public class CharacterSelectPanel extends JPanel {
         
         this.add(ta);
 		
-        Image img = new ImageIcon("button/confirm.jpg").getImage();
+        Image img = new ImageIcon("resource/button/confirm.jpg").getImage();
 		
 		JButton Button1 = new JButton();
 		Button1.setIcon(new ImageIcon(img));
@@ -132,7 +132,7 @@ public class CharacterSelectPanel extends JPanel {
 		});
 		
 		//Warrior Character
-		ImageIcon Img2 = new ImageIcon("creature/warrior.png");
+		ImageIcon Img2 = new ImageIcon("resource/creatures/creature/warrior.png");
 		this.setLayout(null);
 		JLabel lblNewLabel2 = new JLabel();
 		lblNewLabel2.setIcon(Img2);
@@ -212,7 +212,7 @@ public class CharacterSelectPanel extends JPanel {
 		});
 		
 		//Rogue Character
-		ImageIcon Img3 = new ImageIcon("creature/rogue.png");
+		ImageIcon Img3 = new ImageIcon("resource/creatures/creature/rogue.png");
 		this.setLayout(null);
 		JLabel lblNewLabel3 = new JLabel();
 		lblNewLabel3.setIcon(Img3);

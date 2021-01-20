@@ -19,6 +19,6 @@ public class Armor extends Equippable {
 		this.accuracy = accuracy;
 		this.speed = speed;
 		this.price = price;
-		this.image = new ImageIcon("Armor/"+name+".jpg").getImage();
+		this.image = new ImageIcon("resource/shop/armor/"+name+".jpg").getImage();
 	}
 }

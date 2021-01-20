@@ -14,7 +14,7 @@ abstract public class Skill {
 		this.name = name;
 		this.manaCost = manaCost;
 		this.price = price;
-		this.image = new ImageIcon("Skill/"+name+".png").getImage();
+		this.image = new ImageIcon("resource/shop/Skill/"+name+".png").getImage();
 	}
 	
 }

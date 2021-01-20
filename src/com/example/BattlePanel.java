@@ -104,7 +104,7 @@ public class BattlePanel extends JPanel {
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(Img);
 		
-		ImageIcon Img1 = new ImageIcon("images/null.png");
+		ImageIcon Img1 = new ImageIcon("resource/images/null.png");
 		JLabel lblNewLabel1 = new JLabel();
 		lblNewLabel1.setIcon(Img1);
 		
@@ -122,19 +122,19 @@ public class BattlePanel extends JPanel {
 
         JPanel panel = new JPanel();
         
-		Image img = new ImageIcon("button/fight.jpg").getImage();
+		Image img = new ImageIcon("resource/button/fight.jpg").getImage();
 		fight = new JButton();
 		fight.setIcon(new ImageIcon(img));
 		
-		Image img2 = new ImageIcon("button/item.jpg").getImage();
+		Image img2 = new ImageIcon("resource/button/item.jpg").getImage();
 		item = new JButton("Item");
 		item.setIcon(new ImageIcon(img2));
 		
-		Image img3 = new ImageIcon("button/skill.jpg").getImage();
+		Image img3 = new ImageIcon("resource/button/skill.jpg").getImage();
 		skill = new JButton("Skill");
 		skill.setIcon(new ImageIcon(img3));
 		
-		Image img4 = new ImageIcon("button/chara.jpg").getImage();
+		Image img4 = new ImageIcon("resource/button/chara.jpg").getImage();
         chara = new JButton("Char");
         chara.setIcon(new ImageIcon(img4));
         

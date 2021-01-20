@@ -19,7 +19,7 @@ public class Weapon extends Equippable {
 		this.accuracy = accuracy;
 		this.speed = speed;
 		this.price = price;
-		this.image = new ImageIcon("weapon/"+name+".jpg").getImage();
+		this.image = new ImageIcon("resource/shop/weapon/"+name+".jpg").getImage();
 	}
 	
 }

@@ -30,37 +30,37 @@ public class credit extends JPanel {
 	public credit(){
 		
 		try {
-			Title = Font.createFont(Font.TRUETYPE_FONT, new File("font/Maghrib-MVZpx.ttf")).deriveFont(80f);
+			Title = Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/Maghrib-MVZpx.ttf")).deriveFont(80f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Maghrib-MVZpx.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/Maghrib-MVZpx.ttf")));
 			
-			sub = Font.createFont(Font.TRUETYPE_FONT, new File("font/AfternoonCoffee-GOqyO.ttf")).deriveFont(47f);
+			sub = Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/AfternoonCoffee-GOqyO.ttf")).deriveFont(47f);
 			GraphicsEnvironment ge0 = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge0.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/AfternoonCoffee-GOqyO.ttf")));
 			
-			credit = Font.createFont(Font.TRUETYPE_FONT, new File("font/Alohasummer-PKX7r.ttf")).deriveFont(40f);
+			credit = Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/Alohasummer-PKX7r.ttf")).deriveFont(40f);
 			GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge1.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Alohasummer-PKX7r.ttf")));
+			ge1.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/Alohasummer-PKX7r.ttf")));
 			
-			thank = Font.createFont(Font.TRUETYPE_FONT, new File("font/AllessaPersonalUse-4pRl.ttf")).deriveFont(45f);
+			thank = Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/AllessaPersonalUse-4pRl.ttf")).deriveFont(45f);
 			GraphicsEnvironment ge2 = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge2.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/AllessaPersonalUse-4pRl.ttf")));
+			ge2.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/AllessaPersonalUse-4pRl.ttf")));
 			
 	   }
 	   catch(IOException | FontFormatException e) {
 	    
 	   }
 		
-		music3.playMusic("song/credit.wav");
-		this.imgg = new ImageIcon("images/credit_bg.jpg").getImage();
-		this.img1 = new ImageIcon("images/omori1.png").getImage();
-		this.img2 = new ImageIcon("images/omori2.png").getImage();
-		this.img3 = new ImageIcon("images/omori3.png").getImage();
-		this.img4 = new ImageIcon("images/omori4.png").getImage();
-		this.img5 = new ImageIcon("images/omori5.png").getImage();
-		this.img6 = new ImageIcon("images/omori6.png").getImage();
-		this.img7 = new ImageIcon("images/omori7.png").getImage();
-		this.img7 = new ImageIcon("images/omori8.png").getImage();
+		music3.playMusic("resource/song/credit.wav");
+		this.imgg = new ImageIcon("resource/images/credit_bg.jpg").getImage();
+		this.img1 = new ImageIcon("resource/images/omori1.png").getImage();
+		this.img2 = new ImageIcon("resource/images/omori2.png").getImage();
+		this.img3 = new ImageIcon("resource/images/omori3.png").getImage();
+		this.img4 = new ImageIcon("resource/images/omori4.png").getImage();
+		this.img5 = new ImageIcon("resource/images/omori5.png").getImage();
+		this.img6 = new ImageIcon("resource/images/omori6.png").getImage();
+		this.img7 = new ImageIcon("resource/images/omori7.png").getImage();
+		this.img7 = new ImageIcon("resource/images/omori8.png").getImage();
 		position.add(750);//made by
 		position.add(850);
 		position.add(890);

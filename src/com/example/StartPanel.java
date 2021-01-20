@@ -23,12 +23,12 @@ public class StartPanel extends JPanel{
 	static musicPlay music = new musicPlay();
 
 	public StartPanel(String imgg, JFrame frame) {
-		music.playMusic("song/title.wav");
+		music.playMusic("resource/song/title.wav");
 		music.musicLoop();
 		frame.setPreferredSize(new Dimension(1280, 750));
-		this.imgg = new ImageIcon("images/StartPanel3.jpg").getImage();
+		this.imgg = new ImageIcon("resource/images/StartPanel3.jpg").getImage();
 		
-		ImageIcon Img = new ImageIcon("images/DiamondCastle2.png");
+		ImageIcon Img = new ImageIcon("resource/images/DiamondCastle2.png");
 		this.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel();
@@ -38,7 +38,7 @@ public class StartPanel extends JPanel{
 		this.add(lblNewLabel);
 		
 		JButton Button1 = new JButton();
-		Image img = new ImageIcon("button/start_button.jpg").getImage();
+		Image img = new ImageIcon("resource/button/start_button.jpg").getImage();
 		Button1.setIcon(new ImageIcon(img));
 		Button1.setFocusable(false);
 		Button1.setFocusPainted(false);
@@ -54,7 +54,7 @@ public class StartPanel extends JPanel{
 		});
 		
 		JButton Button2 = new JButton();
-		Image img2 = new ImageIcon("button/team.png").getImage();
+		Image img2 = new ImageIcon("resource/button/team.png").getImage();
 		Button2.setIcon(new ImageIcon(img2));
 		Button2.setFocusable(false);
 		Button2.setFocusPainted(false);
@@ -62,7 +62,7 @@ public class StartPanel extends JPanel{
 		this.add(Button2);
 		
 		JButton Button3 = new JButton();
-		Image img3 = new ImageIcon("button/exit_button.jpg").getImage();
+		Image img3 = new ImageIcon("resource/button/exit_button.jpg").getImage();
 		Button3.setIcon(new ImageIcon(img3));
 		Button3.setFocusable(false);
 		Button3.setFocusPainted(false);
@@ -85,7 +85,7 @@ public class StartPanel extends JPanel{
 		});
 		
 		JButton Button4 = new JButton();
-		Image img4 = new ImageIcon("button/diamondCastle.png").getImage();
+		Image img4 = new ImageIcon("resource/button/diamondCastle.png").getImage();
 		Button4.setIcon(new ImageIcon(img4));
 		Button4.setFocusable(false);
 		Button4.setFocusPainted(false);
@@ -93,7 +93,7 @@ public class StartPanel extends JPanel{
 		this.add(Button4);
 		
 		JButton Button5 = new JButton();
-		Image img5 = new ImageIcon("button/version.png").getImage();
+		Image img5 = new ImageIcon("resource/button/version.png").getImage();
 		Button5.setIcon(new ImageIcon(img5));
 		Button5.setFocusable(false);
 		Button5.setFocusPainted(false);

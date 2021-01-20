@@ -24,14 +24,14 @@ public class Map extends JPanel{
  static musicPlay music2 = new musicPlay();
  
  public Map (JFrame frame) {
-	 music2.playMusic("song/map.wav");
+	 music2.playMusic("resource/song/map.wav");
 	 music2.musicLoop();
 	  this.areaWidth = 1280;
 	  this.areaHeight = 750;
 	  this.setPreferredSize(new Dimension(areaWidth, areaHeight));
 	  this.setFocusable(true);
 
-	  this.imgg = new ImageIcon("images/map.jpg").getImage();
+	  this.imgg = new ImageIcon("resource/images/map.jpg").getImage();
 	  this.setLayout(null);
 	  
 	  buttons.add(new Map_Button(1058, 690, 2, false));
@@ -105,7 +105,7 @@ public class Map extends JPanel{
 		    	        	music2.stopMusic();
 		    	        	int b = buttons.indexOf(a);
 		    	        	CessPool.location.add(b);
-		    	        	music2.playMusic("song/bag_shop_rest.wav");
+		    	        	music2.playMusic("resource/song/bag_shop_rest.wav");
 		    	        	Main.frame.setContentPane(new ShopPanel(frame, -1, 'y'));
 		    			    Main.frame.pack();
 		    	        }
@@ -126,20 +126,20 @@ public class Map extends JPanel{
 		    	        	int int_random = rand.nextInt(3);
 		    	        	
 		    	        	if(int_random == 0) {
-		    	        		music2.playMusic("song/battle1.wav");
+		    	        		music2.playMusic("resource/song/battle1.wav");
 		    	        	}
 		    	        	
 							if(int_random == 1) {
-								music2.playMusic("song/battle2.wav");
+								music2.playMusic("resource/song/battle2.wav");
 		    	        	}
 							
 							if(int_random == 2) {
-								music2.playMusic("song/battle3.wav");
+								music2.playMusic("resource/song/battle3.wav");
 		    	        	}
 		    	        	
 		    	        	if(Map.last == 22) {
 		    	        		music2.stopMusic();
-		    	        		music2.playMusic("song/map.wav");
+		    	        		music2.playMusic("resource/song/map.wav");
 		    	        		Main.frame.setContentPane(new FinalBossPanel(frame));
 			    			    Main.frame.pack();
 		    	        	}
@@ -161,7 +161,7 @@ public class Map extends JPanel{
 		    	        	music2.stopMusic();
 		    	        	int b = buttons.indexOf(a);
 		    	        	CessPool.location.add(b);
-		    	        	music2.playMusic("song/bag_shop_rest.wav");
+		    	        	music2.playMusic("resource/song/bag_shop_rest.wav");
 		    	        	last = CessPool.location.get(CessPool.location.size()-1);
 		    	        	Main.frame.setContentPane(new RestPanel(frame));
 		    			    Main.frame.pack();
@@ -175,14 +175,14 @@ public class Map extends JPanel{
 	  
 
      //Current Hp
-     ImageIcon Img1 = new ImageIcon("images/hp.png");   
+     ImageIcon Img1 = new ImageIcon("resource/images/hp.png");   
      JButton cuhp = new JButton("    HP is currently " + CessPool.selected.currHP, Img1);
      cuhp.setBounds(0, 0, 250, 50);
      cuhp.setBackground(Color.white);
      this.add(cuhp);
      
      //Current Gold
-     ImageIcon Img = new ImageIcon("images/coin.png");     
+     ImageIcon Img = new ImageIcon("resource/images/coin.png");     
      JButton cugo = new JButton("       Gold is currently " + CessPool.selected.gold, Img);
      cugo.setBounds(0, 50, 250, 50);
      cugo.setBackground(new Color(173, 78, 5));
@@ -190,7 +190,7 @@ public class Map extends JPanel{
      this.add(cugo);
      
      //Current Mana
-     ImageIcon Img2 = new ImageIcon("images/mana.png"); 
+     ImageIcon Img2 = new ImageIcon("resource/images/mana.png"); 
      JButton cumana = new JButton("         Mana is currently " + CessPool.selected.currMana, Img2);
      cumana.setBounds(0, 100, 250, 50);
      cumana.setBackground(new Color(0, 0, 102));
@@ -198,7 +198,7 @@ public class Map extends JPanel{
      this.add(cumana);
      
      //Bag
-     ImageIcon Img3 = new ImageIcon("images/bag.png"); 
+     ImageIcon Img3 = new ImageIcon("resource/images/bag.png"); 
      JButton Bag = new JButton("Your Bag", Img3);
      Bag.setForeground(Color.white);
      Bag.setBackground(new Color(51, 0, 16));
@@ -211,7 +211,7 @@ public class Map extends JPanel{
         @Override
         public void actionPerformed(ActionEvent event) {
         	music2.stopMusic();
-        	music2.playMusic("song/bag_shop_rest.wav");
+        	music2.playMusic("resource/song/bag_shop_rest.wav");
         	Main.frame.setContentPane(new BagPanel(frame, -1));
         	Main.frame.pack();
         }

@@ -16,10 +16,10 @@ public class VideoCredit extends JPanel{
 		beg = new ArrayList<Image>();
 		for(int i = 0; i<85; i++) {
 			if(i<10) {
-				beg.add(new ImageIcon("videoCredit/ending_00"+i+".jpg").getImage());
+				beg.add(new ImageIcon("resource/video/Credit/ending_00"+i+".jpg").getImage());
 			}
 			else if(i<100) {
-				beg.add(new ImageIcon("videoCredit/ending_0"+i+".jpg").getImage());
+				beg.add(new ImageIcon("resource/video/Credit/ending_0"+i+".jpg").getImage());
 			}
 		}
 		startVideoThread();

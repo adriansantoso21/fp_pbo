@@ -8,9 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class ButtonPanel extends JPanel {
-	Image imgg = new ImageIcon("images/skillpic.jpg").getImage();
-	Image imgg2 = new ImageIcon("images/bgchar.jpg").getImage();
-	Image imgg3 = new ImageIcon("images/bg_war.jpg").getImage();
+	Image imgg = new ImageIcon("resource/images/skillpic.jpg").getImage();
+	Image imgg2 = new ImageIcon("resource/images/bgchar.jpg").getImage();
+	Image imgg3 = new ImageIcon("resource/images/bg_war.jpg").getImage();
 	int test;
 	
 	public ButtonPanel(GridLayout gridLayout, int test) {

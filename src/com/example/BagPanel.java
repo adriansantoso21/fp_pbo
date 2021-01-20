@@ -31,7 +31,7 @@ public class BagPanel extends JPanel{
 		JPanel kiri_bawah_kiri = new JPanel(new BorderLayout());
 		JPanel buton = new JPanel(new BorderLayout());
 		
-		ImageIcon Img1 = new ImageIcon("images/bg_rando.jpg");
+		ImageIcon Img1 = new ImageIcon("resource/images/bg_rando.jpg");
 		JLabel lblNewLabel1 = new JLabel();
 		lblNewLabel1.setIcon(Img1);
 		
@@ -55,14 +55,14 @@ public class BagPanel extends JPanel{
 		player2.setBackground(new Color(0, 0, 77));
 		
 	     //Currently Hp
-	     ImageIcon Img4 = new ImageIcon("images/hp_bag.png");   
+	     ImageIcon Img4 = new ImageIcon("resource/images/hp_bag.png");   
 	     JButton cuhp = new JButton("    HP is currently " + CessPool.selected.currHP, Img4);
 	     cuhp.setBounds(0, 660, 150, 15);
 	     cuhp.setBackground(Color.white);
 	     buton.add(cuhp, BorderLayout.NORTH);
 	     
 	     //Currently Gold
-	     ImageIcon Img5 = new ImageIcon("images/coin_bag.png");     
+	     ImageIcon Img5 = new ImageIcon("resource/images/coin_bag.png");     
 	     JButton cugo = new JButton("       Gold is currently " + CessPool.selected.gold, Img5);
 	     cugo.setBounds(0, 690, 150, 15);
 	     cugo.setBackground(new Color(173, 78, 5));
@@ -70,7 +70,7 @@ public class BagPanel extends JPanel{
 	     buton.add(cugo,  BorderLayout.CENTER);
 	     
 	     //Currently Mana
-	     ImageIcon Img6 = new ImageIcon("images/mana_bag.png"); 
+	     ImageIcon Img6 = new ImageIcon("resource/images/mana_bag.png"); 
 	     JButton cumana = new JButton("         Mana is currently " + CessPool.selected.currMana, Img6);
 	     cumana.setBounds(0, 720, 150, 15);
 	     cumana.setBackground(new Color(0, 0, 102));

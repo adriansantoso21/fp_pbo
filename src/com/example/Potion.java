@@ -13,14 +13,14 @@ public class Potion extends Consumables {
 		super(name, weight);
 		this.buff = buff;
 		this.price = price;
-		this.image = new ImageIcon("potion/"+name+".jpg").getImage();
+		this.image = new ImageIcon("resource/shop/potion/"+name+".jpg").getImage();
 	}
 	
 	public Potion(Potion pot) {
 		super(pot.name, pot.weight);
 		this.buff = pot.buff;
 		this.price = pot.price;
-		this.image = new ImageIcon("potion/"+pot.name+".jpg").getImage();
+		this.image = new ImageIcon("resource/shop/potion/"+pot.name+".jpg").getImage();
 	}
 
 }

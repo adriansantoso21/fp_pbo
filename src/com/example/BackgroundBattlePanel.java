@@ -11,17 +11,17 @@ import javax.swing.JPanel;
 
 public class BackgroundBattlePanel extends JPanel {
 	private ArrayList<Image> backgrounds = new ArrayList<Image>();
-	Image imgg = new ImageIcon("images/battlegrounds2.jpg").getImage();
+	Image imgg = new ImageIcon("resource/images/battlegrounds2.jpg").getImage();
 	private Character fighter;
 	private int current, bg;
 	JButton a, b, c;
 	
 	public BackgroundBattlePanel(Character fighter) {
 		this.fighter = fighter;
-		backgrounds.add(new ImageIcon("images/battlegrounds2.jpg").getImage());
-		backgrounds.add(new ImageIcon("images/bg2.jpg").getImage());
-		backgrounds.add(new ImageIcon("images/bg3.jpg").getImage());
-		backgrounds.add(new ImageIcon("images/finalboss.jpg").getImage());
+		backgrounds.add(new ImageIcon("resource/images/battlegrounds2.jpg").getImage());
+		backgrounds.add(new ImageIcon("resource/images/bg2.jpg").getImage());
+		backgrounds.add(new ImageIcon("resource/images/bg3.jpg").getImage());
+		backgrounds.add(new ImageIcon("resource/images/finalboss.jpg").getImage());
 		this.bg = CessPool.location.get(CessPool.location.size()-1);
 //		this.bg = 999;
 		if(bg<8) {

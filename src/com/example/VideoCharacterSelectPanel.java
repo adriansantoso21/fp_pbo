@@ -20,13 +20,13 @@ public class VideoCharacterSelectPanel extends JPanel{
 		this.frame = frame;
 		for(int i = 0; i<439; i++) {
 			if(i<10) {
-				beg.add(new ImageIcon("video/beginning_00"+i+".jpg").getImage());
+				beg.add(new ImageIcon("resource/video/Beginning/beginning_00"+i+".jpg").getImage());
 			}
 			else if(i<100) {
-				beg.add(new ImageIcon("video/beginning_0"+i+".jpg").getImage());
+				beg.add(new ImageIcon("resource/video/Beginning/beginning_0"+i+".jpg").getImage());
 			}
 			else {
-				beg.add(new ImageIcon("video/beginning_"+i+".jpg").getImage());
+				beg.add(new ImageIcon("resource/video/Beginning/beginning_"+i+".jpg").getImage());
 			}
 		}
 		startVideoThread();
@@ -34,7 +34,7 @@ public class VideoCharacterSelectPanel extends JPanel{
 	public void startVideoThread() {
 		Thread vidThread = new Thread() {
 			public void run() {
-				music4.playMusic("song/beginning.wav");
+				music4.playMusic("resource/song/beginning.wav");
 				for(i =0; i<beg.size(); i++) {
 					current = beg.get(i);
 					repaint();

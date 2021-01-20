@@ -16,7 +16,7 @@ public class RestPanel extends JPanel {
 	
 	public RestPanel(JFrame frame) {
 		Map.music2.musicLoop();
-		this.imgg = new ImageIcon("images/restpanel.png").getImage();
+		this.imgg = new ImageIcon("resource/images/restpanel.png").getImage();
 		this.setLayout(null);
 		
 		JButton Button1 = new JButton();

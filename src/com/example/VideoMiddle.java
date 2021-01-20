@@ -20,13 +20,13 @@ public class VideoMiddle extends JPanel{
 			this.frame = frame;
 			for(int i = 0; i<439; i++) {
 				if(i<10) {
-					beg.add(new ImageIcon("video/Mid/middle_00"+i+".jpg").getImage());
+					beg.add(new ImageIcon("resource/video/Mid/middle_00"+i+".jpg").getImage());
 				}
 				else if(i<100) {
-					beg.add(new ImageIcon("video/Mid/middle_0"+i+".jpg").getImage());
+					beg.add(new ImageIcon("resource/video/Mid/middle_0"+i+".jpg").getImage());
 				}
 				else {
-					beg.add(new ImageIcon("video/Mid/middle_"+i+".jpg").getImage());
+					beg.add(new ImageIcon("resource/video/Mid/middle_"+i+".jpg").getImage());
 				}
 			}
 			startVideoThread();

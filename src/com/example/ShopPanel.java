@@ -31,20 +31,20 @@ public class ShopPanel extends JPanel{
 		JPanel kanan_bawah = new JPanel(cardlay);
 		
 		//Currently Hp
-	     ImageIcon Img1 = new ImageIcon("images/hp.png");   
+	     ImageIcon Img1 = new ImageIcon("resource/images/hp.png");   
 	     JButton cuhp = new JButton("  HP is : " + CessPool.selected.currHP, Img1);
 	     cuhp.setBounds(140, 0, 250, 50);
 	     cuhp.setBackground(Color.white);
 	     
 	     //Currently Gold
-	     ImageIcon Img = new ImageIcon("images/coin.png");     
+	     ImageIcon Img = new ImageIcon("resource/images/coin.png");     
 	     JButton cugo = new JButton("     Gold is : " + CessPool.selected.gold, Img);
 	     cugo.setBounds(140, 50, 250, 50);
 	     cugo.setBackground(new Color(173, 78, 5));
 	     cugo.setForeground(Color.yellow);
 	     
 	     //Currently Mana
-	     ImageIcon Img2 = new ImageIcon("images/mana.png"); 
+	     ImageIcon Img2 = new ImageIcon("resource/images/mana.png"); 
 	     JButton cumana = new JButton("       Mana is : " + CessPool.selected.currMana, Img2);
 	     cumana.setBounds(140, 100, 250, 50);
 	     cumana.setBackground(new Color(0, 0, 102));
@@ -55,7 +55,7 @@ public class ShopPanel extends JPanel{
 	     kiri_atas.add(cumana);
 		
 		kiri.setLayout(new BorderLayout());
-		ImageIcon Img4 = new ImageIcon("images/shopPane2.jpg");
+		ImageIcon Img4 = new ImageIcon("resource/images/shopPane2.jpg");
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setIcon(Img4);
 		
