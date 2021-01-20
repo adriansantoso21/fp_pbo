@@ -820,29 +820,28 @@ public class BattlePanel extends JPanel {
     }
     
     public int showChat() {
-    	int a = Map.last;
-    	if(Map.last == 0 || Map.last == 1 || Map.last == 2) {
-    		return a;
+    	if(Map.last == -1 || Map.last == 0 || Map.last == 1) {
+    		return Map.last + 1;
     	}
-    	else if (Map.last == 7 || Map.last == 4) {
+    	else if (Map.last == 3) {
     		return 3;
     	}
-    	else if (Map.last == 5 || Map.last == 8) {
+    	else if (Map.last == 7 || Map.last == 4) {
     		return 4;
     	}
-    	else if (Map.last == 12) {
+    	else if (Map.last == 11) {
     		return 5;
     	}
-    	else if (Map.last == 13) {
+    	else if (Map.last == 12) {
     		return 6;
     	}
-    	else if (Map.last == 16 || Map.last == 18) {
+    	else if (Map.last == 15) {
     		return 7;
     	}
-    	else if (Map.last == 21) {
+    	else if (Map.last == 20) {
     		return 8;
     	}
-    	else if (Map.last == 9) {
+    	else if (Map.last == 8) {
     		return 9;
     	}
     	else {

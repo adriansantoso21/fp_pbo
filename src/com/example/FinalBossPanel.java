@@ -645,7 +645,7 @@ public class FinalBossPanel extends JPanel {
                     if (choice == JOptionPane.YES_OPTION) {
                     	if(skill.name.equals("Wake Up")) {
                     		Map.music2.stopMusic();
-                    		Main.frame.setContentPane(new VideoCredit());
+                    		Main.frame.setContentPane(new credit());
                     		Main.frame.pack();
                     	}
                         if(skill instanceof BuffSkill) {

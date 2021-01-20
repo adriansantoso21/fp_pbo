@@ -93,7 +93,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	                System.out.println("Wizard is chosen.");
-	                CessPool.selected = new Character("Wizard", 4000, 150, 50, 10, 50, 25, 25, 30, "The Wizard is a magical man that wears a hooded cloak, a leather belt with a golden buckle, and matching boots.\r\n"
+	                CessPool.selected = new Character("Wizard", 4000, 150, 150, 10, 50, 25, 25, 30, "The Wizard is a magical man that wears a hooded cloak, a leather belt with a golden buckle, and matching boots.\r\n"
 	                		+ "The Wizard is a ranged unit, meaning that he can shoot over Walls. He shoots fireballs or energy blasts that do high damage but requires support as he has relatively low hit points and"
 	                		+ " can easily be killed by point defenses.");
 	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_001.png").getImage());
