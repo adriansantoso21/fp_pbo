@@ -13,6 +13,7 @@ import com.diamondcastle.beginningpanel.StartPanel;
 import com.diamondcastle.cesspool.CessPool;
 import com.diamondcastle.gameplaypanel.credit;
 import com.diamondcastle.video.VideoMiddle;
+import com.diamondcastle.gameplaypanel.FinalBossPanel;
 
 public class Main {
 	public static JFrame frame = new JFrame("Diamond Castle");

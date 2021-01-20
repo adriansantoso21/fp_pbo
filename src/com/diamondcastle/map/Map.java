@@ -102,9 +102,6 @@ public class Map extends JPanel{
 		  if(a !=-1) {
 			  buttons.get(a).setOpaque(true);
 			  buttons.get(a).setIcon(new ImageIcon(img));
-//			  buttons.get(a).setFont(new Font("Arial", Font.BOLD, 11));
-//			  buttons.get(a).setText("x");
-//			  buttons.get(a).setForeground(Color.red);
 		  }
 	  }
 	  
@@ -151,7 +148,7 @@ public class Map extends JPanel{
 		    	        	
 		    	        	if(Map.last == 22) {
 		    	        		music2.stopMusic();
-		    	        		music2.playMusic("resource/song/map.wav");
+		    	        		music2.playMusic("resource/song/finalbattle.wav");
 		    	        		Main.frame.setContentPane(new FinalBossPanel(frame));
 			    			    Main.frame.pack();
 		    	        	}
