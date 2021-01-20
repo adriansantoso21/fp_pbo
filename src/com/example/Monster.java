@@ -15,5 +15,13 @@ public class Monster extends Creature {
 		this.image = new ImageIcon("monster/"+name+".png").getImage();
 		this.skillChance = skillChance;
 	}
+	
+	public float attack(Creature attacked) {
+		float dam = this.showStrength();
+		if(this.intelligence>this.strength) {
+			dam = this.showIntelligence();
+		}
+		return 2 * dam * dam / (dam + attacked.showDefence());
+	}
 
 }

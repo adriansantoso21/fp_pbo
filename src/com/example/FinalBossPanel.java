@@ -292,10 +292,7 @@ public class FinalBossPanel extends JPanel {
 				}
 			}
 			num++;
-			te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
-					+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
-			tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
-	        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+			updateBar();
 			if (attacked.isDead()) {
 				someoneDead(attacker, attacked);
 			}
@@ -354,10 +351,7 @@ public class FinalBossPanel extends JPanel {
 		}
 		
 		num++;
-		te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
-				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
-		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
-        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+		updateBar();
 		
 		addCharaLabel(charaPanel);
 		addSkillButtons(skillButtonPanel);
@@ -427,6 +421,7 @@ public class FinalBossPanel extends JPanel {
 				potionButtonPanel.removeAll();
 				addCharaLabel(charaPanel);
 				addSkillButtons(skillButtonPanel);
+				updateBar();
 			}
 		};
 		midThread.start();
@@ -460,6 +455,7 @@ public class FinalBossPanel extends JPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			updateBar();
 		}
 		else if (apple ==-1) {
 			ArrayList<String> chatz = new ArrayList<String>();
@@ -476,6 +472,7 @@ public class FinalBossPanel extends JPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			updateBar();
 		}
 		else if (apple ==-2) {
 			ArrayList<String> chatz = new ArrayList<String>();
@@ -493,6 +490,7 @@ public class FinalBossPanel extends JPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			updateBar();
 		}
 		else if (apple == -3) {
 			ArrayList<String> chatz = new ArrayList<String>();
@@ -510,6 +508,7 @@ public class FinalBossPanel extends JPanel {
 			fight.setEnabled(false);
 			item.setEnabled(false);
 			chara.setEnabled(false);
+			updateBar();
 			fighter.skills.add(new BuffSkill("Wake Up", 0,0, new Buff("Wake Up", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Wake up to the cruel world.")));
 			fighter.skills.add(new BuffSkill("Stay", 0,0, new Buff("Stay", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Stay here in this kind world.")));
 		}
@@ -583,6 +582,7 @@ public class FinalBossPanel extends JPanel {
 		            		
 		            		enemyTurn(fighted);
 		            		addCharaLabel(charaPanel);
+		            		updateBar();
 		            		fights.startSpellThread();
 		                    }
 	                }
@@ -677,6 +677,7 @@ public class FinalBossPanel extends JPanel {
                 		enemyTurn(fighted);
                 		addSkillButtons(panel);
                 		addCharaLabel(charaPanel);
+                		updateBar();
                 		fights.startSpellThread();
                     }
                     
@@ -904,6 +905,13 @@ public class FinalBossPanel extends JPanel {
 			}
     	};
     	chatsThread.start();
+    }
+    
+    void updateBar() {
+    	te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
+				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
+        		+ "MP : " + fighted.currMana + " / " + fighted.mana + "</h3></div></html>");
     }
    
 }

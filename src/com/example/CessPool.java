@@ -13,6 +13,7 @@ public class CessPool {
 	public static ArrayList<Skill> skillz = new ArrayList<Skill>();
 	public static ArrayList<SkillBook> skillbookz = new ArrayList<SkillBook>();
 	public static ArrayList<Integer> location = new ArrayList<Integer>();
+	public static ArrayList<String> endingz = new ArrayList<String>();
 	int curloc;
 	
 	public CessPool() {
@@ -116,5 +117,6 @@ public class CessPool {
 		skillz.add(new DebuffSkill("Grasp of the Starved", 35,200, new Buff("Grasp of the Starved", "Modifier", 0, 0, 0, 0, 0, -10, 0, 3, "Reduces enemy speed by 10%.")));
 		skillz.add(new DebuffSkill("Gag Order", 30,200, new Buff("Gag Order", "Non", 0, 0, 0, -20, 0, 0, 0, 3, "Reduces enemy strength by 20 pointa.")));
 		
+		endingz.add(new String(" O . . m O . . R i . . "));
 	}
 }

@@ -11,6 +11,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -32,12 +34,13 @@ public class BattlePanel extends JPanel {
 	
 	Character fighter = CessPool.selected;
 	Monster fighted;
-	int num;
+	int num, sumn;
 	
 	private CardLayout cardlayt = new CardLayout();
 	private JPanel potionPanel = new JPanel(cardlayt);
 	private JTextPane ta, te, tf;
 	private JPanel skillButtonPanel, charaPanel, tb, tc, td;
+	JButton fight, item, skill, chara;
 	private BackgroundBattlePanel fights;
 	
 	public BattlePanel(JFrame frame) {
@@ -119,19 +122,19 @@ public class BattlePanel extends JPanel {
         JPanel panel = new JPanel();
         
 		Image img = new ImageIcon("button/fight.jpg").getImage();
-		JButton fight = new JButton();
+		fight = new JButton();
 		fight.setIcon(new ImageIcon(img));
 		
 		Image img2 = new ImageIcon("button/item.jpg").getImage();
-		JButton item = new JButton("Item");
+		item = new JButton("Item");
 		item.setIcon(new ImageIcon(img2));
 		
 		Image img3 = new ImageIcon("button/skill.jpg").getImage();
-		JButton skill = new JButton("Skill");
+		skill = new JButton("Skill");
 		skill.setIcon(new ImageIcon(img3));
 		
 		Image img4 = new ImageIcon("button/chara.jpg").getImage();
-        JButton chara = new JButton("Char");
+        chara = new JButton("Char");
         chara.setIcon(new ImageIcon(img4));
         
         GridLayout grdLayout = new GridLayout(1, 4, 50, 50);
@@ -236,10 +239,7 @@ public class BattlePanel extends JPanel {
 				}
 			}
 			num++;
-			te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
-					+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
-			tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
-	        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+			updateBar();
 			if (attacked.isDead()) {
 				someoneDead(attacker, attacked);
 			}
@@ -296,10 +296,7 @@ public class BattlePanel extends JPanel {
 		}
 		
 		num++;
-		te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
-				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
-		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
-        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+		updateBar();
 		
 		if (attacked.isDead()) {
 			someoneDead(attacker, attacked);
@@ -314,8 +311,8 @@ public class BattlePanel extends JPanel {
 		youAttackThread.start();
 	}
 	
-	public void monsterSkill() {
-		String desc;
+	public void monsterSkill(Skill skill) {
+		String desc, text = "";
     	if(skill instanceof AttackSkill) {
 			AttackSkill c = (AttackSkill) skill;
 			desc = c.desc;
@@ -329,28 +326,19 @@ public class BattlePanel extends JPanel {
 			DebuffSkill ee = (DebuffSkill) skill;
 			desc = ee.debuff.desc;
 		}
-    	int choice = JOptionPane.YES_OPTION;
-        choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to use this skill : " + desc,
-                        "Confirmation", JOptionPane.YES_NO_OPTION);
-
-        if (choice == JOptionPane.YES_OPTION) {
             if(skill instanceof BuffSkill) {
-        		((BuffSkill) skill).unleash(fighter);
-        		text = "· You used the buff skill "+skill.name+", "+desc+"\n";
+        		((BuffSkill) skill).unleash(fighted);
+        		text = "· "+fighted.name+" used the buff skill "+skill.name+", "+desc+"\n";
         	}
         	else if(skill instanceof DebuffSkill) {
-        		((DebuffSkill) skill).unleash(fighted, fighter);
-        		text = "· You used the debuff skill "+skill.name+", "+desc+"\n";
+        		((DebuffSkill) skill).unleash(fighter, fighted);
+        		text = "· "+fighted.name+" used the debuff skill "+skill.name+", "+desc+"\n";
         	}
         	else if(skill instanceof AttackSkill) {
-        		float damage = ((AttackSkill) skill).unleash(fighter, fighted);
-        		text = "· You used the attack skill "+skill.name+" dealing " + damage +" damage\n";
+        		float damage = ((AttackSkill) skill).unleash(fighted, fighter);
+        		text = "· "+fighted.name+" used the attack skill "+skill.name+" dealing " + damage +" damage\n";
         	}
             cardlayt.show(potionPanel, "text");
-            if (num>5) {
-    			ta.setText("");
-    			num=0;
-    		}
             
     		StyledDocument doc = ta.getStyledDocument();
     		
@@ -360,6 +348,8 @@ public class BattlePanel extends JPanel {
     			// TODO Auto-generated catch block
     			a.printStackTrace();
     		}
+    		
+    		updateBar();
     		num++;
 	}
 	
@@ -374,54 +364,89 @@ public class BattlePanel extends JPanel {
 			
 		}
 		else if (dead instanceof Monster) {
-			String reward;
-			Random rand = new Random();
-			int int_random = rand.nextInt(100)+100; 
-			fighter.gold += int_random;
-			
-			reward = "· "+int_random+" gold<br>";
-			int chance = rand.nextInt(10);
-			if(chance<=1) {
-				int chances = rand.nextInt(5)+10;
-				fighter.healHealth(fighter.healthPoint*chances/100);
-				reward += "· "+ fighter.healthPoint*chances/100 + " HP healed<br>";
-			}
-			else if (chance<=3) {
-				int chances = rand.nextInt(5)+10;
-				fighter.healMana(fighter.mana*chances/100);
-				reward += "· "+ fighter.mana*chances/100 + " mana healed<br>";
-			}
-			else if (chance <=5 && fighter.potionA < 7) {
-				int chances = rand.nextInt(6);
-				fighter.inventory.add(CessPool.potionz.get(chances));
-				reward += "· "+ CessPool.potionz.get(chances).name + "<br>";
-				fighter.potionA += 1;
-			}
-			int attPoint = rand.nextInt(1)+2;
-			JFrame frame = new JFrame("CONGRATS!");
-			reward += "· "+ attPoint + " attribute points<br>";
-			fighter.attributeP += attPoint;
-			JLabel label = new JLabel("<html><center><p style style=\"background-color:powderblue; color: blue;\">YOU WON!!!<br> Loot : <br> "+ reward +"</p>");
-			label.setHorizontalAlignment(SwingConstants.CENTER);
-			JOptionPane.showMessageDialog(frame, label, "CONGRATS!!", JOptionPane.PLAIN_MESSAGE);
-			fighter.buffs.clear();
-			fighted.buffs.clear();
-			
-			fights.setCurrent(10);
-			Map.music2.stopMusic();
-			if( Map.last == 23) {
-				Main.frame.setContentPane(new credit());
-				Main.frame.pack();
-			}
-			else {
-				Main.frame.setContentPane(new Map(frame));
-				Main.frame.pack();
-			}	
+			Thread winThread = new Thread() {
+				public void run() {
+					chatsThread(CessPool.endingz.get(CessPool.location.get(CessPool.location.size()-1)));
+					while(sumn==0) {
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					String reward;
+					Random rand = new Random();
+					int int_random = rand.nextInt(100)+100; 
+					fighter.gold += int_random;
+					
+					reward = "· "+int_random+" gold<br>";
+					int chance = rand.nextInt(10);
+					if(chance<=1) {
+						int chances = rand.nextInt(5)+10;
+						fighter.healHealth(fighter.healthPoint*chances/100);
+						reward += "· "+ fighter.healthPoint*chances/100 + " HP healed<br>";
+					}
+					else if (chance<=3) {
+						int chances = rand.nextInt(5)+10;
+						fighter.healMana(fighter.mana*chances/100);
+						reward += "· "+ fighter.mana*chances/100 + " mana healed<br>";
+					}
+					else if (chance <=5 && fighter.potionA < 7) {
+						int chances = rand.nextInt(6);
+						fighter.inventory.add(CessPool.potionz.get(chances));
+						reward += "· "+ CessPool.potionz.get(chances).name + "<br>";
+						fighter.potionA += 1;
+					}
+					int attPoint = rand.nextInt(1)+2;
+					JFrame frame = new JFrame("CONGRATS!");
+					reward += "· "+ attPoint + " attribute points<br>";
+					fighter.attributeP += attPoint;
+					JLabel label = new JLabel("<html><center><p style style=\"background-color:powderblue; color: blue;\">YOU WON!!!<br> Loot : <br> "+ reward +"</p>");
+					label.setHorizontalAlignment(SwingConstants.CENTER);
+					JOptionPane.showMessageDialog(frame, label, "CONGRATS!!", JOptionPane.PLAIN_MESSAGE);
+					fighter.buffs.clear();
+					fighted.buffs.clear();
+					
+					fights.setCurrent(10);
+					Map.music2.stopMusic();
+					if( Map.last == 23) {
+						Main.frame.setContentPane(new credit());
+						Main.frame.pack();
+					}
+					else {
+						Main.frame.setContentPane(new Map(frame));
+						Main.frame.pack();
+					}	
+				}
+			};
+			winThread.start();
 		}
 	}
 
 	public void enemyTurn(Monster turn) {
-		monsterAttack(fighted, fighter);
+		Random ski = new Random();
+		int randomness = ski.nextInt(101);
+		if(randomness < fighted.skillChance) {
+			int testo = 1;
+			ArrayList<Skill> usable = new ArrayList<Skill>();
+			for (Skill check : fighted.skills) {
+				if (fighted.currMana>check.manaCost) {
+					testo = 0;
+					usable.add(check);
+				}
+			}
+			if(testo == 0) {
+				Collections.shuffle(usable);
+				monsterSkill(usable.get(0));
+			}
+			else {
+				monsterAttack(fighted, fighter);
+			}
+		}
+		else {
+			monsterAttack(fighted, fighter);
+		}
 		fighter.decreaseDuration(ta);
 		fighted.decreaseDuration(ta);
 	}
@@ -480,6 +505,7 @@ public class BattlePanel extends JPanel {
 		            		
 		            		enemyTurn(fighted);
 		            		addCharaLabel(charaPanel);
+		            		updateBar();
 		            		fights.startSpellThread();
 		                    }
 	                }
@@ -570,6 +596,7 @@ public class BattlePanel extends JPanel {
                 		enemyTurn(fighted);
                 		addSkillButtons(panel);
                 		addCharaLabel(charaPanel);
+                		updateBar();
                 		fights.startSpellThread();
                     }
                     
@@ -744,6 +771,57 @@ public class BattlePanel extends JPanel {
 		}
 		buff.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(buff);
+    }
+    
+    void updateBar() {
+    	te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
+				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
+        		+ "MP : " + fighted.currMana + " / " + fighted.mana + "</h3></div></html>");
+    }
+    
+    public void chatsThread(String chatzz) {
+    	Thread chatsThread = new Thread() {
+			public void run() {
+				fight.setEnabled(false);
+				item.setEnabled(false);
+				skill.setEnabled(false);
+				chara.setEnabled(false);
+				ta.setText("<html><h2 style=\"color:white;\">");
+					for (int i = 0; i < chatzz.length(); i++){
+					    String c = String.valueOf(chatzz.charAt(i));        
+					    StyledDocument doc = ta.getStyledDocument();
+					    try {
+							doc.insertString(doc.getLength(), c, null);
+						} catch (BadLocationException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					    try {
+							Thread.sleep(250);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					StyledDocument doc = ta.getStyledDocument();
+					try {
+						doc.insertString(doc.getLength(), "\n", null);
+					} catch (BadLocationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				ta.setText("");
+				sumn = 1;
+			}
+    	};
+    	chatsThread.start();
     }
    
 }

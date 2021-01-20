@@ -28,6 +28,7 @@ public class Buff {
 	}
 	
 	public Buff(Buff buff) {
+		this.name = buff.name;
 		this.type = buff.type;
 		this.currHP = buff.currHP;
 		this.currMana = buff.currMana;
