@@ -124,7 +124,7 @@ public class CessPool {
 		
 		endingz.add(new String(" O . . m O . . R i . . "));
 		endingz.add(new String(" w..here a..r.ee yo.. ma...r..i "));
-		endingz.add(new String(" ..we'..re still yo..ng. we should d.rea.. big.."));
+		endingz.add(new String(" ..we'..re still yo..ng.! we should d.rea.. big.."));
 		endingz.add(new String(" zz..Watermelons ar.. the best part of summe..rr right.. om..ri? "));
 		endingz.add(new String(" M..ari's c..ookies ha.e so much l.ve baked into the.. I could e... them forev..z...z "));
 		endingz.add(new String(" a... w..ish? but what sh..ld i wi.h for? bz..z... I have everything I could want right her. "));
