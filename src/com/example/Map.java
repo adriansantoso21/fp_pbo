@@ -34,8 +34,8 @@ public class Map extends JPanel{
 	  this.imgg = new ImageIcon("resource/images/map.jpg").getImage();
 	  this.setLayout(null);
 	  
-	  buttons.add(new Map_Button(1058, 690, 2, false));
-	  buttons.add(new Map_Button(993 , 684, 2, false));
+	  buttons.add(new Map_Button(1050, 674, 2, false));
+	  buttons.add(new Map_Button(986 , 670, 2, false));
 	  buttons.add(new Map_Button(924, 637, 2,false));
 	  buttons.add(new Map_Button(857, 584, 1, false));//shop
 	  buttons.add(new Map_Button(771, 501, 2, false));
@@ -87,12 +87,15 @@ public class Map extends JPanel{
 		  buttons.get(20).setEnabled(true);
 	  }
 	  
+	  Image img = new ImageIcon("resource/button/x.png").getImage();
+		
 	  for(Integer a : CessPool.location) {
 		  if(a !=-1) {
 			  buttons.get(a).setOpaque(true);
-			  buttons.get(a).setFont(new Font("Arial", Font.BOLD, 11));
-			  buttons.get(a).setText("x");
-			  buttons.get(a).setForeground(Color.white);
+			  buttons.get(a).setIcon(new ImageIcon(img));
+//			  buttons.get(a).setFont(new Font("Arial", Font.BOLD, 11));
+//			  buttons.get(a).setText("x");
+//			  buttons.get(a).setForeground(Color.red);
 		  }
 	  }
 	  
