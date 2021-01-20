@@ -22,19 +22,19 @@ public class BackgroundBattlePanel extends JPanel {
 	
 	public BackgroundBattlePanel(Character fighter) {
 		this.fighter = fighter;
-		backgrounds.add(new ImageIcon("images/battlegrounds2.jpg").getImage());
-		backgrounds.add(new ImageIcon("images/bg2.jpg").getImage());
-		backgrounds.add(new ImageIcon("images/bg3.jpg").getImage());
-		backgrounds.add(new ImageIcon("images/finalboss.jpg").getImage());
-		this.bg = CessPool.location.get(CessPool.location.size()-1);
-//		this.bg = 999;
+		backgrounds.add(new ImageIcon("resource/images/battlegrounds2.jpg").getImage());
+		backgrounds.add(new ImageIcon("resource/images/bg2.jpg").getImage());
+		backgrounds.add(new ImageIcon("resource/images/bg3.jpg").getImage());
+		backgrounds.add(new ImageIcon("resource/images/finalboss.jpg").getImage());
+//		this.bg = CessPool.location.get(CessPool.location.size()-1);
+		this.bg = 22;
 		if(bg<8) {
 			this.imgg = backgrounds.get(0);
 		}
-		else if(bg<16) {
+		else if(bg<15) {
 			this.imgg = backgrounds.get(1);
 		}
-		else if(bg<25) {
+		else if(bg<22) {
 			this.imgg = backgrounds.get(2);
 		}
 		else if(bg==22) {

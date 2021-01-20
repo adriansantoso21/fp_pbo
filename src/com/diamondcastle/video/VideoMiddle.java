@@ -22,15 +22,15 @@ public class VideoMiddle extends JPanel{
 		public VideoMiddle(JFrame frame){
 			beg = new ArrayList<Image>();
 			this.frame = frame;
-			for(int i = 0; i<439; i++) {
+			for(int i = 0; i<394; i++) {
 				if(i<10) {
-					beg.add(new ImageIcon("resource/video/Mid/middle_00"+i+".jpg").getImage());
+					beg.add(new ImageIcon("resource/video/Mid/mid_00"+i+".jpg").getImage());
 				}
 				else if(i<100) {
-					beg.add(new ImageIcon("resource/video/Mid/middle_0"+i+".jpg").getImage());
+					beg.add(new ImageIcon("resource/video/Mid/mid_0"+i+".jpg").getImage());
 				}
 				else {
-					beg.add(new ImageIcon("resource/video/Mid/middle_"+i+".jpg").getImage());
+					beg.add(new ImageIcon("resource/video/Mid/mid_"+i+".jpg").getImage());
 				}
 			}
 			startVideoThread();
@@ -44,7 +44,7 @@ public class VideoMiddle extends JPanel{
 						current = beg.get(i);
 						repaint();
 						try {
-							Thread.sleep(99, 352);
+							Thread.sleep(99, 237);
 						} 
 						catch (InterruptedException ex) {}
 					}
@@ -56,7 +56,7 @@ public class VideoMiddle extends JPanel{
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(current, 0, 0, null);
-			if(i == 438) {
+			if(i == 393) {
 				music5.stopMusic();
 				Main.frame.setContentPane(new Map(frame));
 				Main.frame.pack();

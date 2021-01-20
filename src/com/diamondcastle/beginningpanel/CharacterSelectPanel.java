@@ -22,6 +22,7 @@ import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import com.diamondcastle.creature.Character;
+import com.diamondcastle.gameplaypanel.FinalBossPanel;
 import com.diamondcastle.inventory.Potion;
 import com.diamondcastle.main.Main;
 import com.diamondcastle.video.VideoCharacterSelectPanel;
@@ -129,7 +130,8 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.potionA = 2;
 	               
 	                StartPanel.music.stopMusic();
-	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
+//	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
+	                Main.frame.setContentPane(new FinalBossPanel(frame));
 	                frame.pack();
 	            }
 	         }

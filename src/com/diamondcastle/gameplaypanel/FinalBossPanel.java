@@ -42,6 +42,8 @@ import com.diamondcastle.skill.BuffSkill;
 import com.diamondcastle.skill.DebuffSkill;
 import com.diamondcastle.skill.Skill;
 import com.diamondcastle.skill.Buff;
+import com.diamondcastle.video.CardsVideo;
+import com.diamondcastle.video.VideoCredit;
 
 public class FinalBossPanel extends JPanel {
 	
@@ -50,14 +52,20 @@ public class FinalBossPanel extends JPanel {
 	int num;
 	
 	private CardLayout cardlayt = new CardLayout();
+	private CardLayout cardlayt1 = new CardLayout();
 	private JPanel potionPanel = new JPanel(cardlayt);
+	private JPanel cards = new JPanel(cardlayt1);
 	private JTextPane ta, te, tf;
 	JButton fight, item, skill, chara;
-	private JPanel skillButtonPanel, potionButtonPanel, charaPanel, tb, tc, td;
+	private JPanel skillButtonPanel, potionButtonPanel, charaPanel, tb, tc, td, full;
+	CardsVideo c1, c2, c3, c4, c5;
 	private BackgroundBattlePanel fights;
 	private int apple = 1, sumn = 0;
 	
 	public FinalBossPanel(JFrame frame) {
+		
+		full = new JPanel();
+		full.setLayout(new BorderLayout());
 
 		fighted = new Monster("I Don't Want to Go Back", 1200, 100, 50, 50, 50, 50, 50, 50, 33);
 		
@@ -194,16 +202,35 @@ public class FinalBossPanel extends JPanel {
     				}
     			}
     		);
-        
-        setLayout(new BorderLayout());  
+         
         fights.addButton(fight, item, skill);
         
-		this.add(BorderLayout.SOUTH, panel);
-		this.add(BorderLayout.NORTH, tb);
-		this.add(BorderLayout.CENTER, panel1);
+        setLayout(new BorderLayout());
+        
+		full.add(BorderLayout.SOUTH, panel);
+		full.add(BorderLayout.NORTH, tb);
+		full.add(BorderLayout.CENTER, panel1);
+		
 		panel.setPreferredSize(new Dimension(500, 80));
 		tb.setPreferredSize(new Dimension(300, 60));
 		fights.startIdleThread();
+		
+		c1 = new CardsVideo(frame, 0, cards, cardlayt1);
+		c2 = new CardsVideo(frame, 1, cards, cardlayt1);
+		c3 = new CardsVideo(frame, 2, cards, cardlayt1);
+		c4 = new CardsVideo(frame, 3, cards, cardlayt1);
+		c5 = new CardsVideo(frame, 4, cards, cardlayt1);
+		
+		cards.add(full, "full");
+		cards.add(c1, "0");
+		cards.add(c2, "1");
+		cards.add(c3, "2");
+		cards.add(c4, "3");
+		cards.add(c5, "4");
+		
+		cardlayt1.show(cards, "full");
+		
+		this.add(cards);
 		
 		Thread startChatThread = new Thread() {
 			public void run() {
@@ -230,7 +257,7 @@ public class FinalBossPanel extends JPanel {
 							e.printStackTrace();
 						}
 					    try {
-							Thread.sleep(200);
+							Thread.sleep(20);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -436,6 +463,14 @@ public class FinalBossPanel extends JPanel {
 				addCharaLabel(charaPanel);
 				addSkillButtons(skillButtonPanel);
 				updateBar();
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				cardlayt1.show(cards, "0");
+				c1.startVideoThread();				
 			}
 		};
 		midThread.start();
@@ -470,6 +505,8 @@ public class FinalBossPanel extends JPanel {
 				e.printStackTrace();
 			}
 			updateBar();
+			cardlayt1.show(cards, "1");
+			c2.startVideoThread();	
 		}
 		else if (apple ==-1) {
 			ArrayList<String> chatz = new ArrayList<String>();
@@ -487,6 +524,8 @@ public class FinalBossPanel extends JPanel {
 				e.printStackTrace();
 			}
 			updateBar();
+			cardlayt1.show(cards, "2");
+			c3.startVideoThread();	
 		}
 		else if (apple ==-2) {
 			ArrayList<String> chatz = new ArrayList<String>();
@@ -505,6 +544,8 @@ public class FinalBossPanel extends JPanel {
 				e.printStackTrace();
 			}
 			updateBar();
+			cardlayt1.show(cards, "3");
+			c4.startVideoThread();	
 		}
 		else if (apple == -3) {
 			ArrayList<String> chatz = new ArrayList<String>();
@@ -523,6 +564,8 @@ public class FinalBossPanel extends JPanel {
 			item.setEnabled(false);
 			chara.setEnabled(false);
 			updateBar();
+			cardlayt1.show(cards, "4");
+			c5.startVideoThread();
 			fighter.skills.add(new BuffSkill("Wake Up", 0,0, new Buff("Wake Up", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Wake up to the cruel world.")));
 			fighter.skills.add(new BuffSkill("Stay", 0,0, new Buff("Stay", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Stay here in this kind world.")));
 		}
@@ -658,8 +701,7 @@ public class FinalBossPanel extends JPanel {
 
                     if (choice == JOptionPane.YES_OPTION) {
                     	if(skill.name.equals("Wake Up")) {
-                    		Map.music2.stopMusic();
-                    		Main.frame.setContentPane(new credit());
+                    		Main.frame.setContentPane(new VideoCredit());
                     		Main.frame.pack();
                     	}
                         if(skill instanceof BuffSkill) {
@@ -889,7 +931,7 @@ public class FinalBossPanel extends JPanel {
 							e.printStackTrace();
 						}
 					    try {
-							Thread.sleep(200);
+							Thread.sleep(20);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
