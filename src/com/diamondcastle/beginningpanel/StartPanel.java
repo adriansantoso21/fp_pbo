@@ -62,7 +62,7 @@ public class StartPanel extends JPanel{
 		Button2.setIcon(new ImageIcon(img2));
 		Button2.setFocusable(false);
 		Button2.setFocusPainted(false);
-		Button2.setBounds(1081, 663, 180, 48);
+		Button2.setBounds(1071, 660, 195, 52);
 		this.add(Button2);
 		
 		JButton Button3 = new JButton();
@@ -93,7 +93,7 @@ public class StartPanel extends JPanel{
 		Button4.setIcon(new ImageIcon(img4));
 		Button4.setFocusable(false);
 		Button4.setFocusPainted(false);
-		Button4.setBounds(428, 295, 375, 98);
+		Button4.setBounds(428, 295, 375, 90);
 		this.add(Button4);
 		
 		JButton Button5 = new JButton();

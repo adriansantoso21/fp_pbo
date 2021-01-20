@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import com.diamondcastle.beginningpanel.CharacterSelectPanel;
 import com.diamondcastle.beginningpanel.StartPanel;
 import com.diamondcastle.cesspool.CessPool;
+import com.diamondcastle.gameplaypanel.FinalBossPanel;
 
 public class Main {
 	public static JFrame frame = new JFrame("Diamond Castle");
@@ -24,8 +25,9 @@ public class Main {
 				 new CessPool();
 				 frame.setPreferredSize(new Dimension(1280, 750));
 				 
-			     frame.setContentPane(new StartPanel("resource/images/StartPanel.jpg", frame));
-			    
+//			     frame.setContentPane(new StartPanel("resource/images/StartPanel.jpg", frame));
+			     frame.setContentPane(new FinalBossPanel(frame));
+			     
 			     frame.pack();
 			     frame.setLocationRelativeTo(null);
 			     frame.setResizable(false);

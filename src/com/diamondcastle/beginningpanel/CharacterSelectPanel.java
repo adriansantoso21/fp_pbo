@@ -48,7 +48,7 @@ public class CharacterSelectPanel extends JPanel {
 		Button4.setIcon(new ImageIcon(img4));
 		Button4.setFocusable(false);
 		Button4.setFocusPainted(false);
-		Button4.setBounds(400, 20, 500, 86);
+		Button4.setBounds(400, 20, 520, 63);
 		this.add(Button4);
 		
 		this.setLayout(null);
@@ -283,6 +283,21 @@ public class CharacterSelectPanel extends JPanel {
 	         }
 		});
 		
+		JButton Button5 = new JButton();
+		Image img5 = new ImageIcon("resource/button/version.png").getImage();
+		Button5.setIcon(new ImageIcon(img5));
+		Button5.setFocusable(false);
+		Button5.setFocusPainted(false);
+		Button5.setBounds(0, 0, 120, 42);
+		this.add(Button5);
+		
+		JButton Button6 = new JButton();
+		Image img2 = new ImageIcon("resource/button/team.png").getImage();
+		Button6.setIcon(new ImageIcon(img2));
+		Button6.setFocusable(false);
+		Button6.setFocusPainted(false);
+		Button6.setBounds(1071, 660, 195, 52);
+		this.add(Button6);
 	}	
 	
 	public void paintComponent(Graphics g) {
