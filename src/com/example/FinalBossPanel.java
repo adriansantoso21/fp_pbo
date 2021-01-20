@@ -368,17 +368,17 @@ public class FinalBossPanel extends JPanel {
 	}
 	
 	public void someoneDead(Creature living, Creature dead) {
+		Map.music2.stopMusic();
 		if (dead instanceof Character) {
 			JFrame frame = new JFrame("Sorry");
 			JLabel label = new JLabel("<html><center><p style style=\"background-color:red; color: blue;\"> YOU DIED LOSER </p>");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			JOptionPane.showMessageDialog(frame, label, "Sorry man", JOptionPane.PLAIN_MESSAGE);
-			Map.music2.stopMusic();
 			Main.frame.dispose();
 			
 		}
 		else if (dead instanceof Monster) {
-			Main.frame.setContentPane(new Map(null));
+			Main.frame.setContentPane(new credit());
 			Main.frame.pack();
 		}
 	}
