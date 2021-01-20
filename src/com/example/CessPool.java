@@ -14,7 +14,8 @@ public class CessPool {
 	public static ArrayList<SkillBook> skillbookz = new ArrayList<SkillBook>();
 	public static ArrayList<Integer> location = new ArrayList<Integer>();
 	public static ArrayList<String> endingz = new ArrayList<String>();
-	int curloc;
+	public int curloc;
+	public static int currDif = 0;
 	
 	public CessPool() {
 		location.add(-1);
@@ -56,8 +57,8 @@ public class CessPool {
 		monsterz.get(10).skills.add(new BuffSkill("Oily Carapace", 15, 200, new Buff("Oily Carapace", "Modifier", 0, 0, 0, 0, 0, 25, 25, 3, "Increases defense and speed by 25%.")));
 		monsterz.get(10).skills.add(new BuffSkill("Flaming Crescendo", 15, 200, new Buff("Flaming Crescendo", "Modifier", 0, 0, 25, 0, 0, 25, 0, 3, "Increases intelligence and defense by 25%.")));
 		monsterz.get(10).skills.add(new BuffSkill("Door to Eternity", 20, 200, new Buff("Door to Eternity", "Modifier", 0, 0, 33, 0, 0, 0, 0, 3, "Increases intelligence by 33%.")));
-		monsterz.get(12).skills.add(new DebuffSkill("Dominate Mind", 10, 200, new Buff("Dominate Mind", "Modifier", 0, 0, 0, 0, 25, 0, 0, 3, "Decreases accuracy by 25%.")));
-		monsterz.get(12).skills.add(new BuffSkill("Evasive Aura", 15, 200, new Buff("Favorable Wind", "Modifier", 0, 0, 0, 0, 25, 25, 0, 3, "Increases speed and accuracy by 25%.")));
+		monsterz.get(12).skills.add(new DebuffSkill("Dominate Mind", 10, 200, new Buff("Dominate Mind", "Modifier", 0, 0, 0, 0, 25, 0, 0, 3, "Increases accuracy by 25%.")));
+		monsterz.get(12).skills.add(new BuffSkill("Evasive Aura", 15, 200, new Buff("Evasive Aura", "Modifier", 0, 0, 0, 0, 25, 25, 0, 3, "Increases speed and accuracy by 25%.")));
 		monsterz.get(12).skills.add(new AttackSkill("Fan of Knives", 20, "Modifier", 220, 50, 0, "Attacks with 220% strength."));
 		
 		armorz.add(new Armor("Sunlight Armor", 23, 40, 45, 15, 20, 750));
@@ -105,20 +106,32 @@ public class CessPool {
 		potionz.add(new Potion("Health and Mana Potion", 0,175, new Buff("Health and Mana Potion", "Modifier", 15, 15, 0, 0, 0, 10, 0, 3, "Increases health and mana by 15% for 3 turns.")));
 		potionz.add(new Potion("Heavenly Potion", 0,300, new Buff("Heavenly Potion", "Modifier", 15, 15, 15, 15, 15, 15, 15, 3, "Increasess all stats by 15% for 3 turns.")));
 
-		skillz.add(new AttackSkill("Shattering Star", 50, "Modifier", 250, 60, 0, "Attacks with 150% strength."));
-		skillz.add(new BuffSkill("Sword Saint", 40,150, new Buff("Sword Saint", "Non", 0, 0, 0, 10, 0, 0, 0, 3, "Increases strength by 10.")));
-		skillz.add(new BuffSkill("Faint Destroyer", 50,180, new Buff("Faint Destroyer", "Modifier", 0, 0, 0, 0, 13, 0, 0, 3, "Increases accuracy by 13%.")));
-		skillz.add(new DebuffSkill("Earthquake", 45,155, new Buff("Earthquake", "Modifier", 0, 0, 0, 0, 0, -10, 0, 3, "Reduces enemy speed by 10%.")));
-		skillz.add(new DebuffSkill("Meteor Shower", 55,250, new Buff("Meteor Shower", "Non", 0, 0, 0, -20, 0, 0, 0, 3, "Reduces enemy strength by 20 points.")));
-		skillz.add(new BuffSkill("Water Pulse", 57,270, new Buff("Water Pulse", "Non", 50, 0, 0, 0, 10, 0, 0, 3, "Replenishes 50 HP.")));
-		skillz.add(new BuffSkill("Winter Blast", 60,300, new Buff("Winter Blast", "Modifier", 30, 0, 0, 0, 0, 0, 0, 3, "Replenishes 30% HP.")));
-		skillz.add(new AttackSkill("Chain Lightning", 60, "Modifier", 300, 75, 1, "Attacks with 150% intelligence."));
-		skillz.add(new AttackSkill("Onslaught", 40, "Modifier", 200, 40, 0, "Attacks with 140% strength."));
-		skillz.add(new BuffSkill("Erratic Wisp", 52,200, new Buff("Erratic Wisp", "Non", 0, 0, 0, 15, 0, 0, 0, 3, "Increases strength by 15%")));
-		skillz.add(new BuffSkill("Supernova", 62,250, new Buff("Supernova", "Modifier", 0, 18, 0, 0, 0, 0, 0, 3, "Increases mana by 18%.")));
-		skillz.add(new DebuffSkill("Grasp of the Starved", 47,160, new Buff("Grasp of the Starved", "Modifier", 0, 0, 0, 0, 0, 0, -11, 3, "Reduces enemy defence by 11%.")));
-		skillz.add(new DebuffSkill("Gag Order", 55,250, new Buff("Gag Order", "Non", 0, -20, 0, 0, 0, 0, 0, 3, "Reduces enemy mana by 20 points.")));
+		skillz.add(new AttackSkill("Shattering Star", 20, "Modifier", 250, 60, 0, "Attacks with 150% strength."));
+		skillz.add(new BuffSkill("Sword Saint", 20,150, new Buff("Sword Saint", "Non", 0, 0, 0, 10, 0, 0, 0, 3, "Increases strength by 10.")));
+		skillz.add(new BuffSkill("Faint Destroyer", 20,180, new Buff("Faint Destroyer", "Modifier", 0, 0, 0, 0, 20, 0, 0, 3, "Increases accuracy by 20%.")));
+		skillz.add(new DebuffSkill("Earthquake", 25,155, new Buff("Earthquake", "Modifier", 0, 0, 0, 0, 0, -25, 0, 3, "Reduces enemy speed by 25%.")));
+		skillz.add(new DebuffSkill("Meteor Shower", 25,250, new Buff("Meteor Shower", "Non", 0, 0, 0, -20, 0, 0, 0, 3, "Reduces enemy strength by 20 points.")));
+		skillz.add(new BuffSkill("Water Pulse", 27,270, new Buff("Water Pulse", "Non", 50, 0, 0, 0, 10, 0, 0, 3, "Replenishes 50 HP.")));
+		skillz.add(new BuffSkill("Winter Blast", 30,300, new Buff("Winter Blast", "Modifier", 30, 0, 0, 0, 0, 0, 0, 3, "Replenishes 30% HP.")));
+		skillz.add(new AttackSkill("Chain Lightning", 30, "Modifier", 300, 75, 1, "Attacks with 175% intelligence."));
+		skillz.add(new AttackSkill("Onslaught", 20, "Modifier", 200, 40, 0, "Attacks with 140% strength."));
+		skillz.add(new BuffSkill("Erratic Wisp", 22,200, new Buff("Erratic Wisp", "Non", 0, 0, 0, 25, 0, 0, 0, 3, "Increases strength by 25%")));
+		skillz.add(new BuffSkill("Supernova", 22,250, new Buff("Supernova", "Modifier", 0, 18, 0, 0, 0, 0, 0, 3, "Increases mana by 18%.")));
+		skillz.add(new DebuffSkill("Grasp of the Starved", 27,160, new Buff("Grasp of the Starved", "Modifier", 0, 0, 0, 0, 0, 0, -20, 3, "Reduces enemy defence by 20%.")));
+		skillz.add(new DebuffSkill("Gag Order", 25,250, new Buff("Gag Order", "Non", 0, -20, 0, 0, 0, 0, 0, 3, "Reduces enemy mana by 20 points.")));
+		skillz.add(new BuffSkill("Evasive Aura", 30, 350, new Buff("Evasive Aura", "Modifier", 0, 0, 0, 0, 25, 25, 0, 3, "Increases speed and accuracy by 25%.")));
+		skillz.add(new DebuffSkill("Deep Freeze", 30, 350, new Buff("Deep Freeze", "Modifier", 0, 0, 0, 0, -20, -20, 0, 3, "Reduces enemy accuracy and speed by 20%.")));
 		
 		endingz.add(new String(" O . . m O . . R i . . "));
+		endingz.add(new String(" w..here a..r.ee yo.. ma...r..i "));
+		endingz.add(new String(" ..we'..re still yo..ng. we should d.rea.. big.."));
+		endingz.add(new String(" zz..Watermelons ar.. the best part of summe..rr right.. om..ri? "));
+		endingz.add(new String(" M..ari's c..ookies ha.e so much l.ve baked into the.. I could e... them forev..z...z "));
+		endingz.add(new String(" a... w..ish? but what sh..ld i wi.h for? bz..z... I have everything I could want right her. "));
+		endingz.add(new String(" th..is yea.r, yo..uu get just o..ne pre..sent.. from all four of ..u ..zz "));
+		endingz.add(new String(" mari.... wh..y.. "));
+		endingz.add(new String(" o..m.ori... ev..en.. if.. ma..r.'s gone.. rem..ember.. we... will "));
+		endingz.add(new String(" F i g h t i n g   r e s t l e s s l y. . . T h a t ' s  j u s t  l i k e  y o u  o m ..... r..."));
+		endingz.add(new String(" i .. m.i...ss. y..ou "));
 	}
 }

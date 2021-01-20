@@ -24,7 +24,7 @@ public class Character extends Creature {
 	public Character(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy,
 			float speed, float defence, float weight, String story) {
 		super(name, healthPoint, mana, intelligence, strength, accuracy, speed, defence, weight);
-		this.gold = 10000;
+		this.gold = 1000;
 		this.story = story;
 		this.attributeP = 10;
 		ImgPool = new ArrayList<Image>();

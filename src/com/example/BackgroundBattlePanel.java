@@ -22,8 +22,8 @@ public class BackgroundBattlePanel extends JPanel {
 		backgrounds.add(new ImageIcon("images/bg2.jpg").getImage());
 		backgrounds.add(new ImageIcon("images/bg3.jpg").getImage());
 		backgrounds.add(new ImageIcon("images/finalboss.jpg").getImage());
-//		this.bg = CessPool.location.get(CessPool.location.size()-1);
-		this.bg = 999;
+		this.bg = CessPool.location.get(CessPool.location.size()-1);
+//		this.bg = 999;
 		if(bg<8) {
 			this.imgg = backgrounds.get(0);
 		}

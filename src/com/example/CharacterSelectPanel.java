@@ -93,7 +93,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	                System.out.println("Wizard is chosen.");
-	                CessPool.selected = new Character("Wizard", 2000, 150, 50, 10, 50, 25, 25, 30, "The Wizard is a magical man that wears a hooded cloak, a leather belt with a golden buckle, and matching boots.\r\n"
+	                CessPool.selected = new Character("Wizard", 4000, 150, 50, 10, 50, 25, 25, 30, "The Wizard is a magical man that wears a hooded cloak, a leather belt with a golden buckle, and matching boots.\r\n"
 	                		+ "The Wizard is a ranged unit, meaning that he can shoot over Walls. He shoots fireballs or energy blasts that do high damage but requires support as he has relatively low hit points and"
 	                		+ " can easily be killed by point defenses.");
 	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_001.png").getImage());
@@ -119,8 +119,9 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_007.png").getImage());
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Wizard/spell_008.png").getImage());
 	                CessPool.selected.skills.add(CessPool.skillz.get(7));
-	                CessPool.selected.inventory.add(CessPool.potionz.get(4));
-	                CessPool.selected.inventory.add(CessPool.potionz.get(6));
+	                CessPool.selected.skills.add(CessPool.skillz.get(4));
+	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(4)));
+	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(6)));
 	                CessPool.selected.potionA = 2;
 	               
 	                StartPanel.music.stopMusic();
@@ -199,11 +200,11 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_9.png").getImage());
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Warrior/Individual Sprite/Dash-Attack_noDust/Warrior_Dash-Attack_10.png").getImage());
 	                CessPool.selected.skills.add(CessPool.skillz.get(1));
-	                CessPool.selected.inventory.add(CessPool.potionz.get(0));
-	                CessPool.selected.inventory.add(CessPool.potionz.get(1));
+	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(0)));
+	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(1)));
 	                CessPool.selected.potionA = 2;
 	                StartPanel.music.stopMusic();
-	                Main.frame.setContentPane(new Map(frame));
+//	                Main.frame.setContentPane(new Map(frame));
 	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();
 	            }
@@ -266,9 +267,10 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion4.png").getImage());
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion5.png").getImage());
 	                CessPool.selected.addSpellImage(new ImageIcon("character/Rogue/potion6.png").getImage());
-	                CessPool.selected.skills.add(CessPool.skillz.get(7));
-	                CessPool.selected.inventory.add(CessPool.potionz.get(3));
-	                CessPool.selected.inventory.add(CessPool.potionz.get(7));
+	                CessPool.selected.skills.add(CessPool.skillz.get(2));
+	                CessPool.selected.skills.add(CessPool.skillz.get(3));
+	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(3)));
+	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(7)));
 	                CessPool.selected.potionA = 2;
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));

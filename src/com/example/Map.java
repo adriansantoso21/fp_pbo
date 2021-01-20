@@ -138,6 +138,8 @@ public class Map extends JPanel{
 		    	        	}
 		    	        	
 		    	        	if(Map.last == 22) {
+		    	        		music2.stopMusic();
+		    	        		music2.playMusic("song/map.wav");
 		    	        		Main.frame.setContentPane(new FinalBossPanel(frame));
 			    			    Main.frame.pack();
 		    	        	}

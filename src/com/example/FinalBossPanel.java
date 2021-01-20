@@ -216,7 +216,7 @@ public class FinalBossPanel extends JPanel {
 							e.printStackTrace();
 						}
 					    try {
-							Thread.sleep(20);
+							Thread.sleep(200);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -644,6 +644,7 @@ public class FinalBossPanel extends JPanel {
 
                     if (choice == JOptionPane.YES_OPTION) {
                     	if(skill.name.equals("Wake Up")) {
+                    		Map.music2.stopMusic();
                     		Main.frame.setContentPane(new VideoCredit());
                     		Main.frame.pack();
                     	}
@@ -874,7 +875,7 @@ public class FinalBossPanel extends JPanel {
 							e.printStackTrace();
 						}
 					    try {
-							Thread.sleep(20);
+							Thread.sleep(200);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

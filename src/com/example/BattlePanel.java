@@ -44,6 +44,7 @@ public class BattlePanel extends JPanel {
 	private BackgroundBattlePanel fights;
 	
 	public BattlePanel(JFrame frame) {
+		
 		Map.music2.musicLoop();
 		Random rand = new Random();
 		int a = rand.nextInt(CessPool.monsterz.size());
@@ -366,7 +367,7 @@ public class BattlePanel extends JPanel {
 		else if (dead instanceof Monster) {
 			Thread winThread = new Thread() {
 				public void run() {
-					chatsThread(CessPool.endingz.get(CessPool.location.get(CessPool.location.size()-1)));
+					chatsThread(CessPool.endingz.get(showChat()));
 					while(sumn==0) {
 						try {
 							Thread.sleep(500);
@@ -410,14 +411,8 @@ public class BattlePanel extends JPanel {
 					
 					fights.setCurrent(10);
 					Map.music2.stopMusic();
-					if( Map.last == 23) {
-						Main.frame.setContentPane(new credit());
-						Main.frame.pack();
-					}
-					else {
-						Main.frame.setContentPane(new Map(frame));
-						Main.frame.pack();
-					}	
+					Main.frame.setContentPane(new Map(frame));
+					Main.frame.pack();	
 				}
 			};
 			winThread.start();
@@ -822,6 +817,37 @@ public class BattlePanel extends JPanel {
 			}
     	};
     	chatsThread.start();
+    }
+    
+    public int showChat() {
+    	int a = Map.last;
+    	if(Map.last == 0 || Map.last == 1 || Map.last == 2) {
+    		return a;
+    	}
+    	else if (Map.last == 7 || Map.last == 4) {
+    		return 3;
+    	}
+    	else if (Map.last == 5 || Map.last == 8) {
+    		return 4;
+    	}
+    	else if (Map.last == 12) {
+    		return 5;
+    	}
+    	else if (Map.last == 13) {
+    		return 6;
+    	}
+    	else if (Map.last == 16 || Map.last == 18) {
+    		return 7;
+    	}
+    	else if (Map.last == 21) {
+    		return 8;
+    	}
+    	else if (Map.last == 9) {
+    		return 9;
+    	}
+    	else {
+    		return 10;
+    	}
     }
    
 }

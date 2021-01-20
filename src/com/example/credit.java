@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 
 public class credit extends JPanel {
 	public static ArrayList<Integer> position = new ArrayList<Integer>();
-	private double countDown = 91.5;
-	private Image imgg;
+	private double countDown = 92.5;
+	private Image imgg, img1, img2, img3, img4, img5, img6, img7, img8;
 	static musicPlay music3 = new musicPlay();
 	public Font Title;
 	public Font sub;
@@ -53,6 +53,14 @@ public class credit extends JPanel {
 		
 		music3.playMusic("song/credit.wav");
 		this.imgg = new ImageIcon("images/credit_bg.jpg").getImage();
+		this.img1 = new ImageIcon("images/omori1.png").getImage();
+		this.img2 = new ImageIcon("images/omori2.png").getImage();
+		this.img3 = new ImageIcon("images/omori3.png").getImage();
+		this.img4 = new ImageIcon("images/omori4.png").getImage();
+		this.img5 = new ImageIcon("images/omori5.png").getImage();
+		this.img6 = new ImageIcon("images/omori6.png").getImage();
+		this.img7 = new ImageIcon("images/omori7.png").getImage();
+		this.img7 = new ImageIcon("images/omori8.png").getImage();
 		position.add(750);//made by
 		position.add(850);
 		position.add(890);
@@ -82,7 +90,15 @@ public class credit extends JPanel {
 		position.add(2220);
 		
 		position.add(2420);//finally
-		position.add(2780);
+		position.add(2900);
+		position.add(800);
+		position.add(1000);
+		position.add(1200);
+		position.add(1400);
+		position.add(1600);
+		position.add(1800);
+		position.add(2000);
+		position.add(2300);
 	}
 
     public void paint(Graphics gp) {
@@ -90,6 +106,14 @@ public class credit extends JPanel {
 	     Graphics2D g2d= (Graphics2D) gp;
 	     g2d.setFont(Title);
 	     g2d.setColor(new Color(0, 0, 128));
+	     gp.drawImage(img1, 100, position.get(25), null);
+	     gp.drawImage(img2, 900, position.get(26), null);
+	     gp.drawImage(img3, 100, position.get(27), null);
+	     gp.drawImage(img4, 900, position.get(28), null);
+	     gp.drawImage(img5, 100, position.get(29), null);
+	     gp.drawImage(img6, 900, position.get(30), null);
+	     gp.drawImage(img7, 100, position.get(31), null);
+	     gp.drawImage(img8, 900, position.get(32), null);
 	     drawCenteredString("Made By :", 1280, position.get(0), g2d);
 	     
 	     g2d.setFont(credit);
