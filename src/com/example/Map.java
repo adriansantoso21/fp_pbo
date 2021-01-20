@@ -137,8 +137,15 @@ public class Map extends JPanel{
 								music2.playMusic("song/battle3.wav");
 		    	        	}
 		    	        	
-		    	        	Main.frame.setContentPane(new BattlePanel(frame));
-		    			    Main.frame.pack();
+		    	        	if(Map.last == 22) {
+		    	        		Main.frame.setContentPane(new FinalBossPanel(frame));
+			    			    Main.frame.pack();
+		    	        	}
+		    	        	else {
+		    	        		Main.frame.setContentPane(new BattlePanel(frame));
+			    			    Main.frame.pack();
+		    	        	}
+							
 		    	        }
 		    	       }
 		    );
@@ -153,6 +160,7 @@ public class Map extends JPanel{
 		    	        	int b = buttons.indexOf(a);
 		    	        	CessPool.location.add(b);
 		    	        	music2.playMusic("song/bag_shop_rest.wav");
+		    	        	last = CessPool.location.get(CessPool.location.size()-1);
 		    	        	Main.frame.setContentPane(new RestPanel(frame));
 		    			    Main.frame.pack();
 		    	        }

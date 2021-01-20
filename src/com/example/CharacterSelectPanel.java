@@ -93,7 +93,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	                System.out.println("Wizard is chosen.");
-	                CessPool.selected = new Character("Wizard", 20000, 200, 50, 10, 50, 25, 25, 30, "The Wizard is a magical man that wears a hooded cloak, a leather belt with a golden buckle, and matching boots.\r\n"
+	                CessPool.selected = new Character("Wizard", 2000, 150, 50, 10, 50, 25, 25, 30, "The Wizard is a magical man that wears a hooded cloak, a leather belt with a golden buckle, and matching boots.\r\n"
 	                		+ "The Wizard is a ranged unit, meaning that he can shoot over Walls. He shoots fireballs or energy blasts that do high damage but requires support as he has relatively low hit points and"
 	                		+ " can easily be killed by point defenses.");
 	                CessPool.selected.addAttackImage(new ImageIcon("character/Wizard/attack_001.png").getImage());
@@ -167,7 +167,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	            	System.out.println("Warrior is chosen.");
-	                CessPool.selected = new Character("Warrior", 4000, 500, 10, 150, 50, 30, 50, 50,"The Barbarian King is a larger, stronger, more aggressive, more impressive, "
+	                CessPool.selected = new Character("Warrior", 500, 50, 10, 40, 50, 30, 50, 50,"The Barbarian King is a larger, stronger, more aggressive, more impressive, "
 	                		+ "and more powerful Barbarian. He is automatically summoned once the Barbarian King Altar is constructed, which costs 10,000 Dark Elixir. The Dark "
 	                		+ "Elixir Storage is required to get him.\r\n");
 	                CessPool.selected.addAttackImage(new ImageIcon("character/Warrior/Individual Sprite/Attack/Warrior_Attack_1.png").getImage());
@@ -204,7 +204,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.potionA = 2;
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new Map(frame));
-	                frame.setContentPane(new FinalBossPanel(frame));
+	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();
 	            }
 	         }
@@ -247,7 +247,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	            	System.out.println("Rogue is chosen.");
-	                CessPool.selected = new Character("Rogue", 3000, 100, 300, 35, 50, 50, 20, 20, "The Goblin is the fourth troop unlocked in the Barracks.\r\n"
+	                CessPool.selected = new Character("Rogue", 750, 100, 35, 35, 50, 50, 20, 20, "The Goblin is the fourth troop unlocked in the Barracks.\r\n"
 	                		+ "Goblins prioritize resource buildings above all other targets, and will bypass all other types of enemy buildings and troops while any resource buildings remain on the battlefield."
 	                		+ " This is true even if they are under attack by enemy Clan Castle troops, heroes or Skeleton Trap skeletons");
 	                CessPool.selected.addAttackImage(new ImageIcon("character/Rogue/attack1.png").getImage());

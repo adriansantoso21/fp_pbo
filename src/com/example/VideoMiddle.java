@@ -52,8 +52,9 @@ public class VideoMiddle extends JPanel{
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(current, 0, 0, null);
-			if(i == 463) {
+			if(i == 438) {
 				music5.stopMusic();
+				Main.frame.setContentPane(new Map(frame));
 				Main.frame.pack();
 			}
 		}

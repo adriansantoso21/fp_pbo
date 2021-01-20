@@ -32,10 +32,16 @@ public class RestPanel extends JPanel {
 		Button1.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	        	Map.music2.stopMusic();
-	        	Main.frame.setContentPane(new Map(frame));
-	        	Main.frame.pack();
 	        	CessPool.selected.healHealth(CessPool.selected.healthPoint/100*30);
+	        	Map.music2.stopMusic();
+	        	if(Map.last == 14) {
+	        		Main.frame.setContentPane(new VideoMiddle(frame));
+		        	Main.frame.pack();
+	        	}
+	        	else {
+	        		Main.frame.setContentPane(new Map(frame));
+		        	Main.frame.pack();
+	        	}
 	         }
 		});
 		
@@ -53,8 +59,14 @@ public class RestPanel extends JPanel {
 	        public void actionPerformed(ActionEvent e) {
 	        	Map.music2.stopMusic();
 	        	CessPool.selected.attributeP += 5;
-	        	Main.frame.setContentPane(new Map(frame));
-	        	Main.frame.pack();
+	        	if(Map.last == 14) {
+	        		Main.frame.setContentPane(new VideoMiddle(frame));
+		        	Main.frame.pack();
+	        	}
+	        	else {
+	        		Main.frame.setContentPane(new Map(frame));
+		        	Main.frame.pack();
+	        	}
 	         }
 		});
 	}
