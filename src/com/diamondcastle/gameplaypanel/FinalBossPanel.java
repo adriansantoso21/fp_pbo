@@ -47,8 +47,8 @@ import com.diamondcastle.video.VideoCredit;
 
 public class FinalBossPanel extends JPanel {
 	
-	Character fighter;
-	Monster fighted ;
+	Character fighter = CessPool.selected;
+	Monster fighted = CessPool.finalboss;
 	int num;
 	
 	private CardLayout cardlayt = new CardLayout();
@@ -69,9 +69,6 @@ public class FinalBossPanel extends JPanel {
 		full = new JPanel();
 		full.setLayout(new BorderLayout());
 
-		fighter = CessPool.selected;
-		fighted = new Monster("I Don't Want to Go Back", 1200, 100, 50, 50, 50, 50, 50, 50, 33);
-		
 		num=0;
         
 		this.setBackground(new Color(204, 153, 0));
@@ -173,8 +170,8 @@ public class FinalBossPanel extends JPanel {
     			new ActionListener() {
     				@Override
     				public void actionPerformed(ActionEvent event) {
-    					fighted = CessPool.finalboss;
     					fights.startAttackThread();
+    					fighted = CessPool.finalboss;
     					youAttack(fighter, fighted);
     				}
     			}
@@ -219,11 +216,11 @@ public class FinalBossPanel extends JPanel {
 		tb.setPreferredSize(new Dimension(300, 60));
 		fights.startIdleThread();
 		
-		c1 = new CardsVideo(frame, 0, cards, cardlayt1, vid);
-		c2 = new CardsVideo(frame, 1, cards, cardlayt1, vid);
-		c3 = new CardsVideo(frame, 2, cards, cardlayt1, vid);
-		c4 = new CardsVideo(frame, 3, cards, cardlayt1, vid);
-		c5 = new CardsVideo(frame, 4, cards, cardlayt1, vid);
+		c1 = new CardsVideo(frame, 0, cards, cardlayt1);
+		c2 = new CardsVideo(frame, 1, cards, cardlayt1);
+		c3 = new CardsVideo(frame, 2, cards, cardlayt1);
+		c4 = new CardsVideo(frame, 3, cards, cardlayt1);
+		c5 = new CardsVideo(frame, 4, cards, cardlayt1);
 		
 		cards.add(full, "full");
 		cards.add(c1, "0");
@@ -349,14 +346,11 @@ public class FinalBossPanel extends JPanel {
 	}
 	
 	public void youAttack(Character attacker, Monster attacked) {
-		fighter = CessPool.selected;
-		fighted = CessPool.finalboss;
 		cardlayt.show(potionPanel, "text");
 		if (num>3) {
 			ta.setText("");
 			num=0;
 		}
-		
 		Thread youAttackThread = new Thread() {
 			public void run() {
 				
@@ -398,8 +392,6 @@ public class FinalBossPanel extends JPanel {
 		}
 		
 		num++;
-		fighted = CessPool.finalboss;
-		fighter = CessPool.selected;
 		updateBar();
 		
 		addCharaLabel(charaPanel);
@@ -417,7 +409,7 @@ public class FinalBossPanel extends JPanel {
 	}
 	
 	public void someoneDead(Creature living, Creature dead) {
-		Map.music2.stopMusic();
+
 		if (dead instanceof Character) {
 			JFrame frame = new JFrame("Sorry");
 			JLabel label = new JLabel("<html><center><p style style=\"background-color:red; color: blue;\"> YOU DIED LOSER </p>");
@@ -497,8 +489,6 @@ public class FinalBossPanel extends JPanel {
 
 	public void enemyTurn(Monster turn) {
 		fighted = CessPool.finalboss;
-		fighter = CessPool.selected;
-		
 		if (fighted.currHP <= 300 && apple ==1) {
 			ArrayList<String> chatz = new ArrayList<String>();
 			chatz.add(new String(" S T O P  R E S I S T I N G"));
@@ -651,10 +641,7 @@ public class FinalBossPanel extends JPanel {
 		}
 		addCharaLabel(charaPanel);
 		addSkillButtons(skillButtonPanel);
-		te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
-				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
-		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
-        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+		updateBar();
 	}
 	
 	//----------------------POTION AND SKILLS PANEL METHODS----------------------//
@@ -776,10 +763,6 @@ public class FinalBossPanel extends JPanel {
                     		Main.frame.setContentPane(new VideoCredit());
                     		Main.frame.pack();
                     	}
-                    	else if(skill.name.equals("Stay")) {
-                    		fighter.currHP = 0;
-                    		someoneDead(fighted, fighter);
-                    	}
                         if(skill instanceof BuffSkill) {
                     		((BuffSkill) skill).unleash(fighter);
                     		text = "· You used the buff skill "+skill.name+", "+desc+"\n";
@@ -844,6 +827,7 @@ public class FinalBossPanel extends JPanel {
     	name.setText("Name : " + fighter.name);
 		name.setFocusable(false);
 		name.setFont(new Font("Verdana", Font.BOLD, 13));
+//		name.setBackground(new Color(0, 0, 102));
 		name.setForeground(new Color(26, 163, 255));
 		panel.add(name);
 		
@@ -870,6 +854,7 @@ public class FinalBossPanel extends JPanel {
 		}
     	acc.setText("Accuracy : " + fighter.accuracy + " (" + indif + ")" );
 		acc.setFocusable(false);
+//		acc.setBackground(new Color(26, 163, 255));
 		acc.setForeground(new Color(26, 163, 255));
 		acc.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(acc);
@@ -882,6 +867,7 @@ public class FinalBossPanel extends JPanel {
 			weapon.setText("Weapon " + fighter.equippedWeapon.name + " equipped");
 		}
 		weapon.setFocusable(false);
+//		weapon.setBackground(new Color(26, 163, 255));
 		weapon.setForeground(new Color(26, 163, 255));
 		weapon.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(weapon);
@@ -889,6 +875,7 @@ public class FinalBossPanel extends JPanel {
 		JLabel mana = new JLabel();
     	mana.setText("Max Mana : " + fighter.mana);
 		mana.setFocusable(false);
+//		mana.setBackground(new Color(26, 163, 255));
 		mana.setForeground(new Color(26, 163, 255));
 		mana.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(mana);
@@ -901,6 +888,7 @@ public class FinalBossPanel extends JPanel {
 		}
     	spd.setText("Speed : " + fighter.speed + " (" + indif + ")" );
 		spd.setFocusable(false);
+//		spd.setBackground(new Color(26, 163, 255));
 		spd.setForeground(new Color(26, 163, 255));
 		spd.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(spd);
@@ -913,6 +901,7 @@ public class FinalBossPanel extends JPanel {
 			armor.setText("Armor " + fighter.equippedArmor.name + " equipped");
 		}
 		armor.setFocusable(false);
+//		armor.setBackground(new Color(26, 163, 255));
 		armor.setForeground(new Color(26, 163, 255));
 		armor.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(armor);
@@ -925,6 +914,7 @@ public class FinalBossPanel extends JPanel {
 		}
     	inte.setText("Intelligence : " + fighter.intelligence + " (" + indif + ")" );
 		inte.setFocusable(false);
+//		inte.setBackground(new Color(26, 163, 255));
 		inte.setForeground(new Color(26, 163, 255));
 		inte.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(inte);
@@ -937,6 +927,7 @@ public class FinalBossPanel extends JPanel {
 		}
     	def.setText("Defence : " + fighter.defence + " (" + indif + ")" );
 		def.setFocusable(false);
+//		def.setBackground(new Color(26, 163, 255));
 		def.setFont(new Font("Verdana", Font.BOLD, 13));
 		def.setForeground(new Color(26, 163, 255));
 		panel.add(def);
@@ -953,6 +944,7 @@ public class FinalBossPanel extends JPanel {
 		}
     	str.setText("Strength : " + fighter.strength + " (" + indif + ")" );
 		str.setFocusable(false);
+//		str.setBackground(new Color(26, 163, 255));
 		str.setForeground(new Color(26, 163, 255));
 		str.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(str);
@@ -961,11 +953,13 @@ public class FinalBossPanel extends JPanel {
 		JLabel wei = new JLabel();
     	wei.setText("Weight :" + fighter.weight);
 		wei.setFocusable(false);
+//		wei.setBackground(new Color(26, 163, 255));
 		wei.setForeground(new Color(26, 163, 255));
 		wei.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(wei);
 		
 		JTextArea buff = new JTextArea();
+//		buff.setBackground(new Color(26, 163, 255));
 		buff.setForeground(new Color(26, 163, 255));
 		buff.setEditable(false);
 		buff.setText("Current buffs/debuffs: ");
@@ -1031,14 +1025,10 @@ public class FinalBossPanel extends JPanel {
     }
     
     void updateBar() {
-    	fighted = CessPool.finalboss;
-		fighter = CessPool.selected;
-    	te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ CessPool.selected.currHP +" / "+ CessPool.selected.healthPoint + "</center><br>"
-				+"MP :" + CessPool.selected.currMana + " / " + CessPool.selected.mana + "</h3></div></html>");
-    	fighted = CessPool.finalboss;
-		fighter = CessPool.selected;
-    	tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + CessPool.finalboss.currHP + " / "+ CessPool.finalboss.healthPoint + "</center><br>"
-        		+ "MP : " + CessPool.finalboss.currMana + " / " + CessPool.finalboss.mana + "</h3></div></html>");
+    	te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
+				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
+        		+ "MP : " + fighted.currMana + " / " + fighted.mana + "</h3></div></html>");
     }
    
 }

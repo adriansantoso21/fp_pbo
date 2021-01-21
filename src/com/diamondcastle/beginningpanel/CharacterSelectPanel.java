@@ -126,8 +126,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.potionA = 2;
 	               
 	                StartPanel.music.stopMusic();
-	                Main.frame.setContentPane(new FinalBossPanel(frame));
-//	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
+	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();
 	            }
 	         }

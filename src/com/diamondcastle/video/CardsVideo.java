@@ -21,12 +21,12 @@ public class CardsVideo extends JPanel {
 	CardLayout cardlayt;
 	int i, vid;
 	
-	public CardsVideo(JFrame frame, int a, JPanel panel, CardLayout cardlayt, int vid){
+	public CardsVideo(JFrame frame, int a, JPanel panel, CardLayout cardlayt){
 		beg = new ArrayList<Image>();
 		this.frame = frame;
 		this.panel = panel;
 		this.cardlayt = cardlayt;
-		this.vid = vid;
+//		this.vid = vid;
 		if(a == 0) {
 			for (int i = 0; i<5; i++) {
 				beg.add(new ImageIcon("resource/video/finalcards/first"+i+".jpg").getImage());

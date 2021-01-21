@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<!-- <classpathentry kind="src" path="monster"/>
+	<classpathentry kind="src" path="song"/>
+	<classpathentry kind="src" path="video"/> -->
+	<!-- <classpathentry kind="src" path="VideoCredit"/> -->
+	<classpathentry kind="src" path="resource"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
