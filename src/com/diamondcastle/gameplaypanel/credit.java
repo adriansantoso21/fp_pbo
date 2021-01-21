@@ -25,29 +25,26 @@ public class credit extends JPanel {
 	private double countDown = 92.5;
 	private Image imgg, img1, img2, img3, img4, img5, img6, img7, img8;
 	static musicPlay music3 = new musicPlay();
-	public Font Title;
-	public Font sub;
-	public Font credit; 
-	public Font thank;
+	public Font Title, sub, credit, thank;
 	
 	public credit(){
 		
 		try {
 			Title = Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/Maghrib-MVZpx.ttf")).deriveFont(80f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/Maghrib-MVZpx.ttf")));
+			ge.registerFont(Title);
 			
 			sub = Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/AfternoonCoffee-GOqyO.ttf")).deriveFont(47f);
 			GraphicsEnvironment ge0 = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge0.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/AfternoonCoffee-GOqyO.ttf")));
+			ge0.registerFont(sub);
 			
 			credit = Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/Alohasummer-PKX7r.ttf")).deriveFont(40f);
 			GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge1.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/Alohasummer-PKX7r.ttf")));
+			ge1.registerFont(credit);
 			
 			thank = Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/AllessaPersonalUse-4pRl.ttf")).deriveFont(45f);
 			GraphicsEnvironment ge2 = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge2.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/AllessaPersonalUse-4pRl.ttf")));
+			ge2.registerFont(thank);
 			
 	   }
 	   catch(IOException | FontFormatException e) {
@@ -93,7 +90,7 @@ public class credit extends JPanel {
 		position.add(2220);
 		
 		position.add(2420);//finally
-		position.add(2900);
+		position.add(2750);
 		position.add(800);
 		position.add(1000);
 		position.add(1200);
@@ -181,8 +178,6 @@ public class credit extends JPanel {
 			     }
 		     }
 		     
-		     
-		  
 		     countDown -= 0.165; 
 		     repaint();
 	     }

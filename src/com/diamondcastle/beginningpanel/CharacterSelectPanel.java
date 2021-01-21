@@ -98,9 +98,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	                System.out.println("Wizard is chosen.");
-	                CessPool.selected = new Character("Wizard", 4000, 150, 150, 10, 50, 25, 25, 30, "The Wizard is a magical man that wears a hooded cloak, a leather belt with a golden buckle, and matching boots.\r\n"
-	                		+ "The Wizard is a ranged unit, meaning that he can shoot over Walls. He shoots fireballs or energy blasts that do high damage but requires support as he has relatively low hit points and"
-	                		+ " can easily be killed by point defenses.");
+	                CessPool.selected = new Character("Wizard", 1000, 150, 50, 10, 50, 25, 25, 30, "šŽŒ‡¢" + " has always though wizards to be really cool. They shoot fire and thunder at their beck and call, to facce through all of life's hard challenges.  has always wanted to be one, maybe with that power.. Mari..");
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Wizard/attack_001.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Wizard/attack_002.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Wizard/attack_003.png").getImage());
@@ -174,9 +172,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	            	System.out.println("Warrior is chosen.");
-	                CessPool.selected = new Character("Warrior", 500, 50, 10, 40, 50, 30, 50, 50,"The Barbarian King is a larger, stronger, more aggressive, more impressive, "
-	                		+ "and more powerful Barbarian. He is automatically summoned once the Barbarian King Altar is constructed, which costs 10,000 Dark Elixir. The Dark "
-	                		+ "Elixir Storage is required to get him.\r\n");
+	                CessPool.selected = new Character("Warrior", 500, 50, 10, 40, 50, 30, 50, 50,"šŽŒ‡¢" + " has always thought warriors to be really overpowering. The sheer amount of strength to break and destroy all before them has captivated him. Maybe being one would help with his.... sister");
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Warrior/Individual Sprite/Attack/Warrior_Attack_1.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Warrior/Individual Sprite/Attack/Warrior_Attack_2.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Warrior/Individual Sprite/Attack/Warrior_Attack_3.png").getImage());
@@ -254,9 +250,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	            	System.out.println("Rogue is chosen.");
-	                CessPool.selected = new Character("Rogue", 750, 100, 35, 35, 50, 50, 20, 20, "The Goblin is the fourth troop unlocked in the Barracks.\r\n"
-	                		+ "Goblins prioritize resource buildings above all other targets, and will bypass all other types of enemy buildings and troops while any resource buildings remain on the battlefield."
-	                		+ " This is true even if they are under attack by enemy Clan Castle troops, heroes or Skeleton Trap skeletons");
+	                CessPool.selected = new Character("Rogue", 750, 100, 35, 35, 50, 50, 20, 20, "šŽŒ‡¢" + " has always thought rogues to be really awesomely sneaky. He's always fantasized having their powers to blend in the environment and strike at the enemy's weakest points. The blending in part would've really come in useful.");
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Rogue/attack1.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Rogue/attack2.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Rogue/attack3.png").getImage());

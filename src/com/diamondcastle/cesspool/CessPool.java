@@ -132,15 +132,15 @@ public class CessPool {
 		skillz.add(new DebuffSkill("Deep Freeze", 30, 350, new Buff("Deep Freeze", "Modifier", 0, 0, 0, 0, -20, -20, 0, 3, "Reduces enemy accuracy and speed by 20%.")));
 		
 		endingz.add(new String(" O . . m O . . R i . . "));
-		endingz.add(new String(" w..here a..r.ee yo.. ma...r..i "));
+		endingz.add(new String(" w..here a..r.ee yo.. m.a..ri.. "));
 		endingz.add(new String(" ..we'..re still yo..ng.! we should d.rea.. big.."));
 		endingz.add(new String(" zz..Watermelons ar.. the best part of summe..rr right.. om..ri? "));
 		endingz.add(new String(" M..ari's c..ookies ha.e so much l.ve baked into the.. I could e... them forev..z...z "));
 		endingz.add(new String(" a... w..ish? but what sh..ld i wi.h for? bz..z... I have everything I could want right her. "));
 		endingz.add(new String(" th..is yea.r, yo..uu get just o..ne pre..sent.. from all four of ..u ..zz "));
-		endingz.add(new String(" mari.... wh..y.. "));
+		endingz.add(new String(" i .. m.i...ss. y..ou.. s..is..t.er"));
 		endingz.add(new String(" o..m.ori... ev..en.. if.. ma..r.'s gone.. rem..ember.. we... will "));
 		endingz.add(new String(" F i g h t i n g   r e s t l e s s l y. . . T h a t ' s  j u s t  l i k e  y o u  o m ..... r..."));
-		endingz.add(new String(" i .. m.i...ss. y..ou "));
+		endingz.add(new String(" mari.... wh..y.. "));
 	}
 }

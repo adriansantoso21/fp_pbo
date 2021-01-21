@@ -19,13 +19,14 @@ public class CardsVideo extends JPanel {
 	JFrame frame;
 	JPanel panel;
 	CardLayout cardlayt;
-	int i;
+	int i, vid;
 	
-	public CardsVideo(JFrame frame, int a, JPanel panel, CardLayout cardlayt){
+	public CardsVideo(JFrame frame, int a, JPanel panel, CardLayout cardlayt, int vid){
 		beg = new ArrayList<Image>();
 		this.frame = frame;
 		this.panel = panel;
 		this.cardlayt = cardlayt;
+		this.vid = vid;
 		if(a == 0) {
 			for (int i = 0; i<5; i++) {
 				beg.add(new ImageIcon("resource/video/finalcards/first"+i+".jpg").getImage());
@@ -56,6 +57,7 @@ public class CardsVideo extends JPanel {
 	public void startVideoThread() {
 		Thread vidThread = new Thread() {
 			public void run() {
+				vid = 1;
 				for(i =0; i<beg.size(); i++) {
 					current = beg.get(i);
 					repaint();
@@ -74,6 +76,7 @@ public class CardsVideo extends JPanel {
 		g.drawImage(current, 0, 0, null);
 		if(i == 4) {
 			cardlayt.show(panel, "full");
+			vid = 0;
 		}
 	}
 }

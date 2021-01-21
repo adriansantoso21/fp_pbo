@@ -380,6 +380,7 @@ public class BattlePanel extends JPanel {
 		else if (dead instanceof Monster) {
 			Thread winThread = new Thread() {
 				public void run() {
+					Map.music2.stopMusic();
 					chatsThread(CessPool.endingz.get(showChat()));
 					while(sumn==0) {
 						try {

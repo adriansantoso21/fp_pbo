@@ -60,7 +60,7 @@ public class FinalBossPanel extends JPanel {
 	private JPanel skillButtonPanel, potionButtonPanel, charaPanel, tb, tc, td, full;
 	CardsVideo c1, c2, c3, c4, c5;
 	private BackgroundBattlePanel fights;
-	private int apple = 1, sumn = 0;
+	private int apple = 1, sumn = 0, vid = 0;
 	
 	public FinalBossPanel(JFrame frame) {
 		
@@ -215,11 +215,11 @@ public class FinalBossPanel extends JPanel {
 		tb.setPreferredSize(new Dimension(300, 60));
 		fights.startIdleThread();
 		
-		c1 = new CardsVideo(frame, 0, cards, cardlayt1);
-		c2 = new CardsVideo(frame, 1, cards, cardlayt1);
-		c3 = new CardsVideo(frame, 2, cards, cardlayt1);
-		c4 = new CardsVideo(frame, 3, cards, cardlayt1);
-		c5 = new CardsVideo(frame, 4, cards, cardlayt1);
+		c1 = new CardsVideo(frame, 0, cards, cardlayt1, vid);
+		c2 = new CardsVideo(frame, 1, cards, cardlayt1, vid);
+		c3 = new CardsVideo(frame, 2, cards, cardlayt1, vid);
+		c4 = new CardsVideo(frame, 3, cards, cardlayt1, vid);
+		c5 = new CardsVideo(frame, 4, cards, cardlayt1, vid);
 		
 		cards.add(full, "full");
 		cards.add(c1, "0");
@@ -242,9 +242,9 @@ public class FinalBossPanel extends JPanel {
 				chatz.add(new String("  D o  y o u  h a v e  t o  g o  b a c k ? ? ?"));
 				chatz.add(new String("  I s n ' t  t h i s  p l a c e  a  l o t  b e t t e r ?"));
 				chatz.add(new String("   .   .   .   .   ."));
-				chatz.add(new String("  Y o u  d o n ' t  w a n t  t o  s t a y ?"));
+				chatz.add(new String("  M. . . S h e ' s  n o t  t h e r e"));
 				chatz.add(new String("   .   .   .   .   ."));
-				chatz.add(new String("  T H E N  I ' L L  M A K E  S U R E  Y O U  D O N ' T"));
+				chatz.add(new String("  S h e ' l l  n e v e r  c o m e  b a c k "));
 				
 				for(String chats : chatz) {
 					for (int i = 0; i < chats.length(); i++){
@@ -419,8 +419,8 @@ public class FinalBossPanel extends JPanel {
 			
 		}
 		else if (dead instanceof Monster) {
-			Main.frame.setContentPane(new credit());
-			Main.frame.pack();
+			fighted.healHealth(300);
+			enemyTurn(fighted);
 		}
 	}
 	
@@ -463,14 +463,22 @@ public class FinalBossPanel extends JPanel {
 				addCharaLabel(charaPanel);
 				addSkillButtons(skillButtonPanel);
 				updateBar();
+				fight.setEnabled(false);
+				item.setEnabled(false);
+				skill.setEnabled(false);
+				chara.setEnabled(false);
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(3000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				cardlayt1.show(cards, "0");
-				c1.startVideoThread();				
+				c1.startVideoThread();	
+				fight.setEnabled(true);
+				item.setEnabled(true);
+				skill.setEnabled(true);
+				chara.setEnabled(true);
 			}
 		};
 		midThread.start();
@@ -490,84 +498,137 @@ public class FinalBossPanel extends JPanel {
 			midThread();
 		}
 		else if (apple ==0) {
-			ArrayList<String> chatz = new ArrayList<String>();
-			chatz.add(new String(" THE WORLD IS CRUEL"));
-			chatz.add(new String(" IT IS HOSTILE"));
-			chatz.add(new String(" THE WORLD WILL NOT BE KIND"));
-			chatsThread(chatz);
-			apple = -1;
-			StyledDocument doc = ta.getStyledDocument();
-			fighter.damaged(1);
-			try {
-				doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
-			} catch (BadLocationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			updateBar();
-			cardlayt1.show(cards, "1");
-			c2.startVideoThread();	
+			Thread aThread = new Thread() {
+				public void run() {
+					ArrayList<String> chatz = new ArrayList<String>();
+					chatz.add(new String(" T H E  W O R L D  I S  C R U E L "));
+					chatz.add(new String(" I T  I S  H O S T I L E  "));
+					chatz.add(new String(" T H E  W O R L D  W I L L  N O T  B E  K I N D "));
+					chatsThread(chatz);
+					apple = -1;
+					StyledDocument doc = ta.getStyledDocument();
+					fighter.damaged(1);
+					try {
+						doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
+					} catch (BadLocationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					updateBar();
+					while(sumn == 0) {
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					cardlayt1.show(cards, "1");
+					c2.startVideoThread();	
+				}
+			};
+			aThread.start();
 		}
 		else if (apple ==-1) {
-			ArrayList<String> chatz = new ArrayList<String>();
-			chatz.add(new String(" IF YOU LEAVE, YOU WILL NEVER FEEL HAPPINESS"));
-			chatz.add(new String(" LIFE HERE WOULD BE PEACEFUL"));
-			chatz.add(new String(" LIFE HERE WILL BE KIND"));
-			chatsThread(chatz);
-			apple = -2;
-			StyledDocument doc = ta.getStyledDocument();
-			fighter.damaged(1);
-			try {
-				doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
-			} catch (BadLocationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			updateBar();
-			cardlayt1.show(cards, "2");
-			c3.startVideoThread();	
+			Thread aThread = new Thread() {
+				public void run() {
+					ArrayList<String> chatz = new ArrayList<String>();
+					chatz.add(new String(" I F  Y O U  L E A V E , Y O U  W I L L  N E V E R  F E E L  H A P P I N E S S "));
+					chatz.add(new String(" L I F E  H E R E  W O U L D  B E  P E A C E F U L "));
+					chatz.add(new String(" L I F E  H E R E  W I L L  B E  K I N D "));
+					chatz.add(new String(" ... a t  l e a s t  w e  c a n  b e  w i t h  s i s  h e r e . "));
+					chatsThread(chatz);
+					apple = -2;
+					StyledDocument doc = ta.getStyledDocument();
+					fighter.damaged(1);
+					try {
+						doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
+					} catch (BadLocationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					updateBar();
+					while(sumn == 0) {
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					cardlayt1.show(cards, "2");
+					c3.startVideoThread();	
+				}
+			};
+			aThread.start();
 		}
 		else if (apple ==-2) {
-			ArrayList<String> chatz = new ArrayList<String>();
-			chatz.add(new String(" S  T  A  Y  "));
-			chatz.add(new String(" .  .  .  .  .  .  ."));
-			chatz.add(new String(" please"));
-			chatz.add(new String(" i don't want to leave"));
-			chatsThread(chatz);
-			apple = -3;
-			StyledDocument doc = ta.getStyledDocument();
-			fighter.damaged(1);
-			try {
-				doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
-			} catch (BadLocationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			updateBar();
-			cardlayt1.show(cards, "3");
-			c4.startVideoThread();	
+			Thread aThread = new Thread() {
+				public void run() {
+					ArrayList<String> chatz = new ArrayList<String>();
+					chatz.add(new String(" w h a t ' s  t h e  p o i n t "));
+					chatsThread(chatz);
+					apple = -3;
+					StyledDocument doc = ta.getStyledDocument();
+					fighter.damaged(1);
+					
+					try {
+						doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
+					} catch (BadLocationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					updateBar();
+					while(sumn == 0) {
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					cardlayt1.show(cards, "3");
+					c4.startVideoThread();
+				}
+			};
+			aThread.start();
 		}
 		else if (apple == -3) {
-			ArrayList<String> chatz = new ArrayList<String>();
-			chatz.add(new String(" just succumb to the bliss"));
-			chatsThread(chatz);
-			apple = -4;
-			StyledDocument doc = ta.getStyledDocument();
-			fighter.damaged(1);
-			try {
-				doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
-			} catch (BadLocationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			fight.setEnabled(false);
-			item.setEnabled(false);
-			chara.setEnabled(false);
-			updateBar();
-			cardlayt1.show(cards, "4");
-			c5.startVideoThread();
-			fighter.skills.add(new BuffSkill("Wake Up", 0,0, new Buff("Wake Up", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Wake up to the cruel world.")));
-			fighter.skills.add(new BuffSkill("Stay", 0,0, new Buff("Stay", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Stay here in this kind world.")));
+			Thread aThread = new Thread() {
+				public void run() {
+					ArrayList<String> chatz = new ArrayList<String>();
+					chatz.add(new String(" p l e a s e"));
+					chatz.add(new String(" i  d o n ' t  w a n t  t o  l e a v e "));
+					chatsThread(chatz);
+					apple = -4;
+					StyledDocument doc = ta.getStyledDocument();
+					fighter.damaged(1);
+					try {
+						doc.insertString(doc.getLength(), "· You received 1 damage from "+fighted.name+".\n", null);
+					} catch (BadLocationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					fight.setEnabled(false);
+					item.setEnabled(false);
+					chara.setEnabled(false);
+					updateBar();
+					while(sumn == 0) {
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					cardlayt1.show(cards, "4");
+					c5.startVideoThread();
+					fighter.skills.add(new BuffSkill("Wake Up", 0,0, new Buff("Wake Up", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Wake up to the cruel world.")));
+					fighter.skills.add(new BuffSkill("Stay", 0,0, new Buff("Stay", "Salvation", 0, 0, 0, 0, 0, 0, 0, 0, "Stay here in this kind world.")));
+					addSkillButtons(skillButtonPanel);
+				}
+			};
+			aThread.start();
 		}
 		else if (apple == -4) {
 			
@@ -703,6 +764,10 @@ public class FinalBossPanel extends JPanel {
                     	if(skill.name.equals("Wake Up")) {
                     		Main.frame.setContentPane(new VideoCredit());
                     		Main.frame.pack();
+                    	}
+                    	else if(skill.name.equals("Stay")) {
+                    		fighter.currHP = 0;
+                    		someoneDead(fighted, fighter);
                     	}
                         if(skill instanceof BuffSkill) {
                     		((BuffSkill) skill).unleash(fighter);
@@ -913,6 +978,7 @@ public class FinalBossPanel extends JPanel {
     
     
     public void chatsThread(ArrayList<String> chatzz) {
+    	sumn = 0;
     	Thread chatsThread = new Thread() {
 			public void run() {
 				fight.setEnabled(false);
