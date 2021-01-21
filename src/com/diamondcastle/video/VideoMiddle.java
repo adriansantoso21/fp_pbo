@@ -39,7 +39,7 @@ public class VideoMiddle extends JPanel{
 		public void startVideoThread() {
 			Thread vidThread = new Thread() {
 				public void run() {
-					music5.playMusic("song/middle.wav");
+					music5.playMusic("resource/song/middle.wav");
 					for(i =0; i<beg.size(); i++) {
 						current = beg.get(i);
 						repaint();

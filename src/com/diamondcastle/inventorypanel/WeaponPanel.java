@@ -137,7 +137,6 @@ public class WeaponPanel extends JPanel{
         addSkillButtons(buttonPanel, frame);
 
         this.add(buttonPanel);
-//        this.add(buttonPanel, BorderLayout.CENTER);
 	}
 	
 	private void addSkillButtons(JPanel panel, JFrame frame) {

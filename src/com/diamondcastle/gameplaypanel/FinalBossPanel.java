@@ -216,11 +216,11 @@ public class FinalBossPanel extends JPanel {
 		tb.setPreferredSize(new Dimension(300, 60));
 		fights.startIdleThread();
 		
-		c1 = new CardsVideo(frame, 0, cards, cardlayt1, vid);
-		c2 = new CardsVideo(frame, 1, cards, cardlayt1, vid);
-		c3 = new CardsVideo(frame, 2, cards, cardlayt1, vid);
-		c4 = new CardsVideo(frame, 3, cards, cardlayt1, vid);
-		c5 = new CardsVideo(frame, 4, cards, cardlayt1, vid);
+		c1 = new CardsVideo(frame, 0, cards, cardlayt1);
+		c2 = new CardsVideo(frame, 1, cards, cardlayt1);
+		c3 = new CardsVideo(frame, 2, cards, cardlayt1);
+		c4 = new CardsVideo(frame, 3, cards, cardlayt1);
+		c5 = new CardsVideo(frame, 4, cards, cardlayt1);
 		
 		cards.add(full, "full");
 		cards.add(c1, "0");
@@ -493,7 +493,7 @@ public class FinalBossPanel extends JPanel {
 			ArrayList<String> chatz = new ArrayList<String>();
 			chatz.add(new String(" S T O P  R E S I S T I N G"));
 			chatz.add(new String(" I  K N O W  Y O U  D O N ' T  W A N T  T O  L E A V E"));
-			chatz.add(new String(" I ' L L  S H O W  Y O U"));
+			chatz.add(new String(" I ' L L  S H O W  Y O U "));
 			chatsThread(chatz);
 			apple = 0;
 			midThread();
@@ -504,7 +504,7 @@ public class FinalBossPanel extends JPanel {
 					ArrayList<String> chatz = new ArrayList<String>();
 					chatz.add(new String(" T H E  W O R L D  I S  C R U E L "));
 					chatz.add(new String(" I T  I S  H O S T I L E  "));
-					chatz.add(new String(" T H E  W O R L D  W I L L  N O T  B E  K I N D "));
+					chatz.add(new String(" T H E  W O R L D  W I L L  N O T  B E  K I N D       "));
 					chatsThread(chatz);
 					apple = -1;
 					StyledDocument doc = ta.getStyledDocument();
@@ -518,7 +518,7 @@ public class FinalBossPanel extends JPanel {
 					updateBar();
 					while(sumn == 0) {
 						try {
-							Thread.sleep(1000);
+							Thread.sleep(300);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -537,7 +537,7 @@ public class FinalBossPanel extends JPanel {
 					chatz.add(new String(" I F  Y O U  L E A V E , Y O U  W I L L  N E V E R  F E E L  H A P P I N E S S "));
 					chatz.add(new String(" L I F E  H E R E  W O U L D  B E  P E A C E F U L "));
 					chatz.add(new String(" L I F E  H E R E  W I L L  B E  K I N D "));
-					chatz.add(new String(" ... a t  l e a s t  w e  c a n  b e  w i t h  s i s  h e r e . "));
+					chatz.add(new String(" ... a t  l e a s t  w e  c a n  b e  w i t h  s i s  h e r e .       "));
 					chatsThread(chatz);
 					apple = -2;
 					StyledDocument doc = ta.getStyledDocument();
@@ -551,7 +551,7 @@ public class FinalBossPanel extends JPanel {
 					updateBar();
 					while(sumn == 0) {
 						try {
-							Thread.sleep(1000);
+							Thread.sleep(300);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -567,7 +567,7 @@ public class FinalBossPanel extends JPanel {
 			Thread aThread = new Thread() {
 				public void run() {
 					ArrayList<String> chatz = new ArrayList<String>();
-					chatz.add(new String(" w h a t ' s  t h e  p o i n t "));
+					chatz.add(new String(" w h a t ' s  t h e  p o i n t       "));
 					chatsThread(chatz);
 					apple = -3;
 					StyledDocument doc = ta.getStyledDocument();
@@ -582,7 +582,7 @@ public class FinalBossPanel extends JPanel {
 					updateBar();
 					while(sumn == 0) {
 						try {
-							Thread.sleep(1000);
+							Thread.sleep(300);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -599,7 +599,7 @@ public class FinalBossPanel extends JPanel {
 				public void run() {
 					ArrayList<String> chatz = new ArrayList<String>();
 					chatz.add(new String(" p l e a s e"));
-					chatz.add(new String(" i  d o n ' t  w a n t  t o  l e a v e "));
+					chatz.add(new String(" i  d o n ' t  w a n t  t o  l e a v e       "));
 					chatsThread(chatz);
 					apple = -4;
 					StyledDocument doc = ta.getStyledDocument();
@@ -616,7 +616,7 @@ public class FinalBossPanel extends JPanel {
 					updateBar();
 					while(sumn == 0) {
 						try {
-							Thread.sleep(1000);
+							Thread.sleep(300);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
