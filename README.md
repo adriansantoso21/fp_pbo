@@ -11,6 +11,8 @@ Diamond castle adalah game rpg di mana kita dapat memilih karakter sesuai keingi
 Dalam game ini, kita akan melawan berbagai macam musuh untuk mencapai titik akhir dan kita dapat menggunakan 
 beberapa item saat sedang bertempur. Setiap mengalahkan musuh maka kita akan mendapat beberapa tambahan uang dan attribute point untuk membeli item. 
 
+Start :
+![alt text](https://github.com/adriansantoso21/fp_pbo/blob/master/resource/images/beginning.png?raw=true)
 Macam karakter :
 - Wizard
 - Warrior
