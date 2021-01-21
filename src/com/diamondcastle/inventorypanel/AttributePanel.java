@@ -332,7 +332,7 @@ public class AttributePanel extends JPanel {
         defButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	CessPool.selected.accuracy += 1;
+            	CessPool.selected.defence += 1;
             	CessPool.selected.attributeP -= 1;
         
             	Main.frame.setContentPane(new BagPanel(frame, 5));

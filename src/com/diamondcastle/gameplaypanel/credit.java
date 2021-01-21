@@ -90,7 +90,7 @@ public class credit extends JPanel {
 		position.add(2220);
 		
 		position.add(2420);//finally
-		position.add(2900);
+		position.add(2770);
 		position.add(800);
 		position.add(1000);
 		position.add(1200);
