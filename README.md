@@ -5,7 +5,7 @@ Nama Tim : Fruitsmen
 Nama Game : Diamond Castle
 
 ## ***Anggota kelompok :***
-1. James Rafferty 0511194000005
+1. James Rafferty 05111940000055
 2. Adrian 05111940000130
 
 ## ***Deskripsi Game :***
