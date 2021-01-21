@@ -13,20 +13,32 @@ beberapa item saat sedang bertempur. Setiap mengalahkan musuh maka kita akan men
 
 
 
+
+
 Start :
+
+
 ![alt text](https://github.com/adriansantoso21/fp_pbo/blob/master/resource/images/beginning.png?raw=true)
 
 
 Character select :
+
+
 ![alt text](https://github.com/adriansantoso21/fp_pbo/blob/master/resource/images/selectpanel.png?raw=true)
 
 
 Battle panel :
+
+
 ![alt text](https://github.com/adriansantoso21/fp_pbo/blob/master/resource/images/battlepanel.png?raw=true)
 
 
 Shop panel :
+
+
 ![alt text](https://github.com/adriansantoso21/fp_pbo/blob/master/resource/images/shop.png?raw=true)
+
+
 
 
 
