@@ -98,7 +98,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	                System.out.println("Wizard is chosen.");
-	                CessPool.selected = new Character("Wizard", 1000, 150, 50, 10, 50, 25, 25, 30, "šŽŒ‡¢" + " has always though wizards to be really cool. They shoot fire and thunder at their beck and call, to facce through all of life's hard challenges.  has always wanted to be one, maybe with that power.. Mari..");
+	                CessPool.selected = new Character("Wizard", 1000, 150, 90, 10, 50, 25, 25, 30, "šŽŒ‡¢" + " has always though wizards to be really cool. They shoot fire and thunder at their beck and call, to facce through all of life's hard challenges.  has always wanted to be one, maybe with that power.. Mari..");
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Wizard/attack_001.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Wizard/attack_002.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Wizard/attack_003.png").getImage());

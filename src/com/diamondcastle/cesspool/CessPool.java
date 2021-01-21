@@ -16,6 +16,7 @@ import com.diamondcastle.skill.Skill;
 
 public class CessPool {
 	public static Character selected = new Character("Heroman", 300, 60, 20, 40, 40, 30, 30, 30," ");
+	public static Monster finalboss = new Monster("I Don't Want to Go Back", 1200, 100, 50, 50, 50, 50, 50, 50, 33);
 	public static ArrayList<Monster> monsterz = new ArrayList<Monster>();
 	public static ArrayList<Weapon> weaponz = new ArrayList<Weapon>();
 	public static ArrayList<Armor> armorz = new ArrayList<Armor>();

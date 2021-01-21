@@ -48,7 +48,7 @@ import com.diamondcastle.video.VideoCredit;
 public class FinalBossPanel extends JPanel {
 	
 	Character fighter = CessPool.selected;
-	Monster fighted;
+	Monster fighted = CessPool.finalboss;
 	int num;
 	
 	private CardLayout cardlayt = new CardLayout();
@@ -63,12 +63,12 @@ public class FinalBossPanel extends JPanel {
 	private int apple = 1, sumn = 0, vid = 0;
 	
 	public FinalBossPanel(JFrame frame) {
+		fighter = CessPool.selected;
+		fighted = CessPool.finalboss;
 		
 		full = new JPanel();
 		full.setLayout(new BorderLayout());
 
-		fighted = new Monster("I Don't Want to Go Back", 1200, 100, 50, 50, 50, 50, 50, 50, 33);
-		
 		num=0;
         
 		this.setBackground(new Color(204, 153, 0));
@@ -171,6 +171,7 @@ public class FinalBossPanel extends JPanel {
     				@Override
     				public void actionPerformed(ActionEvent event) {
     					fights.startAttackThread();
+    					fighted = CessPool.finalboss;
     					youAttack(fighter, fighted);
     				}
     			}
@@ -350,7 +351,6 @@ public class FinalBossPanel extends JPanel {
 			ta.setText("");
 			num=0;
 		}
-		
 		Thread youAttackThread = new Thread() {
 			public void run() {
 				
@@ -409,7 +409,7 @@ public class FinalBossPanel extends JPanel {
 	}
 	
 	public void someoneDead(Creature living, Creature dead) {
-		Map.music2.stopMusic();
+
 		if (dead instanceof Character) {
 			JFrame frame = new JFrame("Sorry");
 			JLabel label = new JLabel("<html><center><p style style=\"background-color:red; color: blue;\"> YOU DIED LOSER </p>");
@@ -488,6 +488,7 @@ public class FinalBossPanel extends JPanel {
 	}
 
 	public void enemyTurn(Monster turn) {
+		fighted = CessPool.finalboss;
 		if (fighted.currHP <= 300 && apple ==1) {
 			ArrayList<String> chatz = new ArrayList<String>();
 			chatz.add(new String(" S T O P  R E S I S T I N G"));
@@ -640,10 +641,7 @@ public class FinalBossPanel extends JPanel {
 		}
 		addCharaLabel(charaPanel);
 		addSkillButtons(skillButtonPanel);
-		te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
-				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
-		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
-        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+		updateBar();
 	}
 	
 	//----------------------POTION AND SKILLS PANEL METHODS----------------------//
@@ -764,10 +762,6 @@ public class FinalBossPanel extends JPanel {
                     	if(skill.name.equals("Wake Up")) {
                     		Main.frame.setContentPane(new VideoCredit());
                     		Main.frame.pack();
-                    	}
-                    	else if(skill.name.equals("Stay")) {
-                    		fighter.currHP = 0;
-                    		someoneDead(fighted, fighter);
                     	}
                         if(skill instanceof BuffSkill) {
                     		((BuffSkill) skill).unleash(fighter);

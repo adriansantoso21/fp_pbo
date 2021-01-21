@@ -62,7 +62,7 @@ public class CardsVideo extends JPanel {
 					current = beg.get(i);
 					repaint();
 					try {
-						Thread.sleep(2000);
+						Thread.sleep(1700);
 					} 
 					catch (InterruptedException ex) {}
 				}
