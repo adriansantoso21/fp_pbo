@@ -30,7 +30,6 @@ public abstract class Creature {
 	public float speed;
 	public float defence;
 	public float weight;
-//	Image image;
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
 	public ArrayList<Buff> buffs = new ArrayList<Buff>();
 	
@@ -46,14 +45,6 @@ public abstract class Creature {
 		this.speed = speed;
 		this.defence = defence;
 		this.weight = weight;
-//		this.image = new ImageIcon("FinalProject/creature/"+name+".png").getImage();
-//				
-//		try {
-//			this.image = ImageIO.read(new File(name + ".png"));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 	
 	public float attack(Creature attacked) {
@@ -116,23 +107,7 @@ public abstract class Creature {
 				}
 		    }
 		}
-	    
-	    
-		
-//		for (Buff sumn : this.buffs) {
-//			System.out.println(sumn.strength + " with duration " + sumn.duration + "\n");
-//		}
-//		List<Buff> toRemove = new ArrayList<Buff>();
-//		for (Buff str : this.buffs) {
-//			str.duration -= 1;
-//			System.out.println(str.strength + " with duration currently "+ str.duration);
-//			
-//		    if (str.duration == 0) {
-//		        toRemove.add(str);
-//		        System.out.println(str.strength + "removed");
-//		    }
-//		}
-//		this.buffs.removeAll(toRemove);
+
 	}
 	
 	public void healHealth(float healed) {

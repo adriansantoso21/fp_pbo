@@ -639,7 +639,6 @@ public class BattlePanel extends JPanel {
     	name.setText("Name : " + fighter.name);
 		name.setFocusable(false);
 		name.setFont(new Font("Verdana", Font.BOLD, 13));
-//		name.setBackground(new Color(0, 0, 102));
 		name.setForeground(new Color(26, 163, 255));
 		panel.add(name);
 		
@@ -666,7 +665,6 @@ public class BattlePanel extends JPanel {
 		}
     	acc.setText("Accuracy : " + fighter.accuracy + " (" + indif + ")" );
 		acc.setFocusable(false);
-//		acc.setBackground(new Color(26, 163, 255));
 		acc.setForeground(new Color(26, 163, 255));
 		acc.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(acc);
@@ -679,7 +677,6 @@ public class BattlePanel extends JPanel {
 			weapon.setText("Weapon " + fighter.equippedWeapon.name + " equipped");
 		}
 		weapon.setFocusable(false);
-//		weapon.setBackground(new Color(26, 163, 255));
 		weapon.setForeground(new Color(26, 163, 255));
 		weapon.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(weapon);
@@ -687,7 +684,6 @@ public class BattlePanel extends JPanel {
 		JLabel mana = new JLabel();
     	mana.setText("Max Mana : " + fighter.mana);
 		mana.setFocusable(false);
-//		mana.setBackground(new Color(26, 163, 255));
 		mana.setForeground(new Color(26, 163, 255));
 		mana.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(mana);
@@ -700,7 +696,6 @@ public class BattlePanel extends JPanel {
 		}
     	spd.setText("Speed : " + fighter.speed + " (" + indif + ")" );
 		spd.setFocusable(false);
-//		spd.setBackground(new Color(26, 163, 255));
 		spd.setForeground(new Color(26, 163, 255));
 		spd.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(spd);
@@ -713,7 +708,6 @@ public class BattlePanel extends JPanel {
 			armor.setText("Armor " + fighter.equippedArmor.name + " equipped");
 		}
 		armor.setFocusable(false);
-//		armor.setBackground(new Color(26, 163, 255));
 		armor.setForeground(new Color(26, 163, 255));
 		armor.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(armor);
@@ -726,7 +720,6 @@ public class BattlePanel extends JPanel {
 		}
     	inte.setText("Intelligence : " + fighter.intelligence + " (" + indif + ")" );
 		inte.setFocusable(false);
-//		inte.setBackground(new Color(26, 163, 255));
 		inte.setForeground(new Color(26, 163, 255));
 		inte.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(inte);
@@ -739,7 +732,6 @@ public class BattlePanel extends JPanel {
 		}
     	def.setText("Defence : " + fighter.defence + " (" + indif + ")" );
 		def.setFocusable(false);
-//		def.setBackground(new Color(26, 163, 255));
 		def.setFont(new Font("Verdana", Font.BOLD, 13));
 		def.setForeground(new Color(26, 163, 255));
 		panel.add(def);
@@ -756,7 +748,6 @@ public class BattlePanel extends JPanel {
 		}
     	str.setText("Strength : " + fighter.strength + " (" + indif + ")" );
 		str.setFocusable(false);
-//		str.setBackground(new Color(26, 163, 255));
 		str.setForeground(new Color(26, 163, 255));
 		str.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(str);
@@ -765,13 +756,11 @@ public class BattlePanel extends JPanel {
 		JLabel wei = new JLabel();
     	wei.setText("Weight :" + fighter.weight);
 		wei.setFocusable(false);
-//		wei.setBackground(new Color(26, 163, 255));
 		wei.setForeground(new Color(26, 163, 255));
 		wei.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(wei);
 		
 		JTextArea buff = new JTextArea();
-//		buff.setBackground(new Color(26, 163, 255));
 		buff.setForeground(new Color(26, 163, 255));
 		buff.setEditable(false);
 		buff.setText("Current buffs/debuffs: ");

@@ -120,7 +120,6 @@ public class PotionPanel extends JPanel{
         buttonPanel.setBackground(new Color(0, 26, 0));
         addSkillButtons(buttonPanel, frame);
         this.add(buttonPanel);
-//        this.add(buttonPanel, BorderLayout.CENTER);
 	}
 	
 	private void addSkillButtons(JPanel panel,JFrame frame) {

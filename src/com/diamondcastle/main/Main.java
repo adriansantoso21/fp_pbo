@@ -28,7 +28,6 @@ public class Main {
 				 frame.setPreferredSize(new Dimension(1280, 750));
 				 
 			     frame.setContentPane(new StartPanel("resource/images/StartPanel.jpg", frame));
-//			     frame.setContentPane(new credit());
 			     
 			     frame.pack();
 			     frame.setLocationRelativeTo(null);

@@ -26,8 +26,8 @@ public class BackgroundBattlePanel extends JPanel {
 		backgrounds.add(new ImageIcon("resource/images/bg2.jpg").getImage());
 		backgrounds.add(new ImageIcon("resource/images/bg3.jpg").getImage());
 		backgrounds.add(new ImageIcon("resource/images/finalboss.jpg").getImage());
-//		this.bg = CessPool.location.get(CessPool.location.size()-1);
-		this.bg = 22;
+		this.bg = CessPool.location.get(CessPool.location.size()-1);
+		
 		if(bg<8) {
 			this.imgg = backgrounds.get(0);
 		}
@@ -128,7 +128,7 @@ public class BackgroundBattlePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if(bg>=8 && bg<16) {
-			g.drawImage(this.imgg, 50, 0, null);
+			g.drawImage(this.imgg, 0, 0, null);
 		}
 		else if(bg == 22) {
 			g.drawImage(this.imgg, -50, -500, null);

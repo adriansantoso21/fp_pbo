@@ -33,6 +33,7 @@ public class CharacterSelectPanel extends JPanel {
 	public Image imgg;
 	public Font CharSelect;
 	
+	//Untuk tipe font
 	public CharacterSelectPanel(String imgg, JFrame frame) {
 		try {
 			CharSelect = Font.createFont(Font.TRUETYPE_FONT, new File("resource/font/AfternoonCoffee-GOqyO.ttf")).deriveFont(22f);
@@ -51,7 +52,6 @@ public class CharacterSelectPanel extends JPanel {
 		Button4.setFocusPainted(false);
 		Button4.setBounds(400, 20, 520, 63);
 		this.add(Button4);
-		
 		this.setLayout(null);
 		this.imgg = new ImageIcon("resource/images/StartPanel3.jpg").getImage();
 		
@@ -77,9 +77,7 @@ public class CharacterSelectPanel extends JPanel {
 		  + "· Low Defence\n");
         ta.setBackground(Color.black);
         ta.setBounds(150, 400, 200, 117);
-        
         this.add(ta);
-		
         Image img = new ImageIcon("resource/button/confirm.jpg").getImage();
 		
 		JButton Button1 = new JButton();
@@ -98,7 +96,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	                System.out.println("Wizard is chosen.");
-	                CessPool.selected = new Character("Wizard", 1000, 150, 50, 10, 50, 25, 25, 30, "šŽŒ‡¢" + " has always though wizards to be really cool. They shoot fire and thunder at their beck and call, to facce through all of life's hard challenges.  has always wanted to be one, maybe with that power.. Mari..");
+	                CessPool.selected = new Character("Wizard", 2000, 150, 50, 10, 50, 25, 25, 30, "šŽŒ‡¢" + " has always though wizards to be really cool. They shoot fire and thunder at their beck and call, to facce through all of life's hard challenges.  has always wanted to be one, maybe with that power.. Mari..");
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Wizard/attack_001.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Wizard/attack_002.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Wizard/attack_003.png").getImage());
@@ -128,8 +126,8 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.potionA = 2;
 	               
 	                StartPanel.music.stopMusic();
-//	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                Main.frame.setContentPane(new FinalBossPanel(frame));
+//	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();
 	            }
 	         }
