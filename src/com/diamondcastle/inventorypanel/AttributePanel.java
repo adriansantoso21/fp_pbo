@@ -39,7 +39,7 @@ public class AttributePanel extends JPanel {
 	private void addSkillButtons(JPanel panel, JFrame frame) {
 		//Title
     	JLabel accuu = new JLabel();
-    	accuu.setText("Current Attribute Points : " + CessPool.selected.attributeP);
+    	accuu.setText("Current Attribute Points : " + CessPool.selected.getAttributeP());
 		accuu.setFocusable(false);
 		accuu.setHorizontalAlignment(SwingConstants.CENTER);
 		accuu.setForeground(Color.WHITE);
@@ -52,7 +52,7 @@ public class AttributePanel extends JPanel {
     	skill_panel.setLayout(new BorderLayout());
 		
     	JLabel hp = new JLabel();
-    	hp.setText("Max HP : " + CessPool.selected.healthPoint);
+    	hp.setText("Max HP : " + CessPool.selected.getHealthPoint());
 		hp.setForeground(Color.WHITE);
 		hp.setHorizontalAlignment(SwingConstants.CENTER);
 		hp.setBackground(new Color(51, 26, 0));
@@ -62,7 +62,7 @@ public class AttributePanel extends JPanel {
 		JButton Button = new JButton();
 		Button.setEnabled(true);
 		Button.setText("Increase 10");
-		if(CessPool.selected.attributeP<1) {
+		if(CessPool.selected.getAttributeP()<1) {
 			Button.setText("No Points");
 			Button.setEnabled(false);
 		}
@@ -75,9 +75,9 @@ public class AttributePanel extends JPanel {
         Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	CessPool.selected.healthPoint += 10;
+            	CessPool.selected.setHealthPoint(CessPool.selected.getHealthPoint() + 10);
             	CessPool.selected.currHP += 10;
-            	CessPool.selected.attributeP -= 1;
+            	CessPool.selected.setAttributeP(CessPool.selected.getAttributeP() - 1);
         
             	Main.frame.setContentPane(new BagPanel(frame, 5));
                 Main.frame.pack();
@@ -94,7 +94,7 @@ public class AttributePanel extends JPanel {
     	manaPanel.setLayout(new BorderLayout());
 		
     	JLabel mana = new JLabel();
-    	mana.setText("Max Mana : " + CessPool.selected.mana);
+    	mana.setText("Max Mana : " + CessPool.selected.getMana());
 		mana.setFocusable(false);
 		mana.setHorizontalAlignment(SwingConstants.CENTER);
 		mana.setOpaque(true);
@@ -106,7 +106,7 @@ public class AttributePanel extends JPanel {
 		manaButton.setText("Can't use");
 		manaButton.setEnabled(true);
 		manaButton.setText("Increase 10");
-		if(CessPool.selected.attributeP<1) {
+		if(CessPool.selected.getAttributeP()<1) {
 			manaButton.setText("No Points");
 			manaButton.setEnabled(false);
 		}
@@ -119,9 +119,9 @@ public class AttributePanel extends JPanel {
         manaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	CessPool.selected.mana += 10;
+            	CessPool.selected.setMana(CessPool.selected.getMana() + 10);
             	CessPool.selected.currMana += 10;
-            	CessPool.selected.attributeP -= 1;
+            	CessPool.selected.setAttributeP(CessPool.selected.getAttributeP() - 1);
         
             	Main.frame.setContentPane(new BagPanel(frame, 5));
                 Main.frame.pack();
@@ -137,7 +137,7 @@ public class AttributePanel extends JPanel {
     	streng.setLayout(new BorderLayout());
 		
     	JLabel strengthh = new JLabel();
-    	strengthh.setText("Strength : " + CessPool.selected.strength);
+    	strengthh.setText("Strength : " + CessPool.selected.getStrength());
 		strengthh.setFocusable(false);
 		strengthh.setHorizontalAlignment(SwingConstants.CENTER);
 		strengthh.setOpaque(true);
@@ -150,7 +150,7 @@ public class AttributePanel extends JPanel {
 	
 		strButton.setEnabled(true);
 		strButton.setText("Increase 1  ");
-		if(CessPool.selected.attributeP<1) {
+		if(CessPool.selected.getAttributeP()<1) {
 			strButton.setText("No Points");
 			strButton.setEnabled(false);
 		}
@@ -162,8 +162,8 @@ public class AttributePanel extends JPanel {
         strButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	CessPool.selected.strength += 1;
-            	CessPool.selected.attributeP -= 1;
+            	CessPool.selected.setStrength(CessPool.selected.getStrength() + 1);
+            	CessPool.selected.setAttributeP(CessPool.selected.getAttributeP() - 1);
         
             	Main.frame.setContentPane(new BagPanel(frame, 5));
                 Main.frame.pack();
@@ -179,7 +179,7 @@ public class AttributePanel extends JPanel {
     	intelligence.setLayout(new BorderLayout());
 		
     	JLabel intelli = new JLabel();
-    	intelli.setText("Intelligence : " + CessPool.selected.intelligence);
+    	intelli.setText("Intelligence : " + CessPool.selected.getIntelligence());
 		intelli.setFocusable(false);
 		intelli.setHorizontalAlignment(SwingConstants.CENTER);
 		intelli.setOpaque(true);
@@ -192,7 +192,7 @@ public class AttributePanel extends JPanel {
 		intButton.setPreferredSize(new Dimension(100, 75));
 		intButton.setEnabled(true);
 		intButton.setText("Increase 1  ");
-		if(CessPool.selected.attributeP<1) {
+		if(CessPool.selected.getAttributeP()<1) {
 			intButton.setText("No Points");
 			intButton.setEnabled(false);
 		}
@@ -204,8 +204,8 @@ public class AttributePanel extends JPanel {
         intButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	CessPool.selected.intelligence += 1;
-            	CessPool.selected.attributeP -= 1;
+            	CessPool.selected.setIntelligence(CessPool.selected.getIntelligence() + 1);
+            	CessPool.selected.setAttributeP(CessPool.selected.getAttributeP() - 1);
         
             	Main.frame.setContentPane(new BagPanel(frame, 5));
                 Main.frame.pack();
@@ -221,7 +221,7 @@ public class AttributePanel extends JPanel {
     	accPanel.setLayout(new BorderLayout());
 		
     	JLabel accu = new JLabel();
-    	accu.setText("Accuracy : " + CessPool.selected.accuracy);
+    	accu.setText("Accuracy : " + CessPool.selected.getAccuracy());
 		accu.setFocusable(false);
 		accu.setHorizontalAlignment(SwingConstants.CENTER);
 		accu.setOpaque(true);
@@ -234,7 +234,7 @@ public class AttributePanel extends JPanel {
 	
 		accButton.setEnabled(true);
 		accButton.setText("Increase 1  ");
-		if(CessPool.selected.attributeP<1) {
+		if(CessPool.selected.getAttributeP()<1) {
 			accButton.setText("No Points");
 			accButton.setEnabled(false);
 		}
@@ -247,8 +247,8 @@ public class AttributePanel extends JPanel {
         accButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	CessPool.selected.accuracy += 1;
-            	CessPool.selected.attributeP -= 1;
+            	CessPool.selected.setAccuracy(CessPool.selected.getAccuracy() + 1);
+            	CessPool.selected.setAttributeP(CessPool.selected.getAttributeP() - 1);
         
             	Main.frame.setContentPane(new BagPanel(frame, 5));
                 Main.frame.pack();
@@ -264,7 +264,7 @@ public class AttributePanel extends JPanel {
     	speedPanel.setLayout(new BorderLayout());
 		
     	JLabel sped = new JLabel();
-    	sped.setText("Speed : " + CessPool.selected.accuracy);
+    	sped.setText("Speed : " + CessPool.selected.getAccuracy());
 		sped.setFocusable(false);
 		sped.setHorizontalAlignment(SwingConstants.CENTER);
 		sped.setOpaque(true);
@@ -277,7 +277,7 @@ public class AttributePanel extends JPanel {
 	
 		spedButton.setEnabled(true);
 		spedButton.setText("Increase 1  ");
-		if(CessPool.selected.attributeP<1) {
+		if(CessPool.selected.getAttributeP()<1) {
 			spedButton.setText("No Points");
 			spedButton.setEnabled(false);
 		}
@@ -290,8 +290,8 @@ public class AttributePanel extends JPanel {
         spedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	CessPool.selected.speed += 1;
-            	CessPool.selected.attributeP -= 1;
+            	CessPool.selected.setSpeed(CessPool.selected.getSpeed() + 1);
+            	CessPool.selected.setAttributeP(CessPool.selected.getAttributeP() - 1);
         
             	Main.frame.setContentPane(new BagPanel(frame, 5));
                 Main.frame.pack();
@@ -307,7 +307,7 @@ public class AttributePanel extends JPanel {
     	defPanel.setLayout(new BorderLayout());
 		
     	JLabel deff = new JLabel();
-    	deff.setText("Defense : " + CessPool.selected.defence);
+    	deff.setText("Defense : " + CessPool.selected.getDefence());
 		deff.setFocusable(false);
 		deff.setHorizontalAlignment(SwingConstants.CENTER);
 		deff.setOpaque(true);
@@ -320,7 +320,7 @@ public class AttributePanel extends JPanel {
 		defButton.setEnabled(true);
 		defButton.setText("Increase 1  ");
 		defButton.setPreferredSize(new Dimension(100, 75));
-		if(CessPool.selected.attributeP<1) {
+		if(CessPool.selected.getAttributeP()<1) {
 			defButton.setText("No Points");
 			defButton.setEnabled(false);
 		}
@@ -332,8 +332,8 @@ public class AttributePanel extends JPanel {
         defButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	CessPool.selected.defence += 1;
-            	CessPool.selected.attributeP -= 1;
+            	CessPool.selected.setDefence(CessPool.selected.getDefence() + 1);
+            	CessPool.selected.setAttributeP(CessPool.selected.getAttributeP() - 1);
         
             	Main.frame.setContentPane(new BagPanel(frame, 5));
                 Main.frame.pack();

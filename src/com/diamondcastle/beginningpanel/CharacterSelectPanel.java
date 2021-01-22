@@ -123,7 +123,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.skills.add(CessPool.skillz.get(4));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(4)));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(6)));
-	                CessPool.selected.potionA = 2;
+	                CessPool.selected.setPotionA(2);
 	               
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
@@ -201,7 +201,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.skills.add(CessPool.skillz.get(1));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(0)));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(1)));
-	                CessPool.selected.potionA = 2;
+	                CessPool.selected.setPotionA(2);
 	                StartPanel.music.stopMusic();
 //	                Main.frame.setContentPane(new Map(frame));
 	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
@@ -268,7 +268,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.skills.add(CessPool.skillz.get(3));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(3)));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(7)));
-	                CessPool.selected.potionA = 2;
+	                CessPool.selected.setPotionA(2);
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();

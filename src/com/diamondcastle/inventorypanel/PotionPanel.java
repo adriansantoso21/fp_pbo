@@ -71,7 +71,7 @@ public class PotionPanel extends JPanel{
 			potion.setPreferredSize(new Dimension(313,20));
 			
 			JButton Button = new JButton();
-			if(CessPool.selected.gold >= b.price) {
+			if(CessPool.selected.getGold() >= b.price) {
 				Button.setText("Buy");
 				Button.setEnabled(true);
 			}
@@ -80,7 +80,7 @@ public class PotionPanel extends JPanel{
 				Button.setEnabled(false);
 			}
 			
-	        if(CessPool.selected.potionA == 7) {
+	        if(CessPool.selected.getPotionA() == 7) {
 	        	Button.setText("No Space");
 	    		Button.setEnabled(false);
 	        }
@@ -97,8 +97,8 @@ public class PotionPanel extends JPanel{
 	    				public void actionPerformed(ActionEvent event) {
 	    					Button.setEnabled(false);
 	    					CessPool.selected.inventory.add(new Potion(b));
-	    					CessPool.selected.gold -= b.price;
-	    					CessPool.selected.potionA += 1;
+	    					CessPool.selected.setGold(CessPool.selected.getGold() - b.price);
+	    					CessPool.selected.setPotionA(CessPool.selected.getPotionA() + 1);
 	    					Main.frame.setContentPane(new ShopPanel(frame, 3, 'n'));
 	    			         Main.frame.pack();
 	    				}

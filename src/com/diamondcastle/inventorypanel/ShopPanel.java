@@ -42,7 +42,7 @@ public class ShopPanel extends JPanel{
 	     
 	     //Currently Gold
 	     ImageIcon Img = new ImageIcon("resource/images/coin.png");     
-	     JButton cugo = new JButton("     Gold is : " + CessPool.selected.gold, Img);
+	     JButton cugo = new JButton("     Gold is : " + CessPool.selected.getGold(), Img);
 	     cugo.setBounds(140, 50, 250, 50);
 	     cugo.setBackground(new Color(173, 78, 5));
 	     cugo.setForeground(Color.yellow);

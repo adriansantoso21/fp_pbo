@@ -92,8 +92,8 @@ public class FinalBossPanel extends JPanel {
         te.setContentType("text/html");
         te.setOpaque(false);
         te.setFont(new Font("Verdana", Font.BOLD, 13));
-        te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
-        					+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+        te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.getHealthPoint() + "</center><br>"
+        					+"MP :" + fighter.currMana + " / " + fighter.getMana() + "</h3></div></html>");
         
         tf = new JTextPane();
         tf.setEditable(false);
@@ -101,8 +101,8 @@ public class FinalBossPanel extends JPanel {
         tf.setForeground(new Color(0, 255, 255));
         tf.setFont(new Font("Verdana", Font.BOLD, 13));
         tf.setOpaque(false);
-        tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
-        		+ "MP : " + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+        tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.getHealthPoint() + "</center><br>"
+        		+ "MP : " + fighter.currMana + " / " + fighter.getMana() + "</h3></div></html>");
         
         tb.add(te);
         tb.add(tf);
@@ -442,20 +442,20 @@ public class FinalBossPanel extends JPanel {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				fighter.healthPoint = 5;
+				fighter.setHealthPoint(5);
 				fighter.currHP = 5;
 				fighter.currMana = 5;
-				fighter.mana = 5;
-				fighter.intelligence = 5;
-				fighter.strength = 5;
-				fighter.accuracy = 5;
-				fighter.speed = 5;
-				fighter.defence = 5;
-				if(!Objects.isNull(fighter.equippedArmor)) {
-					fighter.unequipArmor(fighter.equippedArmor);
+				fighter.setMana(5);
+				fighter.setIntelligence(5);
+				fighter.setStrength(5);
+				fighter.setAccuracy(5);
+				fighter.setSpeed(5);
+				fighter.setDefence(5);
+				if(!CessPool.selected.isArmorNull()) {
+					fighter.unequipArmor(fighter.getEquippedArmor());
 				}
-				if(!Objects.isNull(fighter.equippedWeapon)) {
-					fighter.unequipWeapon(fighter.equippedWeapon);
+				if(!CessPool.selected.isWeaponNull()) {
+					fighter.unequipWeapon(fighter.getEquippedWeapon());
 				}
 				fighter.skills.clear();
 				fighter.inventory.clear();
@@ -841,19 +841,19 @@ public class FinalBossPanel extends JPanel {
 		panel.add(empt2);
 		
 		JLabel hp = new JLabel();
-    	hp.setText("Max HP : " + fighter.healthPoint);
+    	hp.setText("Max HP : " + fighter.getHealthPoint());
 		hp.setFocusable(false);
 		hp.setForeground(new Color(26, 163, 255));
 		hp.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(hp);
 		
 		JLabel acc = new JLabel();
-		float intdif = (fighter.showAccuracy() - fighter.accuracy);
+		float intdif = (fighter.showAccuracy() - fighter.getAccuracy());
 		String indif = ""+intdif;
 		if (intdif>0) {
 			indif = "+"+intdif;
 		}
-    	acc.setText("Accuracy : " + fighter.accuracy + " (" + indif + ")" );
+    	acc.setText("Accuracy : " + fighter.getAccuracy() + " (" + indif + ")" );
 		acc.setFocusable(false);
 //		acc.setBackground(new Color(26, 163, 255));
 		acc.setForeground(new Color(26, 163, 255));
@@ -861,11 +861,11 @@ public class FinalBossPanel extends JPanel {
 		panel.add(acc);
 		
 		JLabel weapon = new JLabel();
-		if(Objects.isNull(fighter.equippedWeapon)) {
+		if(Objects.isNull(fighter.getEquippedWeapon())) {
 			weapon.setText("No weapon equipped");
 		}
 		else {
-			weapon.setText("Weapon " + fighter.equippedWeapon.name + " equipped");
+			weapon.setText("Weapon " + fighter.getEquippedWeapon().name + " equipped");
 		}
 		weapon.setFocusable(false);
 //		weapon.setBackground(new Color(26, 163, 255));
@@ -874,7 +874,7 @@ public class FinalBossPanel extends JPanel {
 		panel.add(weapon);
 		
 		JLabel mana = new JLabel();
-    	mana.setText("Max Mana : " + fighter.mana);
+    	mana.setText("Max Mana : " + fighter.getMana());
 		mana.setFocusable(false);
 //		mana.setBackground(new Color(26, 163, 255));
 		mana.setForeground(new Color(26, 163, 255));
@@ -882,12 +882,12 @@ public class FinalBossPanel extends JPanel {
 		panel.add(mana);
 		
 		JLabel spd = new JLabel();
-		intdif = (fighter.showSpeed() - fighter.speed);
+		intdif = (fighter.showSpeed() - fighter.getSpeed());
 		indif = ""+intdif;
 		if (intdif>0) {
 			indif = "+"+intdif;
 		}
-    	spd.setText("Speed : " + fighter.speed + " (" + indif + ")" );
+    	spd.setText("Speed : " + fighter.getSpeed() + " (" + indif + ")" );
 		spd.setFocusable(false);
 //		spd.setBackground(new Color(26, 163, 255));
 		spd.setForeground(new Color(26, 163, 255));
@@ -895,11 +895,11 @@ public class FinalBossPanel extends JPanel {
 		panel.add(spd);
 		
 		JLabel armor = new JLabel();
-		if(Objects.isNull(fighter.equippedArmor)) {
+		if(Objects.isNull(fighter.getEquippedArmor())) {
 			armor.setText("No armor equipped");
 		}
 		else {
-			armor.setText("Armor " + fighter.equippedArmor.name + " equipped");
+			armor.setText("Armor " + fighter.getEquippedArmor().name + " equipped");
 		}
 		armor.setFocusable(false);
 //		armor.setBackground(new Color(26, 163, 255));
@@ -908,12 +908,12 @@ public class FinalBossPanel extends JPanel {
 		panel.add(armor);
 		
 		JLabel inte = new JLabel();
-		intdif = (fighter.showIntelligence() - fighter.intelligence);
+		intdif = (fighter.showIntelligence() - fighter.getIntelligence());
 		indif = ""+intdif;
 		if (intdif>0) {
 			indif = "+"+intdif;
 		}
-    	inte.setText("Intelligence : " + fighter.intelligence + " (" + indif + ")" );
+    	inte.setText("Intelligence : " + fighter.getIntelligence() + " (" + indif + ")" );
 		inte.setFocusable(false);
 //		inte.setBackground(new Color(26, 163, 255));
 		inte.setForeground(new Color(26, 163, 255));
@@ -921,12 +921,12 @@ public class FinalBossPanel extends JPanel {
 		panel.add(inte);
 		
 		JLabel def = new JLabel();
-		intdif = (fighter.showDefence() - fighter.defence);
+		intdif = (fighter.showDefence() - fighter.getDefence());
 		indif = ""+intdif;
 		if (intdif>0) {
 			indif = "+"+intdif;
 		}
-    	def.setText("Defence : " + fighter.defence + " (" + indif + ")" );
+    	def.setText("Defence : " + fighter.getDefence() + " (" + indif + ")" );
 		def.setFocusable(false);
 //		def.setBackground(new Color(26, 163, 255));
 		def.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -938,12 +938,12 @@ public class FinalBossPanel extends JPanel {
 		panel.add(empty);
 		
 		JLabel str = new JLabel();
-		intdif = (fighter.showStrength() - fighter.strength);
+		intdif = (fighter.showStrength() - fighter.getStrength());
 		indif = ""+intdif;
 		if (intdif>0) {
 			indif = "+"+intdif;
 		}
-    	str.setText("Strength : " + fighter.strength + " (" + indif + ")" );
+    	str.setText("Strength : " + fighter.getStrength() + " (" + indif + ")" );
 		str.setFocusable(false);
 //		str.setBackground(new Color(26, 163, 255));
 		str.setForeground(new Color(26, 163, 255));
@@ -1026,10 +1026,10 @@ public class FinalBossPanel extends JPanel {
     }
     
     void updateBar() {
-    	te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
-				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
-		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
-        		+ "MP : " + fighted.currMana + " / " + fighted.mana + "</h3></div></html>");
+    	te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.getHealthPoint() + "</center><br>"
+				+"MP :" + fighter.currMana + " / " + fighter.getMana() + "</h3></div></html>");
+		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.getHealthPoint() + "</center><br>"
+        		+ "MP : " + fighted.currMana + " / " + fighted.getMana() + "</h3></div></html>");
     }
    
 }

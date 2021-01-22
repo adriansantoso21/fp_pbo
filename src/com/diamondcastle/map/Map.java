@@ -25,7 +25,7 @@ import com.diamondcastle.music.musicPlay;
 
 public class Map extends JPanel{
  
- private Image imgg;
+ private Image imgg, imgg2;
  ArrayList <Map_Button> buttons = new ArrayList<Map_Button>();
  public static int last = CessPool.location.get(CessPool.location.size()-1);
  private int areaWidth;
@@ -41,6 +41,7 @@ public class Map extends JPanel{
 	  this.setFocusable(true);
 
 	  this.imgg = new ImageIcon("resource/images/map.jpg").getImage();
+	  this.imgg = new ImageIcon("resource/images/map2nd.jpg").getImage();
 	  this.setLayout(null);
 	  
 	  buttons.add(new Map_Button(1050, 674, 2, false));
@@ -192,7 +193,7 @@ public class Map extends JPanel{
      
      //Current Gold
      ImageIcon Img = new ImageIcon("resource/images/coin.png");     
-     JButton cugo = new JButton("       Gold is currently " + CessPool.selected.gold, Img);
+     JButton cugo = new JButton("       Gold is currently " + CessPool.selected.getGold(), Img);
      cugo.setBounds(0, 50, 250, 50);
      cugo.setBackground(new Color(173, 78, 5));
      cugo.setForeground(Color.yellow);
@@ -232,6 +233,9 @@ public class Map extends JPanel{
 	 public void paintComponent(Graphics g) {
 	  super.paintComponent(g);
 	  g.drawImage(this.imgg, 0, 0, null);
+	  if(Map.last==21) {
+		  g.drawImage(this.imgg2, 0, 0, null);
+	  }
 	 }
 	 
 }

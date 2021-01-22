@@ -74,8 +74,8 @@ public class ArmorPanel extends JPanel{
 				armor.setContentType("text/html");
 				armor.setText("<html><h3 style=\"color:white;\">· Name :"+ b.name +"<br>"
 						+"· Defence : "+ b.defence+ "<br>"
-		        		+"· Intelligence : "+ b.accuracy + "<br>"
-		        		+ "· Accuracy : "+ b.healthPoint + "<br>"
+		        		+"· Accuracy : "+ b.accuracy + "<br>"
+		        		+ "· Health Point : "+ b.healthPoint + "<br>"
 		        		+ "· Speed : "+ b.speed + "<br>"
 		        		+ "· Weight : "+b.weight + "<br>"
 		        		+ "· Price : "+b.price+"</h3> </html>");	
@@ -83,7 +83,7 @@ public class ArmorPanel extends JPanel{
 				armor.setPreferredSize(new Dimension(313,20));
 				
 				JButton Button = new JButton();
-				if(CessPool.selected.gold >= b.price) {
+				if(CessPool.selected.getGold() >= b.price) {
     				Button.setText("Buy");
     				Button.setEnabled(true);
     			}
@@ -91,7 +91,7 @@ public class ArmorPanel extends JPanel{
     				Button.setText("No Money");
     				Button.setEnabled(false);
     			}
-				if(CessPool.selected.armorA > 3) {
+				if(CessPool.selected.getArmorA() > 3) {
 					Button.setText("No Space");
 					Button.setEnabled(false);
 				}
@@ -117,8 +117,8 @@ public class ArmorPanel extends JPanel{
 		    				public void actionPerformed(ActionEvent event) {
 		    					Button.setEnabled(false);
 		    					CessPool.selected.inventory.add((Inventory)b);
-		    					CessPool.selected.gold -= b.price;
-		    					CessPool.selected.armorA += 1;
+		    					CessPool.selected.setGold(CessPool.selected.getGold() - b.price);
+		    					CessPool.selected.setArmorA(CessPool.selected.getArmorA() + 1);
 		    					Main.frame.setContentPane(new ShopPanel(frame, 1, 'n'));
 		    			        Main.frame.pack();
 		    				}
@@ -177,14 +177,14 @@ public class ArmorPanel extends JPanel{
 				desc.setPreferredSize(new Dimension(313,20));
             	
     			JButton Button = new JButton();
-    			if (Objects.isNull(CessPool.selected.equippedArmor)) {
+    			if (CessPool.selected.isArmorNull()) {
     				Button.setText("Equip");
     				Button.setEnabled(true);
     			}
     			else {
     				Button.setText("Equip");
     				Button.setEnabled(false);
-    				Armor ArmorChar2 = CessPool.selected.equippedArmor;
+    				Armor ArmorChar2 = CessPool.selected.getEquippedArmor();
     				if(armor1.equals(ArmorChar2)) {
     					Button.setText("Unequip");
         				Button.setEnabled(true);
@@ -200,8 +200,8 @@ public class ArmorPanel extends JPanel{
                 Button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                    	if(!Objects.isNull(CessPool.selected.equippedArmor) ) {
-							Armor ArmorChar = CessPool.selected.equippedArmor;
+                    	if(!CessPool.selected.isArmorNull() ) {
+							Armor ArmorChar = CessPool.selected.getEquippedArmor();
 							CessPool.selected.unequipArmor(ArmorChar);
 						}
                     	else {

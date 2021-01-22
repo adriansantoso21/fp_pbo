@@ -87,8 +87,8 @@ public class BattlePanel extends JPanel {
         te.setContentType("text/html");
         te.setOpaque(false);
         te.setFont(new Font("Verdana", Font.BOLD, 13));
-        te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
-        					+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
+        te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.getHealthPoint() + "</center><br>"
+        					+"MP :" + fighter.currMana + " / " + fighter.getMana() + "</h3></div></html>");
         
         tf = new JTextPane();
         tf.setEditable(false);
@@ -96,8 +96,8 @@ public class BattlePanel extends JPanel {
         tf.setForeground(new Color(0, 255, 255));
         tf.setFont(new Font("Verdana", Font.BOLD, 13));
         tf.setOpaque(false);
-        tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
-        		+ "MP : " + fighted.currMana + " / " + fighted.mana + "</h3></div></html>");
+        tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.getHealthPoint() + "</center><br>"
+        		+ "MP : " + fighted.currMana + " / " + fighted.getMana() + "</h3></div></html>");
         
         tb.add(te);
         tb.add(tf);
@@ -393,30 +393,30 @@ public class BattlePanel extends JPanel {
 					String reward;
 					Random rand = new Random();
 					int int_random = rand.nextInt(100)+100; 
-					fighter.gold += int_random;
+					fighter.setGold(fighter.getGold() + int_random);
 					
 					reward = "· "+int_random+" gold<br>";
 					int chance = rand.nextInt(10);
 					if(chance<=1) {
 						int chances = rand.nextInt(5)+10;
-						fighter.healHealth(fighter.healthPoint*chances/100);
-						reward += "· "+ fighter.healthPoint*chances/100 + " HP healed<br>";
+						fighter.healHealth(fighter.getHealthPoint()*chances/100);
+						reward += "· "+ fighter.getHealthPoint()*chances/100 + " HP healed<br>";
 					}
 					else if (chance<=3) {
 						int chances = rand.nextInt(5)+10;
-						fighter.healMana(fighter.mana*chances/100);
-						reward += "· "+ fighter.mana*chances/100 + " mana healed<br>";
+						fighter.healMana(fighter.getMana()*chances/100);
+						reward += "· "+ fighter.getMana()*chances/100 + " mana healed<br>";
 					}
-					else if (chance <=5 && fighter.potionA < 7) {
+					else if (chance <=5 && fighter.getPotionA() < 7) {
 						int chances = rand.nextInt(6);
 						fighter.inventory.add(CessPool.potionz.get(chances));
 						reward += "· "+ CessPool.potionz.get(chances).name + "<br>";
-						fighter.potionA += 1;
+						fighter.setPotionA(fighter.getPotionA() + 1);
 					}
 					int attPoint = rand.nextInt(1)+2;
 					JFrame frame = new JFrame("CONGRATS!");
 					reward += "· "+ attPoint + " attribute points<br>";
-					fighter.attributeP += attPoint;
+					fighter.setAttributeP(fighter.getAttributeP() + attPoint);
 					JLabel label = new JLabel("<html><center><p style style=\"background-color:powderblue; color: blue;\">YOU WON!!!<br> Loot : <br> "+ reward +"</p>");
 					label.setHorizontalAlignment(SwingConstants.CENTER);
 					JOptionPane.showMessageDialog(frame, label, "CONGRATS!!", JOptionPane.PLAIN_MESSAGE);
@@ -436,7 +436,7 @@ public class BattlePanel extends JPanel {
 	public void enemyTurn(Monster turn) {
 		Random ski = new Random();
 		int randomness = ski.nextInt(101);
-		if(randomness < fighted.skillChance) {
+		if(randomness < fighted.getSkillChance()) {
 			int testo = 1;
 			ArrayList<Skill> usable = new ArrayList<Skill>();
 			for (Skill check : fighted.skills) {
@@ -651,30 +651,30 @@ public class BattlePanel extends JPanel {
 		panel.add(empt2);
 		
 		JLabel hp = new JLabel();
-    	hp.setText("Max HP : " + fighter.healthPoint);
+    	hp.setText("Max HP : " + fighter.getHealthPoint());
 		hp.setFocusable(false);
 		hp.setForeground(new Color(26, 163, 255));
 		hp.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(hp);
 		
 		JLabel acc = new JLabel();
-		float intdif = (fighter.showAccuracy() - fighter.accuracy);
+		float intdif = (fighter.showAccuracy() - fighter.getAccuracy());
 		String indif = ""+intdif;
 		if (intdif>0) {
 			indif = "+"+intdif;
 		}
-    	acc.setText("Accuracy : " + fighter.accuracy + " (" + indif + ")" );
+    	acc.setText("Accuracy : " + fighter.getAccuracy() + " (" + indif + ")" );
 		acc.setFocusable(false);
 		acc.setForeground(new Color(26, 163, 255));
 		acc.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(acc);
 		
 		JLabel weapon = new JLabel();
-		if(Objects.isNull(fighter.equippedWeapon)) {
+		if(CessPool.selected.isWeaponNull()) {
 			weapon.setText("No weapon equipped");
 		}
 		else {
-			weapon.setText("Weapon " + fighter.equippedWeapon.name + " equipped");
+			weapon.setText("Weapon " + fighter.getEquippedWeapon().name + " equipped");
 		}
 		weapon.setFocusable(false);
 		weapon.setForeground(new Color(26, 163, 255));
@@ -682,30 +682,30 @@ public class BattlePanel extends JPanel {
 		panel.add(weapon);
 		
 		JLabel mana = new JLabel();
-    	mana.setText("Max Mana : " + fighter.mana);
+    	mana.setText("Max Mana : " + fighter.getMana());
 		mana.setFocusable(false);
 		mana.setForeground(new Color(26, 163, 255));
 		mana.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(mana);
 		
 		JLabel spd = new JLabel();
-		intdif = (fighter.showSpeed() - fighter.speed);
+		intdif = (fighter.showSpeed() - fighter.getSpeed());
 		indif = ""+intdif;
 		if (intdif>0) {
 			indif = "+"+intdif;
 		}
-    	spd.setText("Speed : " + fighter.speed + " (" + indif + ")" );
+    	spd.setText("Speed : " + fighter.getSpeed() + " (" + indif + ")" );
 		spd.setFocusable(false);
 		spd.setForeground(new Color(26, 163, 255));
 		spd.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(spd);
 		
 		JLabel armor = new JLabel();
-		if(Objects.isNull(fighter.equippedArmor)) {
+		if(CessPool.selected.isArmorNull()) {
 			armor.setText("No armor equipped");
 		}
 		else {
-			armor.setText("Armor " + fighter.equippedArmor.name + " equipped");
+			armor.setText("Armor " + fighter.getEquippedArmor().name + " equipped");
 		}
 		armor.setFocusable(false);
 		armor.setForeground(new Color(26, 163, 255));
@@ -713,24 +713,24 @@ public class BattlePanel extends JPanel {
 		panel.add(armor);
 		
 		JLabel inte = new JLabel();
-		intdif = (fighter.showIntelligence() - fighter.intelligence);
+		intdif = (fighter.showIntelligence() - fighter.getIntelligence());
 		indif = ""+intdif;
 		if (intdif>0) {
 			indif = "+"+intdif;
 		}
-    	inte.setText("Intelligence : " + fighter.intelligence + " (" + indif + ")" );
+    	inte.setText("Intelligence : " + fighter.getIntelligence() + " (" + indif + ")" );
 		inte.setFocusable(false);
 		inte.setForeground(new Color(26, 163, 255));
 		inte.setFont(new Font("Verdana", Font.BOLD, 13));
 		panel.add(inte);
 		
 		JLabel def = new JLabel();
-		intdif = (fighter.showDefence() - fighter.defence);
+		intdif = (fighter.showDefence() - fighter.getDefence());
 		indif = ""+intdif;
 		if (intdif>0) {
 			indif = "+"+intdif;
 		}
-    	def.setText("Defence : " + fighter.defence + " (" + indif + ")" );
+    	def.setText("Defence : " + fighter.getDefence() + " (" + indif + ")" );
 		def.setFocusable(false);
 		def.setFont(new Font("Verdana", Font.BOLD, 13));
 		def.setForeground(new Color(26, 163, 255));
@@ -741,12 +741,12 @@ public class BattlePanel extends JPanel {
 		panel.add(empty);
 		
 		JLabel str = new JLabel();
-		intdif = (fighter.showStrength() - fighter.strength);
+		intdif = (fighter.showStrength() - fighter.getStrength());
 		indif = ""+intdif;
 		if (intdif>0) {
 			indif = "+"+intdif;
 		}
-    	str.setText("Strength : " + fighter.strength + " (" + indif + ")" );
+    	str.setText("Strength : " + fighter.getStrength() + " (" + indif + ")" );
 		str.setFocusable(false);
 		str.setForeground(new Color(26, 163, 255));
 		str.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -772,10 +772,10 @@ public class BattlePanel extends JPanel {
     }
     
     void updateBar() {
-    	te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.healthPoint + "</center><br>"
-				+"MP :" + fighter.currMana + " / " + fighter.mana + "</h3></div></html>");
-		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.healthPoint + "</center><br>"
-        		+ "MP : " + fighted.currMana + " / " + fighted.mana + "</h3></div></html>");
+    	te.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : "+ fighter.currHP +" / "+ fighter.getHealthPoint() + "</center><br>"
+				+"MP :" + fighter.currMana + " / " + fighter.getMana() + "</h3></div></html>");
+		tf.setText("<html><div style=\"color: rgb(0, 255, 255);\"><center><h3>HP : " + fighted.currHP + " / "+ fighted.getHealthPoint() + "</center><br>"
+        		+ "MP : " + fighted.currMana + " / " + fighted.getMana() + "</h3></div></html>");
     }
     
     public void chatsThread(String chatzz) {

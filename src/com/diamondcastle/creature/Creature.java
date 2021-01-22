@@ -22,28 +22,28 @@ public abstract class Creature {
 	public String name;
 	public float currHP;
 	public float currMana;
-	public float healthPoint;
-	public float mana;
-	public float intelligence;
-	public float strength;
-	public float accuracy;
-	public float speed;
-	public float defence;
+	private float healthPoint;
+	private float mana;
+	private float intelligence;
+	private float strength;
+	private float accuracy;
+	private float speed;
+	private float defence;
 	public float weight;
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
 	public ArrayList<Buff> buffs = new ArrayList<Buff>();
 	
 	public Creature(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy, float speed, float defence, float weight){
 		this.name = name;
-		this.healthPoint = healthPoint;
+		this.setHealthPoint(healthPoint);
 		this.currHP = healthPoint;
-		this.mana = mana;
+		this.setMana(mana);
 		this.currMana = mana;
-		this.intelligence = intelligence;
-		this.strength = strength;
-		this.accuracy = accuracy;
-		this.speed = speed;
-		this.defence = defence;
+		this.setIntelligence(intelligence);
+		this.setStrength(strength);
+		this.setAccuracy(accuracy);
+		this.setSpeed(speed);
+		this.setDefence(defence);
 		this.weight = weight;
 	}
 	
@@ -56,7 +56,7 @@ public abstract class Creature {
 	}
 	
 	public void healHP() {
-		this.currHP = this.healthPoint;
+		this.currHP = this.getHealthPoint();
 	}
 	
 	public void damaged(float att) {
@@ -77,7 +77,7 @@ public abstract class Creature {
 	
 	public boolean crit(){
 		double f = 1.003; // you can mess with this factor to change how quickly it diminishes
-		return Math.random() > Math.pow(f, -this.accuracy); // assuming random is in the range [0.0, 1.0]
+		return Math.random() > Math.pow(f, -this.getAccuracy()); // assuming random is in the range [0.0, 1.0]
 	}
 	
 	public boolean isDead() {
@@ -112,25 +112,25 @@ public abstract class Creature {
 	
 	public void healHealth(float healed) {
 		this.currHP += healed;
-		if (this.currHP>this.healthPoint) {
-			this.currHP = this.healthPoint;
+		if (this.currHP>this.getHealthPoint()) {
+			this.currHP = this.getHealthPoint();
 		}
 	}
 	
 	public void healMana(float healed) {
 		this.currMana += healed;
-		if (this.currMana>this.mana) {
-			this.currMana = this.mana;
+		if (this.currMana>this.getMana()) {
+			this.currMana = this.getMana();
 		}
 	}
 	
 	public float showSpeed() {
-		float full = this.speed;
+		float full = this.getSpeed();
 		float part = 0;
 		for (Buff curr : buffs) {
 			if(curr.speed!=0) {
 				if(curr.type.equals("Modifier")) {
-					part = this.speed * curr.speed / 100;
+					part = this.getSpeed() * curr.speed / 100;
 				}
 				else {
 					part = curr.speed;
@@ -145,12 +145,12 @@ public abstract class Creature {
 	}
 	
 	public float showDefence() {
-		float full = this.defence;
+		float full = this.getDefence();
 		float part = 0;
 		for (Buff curr : buffs) {
 			if(curr.defence!=0) {
 				if(curr.type.equals("Modifier")) {
-					part = this.defence * curr.defence / 100;
+					part = this.getDefence() * curr.defence / 100;
 				}
 				else {
 					part = curr.defence;
@@ -165,12 +165,12 @@ public abstract class Creature {
 	}
 	
 	public float showIntelligence() {
-		float full = this.intelligence;
+		float full = this.getIntelligence();
 		float part = 0;
 		for (Buff curr : buffs) {
 			if(curr.intelligence!=0) {
 				if(curr.type.equals("Modifier")) {
-					part = this.intelligence * curr.intelligence / 100;
+					part = this.getIntelligence() * curr.intelligence / 100;
 				}
 				else {
 					part = curr.intelligence;
@@ -185,12 +185,12 @@ public abstract class Creature {
 	}
 	
 	public float showStrength() {
-		float full = this.strength;
+		float full = this.getStrength();
 		float part = 0;
 		for (Buff curr : buffs) {
 			if(curr.strength!=0) {
 				if(curr.type.equals("Modifier")) {
-					part = -(this.strength * -curr.strength) / 100;
+					part = -(this.getStrength() * -curr.strength) / 100;
 				}
 				else {
 					part = curr.strength;
@@ -205,12 +205,12 @@ public abstract class Creature {
 	}
 	
 	public float showAccuracy() {
-		float full = this.accuracy;
+		float full = this.getAccuracy();
 		float part = 0;
 		for (Buff curr : buffs) {
 			if(curr.accuracy!=0) {
 				if(curr.type.equals("Modifier")) {
-					part = this.accuracy * curr.accuracy / 100;
+					part = this.getAccuracy() * curr.accuracy / 100;
 				}
 				else {
 					part = curr.accuracy;
@@ -222,6 +222,62 @@ public abstract class Creature {
 			return 0;
 		}
 		return full;
+	}
+
+	public float getHealthPoint() {
+		return healthPoint;
+	}
+
+	public void setHealthPoint(float healthPoint) {
+		this.healthPoint = healthPoint;
+	}
+
+	public float getMana() {
+		return mana;
+	}
+
+	public void setMana(float mana) {
+		this.mana = mana;
+	}
+
+	public float getAccuracy() {
+		return accuracy;
+	}
+
+	public void setAccuracy(float accuracy) {
+		this.accuracy = accuracy;
+	}
+
+	public float getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(float speed) {
+		this.speed = speed;
+	}
+
+	public float getIntelligence() {
+		return intelligence;
+	}
+
+	public void setIntelligence(float intelligence) {
+		this.intelligence = intelligence;
+	}
+
+	public float getDefence() {
+		return defence;
+	}
+
+	public void setDefence(float defence) {
+		this.defence = defence;
+	}
+
+	public float getStrength() {
+		return strength;
+	}
+
+	public void setStrength(float strength) {
+		this.strength = strength;
 	}
 	
 }

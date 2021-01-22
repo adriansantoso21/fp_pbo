@@ -37,7 +37,7 @@ public class RestPanel extends JPanel {
 		Button1.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	        	CessPool.selected.healHealth(CessPool.selected.healthPoint/100*30);
+	        	CessPool.selected.healHealth(CessPool.selected.getHealthPoint()/100*30);
 	        	Map.music2.stopMusic();
 	        	if(Map.last == 14) {
 	        		Main.frame.setContentPane(new VideoMiddle(frame));
@@ -63,7 +63,7 @@ public class RestPanel extends JPanel {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	        	Map.music2.stopMusic();
-	        	CessPool.selected.attributeP += 5;
+	        	CessPool.selected.setAttributeP(CessPool.selected.getAttributeP() + 5);
 	        	if(Map.last == 14) {
 	        		Main.frame.setContentPane(new VideoMiddle(frame));
 		        	Main.frame.pack();
