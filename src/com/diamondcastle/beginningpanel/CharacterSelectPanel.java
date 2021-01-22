@@ -25,7 +25,6 @@ import com.diamondcastle.creature.Character;
 import com.diamondcastle.gameplaypanel.FinalBossPanel;
 import com.diamondcastle.inventory.Potion;
 import com.diamondcastle.main.Main;
-import com.diamondcastle.map.Map;
 import com.diamondcastle.video.VideoCharacterSelectPanel;
 import com.diamondcastle.cesspool.CessPool;
 
@@ -127,7 +126,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.potionA = 2;
 	               
 	                StartPanel.music.stopMusic();
-	                Main.frame.setContentPane(new Map(frame));
+	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();
 	            }
 	         }

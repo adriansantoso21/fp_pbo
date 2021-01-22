@@ -28,8 +28,8 @@ public class Main {
 				 new CessPool();
 				 frame.setPreferredSize(new Dimension(1280, 750));
 				 
-//			     frame.setContentPane(new StartPanel("resource/images/StartPanel.jpg", frame));
-				 frame.setContentPane(new VideoCredit());
+			     frame.setContentPane(new StartPanel("resource/images/StartPanel.jpg", frame));
+//				 frame.setContentPane(new VideoCredit());
 						 
 			     frame.pack();
 			     frame.setLocationRelativeTo(null);
