@@ -81,13 +81,13 @@ public class CessPool {
 		armorz.add(new Armor("Feyweave Robe", 40, 70, 60, 39, 45, 1000));
 		armorz.add(new Armor("Robe of the Oracle", 20, 35, 40, 10, 30, 650));
 		
-		weaponz.add(new Weapon("Killer", 30, 0, 38, 10, 10, 425));
-		weaponz.add(new Weapon("Ancient Sword", 50, 0, 25, 17, 10, 600));
-		weaponz.add(new Weapon("Sword of the Warzone", 40, 0, 70, 20, 15, 700));
-		weaponz.add(new Weapon("Sunlight Sword", 35, 0, 55, 35, 20, 800));
-		weaponz.add(new Weapon("Lost Prayer to the Wind", 0, 60, 70, 40, 26, 850));
-		weaponz.add(new Weapon("Dragon's Corroded Fang", 47, 20, 63, 52, 38, 1000));
-		weaponz.add(new Weapon("Dragonwrath", 0, 69, 60, 49, 33, 950));
+		weaponz.add(new Weapon("Killer", 30, 52, 38, 10, 10, 425));
+		weaponz.add(new Weapon("Ancient Sword", 50, 70, 25, 17, 10, 600));
+		weaponz.add(new Weapon("Sword of the Warzone", 40, 60, 70, 20, 15, 700));
+		weaponz.add(new Weapon("Sunlight Sword", 35, 67, 55, 35, 20, 800));
+		weaponz.add(new Weapon("Lost Prayer to the Wind", 38, 60, 70, 40, 26, 850));
+		weaponz.add(new Weapon("Dragon's Corroded Fang", 47, 75, 63, 52, 38, 1000));
+		weaponz.add(new Weapon("Dragonwrath", 43, 69, 60, 49, 33, 950));
 		weaponz.add(new Weapon("Katana Sword", 41, 75, 42, 45, 28, 900));
 		weaponz.add(new Weapon("Tarecgosa's Rest", 20, 60, 45, 15, 20, 550));
 		

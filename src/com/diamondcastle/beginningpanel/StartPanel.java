@@ -27,7 +27,7 @@ public class StartPanel extends JPanel{
 	static musicPlay music = new musicPlay();
 
 	public StartPanel(String imgg, JFrame frame) {
-		music.playMusic("resource/song/title.wav");
+		music.playMusic("title.wav");
 		music.musicLoop();
 		frame.setPreferredSize(new Dimension(1280, 750));
 		this.imgg = new ImageIcon("resource/images/StartPanel3.jpg").getImage();

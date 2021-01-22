@@ -43,19 +43,19 @@ public class BagPanel extends JPanel{
 		player.setEditable(false);
 		player.setContentType("text/html");
 		player.setText("<html><h3 style=\"color:white;\"><br>· Name :"+ CessPool.selected.name +"<br>"
-        		+ "· Health Point : "+ CessPool.selected.getHealthPoint()+ "<br>"
-        		+ "· Defence : "+ CessPool.selected.getDefence() + "<br>"
-        		+ "· Accuracy : "+ CessPool.selected.getAccuracy() + "<br>"
-        		+ "· Intelligence : "+ CessPool.selected.getIntelligence() + "<br>"
-        		+ "· Mana : "+ CessPool.selected.getMana() + "<br>"
-        		+ "· Strength : "+ CessPool.selected.getStrength() + "<br>"
-        		+ "· Speed : "+CessPool.selected.getSpeed() +"</h3> </html>");	
+        		+ "· Health Point : "+ CessPool.selected.healthPoint+ "<br>"
+        		+ "· Defence : "+ CessPool.selected.defence + "<br>"
+        		+ "· Accuracy : "+ CessPool.selected.accuracy + "<br>"
+        		+ "· Intelligence : "+ CessPool.selected.intelligence + "<br>"
+        		+ "· Mana : "+ CessPool.selected.mana + "<br>"
+        		+ "· Strength : "+ CessPool.selected.strength + "<br>"
+        		+ "· Speed : "+CessPool.selected.speed +"</h3> </html>");	
 		player.setBackground(new Color(0, 0, 77));
 		
 		JTextPane player2 = new JTextPane();
 		player2.setEditable(false);
 		player2.setContentType("text/html");
-		player2.setText("<html><h3 style=\"color:white;\"><br>· Name :"+ CessPool.selected.getStory()+ "</h3> </html>");	
+		player2.setText("<html><h3 style=\"color:white;\"><br>· Name :"+ CessPool.selected.story+ "</h3> </html>");	
 		player2.setBackground(new Color(0, 0, 77));
 		
 	     //Currently Hp
@@ -67,7 +67,7 @@ public class BagPanel extends JPanel{
 	     
 	     //Currently Gold
 	     ImageIcon Img5 = new ImageIcon("resource/images/coin_bag.png");     
-	     JButton cugo = new JButton("       Gold is currently " + CessPool.selected.getGold(), Img5);
+	     JButton cugo = new JButton("       Gold is currently " + CessPool.selected.gold, Img5);
 	     cugo.setBounds(0, 690, 150, 15);
 	     cugo.setBackground(new Color(173, 78, 5));
 	     cugo.setForeground(Color.yellow);
@@ -95,7 +95,7 @@ public class BagPanel extends JPanel{
 
 		kanan.setBackground(new Color(0, 26, 0));
 		
-		JButton armor = new JButton("Armor ( " + CessPool.selected.getArmorA()+ "/4 )" );
+		JButton armor = new JButton("Armor ( " + CessPool.selected.armorA+ "/4 )" );
 		JPanel ArmorPanel = new ArmorPanel(1, frame);
 		kanan_bawah.add(ArmorPanel, "armorpane");
 		armor.setPreferredSize(new Dimension(106, 60));
@@ -111,7 +111,7 @@ public class BagPanel extends JPanel{
     			}
     	);
 		
-		JButton weapon = new JButton("Weapon("+ CessPool.selected.getWeaponA()+ "/4)");
+		JButton weapon = new JButton("Weapon("+ CessPool.selected.weaponA+ "/4)");
 		JPanel WeaponPanel = new WeaponPanel(1, frame);
 		kanan_bawah.add(WeaponPanel, "weaponpane");
 		weapon.setPreferredSize(new Dimension(106, 60));
@@ -127,7 +127,7 @@ public class BagPanel extends JPanel{
     			}
     	);
 		
-		JButton potion = new JButton("Potion ( " + CessPool.selected.getPotionA()+ "/7 )");
+		JButton potion = new JButton("Potion ( " + CessPool.selected.potionA+ "/7 )");
 		JPanel PotionPanel = new PotionPanel(1, frame);
 		kanan_bawah.add(PotionPanel, "potionpane");
 		potion.setPreferredSize(new Dimension(106, 60));

@@ -37,7 +37,7 @@ public class SkillPanel extends JPanel{
 			int sum = 0;
 			
 			if(hm == 'y') {
-				Collections.shuffle(CessPool.skillz);
+				Collections.shuffle(CessPool.armorz);
 				
 				sumn = new ArrayList<Skill>();
 				
@@ -91,9 +91,8 @@ public class SkillPanel extends JPanel{
 					skill.setPreferredSize(new Dimension(313,20));
 					
 					
-					
 					JButton Button = new JButton();
-					if(CessPool.selected.getGold() >= b.price) {
+					if(CessPool.selected.gold >= b.price) {
 	    				Button.setText("Buy");
 	    				Button.setEnabled(true);
 	    			}
@@ -125,7 +124,7 @@ public class SkillPanel extends JPanel{
 			    				public void actionPerformed(ActionEvent event) {
 			    					Button.setEnabled(false);
 			    					CessPool.selected.skills.add(b);
-			    					CessPool.selected.setGold(CessPool.selected.getGold() - b.price);
+			    					CessPool.selected.gold -= b.price;
 			    					Main.frame.setContentPane(new ShopPanel(frame, 4, 'n'));
 			    			        Main.frame.pack();
 			    				}

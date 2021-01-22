@@ -25,6 +25,7 @@ import com.diamondcastle.creature.Character;
 import com.diamondcastle.gameplaypanel.FinalBossPanel;
 import com.diamondcastle.inventory.Potion;
 import com.diamondcastle.main.Main;
+import com.diamondcastle.map.Map;
 import com.diamondcastle.video.VideoCharacterSelectPanel;
 import com.diamondcastle.cesspool.CessPool;
 
@@ -123,10 +124,10 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.skills.add(CessPool.skillz.get(4));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(4)));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(6)));
-	                CessPool.selected.setPotionA(2);
+	                CessPool.selected.potionA = 2;
 	               
 	                StartPanel.music.stopMusic();
-	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
+	                Main.frame.setContentPane(new Map(frame));
 	                frame.pack();
 	            }
 	         }
@@ -201,7 +202,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.skills.add(CessPool.skillz.get(1));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(0)));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(1)));
-	                CessPool.selected.setPotionA(2);
+	                CessPool.selected.potionA = 2;
 	                StartPanel.music.stopMusic();
 //	                Main.frame.setContentPane(new Map(frame));
 	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
@@ -247,7 +248,7 @@ public class CharacterSelectPanel extends JPanel {
 
 	            if (choice == JOptionPane.YES_OPTION) {
 	            	System.out.println("Rogue is chosen.");
-	                CessPool.selected = new Character("Rogue", 750, 100, 35, 35, 50, 50, 20, 20, "šŽŒ‡¢" + " has always thought rogues to be really awesomely sneaky. He's always fantasized having their powers to blend in the environment and strike at the enemy's weakest points. The blending in part would've really come in useful.");
+	                CessPool.selected = new Character("Rogue", 750, 100, 65, 35, 50, 50, 20, 20, "šŽŒ‡¢" + " has always thought rogues to be really awesomely sneaky. He's always fantasized having their powers to blend in the environment and strike at the enemy's weakest points. The blending in part would've really come in useful.");
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Rogue/attack1.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Rogue/attack2.png").getImage());
 	                CessPool.selected.addAttackImage(new ImageIcon("resource/creatures/character/Rogue/attack3.png").getImage());
@@ -268,7 +269,7 @@ public class CharacterSelectPanel extends JPanel {
 	                CessPool.selected.skills.add(CessPool.skillz.get(3));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(3)));
 	                CessPool.selected.inventory.add(new Potion(CessPool.potionz.get(7)));
-	                CessPool.selected.setPotionA(2);
+	                CessPool.selected.potionA = 2;
 	                StartPanel.music.stopMusic();
 	                Main.frame.setContentPane(new VideoCharacterSelectPanel(frame));
 	                frame.pack();

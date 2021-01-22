@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import com.diamondcastle.inventory.Armor;
 import com.diamondcastle.inventory.Inventory;
@@ -16,24 +15,27 @@ public class Character extends Creature {
 	
 	public ArrayList<Inventory> inventory = new ArrayList<Inventory>();
 	public ArrayList<Skill> skills = new ArrayList<Skill>();
-	private Armor equippedArmor;
-	private Weapon equippedWeapon;
-	private int armorA, weaponA, potionA, attributeP;
-	private float gold;
-	private String story;
+	public Armor equippedArmor;
+	public Weapon equippedWeapon;
+	public int armorA, weaponA, potionA;
+	public int attributeP;
+	public int gold;	
+	public String story;
 	private List <Image> ImgPool;
 	private List <Image> IdleImgPool;
 	private List <Image> SpellImgPool;
 	Image curr;
-	public int now, idlenow, spellnow;
+	public int now;
+	public int idlenow;
+	public int spellnow;
 	int whatnow;
 	
 	public Character(String name, float healthPoint, float mana, float intelligence, float strength, float accuracy,
 			float speed, float defence, float weight, String story) {
 		super(name, healthPoint, mana, intelligence, strength, accuracy, speed, defence, weight);
-		this.setGold(1000);
-		this.setStory(story);
-		this.setAttributeP(10);
+		this.gold = 1000;
+		this.story = story;
+		this.attributeP = 10;
 		ImgPool = new ArrayList<Image>();
 		IdleImgPool = new ArrayList<Image>();
 		SpellImgPool = new ArrayList<Image>();
@@ -70,38 +72,38 @@ public class Character extends Creature {
 	}
 	
 	public void equipArmor(Armor equippedArmor) {
-		this.setEquippedArmor(equippedArmor);
-		this.setAccuracy(this.getAccuracy() + equippedArmor.accuracy);
-		this.setDefence(this.getDefence() + equippedArmor.defence);
-		this.setHealthPoint(this.getHealthPoint() + equippedArmor.healthPoint);
-		this.setSpeed(this.getSpeed() + equippedArmor.speed);
+		this.equippedArmor = equippedArmor;
+		this.accuracy += equippedArmor.accuracy;
+		this.defence += equippedArmor.defence;
+		this.healthPoint += equippedArmor.healthPoint;
+		this.speed += equippedArmor.speed;
 		this.weight += equippedArmor.weight;
 	}
 	
 	public void equipWeapon(Weapon equippedWeapon) {
-		this.setEquippedWeapon(equippedWeapon);
-		this.setStrength(this.getStrength() + equippedWeapon.strength);
-		this.setAccuracy(this.getAccuracy() + equippedWeapon.accuracy);
-		this.setIntelligence(this.getIntelligence() + equippedWeapon.intelligence);
-		this.setSpeed(this.getSpeed() + equippedWeapon.speed);
+		this.equippedWeapon = equippedWeapon;
+		this.strength += equippedWeapon.strength;
+		this.accuracy += equippedWeapon.accuracy;
+		this.intelligence += equippedWeapon.intelligence;
+		this.speed += equippedWeapon.speed;
 		this.weight += equippedWeapon.weight;
 	}
 
 	public void unequipArmor(Armor equippedArmor) {
-		this.setEquippedArmor(null);
-		this.setAccuracy(this.getAccuracy() - equippedArmor.accuracy);
-		this.setDefence(this.getDefence() - equippedArmor.defence);
-		this.setHealthPoint(this.getHealthPoint() - equippedArmor.healthPoint);
-		this.setSpeed(this.getSpeed() - equippedArmor.speed);
+		this.equippedArmor = null;
+		this.accuracy -= equippedArmor.accuracy;
+		this.defence -= equippedArmor.defence;
+		this.healthPoint -= equippedArmor.healthPoint;
+		this.speed -= equippedArmor.speed;
 		this.weight -= equippedArmor.weight;
 	}
 	
 	public void unequipWeapon(Weapon equippedWeapon) {
-		this.setEquippedWeapon(null);
-		this.setStrength(this.getStrength() - equippedWeapon.strength);
-		this.setAccuracy(this.getAccuracy() - equippedWeapon.accuracy);
-		this.setIntelligence(this.getIntelligence() - equippedWeapon.intelligence);
-		this.setSpeed(this.getSpeed() - equippedWeapon.speed);
+		this.equippedWeapon = null;
+		this.strength -= equippedWeapon.strength;
+		this.accuracy -= equippedWeapon.accuracy;
+		this.intelligence -= equippedWeapon.intelligence;
+		this.speed -= equippedWeapon.speed;
 		this.weight -= equippedWeapon.weight;
 	}
 	
@@ -120,7 +122,7 @@ public class Character extends Creature {
 			this.buffs.add(potion.buff);
 		}
 		this.inventory.remove(potion);
-		this.setPotionA(this.getPotionA() - 1);
+		this.potionA -= 1;
 	}
 	
 	public void AttackAnimation() {
@@ -162,78 +164,6 @@ public class Character extends Creature {
 		else {
 			g.drawImage(this.curr, 0, 20, null);
 		}
-	}
-
-	public float getGold() {
-		return gold;
-	}
-
-	public void setGold(float f) {
-		this.gold = f;
-	}
-
-	public int getPotionA() {
-		return potionA;
-	}
-
-	public void setPotionA(int potionA) {
-		this.potionA = potionA;
-	}
-
-	public int getAttributeP() {
-		return attributeP;
-	}
-
-	public void setAttributeP(int attributeP) {
-		this.attributeP = attributeP;
-	}
-
-	public int getArmorA() {
-		return armorA;
-	}
-
-	public void setArmorA(int armorA) {
-		this.armorA = armorA;
-	}
-
-	public String getStory() {
-		return story;
-	}
-
-	public void setStory(String story) {
-		this.story = story;
-	}
-
-	public int getWeaponA() {
-		return weaponA;
-	}
-
-	public void setWeaponA(int weaponA) {
-		this.weaponA = weaponA;
-	}
-	
-	public boolean isWeaponNull() {
-		return Objects.isNull(getEquippedWeapon());
-	}
-	
-	public boolean isArmorNull() {
-		return Objects.isNull(getEquippedArmor());
-	}
-
-	public Armor getEquippedArmor() {
-		return equippedArmor;
-	}
-
-	public void setEquippedArmor(Armor equippedArmor) {
-		this.equippedArmor = equippedArmor;
-	}
-
-	public Weapon getEquippedWeapon() {
-		return equippedWeapon;
-	}
-
-	public void setEquippedWeapon(Weapon equippedWeapon) {
-		this.equippedWeapon = equippedWeapon;
 	}
 	
 }

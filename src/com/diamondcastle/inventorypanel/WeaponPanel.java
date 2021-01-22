@@ -36,7 +36,7 @@ public class WeaponPanel extends JPanel{
 		int sum = 0;
 		
 		if(hm == 'y') {
-			Collections.shuffle(CessPool.weaponz);
+			Collections.shuffle(CessPool.armorz);
 			
 			sumn = new ArrayList<Weapon>();
 			
@@ -77,7 +77,7 @@ public class WeaponPanel extends JPanel{
 			weapon.setPreferredSize(new Dimension(313,20));
 			
 			JButton Button = new JButton();
-			if(CessPool.selected.getGold() >= b.price) {
+			if(CessPool.selected.gold >= b.price) {
 				Button.setText("Buy");
 				Button.setEnabled(true);
 			}
@@ -86,7 +86,7 @@ public class WeaponPanel extends JPanel{
 				Button.setEnabled(false);
 			}
 			
-			if(CessPool.selected.getWeaponA() > 3) {
+			if(CessPool.selected.weaponA > 3) {
 				Button.setText("No Space");
 				Button.setEnabled(false);
 			}
@@ -112,8 +112,8 @@ public class WeaponPanel extends JPanel{
 	    				public void actionPerformed(ActionEvent event) {
 	    					Button.setEnabled(false);
 	    					CessPool.selected.inventory.add((Inventory)b);
-	    					CessPool.selected.setGold(CessPool.selected.getGold() - b.price);
-	    					CessPool.selected.setWeaponA(CessPool.selected.getWeaponA() + 1);
+	    					CessPool.selected.gold -= b.price;
+	    					CessPool.selected.weaponA += 1;
 	    					Main.frame.setContentPane(new ShopPanel(frame, 2, 'n'));
 	    					Main.frame.pack();
 	    				}
@@ -168,14 +168,14 @@ public class WeaponPanel extends JPanel{
             	
     			JButton Button = new JButton();
     			
-    			if (Objects.isNull(CessPool.selected.getEquippedWeapon())) {
+    			if (Objects.isNull(CessPool.selected.equippedWeapon)) {
     				Button.setText("Equip");
     				Button.setEnabled(true);
     			}
     			else {
     				Button.setText("Equip");
     				Button.setEnabled(false);
-    				Weapon WeaponChar2 = CessPool.selected.getEquippedWeapon();
+    				Weapon WeaponChar2 = CessPool.selected.equippedWeapon;
     				if(weapon1.equals(WeaponChar2)) {
     					Button.setText("Unequip");
         				Button.setEnabled(true);
@@ -192,8 +192,8 @@ public class WeaponPanel extends JPanel{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                     	
-                    	if(!Objects.isNull(CessPool.selected.getEquippedWeapon()) ) {
-							Weapon WeaponChar = CessPool.selected.getEquippedWeapon();
+                    	if(!Objects.isNull(CessPool.selected.equippedWeapon) ) {
+							Weapon WeaponChar = CessPool.selected.equippedWeapon;
 							CessPool.selected.unequipWeapon(WeaponChar);
 						}
                     	else {

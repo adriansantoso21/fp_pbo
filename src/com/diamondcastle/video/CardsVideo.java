@@ -57,7 +57,6 @@ public class CardsVideo extends JPanel {
 	public void startVideoThread() {
 		Thread vidThread = new Thread() {
 			public void run() {
-				Map.music2.stopMusic();
 				vid = 1;
 				for(i =0; i<beg.size(); i++) {
 					current = beg.get(i);
@@ -67,7 +66,6 @@ public class CardsVideo extends JPanel {
 					} 
 					catch (InterruptedException ex) {}
 				}
-				Map.music2.startMusicFromStop();
 			}
 		};
 		vidThread.start();

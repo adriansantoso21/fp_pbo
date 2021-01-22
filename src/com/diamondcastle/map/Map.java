@@ -25,7 +25,7 @@ import com.diamondcastle.music.musicPlay;
 
 public class Map extends JPanel{
  
- private Image imgg, imgg2;
+ private Image imgg;
  ArrayList <Map_Button> buttons = new ArrayList<Map_Button>();
  public static int last = CessPool.location.get(CessPool.location.size()-1);
  private int areaWidth;
@@ -33,7 +33,7 @@ public class Map extends JPanel{
  public static musicPlay music2 = new musicPlay();
  
  public Map (JFrame frame) {
-	 music2.playMusic("resource/song/map.wav");
+	 music2.playMusic("map.wav");
 	 music2.musicLoop();
 	  this.areaWidth = 1280;
 	  this.areaHeight = 750;
@@ -41,7 +41,6 @@ public class Map extends JPanel{
 	  this.setFocusable(true);
 
 	  this.imgg = new ImageIcon("resource/images/map.jpg").getImage();
-	  this.imgg = new ImageIcon("resource/images/map2nd.jpg").getImage();
 	  this.setLayout(null);
 	  
 	  buttons.add(new Map_Button(1050, 674, 2, false));
@@ -136,20 +135,20 @@ public class Map extends JPanel{
 		    	        	int int_random = rand.nextInt(3);
 		    	        	
 		    	        	if(int_random == 0) {
-		    	        		music2.playMusic("resource/song/battle1.wav");
+		    	        		music2.playMusic("battle1.wav");
 		    	        	}
 		    	        	
 							if(int_random == 1) {
-								music2.playMusic("resource/song/battle2.wav");
+								music2.playMusic("battle2.wav");
 		    	        	}
 							
 							if(int_random == 2) {
-								music2.playMusic("resource/song/battle3.wav");
+								music2.playMusic("battle3.wav");
 		    	        	}
 		    	        	
 		    	        	if(Map.last == 22) {
 		    	        		music2.stopMusic();
-		    	        		music2.playMusic("resource/song/finalbattle.wav");
+		    	        		music2.playMusic("finalbattle.wav");
 		    	        		Main.frame.setContentPane(new FinalBossPanel(frame));
 			    			    Main.frame.pack();
 		    	        	}
@@ -193,7 +192,7 @@ public class Map extends JPanel{
      
      //Current Gold
      ImageIcon Img = new ImageIcon("resource/images/coin.png");     
-     JButton cugo = new JButton("       Gold is currently " + CessPool.selected.getGold(), Img);
+     JButton cugo = new JButton("       Gold is currently " + CessPool.selected.gold, Img);
      cugo.setBounds(0, 50, 250, 50);
      cugo.setBackground(new Color(173, 78, 5));
      cugo.setForeground(Color.yellow);
@@ -221,7 +220,7 @@ public class Map extends JPanel{
         @Override
         public void actionPerformed(ActionEvent event) {
         	music2.stopMusic();
-        	music2.playMusic("resource/song/bag_shop_rest.wav");
+        	music2.playMusic("song/bag_shop_rest.wav");
         	Main.frame.setContentPane(new BagPanel(frame, -1));
         	Main.frame.pack();
         }
@@ -233,9 +232,6 @@ public class Map extends JPanel{
 	 public void paintComponent(Graphics g) {
 	  super.paintComponent(g);
 	  g.drawImage(this.imgg, 0, 0, null);
-	  if(Map.last==21) {
-		  g.drawImage(this.imgg2, 0, 0, null);
-	  }
 	 }
 	 
 }
